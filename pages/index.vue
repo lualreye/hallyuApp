@@ -1,5 +1,5 @@
 <template>
-  <Tutorial/>
+  <the-header/>
 </template>
 
 <script>
