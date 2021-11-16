@@ -1,10 +1,20 @@
 <template>
   <div class="w-full bg-white py-2">
     <div class="mx-auto max-w-2xl flex justify-between items-center px-4">
-      <div class="w-4 h-4">
-        <h-icon name="search" class="text-pink-500" />
-      </div>
-      <p class="text-4xl font-open">Hola estamos cheveres</p>
+      <icon-button iconName="menu" color="bg-primary" @click="probando" />
+      <figure class="w-48 flex justify-center items-center">
+        <img src="~/static/images/logo/imagotipo.png" alt="hallyu-store">
+      </figure>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    probando() {
+      console.log('estoy vivo')
+    }
+  }
+}
+</script>
