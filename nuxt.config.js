@@ -9,12 +9,12 @@ export default {
   head: {
     title: 'hallyuApp',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'es'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Tu ventana a Korea desde Ecuador' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

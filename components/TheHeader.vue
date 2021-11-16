@@ -4,6 +4,7 @@
       <div class="w-4 h-4">
         <h-icon name="search" class="text-pink-500" />
       </div>
+      <p class="text-4xl font-junegull">Hola estamos cheveres</p>
     </div>
   </div>
 </template>

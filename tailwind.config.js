@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        junegull: ['junegull'],
+      },
       colors: {
         primary: "#87C7C9",
         secondary: "#FF98C9",
