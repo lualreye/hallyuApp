@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        junegull: ['junegull'],
+        junegull: ["junegull"],
         open: ['"Open Sans"'],
       },
       colors: {
@@ -12,6 +12,7 @@ module.exports = {
         secondary: "#FF98C9",
         textColor: "#4E6F71",
         offerColor: "#8D7DA3",
+        yellow: "#FFD95F",
       },
     },
   },

@@ -1,7 +1,12 @@
 <template>
-  <the-header/>
+  <the-hero />
 </template>
 
 <script>
-export default {}
+import TheHero from '~/components/index/TheHero.vue'
+export default {
+  components: {
+    TheHero
+  }
+}
 </script>
