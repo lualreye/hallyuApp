@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         junegull: ['junegull'],
+        open: ['"Open Sans"'],
       },
       colors: {
         primary: "#87C7C9",
