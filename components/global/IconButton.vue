@@ -1,8 +1,8 @@
 <template>
   <button
     class="
-      w-10
-      h-10
+      w-8
+      h-8
       rounded-full
       bg-primary
       flex
@@ -10,7 +10,7 @@
       items-center
       shadow-lg
     "
-    :style="buttonColor"
+    :class="buttonClasses"
     @click="$emit('click', $event)"
   >
     <h-icon :name="iconName" class="text-white p-1" />
@@ -24,14 +24,14 @@ export default {
       type: String,
       required: true
     },
-    color: {
+    classes: {
       type: String,
       required: null
     }
   },
   computed: {
-    buttonColor() {
-      return this.color
+    buttonClasses() {
+      return this.classes
     },
     getIcon() {
       return this.iconName
