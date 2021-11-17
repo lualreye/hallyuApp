@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mx-auto flex justify-around items-center flex-wrap px-4 py-4">
     <!-- LEFT CONTAINER, AQUI CONTAMOS CON EL COPYRIGHT DEL HERO -->
-    <div class="w-full lg:w-1/2">
+    <div class="w-full lg:w-1/2 lg:pl-5">
       <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-junegull text-secondary text-center lg:text-left">Hallyu Store</h1>
       <div class="w-full lg:w-72 xl:w-96 mt-5 flex flex-col items-center lg:items-start">
         <div class="flex justify-center items-center">
@@ -69,8 +69,11 @@
 
 <script>
 export default {
-  data: () => ({
-    image: require('~/static/images/idols/han.jpg')
-  })
+  props: {
+    image: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
