@@ -1,5 +1,7 @@
 <template>
-  <the-hero />
+  <div class="w-full max-w-screen-2xl mx-auto">
+    <the-hero />
+  </div>
 </template>
 
 <script>

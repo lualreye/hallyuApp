@@ -13,6 +13,7 @@ module.exports = {
         textColor: "#4E6F71",
         offerColor: "#8D7DA3",
         yellow: "#FFD95F",
+        lightPink: "#FFE0E8",
       },
     },
   },
