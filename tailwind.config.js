@@ -14,6 +14,7 @@ module.exports = {
         offerColor: "#8D7DA3",
         yellow: "#FFD95F",
         lightPink: "#FFE0E8",
+        background: '#F8FFFF'
       },
     },
   },

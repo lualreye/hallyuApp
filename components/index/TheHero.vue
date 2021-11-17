@@ -54,15 +54,23 @@
     <!-- RIGHT CONTAINER, AQUI OBTENEMOS LA IMAGEN DE LA BASE DE DATOS -->
     <div class="w-full lg:w-1/2 mt-4 lg:mt-0">
       <div class="w-full relative">
-        <div class="w-40 py-4 absolute top-4 left-0 rounded-full bg-lightPink flex justify-center items-center">
+        <div class="w-28 md:w-44 xl:w-48 py-4 md:py-6 xl:py-8 absolute top-4 left-0 rounded-full bg-lightPink flex justify-center items-center">
           <p class="text-xl text-primary">
             Hola :)
           </p>
         </div>
         <figure class="w-full flex justify-center items-center lg:w-3/4 mx-auto rounded-b-lg">
-          <img src="~/static/images/idols/han.jpg" alt="hero-image" class="w-full rounded-t-full rounded-b-lg">
+          <img :src="image" alt="hero-image" class="w-full rounded-t-full rounded-b-lg">
         </figure>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    image: require('~/static/images/idols/han.jpg')
+  })
+}
+</script>
