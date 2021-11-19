@@ -1,12 +1,30 @@
 <template>
-  <div class="w-full mt-10 px-4">
+  <div class="w-full mt-16 px-4">
+    <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
     <div class="w-full flex justify-center lg:justify-start items-center h-14">
       <div class="parenthesis w-11 h-11 relative">
         <first-type />
       </div>
-      <h2 class="text-xl sm:text-4xl font-junegull text-textColor">Hallyu on Clock</h2>
+      <h2 class="text-xl sm:text-4xl font-junegull text-textColor">
+        Hallyu on Clock
+      </h2>
       <div class="parenthesis-two w-11 h-11 relative">
         <first-type />
+      </div>
+    </div>
+    <!-- TARJETAS DE PRODUCTOS -->
+    <div class="flex justify-center items-center mt-6 px-1 overflow-x-scroll">
+      <div
+        v-for="(product, i) in products"
+        :key="i"
+        class="flex justify-center items-center"
+      >
+        <urgent-product-card
+          :image="product.image"
+          :stock="product.stock"
+          :productName="product.productName"
+          :timesLeft="product.timesLeft"
+        />
       </div>
     </div>
   </div>
@@ -14,10 +32,22 @@
 
 <script>
 import FirstType from "~/components/parenthesis/FirstType.vue";
+import UrgentProductCard from "~/components/cards/UrgentProductCard.vue";
 export default {
   components: {
     FirstType,
+    UrgentProductCard,
   },
+  data: () => ({
+    products: [
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 5,
+        timesLeft: 12345,
+        productName: "Nombre del producto",
+      },
+    ],
+  }),
 };
 </script>
 
