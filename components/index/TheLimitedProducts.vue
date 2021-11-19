@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-16 px-4">
+  <div class="w-full mt-16 px-4 py-6">
     <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
     <div class="w-full flex justify-center lg:justify-start items-center h-14">
       <div class="parenthesis w-11 h-11 relative">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- TARJETAS DE PRODUCTOS -->
-    <div class="flex justify-center items-center mt-6 px-1 overflow-x-scroll">
+    <div class="flex justify-center mt-8 py-16 items-center overflow-x-scroll">
       <div
         v-for="(product, i) in products"
         :key="i"

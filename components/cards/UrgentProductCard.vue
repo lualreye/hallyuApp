@@ -1,35 +1,17 @@
 <template>
-  <div class="w-44 h-44 rounded-lg relative">
-    <div class="absolute z-10 bottom-3/4 left-0 rotation">
-      <div class="rounded px-2 py-2 bg-aquamarine">
-        <p class="text-base text-textColor">Quedan</p>
+  <div class="w-48 h-48 relative">
+    <figure class="w-full h-full rounded-lg flex justify-center items-center">
+      <img :src="image" alt="productName" class="rounded-lg" >
+    </figure>
+    <div class="rotation absolute right-3/4 bottom-2/3 flex flex-col justify-center items-center">
+      <div class="px-2 bg-aquamarine flex-justify-center items-center rounded-lg">
+        <p class="text-textColor bg-aquamarine px-2">Quedan</p>
       </div>
-      <div
-        class="
-          flex
-          justify-center
-          items-center
-          w-12
-          h-12
-          bg-background
-          rounded-full
-          shadow-xl
-        "
-      >
-        <p class="text-lg text-center font-medium font-open text-textColor">
+      <div class="w-14 h-14 flex justify-center items-center bg-background rounded-full shadow-2xl">
+        <p class="text-textColor text-lg">
           {{ stock }}
         </p>
       </div>
-    </div>
-    <div class="w-40 h-40 z-0">
-      <figure class="w-full h-full justify-center items-center rounded-lg">
-        <img :src="image" :alt="productName" class="rounded-lg" />
-      </figure>
-    </div>
-    <div class="absolute bottom-0 right-0 w-4 py-2 bg-background rounded-lg">
-      <p class="text-lg font-medium font-open text-secondary">
-        {{ timesLeft }}
-      </p>
     </div>
   </div>
 </template>
@@ -59,6 +41,6 @@ export default {
 
 <style scoped>
 .rotation {
-  transform: rotate(330deg);
+  transform: rotate(345deg);
 }
 </style>
