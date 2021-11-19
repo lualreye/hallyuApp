@@ -13,6 +13,13 @@
         </p>
       </div>
     </div>
+    <div class="absolute left-3/4 bottom-0 flex flex-col justify-center items-center shadow-2xl">
+      <div class="flex px-2 py-1 justify-center items-center bg-background rounded-lg shadow-2xl border border-secondary">
+        <p class="text-secondary text-lg">
+          {{ timesLeft }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
