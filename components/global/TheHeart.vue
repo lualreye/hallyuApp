@@ -8,7 +8,7 @@
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
-  background: transparent;
+  background: red;
 }
 
 .heart-shape:before {
@@ -19,7 +19,7 @@
   height: 10px;
   content: '';
   border-radius: 50%;
-  background: transparent;
+  background: red;
 }
 
 .heart-shape:after {
@@ -30,6 +30,6 @@
   height: 10px;
   content: '';
   border-radius: 50%;
-  background: transparent;
+  background: red;
 }
 </style>

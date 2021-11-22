@@ -2,14 +2,14 @@
   <div class="w-full max-w-screen-2xl mx-auto">
     <the-hero :image="heroImage" />
     <the-limited-products :urgentProducts="urgentProducts" />
-    <the-favourites />
+    <the-favourites :comments="comments" />
   </div>
 </template>
 
 <script>
 import TheHero from "~/components/index/TheHero.vue";
 import TheLimitedProducts from "~/components/index/TheLimitedProducts.vue";
-import TheFavourites from '~/components/index/TheFavourites.vue';
+import TheFavourites from "~/components/index/TheFavourites.vue";
 export default {
   components: {
     TheHero,
@@ -58,6 +58,15 @@ export default {
         productName: "Nombre del producto",
         state: true,
         link: "hola",
+      },
+    ],
+    comments: [
+      {
+        comment:
+          "Este es un comentario de prueba en el que vamos a trabajar mucho",
+
+        userName: "Luis Reyes",
+        profileImage: require("~/static/images/idols/han.jpg"),
       },
     ],
   }),

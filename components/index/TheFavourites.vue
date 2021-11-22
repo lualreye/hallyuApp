@@ -45,7 +45,21 @@
     </div>
 
     <!-- RENDERIZADO DE TARJETAS DE LOS COMENTARIOS DE LOS USUARIOS -->
-    <recommendation-card />
+    <div
+      class="flex justify-start mt-8 py-16 pl-6 items-center overflow-x-scroll"
+    >
+      <div
+        v-for="(userComment, i) in comments"
+        :key="i"
+        class="flex justify-center items-center mr-6 w-64 h-64 p-6"
+      >
+        <recommendation-card
+          :comment="userComment.comment"
+          :profileImage="userComment.profileImage"
+          :userName="userComment.userName"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -56,6 +70,12 @@ export default {
   components: {
     SecondType,
     RecommendationCard
+  },
+  props: {
+    comments: {
+      type: Array,
+      required: true
+    }
   },
 };
 </script>

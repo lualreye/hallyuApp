@@ -1,28 +1,19 @@
 <template>
   <div class="w-32 flex justify-center items-center relative">
-    <div class="w-full bg-background flex justify-around progress-bar z-10">
-      <the-heart />
-      <the-heart />
-      <the-heart />
-      <the-heart />
-      <the-heart />
+    <div class="flex justify-center items-center">
+      <div v-for="n in 5" :key="n" class="w-5 h-5 flex justify-center items-center">
+        <h-icon name="like" class="text-pink-700" />
+      </div>
     </div>
-    <div class="w-full absolute bg-red z-0"></div>
   </div>
 </template>
 
 <script>
-import TheHeart from '~/components/global/TheHeart.vue'
+import TheHeart from "~/components/global/TheHeart.vue";
 export default {
   components: {
-    TheHeart
-  }
-}
-</script>\
+    TheHeart,
+  },
+};
+</script>
 
-
-<style scoped>
-.progress-bar:before {
-  background: transparent;
-}
-</style>
