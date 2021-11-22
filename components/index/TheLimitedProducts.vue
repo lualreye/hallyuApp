@@ -24,6 +24,7 @@
           :stock="product.stock"
           :productName="product.productName"
           :timesLeft="product.timesLeft"
+          :state="product.state"
         />
       </div>
     </div>
@@ -45,6 +46,7 @@ export default {
         stock: 5,
         timesLeft: 100000000,
         productName: "Nombre del producto",
+        state: true,
       },
     ],
   }),

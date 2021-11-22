@@ -1,5 +1,5 @@
 <template>
-  <div class="w-48 h-48 relative">
+  <div v-if="state" class="w-48 h-48 relative">
     <figure class="w-full h-full rounded-lg flex justify-center items-center">
       <img :src="image" alt="productName" class="rounded-lg" >
     </figure>
@@ -50,6 +50,10 @@ export default {
     },
     timesLeft: {
       type: Number,
+      required: true,
+    },
+    state: {
+      type: Boolean,
       required: true,
     },
   },
