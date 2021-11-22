@@ -13,11 +13,21 @@
         </p>
       </div>
     </div>
-    <div class="absolute left-3/4 bottom-0 flex flex-col justify-center items-center shadow-2xl">
+    <div class="w-44 absolute left-1/4 bottom-0 flex flex-col justify-center items-center shadow-2xl">
       <div class="flex px-2 py-1 justify-center items-center bg-background rounded-lg shadow-2xl border border-secondary">
-        <p class="text-secondary text-lg">
-          {{ timesLeft }}
-        </p>
+        <client-only>
+          <vac
+            :end-time="new Date().getTime() + timesLeft"
+          >
+            <span
+              slot="process"
+              slot-scope="{ timeObj }"
+              class="text-secondary text-sm"
+            >
+              {{ ` ${timeObj.d} d : ${timeObj.h} hrs : ${timeObj.m} min : ${timeObj.s} s`}}
+            </span>
+          </vac>
+        </client-only>
       </div>
     </div>
   </div>

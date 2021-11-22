@@ -43,7 +43,7 @@ export default {
       {
         image: require("~/static/images/idols/han.jpg"),
         stock: 5,
-        timesLeft: 12345,
+        timesLeft: 100000000,
         productName: "Nombre del producto",
       },
     ],
