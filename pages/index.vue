@@ -67,6 +67,26 @@ export default {
 
         userName: "Luis Reyes",
         profileImage: require("~/static/images/idols/han.jpg"),
+        productImage: require("~/static/images/idols/han.jpg"),
+        productName: "Este es el nombre",
+      },
+      {
+        comment:
+          "Este es un comentario de prueba en el que vamos a trabajar mucho",
+
+        userName: "Luis Reyes",
+        profileImage: require("~/static/images/idols/han.jpg"),
+        productImage: require("~/static/images/idols/han.jpg"),
+        productName: "Este es el nombre",
+      },
+      {
+        comment:
+          "Este es un comentario de prueba en el que vamos a trabajar mucho",
+
+        userName: "Luis Reyes",
+        profileImage: require("~/static/images/idols/han.jpg"),
+        productImage: require("~/static/images/idols/han.jpg"),
+        productName: "Este es el nombre",
       },
     ],
   }),

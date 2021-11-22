@@ -57,6 +57,8 @@
           :comment="userComment.comment"
           :profileImage="userComment.profileImage"
           :userName="userComment.userName"
+          :productImage="userComment.productImage"
+          :productName="userComment.productName"
         />
       </div>
     </div>
