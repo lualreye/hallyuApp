@@ -17,7 +17,7 @@
       <div
         v-for="(product, i) in products"
         :key="i"
-        class="flex justify-center items-center"
+        class="flex justify-center items-center mr-6"
       >
         <urgent-product-card
           :image="product.image"
@@ -25,6 +25,7 @@
           :productName="product.productName"
           :timesLeft="product.timesLeft"
           :state="product.state"
+          :link="product.link"
         />
       </div>
     </div>
@@ -47,6 +48,31 @@ export default {
         timesLeft: 100000000,
         productName: "Nombre del producto",
         state: true,
+        link: 'hola',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 5,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola1',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 5,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 5,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola',
       },
     ],
   }),
