@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full relative">
-    <div class="absolute bottom-4 left-0">
+    <div class="absolute top-9 left-0">
       <svg
         width="22"
         height="12"
@@ -14,7 +14,7 @@
         />
       </svg>
     </div>
-    <div class="absolute bottom-8 right-2/3">
+    <div class="absolute bottom-8 right-3">
       <svg
         width="33"
         height="19"
