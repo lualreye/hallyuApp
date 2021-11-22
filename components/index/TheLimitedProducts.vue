@@ -12,10 +12,10 @@
         <first-type />
       </div>
     </div>
-    <!-- TARJETAS DE PRODUCTOS -->
+    <!-- RENDERIZADO DE TARJETAS DE PRODUCTOS -->
     <div class="flex justify-start mt-8 py-16 pl-6 items-center overflow-x-scroll">
       <div
-        v-for="(product, i) in products"
+        v-for="(product, i) in urgentProducts"
         :key="i"
         class="flex justify-center items-center mr-6 w-64 h-64 p-6"
       >
@@ -40,66 +40,12 @@ export default {
     FirstType,
     UrgentProductCard,
   },
-  data: () => ({
-    products: [
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 3,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 4,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola1',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 6,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: 'hola',
-      },
-    ],
-  }),
+  props: {
+    urgentProducts: {
+      type: Array,
+      required: true
+    }
+  }
 };
 </script>
 
