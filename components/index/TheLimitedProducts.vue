@@ -13,11 +13,11 @@
       </div>
     </div>
     <!-- TARJETAS DE PRODUCTOS -->
-    <div class="flex justify-center mt-8 py-16 items-center overflow-x-scroll">
+    <div class="flex justify-start mt-8 py-16 pl-6 items-center overflow-x-scroll">
       <div
         v-for="(product, i) in products"
         :key="i"
-        class="flex justify-center items-center mr-6"
+        class="flex justify-center items-center mr-6 w-64 h-64 p-6"
       >
         <urgent-product-card
           :image="product.image"
@@ -44,6 +44,30 @@ export default {
     products: [
       {
         image: require("~/static/images/idols/han.jpg"),
+        stock: 3,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 4,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola1',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        stock: 6,
+        timesLeft: 100000000,
+        productName: "Nombre del producto",
+        state: true,
+        link: 'hola',
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
         stock: 5,
         timesLeft: 100000000,
         productName: "Nombre del producto",
@@ -56,7 +80,7 @@ export default {
         timesLeft: 100000000,
         productName: "Nombre del producto",
         state: true,
-        link: 'hola1',
+        link: 'hola',
       },
       {
         image: require("~/static/images/idols/han.jpg"),
