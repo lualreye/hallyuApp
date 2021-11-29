@@ -28,7 +28,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/timer.js'
+    '~/plugins/timer.js',
+    '~/plugins/rating.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
