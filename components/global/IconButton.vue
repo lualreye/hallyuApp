@@ -1,8 +1,8 @@
 <template>
   <button
     class="
-      w-8
-      h-8
+      w-10
+      h-10
       rounded-full
       bg-primary
       flex
