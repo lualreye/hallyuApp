@@ -1,5 +1,5 @@
 <template>
-  <div class="w-72 h-48 p-2">
+  <div class="w-72 p-2">
     <div class="w-full flex flex-col justify-center items-center p-1">
       <!-- COMENTARIO DE LA TARJETA DE RECOMENDACION -->
       <div class="bg-aquamarine py-4 px-2 rounded-lg shadow-lg">
