@@ -59,6 +59,8 @@
           :userName="userComment.userName"
           :productImage="userComment.productImage"
           :productName="userComment.productName"
+          :rate="userComment.rate"
+          :read="userComment.read"
         />
       </div>
     </div>

@@ -14,7 +14,7 @@
             {{ userName }}
           </p>
         </div>
-        <heart-rate :rating="3" />
+        <heart-rate :read="read" :rating="rate" />
       </div>
       <!-- IMAGEN DEL PRODUCTO DE LA REOCOMENDACION -->
       <div class="w-52 h-52 flex justify-center items-center relative">
@@ -56,6 +56,14 @@ export default {
       type: String,
       required: true
     },
+    rate: {
+      type: Number,
+      required: true
+    },
+    read: {
+      type: Boolean,
+      required: null
+    }
   }
 };
 </script>

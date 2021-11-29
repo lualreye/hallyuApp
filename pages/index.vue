@@ -69,6 +69,8 @@ export default {
         profileImage: require("~/static/images/idols/han.jpg"),
         productImage: require("~/static/images/idols/han.jpg"),
         productName: "Este es el nombre",
+        read: false,
+        rate: 3,
       },
       {
         comment:
@@ -78,6 +80,8 @@ export default {
         profileImage: require("~/static/images/idols/han.jpg"),
         productImage: require("~/static/images/idols/han.jpg"),
         productName: "Este es el nombre",
+        read: false,
+        rate: 3,
       },
       {
         comment:
@@ -87,6 +91,8 @@ export default {
         profileImage: require("~/static/images/idols/han.jpg"),
         productImage: require("~/static/images/idols/han.jpg"),
         productName: "Este es el nombre",
+        read: false,
+        rate: 3,
       },
     ],
   }),
