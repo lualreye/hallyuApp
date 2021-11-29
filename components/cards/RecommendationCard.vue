@@ -14,7 +14,7 @@
             {{ userName }}
           </p>
         </div>
-        <heart-progress-bar />
+        <heart-progress-bar :rating="3" />
       </div>
       <!-- IMAGEN DEL PRODUCTO DE LA REOCOMENDACION -->
       <div class="w-52 h-52 flex justify-center items-center relative">

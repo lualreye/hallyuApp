@@ -4,7 +4,7 @@
       <div class="w-32 flex justify-center items-center">
         <heart-rating
           :item-size="16"
-          :increment="0.5"
+          :value="rating"
         />
       </div>
     </div>
