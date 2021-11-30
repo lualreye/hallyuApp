@@ -61,6 +61,7 @@
           :productName="userComment.productName"
           :rate="userComment.rate"
           :read="userComment.read"
+          :order="i"
         />
       </div>
     </div>
