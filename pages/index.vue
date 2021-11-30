@@ -3,6 +3,7 @@
     <the-hero :image="heroImage" />
     <the-limited-products :urgentProducts="urgentProducts" />
     <the-favourites :comments="comments" />
+    <the-offers />
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import TheHero from "~/components/index/TheHero.vue";
 import TheLimitedProducts from "~/components/index/TheLimitedProducts.vue";
 import TheFavourites from "~/components/index/TheFavourites.vue";
+import TheOffers from "~/components/index/TheOffers"
 export default {
   components: {
     TheHero,
     TheLimitedProducts,
     TheFavourites,
+    TheOffers
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
