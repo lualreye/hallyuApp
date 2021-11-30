@@ -3,7 +3,7 @@
     <the-hero :image="heroImage" />
     <the-limited-products :urgentProducts="urgentProducts" />
     <the-favourites :comments="comments" />
-    <the-offers />
+    <the-offers :offers="offers" />
   </div>
 </template>
 
@@ -98,6 +98,13 @@ export default {
         rate: 3,
       },
     ],
+    offers: [
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg')
+      }
+    ]
   }),
 };
 </script>
