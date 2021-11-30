@@ -45,8 +45,16 @@
     </div>
     <!-- SECCION DE RENDERIZADO DE LAS TARJETAS -->
     <div class="flex justify-between mt-8 py-12 pl-6 items-center overflow-x-scroll">
-      <div v-for="(item, i) in offers" :key="i" class="flex justify-center items-center">
-        <offer-card />
+      <div v-for="(offerProduct, i) in offers" :key="i" class="flex justify-center items-center">
+        <offer-card
+          :image="offerProduct.image"
+          :productName="offerProduct.productName"
+          :order="i"
+          :state="offerProduct.state"
+          :link="offerProduct.link"
+          :price="offerProduct.price"
+          :discount="offerProduct.discount"
+        />
       </div>
     </div>
   </div>

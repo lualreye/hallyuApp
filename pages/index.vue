@@ -102,7 +102,10 @@ export default {
       {
         price:25,
         discount:10,
-        image: require('~/static/images/idols/han.jpg')
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
       }
     ]
   }),
