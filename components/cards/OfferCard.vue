@@ -32,7 +32,7 @@
           mb-2
         "
         :style="{ backgroundImage: 'url(' + image + ')' }"
-        :classs="{
+        :class="{
           'product-image': isEven,
           'product-image-2': !isEven,
         }"
