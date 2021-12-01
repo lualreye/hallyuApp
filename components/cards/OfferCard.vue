@@ -33,8 +33,8 @@
         "
         :style="{ backgroundImage: 'url(' + image + ')' }"
         :classs="{
-          'product-image':isEven,
-          'product-image-2': !isEven
+          'product-image': isEven,
+          'product-image-2': !isEven,
         }"
       />
       <div

@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- SECCION DE RENDERIZADO DE LAS TARJETAS -->
-    <div class="flex justify-between mt-8 py-12 pl-6 items-center overflow-x-scroll">
+    <div class="flex justify-center md:justify-between mt-8 py-12 pl-6 items-center flex-wrap">
       <div v-for="(offerProduct, i) in offers" :key="i" class="flex justify-center items-center">
         <offer-card
           :image="offerProduct.image"
