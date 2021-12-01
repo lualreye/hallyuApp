@@ -1,5 +1,5 @@
 <template>
-  <div :to="link" v-if="state" class="w-48 p-2">
+  <nuxt-link :to="link" v-if="state" class="w-48 p-2">
     <div class="relative">
       <div
         class="
@@ -60,7 +60,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
