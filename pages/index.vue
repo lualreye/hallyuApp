@@ -4,7 +4,7 @@
     <the-limited-products :urgentProducts="urgentProducts" />
     <the-favourites :comments="comments" />
     <the-offers :offers="offers" />
-    <the-new-products />
+    <the-new-products :newProductsArray="newProducts" />
   </div>
 </template>
 
@@ -142,7 +142,49 @@ export default {
         state: true,
         link: 'hola'
       },
-    ]
+    ],
+    newProducts: [
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
+      },
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
+      },
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
+      },
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
+      },
+      {
+        price:25,
+        discount:10,
+        image: require('~/static/images/idols/han.jpg'),
+        productName: 'Esto es un producto',
+        state: true,
+        link: 'hola'
+      },
+    ],
   }),
 };
 </script>

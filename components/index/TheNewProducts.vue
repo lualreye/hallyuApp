@@ -43,16 +43,45 @@
         </svg>
       </div>
     </div>
+    <!-- RENDERIZADO DE TARJETAS DE LOS COMENTARIOS DE LOS USUARIOS -->
+    <div
+      class="
+        flex
+        justify-start
+        mt-4
+        py-12
+        pl-1
+        sm:pl-6
+        items-center
+        overflow-x-scroll
+      "
+    >
+      <div
+        v-for="(newProduct, i) in newProductsArray"
+        :key="i"
+        class="flex justify-center items-center md:mr-6"
+      >
+        <new-product-card />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import FourthType from "~/components/parenthesis/FourthType.vue"
-import FifthType from "~/components/parenthesis/FifthType.vue"
+import FourthType from "~/components/parenthesis/FourthType.vue";
+import FifthType from "~/components/parenthesis/FifthType.vue";
+import NewProductCard from "~/components/cards/NewProductCard";
 export default {
   components: {
     FourthType,
-    FifthType
+    FifthType,
+    NewProductCard,
+  },
+  props: {
+    newProductsArray : {
+      type: Array,
+      required: true
+    }
   }
-}
+};
 </script>
