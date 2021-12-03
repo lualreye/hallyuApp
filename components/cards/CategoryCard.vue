@@ -8,9 +8,41 @@
   >
     <div class="relative rounded-xl">
       <div class="bg-secondary w-48 h-48 rounded-xl">
-        <figure class="w-48 h-48 absolute bottom-2 right-2 bg-lightPink p-2 rounded-xl flex justify-center items-center">
+        <figure
+          class="
+            w-48
+            h-48
+            absolute
+            bottom-2
+            right-2
+            bg-lightPink
+            p-2
+            rounded-xl
+            flex
+            justify-center
+            items-center
+          "
+        >
           <img :src="image" :alt="categoryName" class="rounded-xl w-full" />
-          <div id="image-hover" class="w-48 h-48 absolute top-0 left-0 right-0 bottom-0 z-20 flex justify-center items-center bg-gray-700 opacity-30 rounded-xl">
+          <div
+            id="image-hover"
+            class="
+              w-48
+              h-48
+              absolute
+              top-0
+              left-0
+              right-0
+              bottom-0
+              z-20
+              flex
+              justify-center
+              items-center
+              bg-gray-700
+              opacity-30
+              rounded-xl
+            "
+          >
             <p class="text-aquamarine text-xl font-open font-bold">
               {{ categoryName }}
             </p>
@@ -46,17 +78,19 @@ export default {
 </script>
 
 <style scoped>
-.rotated-1 {
-  transform: rotate(8deg);
-}
-.rotated-2 {
-  transform: rotate(-12deg);
-}
-.card-hover:hover {
-  z-index: 30;
-  cursor: pointer;
-}
-.card-hover:hover #image-hover {
-  display: none;
+@media only screen and (min-width: 1024px) {
+  .rotated-1 {
+    transform: rotate(8deg);
+  }
+  .rotated-2 {
+    transform: rotate(-12deg);
+  }
+  .card-hover:hover {
+    z-index: 30;
+    cursor: pointer;
+  }
+  .card-hover:hover #image-hover {
+    display: none;
+  }
 }
 </style>
