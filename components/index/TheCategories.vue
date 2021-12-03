@@ -30,11 +30,11 @@
       </div>
     </div>
     <!-- RENDERIZADO DE TARJETAS DE LAS CATEOGORIAS -->
-    <div class="w-full flex justify-center items-center">
+    <div class="w-full flex justify-center items-center mt-16">
       <div class="flex justify-center items-center" v-for="(category, i) in categories" :key="i" >
         <category-card
           :order="i"
-          :cateogryName="category.cateogryName"
+          :categoryName="category.categoryName"
           :image="category.image"
         />
       </div>
