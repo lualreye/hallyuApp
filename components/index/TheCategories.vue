@@ -31,8 +31,12 @@
     </div>
     <!-- RENDERIZADO DE TARJETAS DE LAS CATEOGORIAS -->
     <div class="w-full flex justify-center items-center">
-      <div class="flex justify-center items-center">
-        <category-card />
+      <div class="flex justify-center items-center" v-for="(category, i) in categories" :key="i" >
+        <category-card
+          :order="i"
+          :cateogryName="category.cateogryName"
+          :image="category.image"
+        />
       </div>
     </div>
   </div>
