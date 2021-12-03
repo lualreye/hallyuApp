@@ -44,12 +44,24 @@
 
 <script>
 export default {
-  data: () => ({
-    link: "hola",
-    price: 36,
-    image: require("~/static/images/idols/han.jpg"),
-    productName: "Este es un nombre de producto",
-  }),
+  props: {
+    link: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    productName: {
+      type: String,
+      required: true
+    }
+  }
 };
 </script>
 

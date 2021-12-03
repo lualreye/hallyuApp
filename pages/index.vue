@@ -12,15 +12,15 @@
 import TheHero from "~/components/index/TheHero.vue";
 import TheLimitedProducts from "~/components/index/TheLimitedProducts.vue";
 import TheFavourites from "~/components/index/TheFavourites.vue";
-import TheOffers from "~/components/index/TheOffers"
-import TheNewProducts from "~/components/index/TheNewProducts"
+import TheOffers from "~/components/index/TheOffers";
+import TheNewProducts from "~/components/index/TheNewProducts";
 export default {
   components: {
     TheHero,
     TheLimitedProducts,
     TheFavourites,
     TheOffers,
-    TheNewProducts
+    TheNewProducts,
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
@@ -103,86 +103,70 @@ export default {
     ],
     offers: [
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
+        price: 25,
+        discount: 10,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Esto es un producto",
         state: true,
-        link: 'hola'
+        link: "hola",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
+        price: 25,
+        discount: 10,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Esto es un producto",
         state: true,
-        link: 'hola'
+        link: "hola",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
+        price: 25,
+        discount: 10,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Esto es un producto",
         state: true,
-        link: 'hola'
+        link: "hola",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
+        price: 25,
+        discount: 10,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Esto es un producto",
         state: true,
-        link: 'hola'
+        link: "hola",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
+        price: 25,
+        discount: 10,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Esto es un producto",
         state: true,
-        link: 'hola'
+        link: "hola",
       },
     ],
     newProducts: [
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
-        state: true,
-        link: 'hola'
+        link: "hola",
+        price: 36,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Este es un nombre de producto",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
-        state: true,
-        link: 'hola'
+        link: "hola",
+        price: 36,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Este es un nombre de producto",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
-        state: true,
-        link: 'hola'
+        link: "hola",
+        price: 36,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Este es un nombre de producto",
       },
       {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
-        state: true,
-        link: 'hola'
-      },
-      {
-        price:25,
-        discount:10,
-        image: require('~/static/images/idols/han.jpg'),
-        productName: 'Esto es un producto',
-        state: true,
-        link: 'hola'
+        link: "hola",
+        price: 36,
+        image: require("~/static/images/idols/han.jpg"),
+        productName: "Este es un nombre de producto",
       },
     ],
   }),
