@@ -15,7 +15,7 @@ import TheLimitedProducts from "~/components/index/TheLimitedProducts.vue";
 import TheFavourites from "~/components/index/TheFavourites.vue";
 import TheOffers from "~/components/index/TheOffers";
 import TheNewProducts from "~/components/index/TheNewProducts";
-import TheCategories from "~/comonents/index/TheCategories.vue"
+import TheCategories from "~/components/index/TheCategories.vue"
 export default {
   components: {
     TheHero,
