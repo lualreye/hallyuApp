@@ -12,7 +12,7 @@
         <first-type />
       </div>
     </div>
-    <!-- RENDERIZADO DE TARJETAS DE PRODUCTOS -->
+    <!-- RENDERIZADO DE TARJETAS DE PRODUCTOS LIMITADOS -->
     <div class="flex justify-start mt-8 py-12 pl-6 items-center overflow-x-scroll">
       <div
         v-for="(product, i) in urgentProducts"

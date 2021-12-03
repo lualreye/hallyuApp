@@ -16,7 +16,7 @@
             bottom-2
             right-2
             bg-lightPink
-            p-2
+            p-1
             rounded-xl
             flex
             justify-center

@@ -43,7 +43,7 @@
         </svg>
       </div>
     </div>
-    <!-- RENDERIZADO DE TARJETAS DE LOS COMENTARIOS DE LOS USUARIOS -->
+    <!-- RENDERIZADO DE TARJETAS DE LOS NUEVOS PRODUCTOS -->
     <div
       class="
         flex
