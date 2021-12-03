@@ -51,7 +51,7 @@
       <div
         v-for="(userComment, i) in comments"
         :key="i"
-        class="flex justify-center items-center md:mr-6"
+        class="flex justify-center items-center md:mr-6 m-4"
       >
         <recommendation-card
           :comment="userComment.comment"
