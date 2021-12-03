@@ -20,7 +20,7 @@
             text-textColor
           "
         >
-          Nuevos products en Hallyu
+          Favoritos  en Hallyu
         </h2>
         <div class="parenthesis-two w-11 h-11 relative">
           <fifth-type />
