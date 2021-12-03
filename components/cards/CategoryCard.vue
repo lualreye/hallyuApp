@@ -11,7 +11,7 @@
         <figure class="w-48 h-48 absolute bottom-2 right-2 bg-lightPink p-2 rounded-xl flex justify-center items-center">
           <img :src="image" :alt="categoryName" class="rounded-xl w-full" />
           <div id="image-hover" class="w-48 h-48 absolute top-0 left-0 right-0 bottom-0 z-20 flex justify-center items-center bg-gray-700 opacity-30 rounded-xl">
-            <p class="text-white text-xl font-open font-bold">
+            <p class="text-aquamarine text-xl font-open font-bold">
               {{ categoryName }}
             </p>
           </div>
