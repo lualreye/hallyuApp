@@ -47,19 +47,19 @@
     <div
       class="
         flex
-        justify-start
+        justify-center
+        lg:justify-start
         mt-4
         py-12
         pl-1
         sm:pl-6
-        items-center
-        overflow-x-scroll
+        items-center flex-wrap
       "
     >
       <div
         v-for="(newProduct, i) in newProductsArray"
         :key="i"
-        class="flex justify-center items-center md:mr-6"
+        class="flex justify-center items-center md:mr-6 m-6"
       >
         <new-product-card />
       </div>
