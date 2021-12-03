@@ -6,6 +6,7 @@
     <the-offers :offers="offers" />
     <the-new-products :newProductsArray="newProducts" />
     <the-categories :categories="categories" />
+    <the-cta />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import TheFavourites from "~/components/index/TheFavourites.vue";
 import TheOffers from "~/components/index/TheOffers";
 import TheNewProducts from "~/components/index/TheNewProducts";
 import TheCategories from "~/components/index/TheCategories.vue"
+import TheCta from "~/components/index/TheCta.vue"
 export default {
   components: {
     TheHero,
@@ -23,7 +25,8 @@ export default {
     TheFavourites,
     TheOffers,
     TheNewProducts,
-    TheCategories
+    TheCategories,
+    TheCta
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
