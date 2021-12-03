@@ -5,7 +5,7 @@
     <the-favourites :comments="comments" />
     <the-offers :offers="offers" />
     <the-new-products :newProductsArray="newProducts" />
-    <the-categories />
+    <the-categories :categories="categories" />
   </div>
 </template>
 
@@ -172,6 +172,28 @@ export default {
         productName: "Este es un nombre de producto",
       },
     ],
+    categories: [
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria"
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria"
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria"
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria"
+      },
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria"
+      },
+    ]
   }),
 };
 </script>
