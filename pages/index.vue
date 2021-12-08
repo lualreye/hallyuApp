@@ -7,6 +7,7 @@
     <the-new-products :newProductsArray="newProducts" />
     <the-categories :categories="categories" />
     <the-cta />
+    <the-blog :posts="posts" />
   </div>
 </template>
 
@@ -16,8 +17,9 @@ import TheLimitedProducts from "~/components/index/TheLimitedProducts.vue";
 import TheFavourites from "~/components/index/TheFavourites.vue";
 import TheOffers from "~/components/index/TheOffers";
 import TheNewProducts from "~/components/index/TheNewProducts";
-import TheCategories from "~/components/index/TheCategories.vue"
-import TheCta from "~/components/index/TheCta.vue"
+import TheCategories from "~/components/index/TheCategories.vue";
+import TheCta from "~/components/index/TheCta.vue";
+import TheBlog from "../components/index/TheBlog.vue";
 export default {
   components: {
     TheHero,
@@ -26,7 +28,8 @@ export default {
     TheOffers,
     TheNewProducts,
     TheCategories,
-    TheCta
+    TheCta,
+    TheBlog,
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
@@ -178,25 +181,36 @@ export default {
     categories: [
       {
         image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria"
+        categoryName: "Super Categoria",
       },
       {
         image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria"
+        categoryName: "Super Categoria",
       },
       {
         image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria"
+        categoryName: "Super Categoria",
       },
       {
         image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria"
+        categoryName: "Super Categoria",
       },
       {
         image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria"
+        categoryName: "Super Categoria",
       },
-    ]
+    ],
+    posts: [
+      {
+        image: require("~/static/images/idols/han.jpg"),
+        categoryName: "Super Categoria",
+        title: 'Este es un titulo increible',
+        author: 'Luis Reyes',
+        imageAuthor: require("~/static/images/idols/han.jpg"),
+        abstract:
+          "Esta es un resumen increible en el que se debe de visualizar lo que vamos a escribir dentro del cuerpo como tal de la noticia",
+      },
+    ],
   }),
 };
 </script>
