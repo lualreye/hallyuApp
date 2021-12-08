@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full relative">
-    <div class="absolute top-0 left-0">
+    <div class="absolute top-0 right-0 eight-rotated-1">
       <svg
         width="13"
         height="11"
@@ -14,7 +14,7 @@
         />
       </svg>
     </div>
-    <div class="absolute bottom-3 right-1">
+    <div class="absolute top-0 right-2 eight-rotated-2">
       <svg
         width="28"
         height="19"
@@ -30,3 +30,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.eight-rotated-1 {
+  transform: rotate(95deg);
+}
+.eight-rotated-2 {
+  transform: rotate(-25deg);
+}
+</style>
