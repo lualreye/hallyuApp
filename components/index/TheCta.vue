@@ -11,47 +11,83 @@
           py-8
           my-auto
           cta-image
+          relative
         "
         :style="{ backgroundImage: 'url(' + bgImage + ')' }"
       >
-        <div class="bg-white rounded-xl w-72 lg:w-3/4 py-4 shadow-lg">
-          <p
+        <div class="relative w-full mx-auto py-20">
+          <div
             class="
-              mb-3
-              text-textColor text-lg
-              font-medium
-              text-center
-              font-open
+              w-40
+              h-40
+              bg-primary
+              shadow-lg
+              rounded-full
+              absolute
+              top-0
+              right-3/4
+              z-0
             "
-          >
-            Regístrate y forma parte de nuestra comunidad
-          </p>
-          <p class="mb-3 text-3xl font-junegull text-center text-primary">
-            HALLYU
-          </p>
-          <p
-            class="mb-3 font-light text-sm font-open text-center text-textColor"
-          >
-            Recibe notifiaciones de ofertas especiales
-          </p>
-          <p
-            class="
-              mb-3
-              text-textColor text-lg
-              font-medium
-              text-center
-              font-open
-            "
-          >
-            Obtén beneficios en tu primera compar
-          </p>
-          <div class="mx-auto w-44 justify-center items-center">
-            <h-button
-              name="Registrarse"
-              buttonColor="secondary"
-              @click="probando"
-            />
+          />
+          <div class="bg-white rounded-3xl w-3/4 md:w-7/12 py-8 px-4 shadow-lg relative z-10 mx-auto">
+            <p
+              class="
+                mb-3
+                text-textColor text-lg
+                font-medium
+                text-center
+                font-open
+              "
+            >
+              Regístrate y forma parte de nuestra comunidad
+            </p>
+            <p class="mb-3 text-3xl font-junegull text-center text-primary">
+              HALLYU
+            </p>
+            <p
+              class="
+                mb-3
+                font-light
+                text-sm
+                font-open
+                text-center text-textColor
+              "
+            >
+              Recibe notifiaciones de ofertas especiales
+            </p>
+            <p
+              class="
+                mb-3
+                text-textColor text-lg
+                font-medium
+                text-center
+                font-open
+              "
+            >
+              Obtén beneficios en tu primera compar
+            </p>
+            <div class="mx-auto w-44 justify-center items-center">
+              <h-button
+                name="Registrarse"
+                buttonColor="secondary"
+                @click="probando"
+              />
+            </div>
           </div>
+          <div
+            class="
+              w-16
+              h-16
+              bg-primary
+              shadow-lg
+              rounded-full
+              absolute
+              bottom-8
+              right-8
+              md:right-64
+              z-20
+            "
+          />
         </div>
       </div>
     </div>
@@ -65,7 +101,7 @@ export default {
     HButton,
   },
   data: () => ({
-    bgImage: require("~/static/images/backgrounds/Doodle.svg")
+    bgImage: require("~/static/images/backgrounds/Doodle.svg"),
   }),
   methods: {
     probando() {
