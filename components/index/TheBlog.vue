@@ -45,7 +45,6 @@
       class="
         flex
         justify-center
-        md:justify-between
         mt-8
         py-12
         pl-6
@@ -56,7 +55,7 @@
       <div
         v-for="(post, i) in posts"
         :key="i"
-        class="flex justify-center items-center"
+        class="flex justify-center items-center w-full"
       >
         <post-preview />
       </div>
