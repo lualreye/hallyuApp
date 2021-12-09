@@ -1,10 +1,10 @@
 <template>
-  <article class="w-full py-4">
+  <article
+    class="w-full py-4 post-background"
+    :style="{ backgroundImage: 'url(' + bgImage + ')' }"
+  >
     <div class="w-full">
-      <div
-        class="post-background flex justify-between items-center flex-wrap"
-        :style="{ backgroundImage: 'url(' + bgImage + ')' }"
-      >
+      <div class="flex justify-between items-center flex-wrap">
         <!-- CONTENIDO DEL POST -->
         <div
           class="
@@ -31,7 +31,19 @@
         <!-- IMAGEN MINIATURA DEL POST -->
         <div class="flex justify-center items-center w-full md:w-2/5">
           <div class="w-full relative">
-            <figure class="rounded-3xl relative mx-auto my-auto z-20 flex justify-center items-center w-1/2">
+            <figure
+              class="
+                rounded-3xl
+                relative
+                mx-auto
+                my-auto
+                z-20
+                flex
+                justify-center
+                items-center
+                w-1/2
+              "
+            >
               <img :src="thumbnail" :alt="title" class="rounded-3xl" />
             </figure>
             <div
@@ -84,6 +96,6 @@ export default {
 <style scoped>
 .post-background {
   background-position: left;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
 }
 </style>
