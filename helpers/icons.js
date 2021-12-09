@@ -1,6 +1,7 @@
 import {
   mdiAccount,
   mdiBellBadge,
+  mdiCalendarMonth,
   mdiCart,
   mdiFacebook,
   mdiHeart,
@@ -24,4 +25,5 @@ export default {
   notification: mdiBellBadge,
   volumeOn: mdiVolumeHigh,
   volumeOff: mdiVolumeOff,
+  calendar: mdiCalendarMonth
 };
