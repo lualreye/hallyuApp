@@ -50,7 +50,7 @@
               class="
                 absolute
                 bottom-3
-                left-0
+                left-1/3
                 bg-secondary
                 shadow
                 z-0
@@ -95,7 +95,7 @@ export default {
 
 <style scoped>
 .post-background {
-  background-position: left;
+  background-position: center;
   background-repeat: repeat-x;
 }
 </style>
