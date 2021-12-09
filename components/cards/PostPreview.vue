@@ -25,11 +25,11 @@
             <div class="flex justify-start items-center w-full">
                 <!-- DATOS DEL AUTOR DEL POST -->
               <div class="flex justify-start items-center mr-3 w-2/5">
-                <figure class="w-5 h-5 rounded-full flex justify-center items-center mr-2">
-                  <img :src="authorImage" :alt="author" class="rounded-full" />
+                <figure class="w-7 h-7 rounded-full flex justify-center items-center mr-2">
+                  <img :src="authorImage" :alt="authorName" class="rounded-full" />
                 </figure>
                 <p class="text-textColor font-open font-medium">
-                  {{ author }}
+                  {{ authorName }}
                 </p>
               </div>
               <!-- DATOS DE LA FECHA DE PUBLICACION -->
@@ -38,7 +38,7 @@
                   <h-icon name="calendar" class="text-textColor" />
                 </div>
                 <p class="text-textColor font-open font-medium">
-                  {{ author }}
+                  {{ date }}
                 </p>
               </div>
             </div>
@@ -116,15 +116,38 @@
 import HIcon from "../global/HIcon.vue";
 export default {
   components: { HIcon },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    thumbnail: {
+      type: String,
+      required: true
+    },
+    abstract: {
+      type: String,
+      required: true
+    },
+    authorName: {
+      type: String,
+      required: true
+    },
+    authorImage: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: String,
+      required: true
+    },
+    id: {
+      type: String,
+      required: true
+    },
+  },
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Union.svg"),
-    title: "Este es un titulo increible",
-    abstract:
-      "Esta es una descripcion o un resumen increible de lo que se pude hacer dentro de la seccion del post",
-    thumbnail: require("~/static/images/idols/Han.jpg"),
-    author: "Luis Reyes",
-    authorImage: require("~/static/images/idols/Han.jpg"),
-    id: "hola",
   }),
 };
 </script>

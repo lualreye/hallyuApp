@@ -202,13 +202,14 @@ export default {
     ],
     posts: [
       {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-        title: 'Este es un titulo increible',
-        author: 'Luis Reyes',
-        imageAuthor: require("~/static/images/idols/han.jpg"),
+        title: "Este es un titulo increible",
         abstract:
-          "Esta es un resumen increible en el que se debe de visualizar lo que vamos a escribir dentro del cuerpo como tal de la noticia",
+          "Esta es una descripcion o un resumen increible de lo que se pude hacer dentro de la seccion del post",
+        thumbnail: require("~/static/images/idols/Han.jpg"),
+        authorName: "Luis Reyes",
+        authorImage: require("~/static/images/idols/Han.jpg"),
+        id: "hola",
+        date: "2/02/2021",
       },
     ],
   }),

@@ -58,7 +58,15 @@
         :key="i"
         class="flex justify-center items-center w-full"
       >
-        <post-preview />
+        <post-preview
+          :title="post.title"
+          :abstract="post.abstract"
+          :authorName="post.authorName"
+          :authorImage="post.authorImage"
+          :thumbnail="post.thumbnail"
+          :id="post.id"
+          :date="post.date"
+        />
       </div>
     </div>
   </div>
