@@ -115,8 +115,8 @@
           <div
             class="
               w-full
-              flex
-              justify-center
+              flex flex-col
+              justify-start
               items-center
               py-4
               lg:w-1/2
@@ -141,9 +141,20 @@
                 />
               </svg>
             </div>
-            <p class="text-xl text-textColor font-xl">
+            <p class="text-xl text-textColor font-xl w-full">
               {{ abstract }}
             </p>
+            <div class="flex justify-start items-center w-full">
+              <div class="flex justify-start items-center w-full">
+                <p class="text-sm font-light text-textColor mr-3">Leer más del post</p>
+                <icon-button
+                  iconName="right"
+                  classes="bg-secondary"
+                  class="text-yellow-600"
+                  @click="redirectionToPostDetail"
+                />
+              </div>
+            </div>
             <div class="absolute bottom-0 right-0">
               <svg
                 width="17"
@@ -229,8 +240,9 @@
 
 <script>
 import HIcon from "../global/HIcon.vue";
+import IconButton from "../global/IconButton.vue";
 export default {
-  components: { HIcon },
+  components: { HIcon, IconButton },
   props: {
     title: {
       type: String,
@@ -264,6 +276,11 @@ export default {
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Union.svg"),
   }),
+  methods: {
+    redirectionToPostDetail() {
+      this.$router.push(`blog/${this.id}`);
+    },
+  },
 };
 </script>
 

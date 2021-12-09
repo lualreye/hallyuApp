@@ -3,6 +3,7 @@ import {
   mdiBellBadge,
   mdiCalendarMonth,
   mdiCart,
+  mdiChevronRight,
   mdiFacebook,
   mdiHeart,
   mdiInstagram,
@@ -25,5 +26,6 @@ export default {
   notification: mdiBellBadge,
   volumeOn: mdiVolumeHigh,
   volumeOff: mdiVolumeOff,
-  calendar: mdiCalendarMonth
+  calendar: mdiCalendarMonth,
+  right: mdiChevronRight
 };
