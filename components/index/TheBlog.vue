@@ -45,9 +45,10 @@
       class="
         flex
         justify-center
-        mt-8
-        py-12
-        pl-6
+        mt-4
+        py-6
+        lg:mt-8
+        lg:py-12
         items-center
         flex-wrap
       "

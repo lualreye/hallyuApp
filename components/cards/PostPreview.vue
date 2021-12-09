@@ -13,23 +13,23 @@
             items-center
             flex-wrap
             w-full
-            md:w-3/5
+            lg:w-3/5
             py-8
           "
         >
-          <div class="w-full flex justify-center items-center py-4 md:w-1/2">
-            <p class="text-xl text-textColor font-xl font-junegull">
+          <div class="w-full flex justify-center items-center py-4 lg:w-1/2">
+            <p class="text-lg sm:text-xl text-textColor font-xl font-junegull">
               {{ title }}
             </p>
           </div>
-          <div class="w-full flex justify-center items-center py-4 md:w-1/2">
+          <div class="w-full flex justify-center items-center py-4 lg:w-1/2">
             <p class="text-xl text-textColor font-xl">
               {{ abstract }}
             </p>
           </div>
         </div>
         <!-- IMAGEN MINIATURA DEL POST -->
-        <div class="flex justify-center items-center w-full md:w-2/5">
+        <div class="flex justify-center items-center w-full lg:w-2/5">
           <div class="w-full relative">
             <figure
               class="
@@ -41,7 +41,9 @@
                 flex
                 justify-center
                 items-center
-                w-1/2
+                w-3/4
+                sm:w-64
+                md:w-1/2
               "
             >
               <img :src="thumbnail" :alt="title" class="rounded-3xl" />
@@ -49,14 +51,23 @@
             <div
               class="
                 absolute
-                bottom-3
-                left-1/3
+                bottom-1/3
+                right-4
+                sm:right-2/3
+                md:right-32
+                lg:bottom-3
+                lg:left-1/3
                 bg-secondary
                 shadow
                 z-0
                 rounded-2xl
-                w-56
-                h-96
+                w-32
+                h-40
+                sm:h-52
+                md:w-44
+                md:h-72
+                xl:w-56
+                xl:h-96
               "
             />
             <div
@@ -68,8 +79,16 @@
                 shadow
                 z-10
                 rounded-full
-                w-56
-                h-56
+                w-16
+                h-16
+                sm:w-24
+                sm:h-24
+                md:w-40
+                md:h-40
+                lg:w-48
+                lg:h-48
+                xl:w-56
+                xl:h-56
               "
             />
           </div>
