@@ -9,6 +9,7 @@
     <the-cta />
     <the-blog :posts="posts" />
     <the-community :instagramProfiles="instagramProfiles" />
+    <the-bands :bands="bands" />
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import TheCategories from "~/components/index/TheCategories.vue";
 import TheCta from "~/components/index/TheCta.vue";
 import TheBlog from "../components/index/TheBlog.vue";
 import TheCommunity from '../components/index/TheCommunity.vue';
+import TheBands from "~/components/index/TheBands.vue"
 export default {
   components: {
     TheHero,
@@ -33,6 +35,7 @@ export default {
     TheCta,
     TheBlog,
     TheCommunity,
+    TheBands
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
@@ -231,6 +234,32 @@ export default {
       {
         instagramUserImage: require('~/static/images/idols/han.jpg'),
         instagramUserName: 'luis'
+      },
+    ],
+    bands: [
+      {
+        bandImage: require('~/static/images/bands/BTS.svg'),
+        bandName: 'BTS'
+      },
+      {
+        bandImage: require('~/static/images/bands/BP.svg'),
+        bandName: 'BLACKPINK'
+      },
+      {
+        bandImage: require('~/static/images/bands/BTS.svg'),
+        bandName: 'BTS'
+      },
+      {
+        bandImage: require('~/static/images/bands/BP.svg'),
+        bandName: 'BLACKPINK'
+      },
+      {
+        bandImage: require('~/static/images/bands/BTS.svg'),
+        bandName: 'BTS'
+      },
+      {
+        bandImage: require('~/static/images/bands/BP.svg'),
+        bandName: 'BLACKPINK'
       },
     ]
   }),
