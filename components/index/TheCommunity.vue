@@ -8,7 +8,7 @@
       <h2 class="text-xl sm:text-4xl font-junegull text-textColor">
         Hallyu on Clock
       </h2>
-      <div class="parenthesis-two w-11 h-11 relative">
+      <div class=" ml-4 parenthesis-two w-11 h-11 relative mt-2">
         <ninth-type />
       </div>
     </div>
