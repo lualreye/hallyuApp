@@ -4,6 +4,7 @@ import {
   mdiCalendarMonth,
   mdiCart,
   mdiChevronRight,
+  mdiCopyright,
   mdiFacebook,
   mdiHeart,
   mdiInstagram,
@@ -27,5 +28,6 @@ export default {
   volumeOn: mdiVolumeHigh,
   volumeOff: mdiVolumeOff,
   calendar: mdiCalendarMonth,
-  right: mdiChevronRight
+  right: mdiChevronRight,
+  copyright: mdiCopyright,
 };
