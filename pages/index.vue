@@ -8,6 +8,7 @@
     <the-categories :categories="categories" />
     <the-cta />
     <the-blog :posts="posts" />
+    <the-community :instragramProfiles="instagramProfiles" />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import TheNewProducts from "~/components/index/TheNewProducts";
 import TheCategories from "~/components/index/TheCategories.vue";
 import TheCta from "~/components/index/TheCta.vue";
 import TheBlog from "../components/index/TheBlog.vue";
+import TheCommunity from '../components/index/TheCommunity.vue';
 export default {
   components: {
     TheHero,
@@ -30,6 +32,7 @@ export default {
     TheCategories,
     TheCta,
     TheBlog,
+    TheCommunity,
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
@@ -212,6 +215,24 @@ export default {
         date: "2/02/2021",
       },
     ],
+    instagramProfiles: [
+      {
+        instagramUserImage: require('~/static/images/idols/han.jpg'),
+        instagramUserName: '@luis'
+      },
+      {
+        instagramUserImage: require('~/static/images/idols/han.jpg'),
+        instagramUserName: '@luis'
+      },
+      {
+        instagramUserImage: require('~/static/images/idols/han.jpg'),
+        instagramUserName: '@luis'
+      },
+      {
+        instagramUserImage: require('~/static/images/idols/han.jpg'),
+        instagramUserName: '@luis'
+      },
+    ]
   }),
 };
 </script>
