@@ -13,14 +13,15 @@
       </div>
     </div>
     <!-- RENDERIZADO DE TARJETAS DE PRODUCTOS LIMITADOS -->
-    <div class="flex justify-start mt-8 py-12 pl-6 items-center overflow-x-scroll">
+    <div class="flex justify-start mt-8 py-12 items-center flex-wrap">
       <div
         v-for="(profile, i) in instagramProfiles"
         :key="i"
-        class="flex justify-center items-center mr-6 w-64 h-64 p-6"
+        class="flex justify-center items-center w-full md:w-1/2 lg:w-1/3 p-6"
       >
         <instagram-profile-card
-          
+          :instagramUserName="profile.instagramUserName"
+          :instagramUserImage="profile.instagramUserImage"
         />
       </div>
     </div>
@@ -36,7 +37,7 @@ export default {
     InstagramProfileCard,
   },
   props: {
-    instragramProfiles: {
+    instagramProfiles: {
       type: Array,
       required: true
     }

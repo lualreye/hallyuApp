@@ -8,7 +8,7 @@
     <the-categories :categories="categories" />
     <the-cta />
     <the-blog :posts="posts" />
-    <the-community :instragramProfiles="instagramProfiles" />
+    <the-community :instagramProfiles="instagramProfiles" />
   </div>
 </template>
 
@@ -218,19 +218,19 @@ export default {
     instagramProfiles: [
       {
         instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: '@luis'
+        instagramUserName: 'luis'
       },
       {
         instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: '@luis'
+        instagramUserName: 'luis'
+      },
+      {
+        instagramUserImage: require('~/static/images/bands/BTS.svg'),
+        instagramUserName: 'luis'
       },
       {
         instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: '@luis'
-      },
-      {
-        instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: '@luis'
+        instagramUserName: 'luis'
       },
     ]
   }),
