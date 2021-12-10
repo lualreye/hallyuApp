@@ -1,10 +1,10 @@
 <template>
-  <article
-    class="w-full py-4 post-background"
-    :style="{ backgroundImage: 'url(' + bgImage + ')' }"
-  >
+  <article class="w-full lg:w-3/4 py-4 flex justify-center items-center relative my-8">
     <div class="w-full">
-      <div class="flex justify-between items-center flex-wrap">
+      <div
+        class="flex justify-center sm:justify-between items-center flex-wrap post-background py-4"
+        :style="{ backgroundImage: 'url(' + bgImage + ')' }"
+      >
         <!-- CONTENIDO DEL POST -->
         <div
           class="
@@ -70,7 +70,8 @@
                 text-lg
                 sm:text-xl
                 text-textColor
-                font-xl font-junegull
+                font-bold
+                font-open
                 w-full
                 mb-4
               "
@@ -79,7 +80,7 @@
             </p>
             <div class="flex justify-start items-center w-full">
               <!-- DATOS DEL AUTOR DEL POST -->
-              <div class="flex justify-start items-center mr-3 w-2/5">
+              <div class="flex justify-start items-center mr-3 w-3/5">
                 <figure
                   class="
                     w-7
@@ -145,8 +146,10 @@
               {{ abstract }}
             </p>
             <div class="flex justify-start items-center w-full">
-              <div class="flex justify-start items-center w-full">
-                <p class="text-sm font-light text-textColor mr-3">Leer más del post</p>
+              <div class="flex justify-start items-center w-full mt-2">
+                <p class="text-sm font-light text-textColor mr-3">
+                  Leer más del post
+                </p>
                 <icon-button
                   iconName="right"
                   classes="bg-secondary"
@@ -176,33 +179,33 @@
           </div>
         </div>
         <!-- IMAGEN MINIATURA DEL POST -->
-        <div class="flex justify-center items-center w-full lg:w-2/5">
-          <div class="w-full relative">
+        <div class="flex justify-center items-center w-full lg:w-1/5">
+          <div class="w-full relative flex justify-center items-center lg:block">
             <figure
               class="
                 rounded-3xl
+                right-8
                 relative
-                mx-auto
                 my-auto
                 z-20
                 flex
-                justify-center
+                justify-end
+                sm:justify-center
                 items-center
-                w-3/4
+                w-full
                 sm:w-64
-                md:w-1/2
+                md:w-3/4
+                lg:w-full
               "
             >
-              <img :src="thumbnail" :alt="title" class="rounded-3xl" />
+              <img :src="thumbnail" :alt="title" class="rounded-3xl w-3/4 sm:w-full" />
             </figure>
             <div
               class="
                 absolute
-                bottom-1/3
-                right-4
-                sm:right-2/3
-                md:right-32
-                lg:bottom-3 lg:left-1/3
+                lg:-top-1/3
+                top-1/3
+                right-8
                 bg-secondary
                 shadow
                 z-0
@@ -217,8 +220,9 @@
             <div
               class="
                 absolute
-                bottom-1/3
-                right-0
+                top-0
+                lg:left-1/2
+                left-10
                 bg-primary
                 shadow
                 z-10
@@ -286,7 +290,8 @@ export default {
 
 <style scoped>
 .post-background {
+  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
-  background-repeat: repeat-x;
 }
 </style>
