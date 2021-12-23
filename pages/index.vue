@@ -211,9 +211,9 @@ export default {
         title: "Este es un titulo increible",
         abstract:
           "Esta es una descripcion o un resumen increible de lo que se pude hacer dentro de la seccion del post",
-        thumbnail: require("~/static/images/idols/Han.jpg"),
+        thumbnail: require("~/static/images/idols/han.jpg"),
         authorName: "Luis Reyes",
-        authorImage: require("~/static/images/idols/Han.jpg"),
+        authorImage: require("~/static/images/idols/han.jpg"),
         id: "hola",
         date: "2/02/2021",
       },
