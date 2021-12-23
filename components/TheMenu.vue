@@ -4,7 +4,6 @@
       bg-lightPink
       fixed
       top-0
-      left-0
       bottom-0
       h-screen
       w-2/3
@@ -15,7 +14,12 @@
       py-4
       px-2
       flex flex-col justify-between
+      transition-all
     "
+    :class="{
+      'left-0': showMenu,
+      'left-2/3': !showMenu
+    }"
   >
     <div class="w-full flex justify-end items-center">
       <icon-button iconName="close" classes="bg-transparent" @click="closeMenu" />
