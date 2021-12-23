@@ -4,6 +4,7 @@ import {
   mdiCalendarMonth,
   mdiCart,
   mdiChevronRight,
+  mdiClose,
   mdiCopyright,
   mdiFacebook,
   mdiHeart,
@@ -30,4 +31,5 @@ export default {
   calendar: mdiCalendarMonth,
   right: mdiChevronRight,
   copyright: mdiCopyright,
+  close: mdiClose
 };
