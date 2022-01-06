@@ -23,27 +23,26 @@
     }"
   >
     <div class="w-full flex justify-end items-center">
-      <icon-button
-        iconName="close"
-        classes="bg-transparent"
-        @click="getMenu"
-      />
+      <icon-button iconName="close" classes="bg-transparent" @click="getMenu" />
     </div>
     <nav class="flex flex-col justify-col items-center justify-start">
       <ul v-for="(item, i) in menu" :key="i" class="mb-6">
-        <nuxt-link :to="item.link" >
-          <li class="font-open text-3xl text-textColor font-bol mb-4">
+        <li @click="closeMenu">
+          <nuxt-link
+            :to="item.link"
+            class="font-open text-3xl text-textColor font-bol mb-4"
+          >
             {{ item.name }}
-          </li>
-        </nuxt-link>
+          </nuxt-link>
+        </li>
       </ul>
     </nav>
     <div class="w-full px-2">
       <div class="w-full mb-3">
-        <h-button name="Inicia Sesión" buttonColor="primary" />
+        <h-button name="Inicia Sesión" buttonColor="primary" @click="redirectionToSignIn" />
       </div>
       <div class="w-full">
-        <h-button name="Regístrate" buttonColor="secondary" />
+        <h-button name="Regístrate" buttonColor="secondary" @click="redirectionToSignUp" />
       </div>
     </div>
   </div>
@@ -89,6 +88,19 @@ export default {
         console.log("debe de abrirse");
       }
     },
+    closeMenu() {
+      if (this.showMenu) {
+        this.activeMenu(false);
+      }
+    },
+    redirectionToSignIn() {
+      this.closeMenu()
+      console.log('nos vamos a iniciar sesion')
+    },
+    redirectionToSignUp() {
+      this.closeMenu()
+      console.log('nos vamos a registro')
+    }
   },
 };
 </script>
