@@ -10,7 +10,7 @@
       md:w-1/3
       rounded-r-3xl
       shadow-md
-      z-30
+      z-50
       py-4
       px-2
       flex flex-col
@@ -26,12 +26,12 @@
       <icon-button
         iconName="close"
         classes="bg-transparent"
-        @click="closeMenu"
+        @click="getMenu"
       />
     </div>
     <nav class="flex flex-col justify-col items-center justify-start">
       <ul v-for="(item, i) in menu" :key="i" class="mb-6">
-        <nuxt-link :to="item.link" @click="closeMenu" >
+        <nuxt-link :to="item.link" >
           <li class="font-open text-3xl text-textColor font-bol mb-4">
             {{ item.name }}
           </li>
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
-    closeMenu() {
+    getMenu() {
       if (this.showMenu) {
         this.activeMenu(false);
         console.log("debe cerrarse");
