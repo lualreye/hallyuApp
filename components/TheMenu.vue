@@ -13,20 +13,25 @@
       z-30
       py-4
       px-2
-      flex flex-col justify-between
+      flex flex-col
+      justify-between
       transition-all
     "
     :class="{
       'left-0': showMenu,
-      'left-2/3': !showMenu
+      '-left-2/3': !showMenu,
     }"
   >
     <div class="w-full flex justify-end items-center">
-      <icon-button iconName="close" classes="bg-transparent" @click="closeMenu" />
+      <icon-button
+        iconName="close"
+        classes="bg-transparent"
+        @click="closeMenu"
+      />
     </div>
     <nav class="flex flex-col justify-col items-center justify-start">
       <ul v-for="(item, i) in menu" :key="i" class="mb-6">
-        <nuxt-link :to="item.link">
+        <nuxt-link :to="item.link" @click="closeMenu" >
           <li class="font-open text-3xl text-textColor font-bol mb-4">
             {{ item.name }}
           </li>
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 import HButton from "./global/HButton.vue";
 import IconButton from "./global/IconButton.vue";
 export default {
@@ -71,18 +76,19 @@ export default {
     ],
   }),
   computed: {
-    ...mapGetters('config_drawer', ['showMenu'])
+    ...mapGetters("config_drawer", ["showMenu"]),
   },
-  methods:{
-    ...mapActions('config_drawer', ['activeMenu']),
+  methods: {
+    ...mapActions("config_drawer", ["activeMenu"]),
     closeMenu() {
-      if(this.showMenu) {
-        this.activeMenu(false)
-        console.log('debe cerrarse')
+      if (this.showMenu) {
+        this.activeMenu(false);
+        console.log("debe cerrarse");
+      } else {
+        this.activeMenu(true);
+        console.log("debe de abrirse");
       }
-      this.activeMenu(true)
-      console.log('debe de abrirse')
-    }
-  }
+    },
+  },
 };
 </script>

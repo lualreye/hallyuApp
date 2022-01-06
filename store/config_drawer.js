@@ -4,7 +4,7 @@ export const state = () => ({
 
 export const getters = {
   showMenu(state) {
-    state.show
+    return state.show
   }
 }
 
