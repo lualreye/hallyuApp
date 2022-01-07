@@ -6,7 +6,7 @@
       top-0
       bottom-0
       h-screen
-      w-2/3
+      w-3/4
       md:w-1/3
       rounded-l-3xl
       shadow-md
@@ -17,7 +17,7 @@
     "
     :class="{
       'right-0': showCart,
-      '-right-2/3': !showCart,
+      '-right-3/4': !showCart,
     }"
   >
     <div class="w-full px-4 flex justify-end items-center py-4 relative">
@@ -38,10 +38,17 @@
         items-center
         justify-start
         overflow-y-auto
+        p-4
       "
     >
       <ul v-for="(item, i) in selectedProducts" :key="i" class="mb-6">
-        <div class="">AQUI ESTAMOS POR TRABAJAR LA TARJETITA</div>
+        <cart-card
+          :productName="item.productName"
+          :description="item.description"
+          :price="item.price"
+          :image="item.image"
+          :discount="item.discount"
+        />
       </ul>
     </nav>
     <div class="w-full p-4 rounded-bl-3xl bg-primary border-t border-blue-500">
@@ -53,14 +60,44 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import WaveOne from '@/components/waves/WaveOne.vue'
+import CartCard from './cards/CartCard.vue';
 export default {
   components: {
-    WaveOne
+    WaveOne,
+    CartCard
   },
   data: () => ({
     selectedProducts: [
       {
-        name: "Nombre del producto",
+        productName: "Nombre del producto",
+        price: 25,
+        description: "Esta es una descripcion del producto",
+        discount: 3,
+        image: require("@/static/images/idols/han.jpg"),
+      },
+      {
+        productName: "Nombre del producto",
+        price: 25,
+        description: "Esta es una descripcion del producto",
+        discount: 3,
+        image: require("@/static/images/idols/han.jpg"),
+      },
+      {
+        productName: "Nombre del producto",
+        price: 25,
+        description: "Esta es una descripcion del producto",
+        discount: 3,
+        image: require("@/static/images/idols/han.jpg"),
+      },
+      {
+        productName: "Nombre del producto",
+        price: 25,
+        description: "Esta es una descripcion del producto",
+        discount: 3,
+        image: require("@/static/images/idols/han.jpg"),
+      },
+      {
+        productName: "Nombre del producto",
         price: 25,
         description: "Esta es una descripcion del producto",
         discount: 3,
