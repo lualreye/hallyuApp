@@ -57,6 +57,10 @@ export default {
   data: () => ({
     menu: [
       {
+        link: "/",
+        name: "Inicio",
+      },
+      {
         link: "categories",
         name: "Categorías",
       },
