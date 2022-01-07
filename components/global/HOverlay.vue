@@ -1,6 +1,6 @@
 <template>
   <button
-    v-show="showMenu"
+    v-show="getOverlay"
     class="
       w-screen
       position
@@ -23,12 +23,19 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
+    ...mapGetters("cart", ["showCart"]),
+    getOverlay() {
+      return this.showMenu || this.showCart
+    }
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
+    ...mapActions("cart", ["activeCart"]),
     closeMenu() {
       if(this.showMenu) {
         this.activeMenu(false)
+      } else if (this.showCart) {
+        this.activeCart(false)
       } else {
         return
       }
