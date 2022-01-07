@@ -2,6 +2,7 @@
   <div class="flex flex-col min-h-screen bg-background">
     <the-header />
     <the-menu />
+    <the-cart />
     <h-overlay />
     <Nuxt />
     <the-footer class="mt-auto" />
@@ -11,20 +12,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import HOverlay from "../components/global/HOverlay.vue";
+import TheCart from '../components/TheCart.vue';
 export default {
-  components: { HOverlay },
+  components: { HOverlay, TheCart },
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
-  },
-  methods: {
-    ...mapActions("config_drawer", ["activeMenu"]),
-    closeMenu() {
-      if (this.showMenu) {
-        console.log("aqui deberia de abrir");
-      } else {
-        console.log("no hace nada porque esta cerrado");
-      }
-    },
+    ...mapGetters("cart", ["showCart"]),
   },
 };
 </script>

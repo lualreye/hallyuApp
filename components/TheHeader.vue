@@ -10,7 +10,7 @@
       <div class="w-32 md:w-40 flex justify-between items-center">
         <icon-button iconName="userAccount" classes="bg-primary p-1" />
         <icon-button iconName="like" classes="bg-primary p-1" class="mx-1" />
-        <icon-button iconName="cart" classes="bg-primary p-1" />
+        <icon-button iconName="cart" classes="bg-primary p-1" @click="getCart"/>
       </div>
     </div>
   </div>
@@ -20,15 +20,23 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
-    ...mapGetters('config_drawer', ['showMenu'])
+    ...mapGetters('config_drawer', ['showMenu']),
+    ...mapGetters('cart', ['showCart'])
   },
   methods: {
     ...mapActions('config_drawer', ['activeMenu']),
+    ...mapActions('cart', ['activeCart']),
     openMenu() {
       if (!this.showMenu) {
         this.activeMenu(true);
       }
     },
+    getCart() {
+      if(!this.showCart) {
+        this.activeCart(true)
+        console.log('Estoy vivo desde el boton del carrito')
+      }
+    }
   },
 };
 </script>
