@@ -34,7 +34,6 @@ export default {
     getCart() {
       if(!this.showCart) {
         this.activeCart(true)
-        console.log('Estoy vivo desde el boton del carrito')
       }
     }
   },

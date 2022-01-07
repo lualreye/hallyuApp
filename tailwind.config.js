@@ -17,6 +17,13 @@ module.exports = {
         background: "#F8FFFF",
         aquamarine: "#D4F1F0",
       },
+      zIndex: {
+        '60': '60',
+        '70': '70',
+        '80': '80',
+        '90': '90',
+        '100': '100',
+      }
     },
   },
   variants: {
