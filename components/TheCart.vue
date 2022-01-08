@@ -41,7 +41,7 @@
         p-4
       "
     >
-      <ul v-for="(item, i) in selectedProducts" :key="i" class="mb-6">
+      <ul v-for="(item, i) in getSelectedProducts" :key="i" class="mb-6">
         <cart-card
           :productName="item.productName"
           :description="item.description"
@@ -66,47 +66,9 @@ export default {
     WaveOne,
     CartCard
   },
-  data: () => ({
-    selectedProducts: [
-      {
-        productName: "Nombre del producto",
-        price: 25,
-        description: "Esta es una descripcion del producto",
-        discount: 3,
-        image: require("@/static/images/idols/han.jpg"),
-      },
-      {
-        productName: "Nombre del producto",
-        price: 25,
-        description: "Esta es una descripcion del producto",
-        discount: 3,
-        image: require("@/static/images/idols/han.jpg"),
-      },
-      {
-        productName: "Nombre del producto",
-        price: 25,
-        description: "Esta es una descripcion del producto",
-        discount: 3,
-        image: require("@/static/images/idols/han.jpg"),
-      },
-      {
-        productName: "Nombre del producto",
-        price: 25,
-        description: "Esta es una descripcion del producto",
-        discount: 3,
-        image: require("@/static/images/idols/han.jpg"),
-      },
-      {
-        productName: "Nombre del producto",
-        price: 25,
-        description: "Esta es una descripcion del producto",
-        discount: 3,
-        image: require("@/static/images/idols/han.jpg"),
-      },
-    ],
-  }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
+    ...mapGetters("cart", ["getSelectedProducts"]),
   },
   methods: {
     ...mapActions("cart", ["activeCart"]),
