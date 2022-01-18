@@ -25,7 +25,16 @@
         <wave-one />
       </div>
       <button
-        class="bg-transparent w-6 h-6 flex justify-center items-center rounded-full z-70"
+        class="
+          bg-transparent
+          w-6
+          h-6
+          flex
+          justify-center
+          items-center
+          rounded-full
+          z-70
+        "
         @click="closeCart"
       >
         <h-icon name="close" class="text-gray-400 w-full" />
@@ -51,21 +60,53 @@
         />
       </ul>
     </nav>
-    <div class="w-full p-4 rounded-bl-3xl bg-primary border-t border-blue-500">
-      aqui tenemos que poner nuestro subtotal y total
+    <div
+      class="w-full h-56 p-4 rounded-bl-3xl bg-primary border-t border-blue-500"
+    >
+      <div class="w-full flex flex-col justify-center align-items-center px-2">
+        <div class="w-full flex justify-between items-center">
+          <p class="text-sm font-open text-textColor">Sub Total</p>
+          <p class="text-base text-textColor font-open">
+            $ {{ totalBeforeDiscount }}
+          </p>
+        </div>
+        <div class="w-full flex justify-between items-center mt-2">
+          <p class="text-sm font-open text-textColor">Descuento</p>
+          <p class="text-base font-open text-textColor">
+            % {{ discount }}
+          </p>
+        </div>
+        <div class="w-full h-px bg-blue-600 my-2" />
+        <div class="w-full flex justify-between items-center">
+          <p class="text-base font-open text-textColor">Total</p>
+          <p class="text-xl font-junegull font-bold text-textColor">
+            $ {{ totalToPay }}
+          </p>
+        </div>
+        <div class="w-1/2 flex justify-center items-center mx-auto mt-4">
+          <h-button name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import WaveOne from '@/components/waves/WaveOne.vue'
-import CartCard from './cards/CartCard.vue';
+import WaveOne from "@/components/waves/WaveOne.vue";
+import CartCard from "./cards/CartCard.vue";
+import HButton from './global/HButton.vue';
 export default {
   components: {
     WaveOne,
-    CartCard
+    CartCard,
+    HButton,
   },
+  data: () => ({
+    totalBeforeDiscount: 56,
+    discount: 5,
+    totalToPay: 45
+  }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("cart", ["getSelectedProducts"]),
@@ -82,6 +123,9 @@ export default {
     newFunction() {
       console.log("pondremos la elimacion del objeto");
     },
+    redirectionToPayment() {
+      this.$router.push('payment')
+    }
   },
 };
 </script>
