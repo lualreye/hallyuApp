@@ -86,10 +86,8 @@ export default {
     getMenu() {
       if (this.showMenu) {
         this.activeMenu(false);
-        console.log("debe cerrarse");
       } else {
         this.activeMenu(true);
-        console.log("debe de abrirse");
       }
     },
     closeMenu() {

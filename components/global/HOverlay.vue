@@ -25,19 +25,19 @@ export default {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
     getOverlay() {
-      return this.showMenu || this.showCart
-    }
+      return this.showMenu || this.showCart;
+    },
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
     ...mapActions("cart", ["activeCart"]),
     closeMenu() {
-      if(this.showMenu) {
-        this.activeMenu(false)
+      if (this.showMenu) {
+        this.activeMenu(false);
       } else if (this.showCart) {
-        this.activeCart(false)
+        this.activeCart(false);
       } else {
-        return
+        return;
       }
     },
   },
