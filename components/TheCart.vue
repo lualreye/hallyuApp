@@ -6,7 +6,7 @@
       top-0
       bottom-0
       h-screen
-      w-3/4
+      w-2/3
       md:w-1/3
       rounded-l-3xl
       shadow-md
@@ -17,7 +17,7 @@
     "
     :class="{
       'right-0': showCart,
-      '-right-3/4': !showCart,
+      '-right-2/3': !showCart,
     }"
   >
     <div class="w-full px-4 flex justify-end items-center py-4 relative">
