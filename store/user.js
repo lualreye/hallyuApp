@@ -1,5 +1,5 @@
 const state = () => ({
-  isModalActive: false
+  isModalActive: true
 })
 
 const getters = {
@@ -22,7 +22,7 @@ const actions = {
 }
 
 
-export default {
+export {
   state,
   getters,
   mutations,
