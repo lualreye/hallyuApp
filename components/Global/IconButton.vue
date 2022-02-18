@@ -13,7 +13,7 @@
     :class="buttonClasses"
     @click="$emit('click', $event)"
   >
-    <h-icon :name="iconName" class="text-white p-1" />
+    <GlobalHIcon :name="iconName" class="text-white p-1" />
   </button>
 </template>
 
