@@ -4,6 +4,8 @@
     <TheMenu />
     <TheCart />
     <GlobalHOverlay />
+    <GlobalWOverlay />
+    <TheSignIn />
     <Nuxt />
     <TheFooter class="mt-auto" />
   </div>
