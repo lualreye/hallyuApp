@@ -28,13 +28,20 @@ export default {
   watch: {
     getOverlay(value) {
       if (value) {
-        this.stopBodyScrolling();
+        this.stopBodyScrolling(value);
+      } else {
+        this.stopBodyScrolling(value)
       }
     },
   },
   methods: {
-    stopBodyScrolling() {
-      document.documentElement.style.overflow = 'hidden'
+    stopBodyScrolling(value) {
+      if (value) {
+        document.documentElement.style.overflow = 'hidden'
+      } else {
+        document.documentElement.style.overflow = null
+
+      }
     },
   },
 };
