@@ -67,7 +67,7 @@
               Obtén beneficios en tu primera compar
             </p>
             <div class="mx-auto w-44 justify-center items-center">
-              <h-button
+              <GlobalHButton
                 name="Registrarse"
                 buttonColor="secondary"
                 @click="probando"
@@ -95,11 +95,7 @@
 </template>
 
 <script>
-import HButton from "~/components/global/HButton.vue";
 export default {
-  components: {
-    HButton,
-  },
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Doodle.svg"),
   }),

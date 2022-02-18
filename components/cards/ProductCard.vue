@@ -31,7 +31,7 @@
                 items-center
               "
             >
-              <h-icon
+              <GlobalHIcon
                 name="like"
                 :class="{
                   'text-gray-300': !isLiked,
@@ -46,7 +46,7 @@
             $ {{ price }}
           </p>
           <button class="w-8 h-8 flex justify-center items-center shadow-xl bg-primary rounded-full">
-            <h-icon name='cart' class="text-gray-100" />
+            <GlobalHIcon name='cart' class="text-gray-100" />
           </button>
         </div>
       </div>
@@ -55,9 +55,7 @@
 </template>
 
 <script>
-import HIcon from "../global/HIcon.vue";
 export default {
-  components: { HIcon },
   data: () => ({
     productImage: require("@/static/images/idols/han.jpg"),
   }),

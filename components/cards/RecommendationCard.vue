@@ -19,7 +19,7 @@
             {{ userName }}
           </p>
         </div>
-        <heart-rate :read="read" :rating="rate" />
+        <GlobalHeartRate :read="read" :rating="rate" />
       </div>
       <!-- IMAGEN DEL PRODUCTO DE LA REOCOMENDACION -->
       <div class="w-52 h-52 flex justify-center items-center relative">
@@ -55,13 +55,7 @@
 </template>
 
 <script>
-import HeartRate from "~/components/global/HeartRate";
-import HIcon from "../global/HIcon.vue";
 export default {
-  components: {
-    HIcon,
-    HeartRate,
-  },
   props: {
     comment: {
       type: String,

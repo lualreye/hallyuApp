@@ -105,7 +105,7 @@
               <!-- DATOS DE LA FECHA DE PUBLICACION -->
               <div class="flex justify-start items-center mr-3 w-2/5">
                 <div class="w-5 h-5 flex justify-center items-center mr-2">
-                  <h-icon name="calendar" class="text-textColor" />
+                  <GlobalHIcon name="calendar" class="text-textColor" />
                 </div>
                 <p class="text-textColor font-open font-medium">
                   {{ date }}
@@ -150,7 +150,7 @@
                 <p class="text-sm font-light text-textColor mr-3">
                   Leer más del post
                 </p>
-                <icon-button
+                <GlobalIconButton
                   iconName="right"
                   classes="bg-secondary"
                   class="text-yellow-600"
@@ -243,10 +243,7 @@
 </template>
 
 <script>
-import HIcon from "../global/HIcon.vue";
-import IconButton from "../global/IconButton.vue";
 export default {
-  components: { HIcon, IconButton },
   props: {
     title: {
       type: String,

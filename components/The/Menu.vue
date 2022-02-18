@@ -23,7 +23,7 @@
     }"
   >
     <div class="w-full flex justify-end items-center">
-      <icon-button iconName="close" classes="bg-transparent" @click="getMenu" />
+      <GlobalIconButton iconName="close" classes="bg-transparent" @click="getMenu" />
     </div>
     <nav class="flex flex-col justify-col items-center justify-start">
       <ul v-for="(item, i) in menu" :key="i" class="mb-6">
@@ -39,10 +39,10 @@
     </nav>
     <div class="w-full px-2">
       <div class="w-full mb-3">
-        <h-button name="Inicia Sesión" buttonColor="primary" @click="redirectionToSignIn" />
+        <GlobalHButton name="Inicia Sesión" buttonColor="primary" @click="redirectionToSignIn" />
       </div>
       <div class="w-full">
-        <h-button name="Regístrate" buttonColor="secondary" @click="redirectionToSignUp" />
+        <GlobalHButton name="Regístrate" buttonColor="secondary" @click="redirectionToSignUp" />
       </div>
     </div>
   </div>
@@ -50,10 +50,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import HButton from "./global/HButton.vue";
-import IconButton from "./global/IconButton.vue";
 export default {
-  components: { HButton, IconButton },
   data: () => ({
     menu: [
       {

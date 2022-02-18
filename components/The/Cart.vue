@@ -37,7 +37,7 @@
         "
         @click="closeCart"
       >
-        <h-icon name="close" class="text-gray-400 w-full" />
+        <GlobalHIcon name="close" class="text-gray-400 w-full" />
       </button>
     </div>
     <nav
@@ -84,7 +84,7 @@
           </p>
         </div>
         <div class="w-1/2 flex justify-center items-center mx-auto mt-4">
-          <h-button name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
+          <GlobalHButton name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
         </div>
       </div>
     </div>
@@ -94,13 +94,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import WaveOne from "@/components/waves/WaveOne.vue";
-import CartCard from "./cards/CartCard.vue";
-import HButton from './global/HButton.vue';
+import CartCard from "../cards/CartCard.vue";
 export default {
   components: {
     WaveOne,
     CartCard,
-    HButton,
   },
   data: () => ({
     totalBeforeDiscount: 56,
