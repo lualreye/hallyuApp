@@ -28,7 +28,7 @@
         <!-- DERECHOS RESERVADOS -->
         <div class="flex justify-center items-center w-full md:w-auto">
           <div class="w-3 h-3 flex justify-center items-center mr-1">
-            <h-icon name="copyright" class="text-white" />
+            <GlobalHIcon name="copyright" class="text-white" />
           </div>
           <p class="text-sm text-white">
             Todos los derechos reservados de Hallyu Store
