@@ -1,5 +1,6 @@
 <template>
   <div
+    v-show="getModal"
     class="
       w-screen
       h-screen
@@ -15,7 +16,8 @@
       right-0
       bottom-0
     "
-  @click="closeModal"></div>
+  @click="closeModal">
+  </div>
 </template>
 
 
@@ -28,8 +30,8 @@ export default {
   methods: {
     ...mapActions('user', ['showModal']),
     closeModal() {
-      if(getModal) {
-        this.showeModal(false)
+      if(this.getModal) {
+        this.showModal(false)
       }
     }
   }
