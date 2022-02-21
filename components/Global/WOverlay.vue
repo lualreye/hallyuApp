@@ -28,10 +28,12 @@ export default {
     ...mapGetters('user', ['getModal'])
   },
   methods: {
-    ...mapActions('user', ['showModal']),
+    ...mapActions('user', ['showModal', 'activeSignIn', 'activeSignUp']),
     closeModal() {
       if(this.getModal) {
         this.showModal(false)
+        this.activeSignIn(false)
+        this.activeSignUp(false)
       }
     }
   }
