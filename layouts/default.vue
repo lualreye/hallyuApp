@@ -18,11 +18,12 @@ export default {
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
+    ...mapGetters("user", ["getModal"]),
     stopScrolling() {
-      return this.showMenu || this.showCart;
+      return this.showMenu || this.showCart || this.getModal;
     },
     getOverlay() {
-      return this.showMenu || this.showCart;
+      return this.showMenu || this.showCart || this.getModal;
     },
   },
   watch: {
