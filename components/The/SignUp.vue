@@ -8,11 +8,12 @@
     >
       <!-- CLOSE BUTTON -->
       <div class="w-full flex justify-end items-start px-2 py-1">
-        <div
+        <button
           class="w-5 h-5 rounded-full border border-secondary flex justify-center items-center"
+          @close="closeModal"
         >
-          <GlobalHIcon name="close" @close="closeModal" />
-        </div>
+          <GlobalHIcon name="close" />
+        </button>
       </div>
       <!-- CONTENT CONTAINER -->
       <div class="w-full flex flex-col jutify-center items-center my-4">
@@ -40,12 +41,13 @@
             <label for="" class="text-lg text-textColor"> Nombre </label>
             <input
               type="name"
+              required
               v-model="name"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="Han"
             />
             <span
-              v-if="isNameVerified"
+              v-if="!isNameVerified"
               class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
             >
               Hallyu quiere saber tu nombre
@@ -56,12 +58,13 @@
             <label for="" class="text-lg text-textColor"> Email </label>
             <input
               type="email"
+              required
               v-model="email"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="junegull@gmail.com"
             />
             <span
-              v-if="checkMail"
+              v-if="!checkMail"
               class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
             >
               Por favor ingresa un correo valido
@@ -72,6 +75,7 @@
             <label for="" class="text-lg text-textColor"> Contraseña </label>
             <input
               type="password"
+              required
               v-model="password"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
@@ -84,6 +88,7 @@
             </label>
             <input
               type="password"
+              required
               v-model="passwordRepeated"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
@@ -98,7 +103,8 @@
           <!-- INICIA SESION -->
           <button
             class="mt-6 px-3 py-2 rounded-xl bg-secondary text-lightPink border border-secondary shadow-lg"
-            @click="userCredential"
+            :disabled="!formIsValid"
+            @click="signUserUp"
           >
             Regístrate
           </button>
@@ -125,15 +131,11 @@ export default {
     },
     // VALIDATING NAME
     isNameVerified() {
-      if (this.name === "") {
-        return true;
-      } else {
-        return false;
-      }
+      return this.name !== "" ? true : false;
     },
     // VALIDATING EMAIL
     checkMail() {
-      if (!this.validEmail(this.email) && this.email !== "") {
+      if (this.validEmail(this.email) && this.email !== "") {
         return true;
       } else {
         return false;
@@ -141,25 +143,29 @@ export default {
     },
     // VALIDATING FORM
     formIsValid() {
-      return this.name !== "";
+      return this.isNameVerified && this.checkMail;
     },
   },
   methods: {
+    // GETTING MODAL STATE FROM STORE
     ...mapActions("user", ["showModal"]),
+    // DISPATCH ACTION TO CAHNGE MODAL STATE
     closeModal() {
       if (this.getModal) {
         this.showModal(false);
       }
     },
+    // LOGIN WITH GOOGLE
     loginWithGoogle() {
       console.log("estamos conectando con google");
     },
+    // REGEX TO VALIDATE EMAIL
     validEmail(email) {
       const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-    userCredential() {
+    signUserUp() {
       console.log("Enviamos informacion a firebase");
     },
   },
