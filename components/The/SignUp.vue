@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="false"
+    v-if="getModal"
     class="
       w-full
       h-screen
@@ -9,7 +9,7 @@
       top-1/3
       relative
       z-50
-      bg-aquamarine
+      bg-lightPink
       p-1
       rounded-md
     "
@@ -68,14 +68,14 @@
         <!-- EMAIL LOGIN -->
         <div class="w-full flex flex-col justify-start items-center">
           <div class="w-full flex h-6 justify-between items-center mb-4">
-            <div class="w-10/12 h-px bg-gray-100" />
-            <p class="text-gray-100 text-center mx-1">o</p>
-            <div class="w-10/12 h-px bg-gray-100" />
+            <div class="w-10/12 h-px bg-gray-400" />
+            <p class="text-gray-400 text-center mx-1">o</p>
+            <div class="w-10/12 h-px bg-gray-400" />
           </div>
           <!-- EMAIL INPUT -->
           <div class="w-full flex flex-col justify-center items-start">
             <label for="" class="text-lg text-textColor">
-              Email
+              email
             </label>
             <input
               type="email"
@@ -87,12 +87,12 @@
                 w-full
                 px-3
                 py-2
-                bg-aquamarine
+                bg-secondary
                 rounded-lg
                 border border-secondary
                 placeholder-textColor
                 text-base
-                focus:bg-aquamarine
+                focus:bg-secondary
                 outline-none
                 focus:outline-none
               "
@@ -114,25 +114,48 @@
                 w-full
                 px-3
                 py-2
-                bg-aquamarine
+                bg-secondary
                 rounded-lg
                 border border-secondary
                 placeholder-textColor
                 text-base
-                focus:bg-aquamarine
+                focus:bg-secondary
                 outline-none
                 focus:outline-none
               "
               placeholder="********"
             />
           </div>
-          <!-- FORGOTTEN PASSWORD -->
-          <nuxt-link to="/ForgottenPassword" class="text-xs text-textColor font-md w-full mt-2">
-            ¿Olvidaste tu contraseña?
-          </nuxt-link>
+          <!-- PASSWORD INPUT -->
+          <div class="w-full flex flex-col justify-center items-start mt-4">
+            <label for="" class="text-lg text-textColor">
+              Repite tu contraseña
+            </label>
+            <input
+              type="passwordRepeated"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-secondary
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-secondary
+                outline-none
+                focus:outline-none
+              "
+              placeholder="********"
+            />
+          </div>
           <!-- INICIA SESION -->
-          <button class="mt-6 px-3 py-2 rounded-xl bg-aquamarine text-secondary border border-secondary shadow-lg">
-            Iniciar sesión
+          <button class="mt-6 px-3 py-2 rounded-xl bg-secondary text-lightPink border border-secondary shadow-lg">
+            Regístrate
           </button>
         </div>
       </div>
@@ -144,10 +167,16 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    image: require('@/static/images/logo/google.png')
+    image: require('@/static/images/logo/google.png'),
+    email: '',
+    password: '',
+    isPasswordRepeated: ''
   }),
   computed: {
     ...mapGetters("user", ["getModal"]),
+    isPasswordVerified() {
+      return this.password === this.isPasswordRepeated ? true : false
+    }
   },
   methods: {
     ...mapActions("user", ["showModal"]),
