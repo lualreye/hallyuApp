@@ -39,10 +39,10 @@
     </nav>
     <div class="w-full px-2">
       <div class="w-full mb-3">
-        <GlobalHButton name="Inicia Sesión" buttonColor="primary" @click="redirectionToSignIn" />
+        <GlobalHButton name="Inicia Sesión" buttonColor="primary" @click="toSignIn" />
       </div>
       <div class="w-full">
-        <GlobalHButton name="Regístrate" buttonColor="secondary" @click="redirectionToSignUp" />
+        <GlobalHButton name="Regístrate" buttonColor="secondary" @click="toSignUp" />
       </div>
     </div>
   </div>
@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
+    ...mapActions("user", ["activeSignIn","activeSignUp", "showModal"]),
     getMenu() {
       if (this.showMenu) {
         this.activeMenu(false);
@@ -92,13 +93,15 @@ export default {
         this.activeMenu(false);
       }
     },
-    redirectionToSignIn() {
+    toSignIn() {
       this.closeMenu()
-      console.log('nos vamos a iniciar sesion')
+      this.showModal(true)
+      this.activeSignIn(true)
     },
-    redirectionToSignUp() {
+    toSignUp() {
       this.closeMenu()
-      console.log('nos vamos a registro')
+      this.showModal(true)
+      this.activeSignUp(true)
     }
   },
 };
