@@ -10,7 +10,7 @@
       <div class="w-full flex justify-end items-start px-2 py-1">
         <button
           class="w-5 h-5 rounded-full border border-secondary flex justify-center items-center"
-          @close="closeModal"
+          @click="closeSignUp"
         >
           <GlobalHIcon name="close" />
         </button>
@@ -163,16 +163,19 @@ export default {
       );
     },
     buttonReady() {
-      return this.formIsValid === true ? 'bg-secondary border-secondary' : 'bg-gray-400 border-gray-400'
-    }
+      return this.formIsValid === true
+        ? "bg-secondary border-secondary"
+        : "bg-gray-400 border-gray-400";
+    },
   },
   methods: {
     // GETTING MODAL STATE FROM STORE
-    ...mapActions("user", ["showModal"]),
+    ...mapActions("user", ["showModal", "activeSignUp"]),
     // DISPATCH ACTION TO CAHNGE MODAL STATE
-    closeModal() {
+    closeSignUp() {
       if (this.getModal) {
         this.showModal(false);
+        this.activeSignUp(false);
       }
     },
     // LOGIN WITH GOOGLE
@@ -191,6 +194,8 @@ export default {
     },
     signUserUp() {
       console.log("Enviamos informacion a firebase");
+      this.showModal(false);
+      this.activeSignUp(false);
     },
   },
 };
