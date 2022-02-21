@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="getModal"
-    class="w-4/12 left-1/3 top-1/3 relative z-50 bg-lightPink p-1 rounded-md"
+    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 relative z-50 bg-lightPink p-1 rounded-md"
   >
     <div
       class="w-full h-full rounded-3xl py-2 px-3 flex flex-col justify-between items-start border border-secondary"
@@ -37,23 +37,35 @@
           </div>
           <!-- NAME INPUT -->
           <div class="w-full flex flex-col justify-center items-start">
-            <label for="" class="text-lg text-textColor"> name </label>
+            <label for="" class="text-lg text-textColor"> Nombre </label>
             <input
               type="name"
               v-model="name"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-secondary rounded-lg border border-secondary placeholder-textColor text-base focus:bg-secondary outline-none focus:outline-none"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="Han"
             />
+            <span
+              v-if="isNameVerified"
+              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+            >
+              Hallyu quiere saber tu nombre
+            </span>
           </div>
           <!-- EMAIL INPUT -->
-          <div class="w-full flex flex-col justify-center items-start">
-            <label for="" class="text-lg text-textColor"> email </label>
+          <div class="mt-4 w-full flex flex-col justify-center items-start">
+            <label for="" class="text-lg text-textColor"> Email </label>
             <input
               type="email"
               v-model="email"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-secondary rounded-lg border border-secondary placeholder-textColor text-base focus:bg-secondary outline-none focus:outline-none"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="junegull@gmail.com"
             />
+            <span
+              v-if="checkMail"
+              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+            >
+              Por favor ingresa un correo valido
+            </span>
           </div>
           <!-- PASSWORD INPUT -->
           <div class="w-full flex flex-col justify-center items-start mt-4">
@@ -61,7 +73,7 @@
             <input
               type="password"
               v-model="password"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-secondary rounded-lg border border-secondary placeholder-textColor text-base focus:bg-secondary outline-none focus:outline-none"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
             />
           </div>
@@ -73,13 +85,20 @@
             <input
               type="password"
               v-model="passwordRepeated"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-secondary rounded-lg border border-secondary placeholder-textColor text-base focus:bg-secondary outline-none focus:outline-none"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
             />
+            <span
+              v-if="!isPasswordVerified"
+              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+            >
+              Contraseña incorrecta
+            </span>
           </div>
           <!-- INICIA SESION -->
           <button
             class="mt-6 px-3 py-2 rounded-xl bg-secondary text-lightPink border border-secondary shadow-lg"
+            @click="userCredential"
           >
             Regístrate
           </button>
@@ -98,12 +117,31 @@ export default {
     email: "",
     password: "",
     passwordRepeated: "",
-    isPasswordRepeated: "",
   }),
   computed: {
     ...mapGetters("user", ["getModal"]),
     isPasswordVerified() {
-      return this.password === this.isPasswordRepeated ? true : false;
+      return this.password === this.passwordRepeated ? true : false;
+    },
+    // VALIDATING NAME
+    isNameVerified() {
+      if (this.name === "") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // VALIDATING EMAIL
+    checkMail() {
+      if (!this.validEmail(this.email) && this.email !== "") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // VALIDATING FORM
+    formIsValid() {
+      return this.name !== "";
     },
   },
   methods: {
@@ -115,6 +153,14 @@ export default {
     },
     loginWithGoogle() {
       console.log("estamos conectando con google");
+    },
+    validEmail(email) {
+      const re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    userCredential() {
+      console.log("Enviamos informacion a firebase");
     },
   },
 };
