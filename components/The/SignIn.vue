@@ -68,9 +68,9 @@
         <!-- EMAIL LOGIN -->
         <div class="w-full flex flex-col justify-start items-center">
           <div class="w-full flex h-6 justify-between items-center mb-4">
-            <div class="w-10/12 h-px bg-gray-100" />
-            <p class="text-gray-100 text-center mx-1">o</p>
-            <div class="w-10/12 h-px bg-gray-100" />
+            <div class="w-10/12 h-px bg-gray-400" />
+            <p class="text-gray-400 text-center mx-1">o</p>
+            <div class="w-10/12 h-px bg-gray-400" />
           </div>
           <!-- EMAIL INPUT -->
           <div class="w-full flex flex-col justify-center items-start">
