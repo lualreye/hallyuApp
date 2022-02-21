@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="getModal"
+    v-if="getSignUp"
     class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 relative z-50 bg-lightPink p-1 rounded-md"
   >
     <div
@@ -133,7 +133,7 @@ export default {
     passwordRepeated: "",
   }),
   computed: {
-    ...mapGetters("user", ["getModal"]),
+    ...mapGetters("user", ["getModal", "getSignUp"]),
     isPasswordVerified() {
       return this.password === this.passwordRepeated ? true : false;
     },

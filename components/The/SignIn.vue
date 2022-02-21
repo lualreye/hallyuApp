@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="false"
+    v-if="getSignIn"
     class="w-full h-screen lg:w-4/12 lg:h-auto left-1/3 top-1/3 relative z-50 bg-aquamarine p-1 rounded-md"
   >
     <div
@@ -8,11 +8,12 @@
     >
       <!-- CLOSE BUTTON -->
       <div class="w-full flex justify-end items-start px-2 py-1">
-        <div
+        <button
           class="w-5 h-5 rounded-full border border-secondary flex justify-center items-center"
+          @click="closeSingIn"
         >
-          <GlobalHIcon name="close" @close="closeModal" />
-        </div>
+          <GlobalHIcon name="close" />
+        </button>
       </div>
       <!-- CONTENT CONTAINER -->
       <div class="w-full flex flex-col jutify-center items-center my-4">
@@ -79,13 +80,14 @@ export default {
     image: require("@/static/images/logo/google.png"),
   }),
   computed: {
-    ...mapGetters("user", ["getModal"]),
+    ...mapGetters("user", ["getModal", "getSignIn"]),
   },
   methods: {
-    ...mapActions("user", ["showModal"]),
-    closeModal() {
+    ...mapActions("user", ["showModal", "activeSignIn"]),
+    closeSingIn() {
       if (this.getModal) {
         this.showModal(false);
+        this.activeSignIn(false);
       }
     },
     loginWithGoogle() {
