@@ -1,7 +1,7 @@
 const state = () => ({
-  isModalActive: true,
+  isModalActive: false,
   isSignUpActive: false,
-  isSignInActive: true,
+  isSignInActive: false,
 });
 
 const getters = {
@@ -21,7 +21,6 @@ const mutations = {
     state.isModalActive = boolean;
   },
   SHOW_SIGNIN(state, boolean) {
-    console.log('eSTAMOS EN EL MUTATION')
     state.isSignInActive = boolean;
   },
   SHOW_SIGNUP(state, boolean) {
@@ -31,15 +30,12 @@ const mutations = {
 
 const actions = {
   showModal({ commit }, payload) {
-    console.log("Estamos en actions");
     commit("SHOW_MODAL", payload);
   },
   activeSignIn({ commit }, payload) {
-    console.log('Estamos en el accion de cierre')
     commit("SHOW_SIGNIN", payload)
   },
   activeSignUp({ commit }, payload) {
-    console.log('activating signUp')
     commit("SHOW_SIGNUP", payload)
   },
 };
