@@ -80,6 +80,13 @@
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
             />
+            <span
+              v-if="!checkPassword"
+              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+            >
+              Tu contraseña debe tener al menos 8 caracteres, un número, una
+              minúscula y una mayúscula
+            </span>
           </div>
           <!-- PASSWORD INPUT -->
           <div class="w-full flex flex-col justify-center items-start mt-4">
@@ -102,7 +109,8 @@
           </div>
           <!-- INICIA SESION -->
           <button
-            class="mt-6 px-3 py-2 rounded-xl bg-secondary text-lightPink border border-secondary shadow-lg"
+            class="mt-6 px-3 py-2 rounded-xl text-lightPink border shadow-lg"
+            :class="buttonReady"
             :disabled="!formIsValid"
             @click="signUserUp"
           >
@@ -141,10 +149,22 @@ export default {
         return false;
       }
     },
+    // VALIDATING PASSWORD
+    checkPassword() {
+      return this.validPassword(this.password);
+    },
     // VALIDATING FORM
     formIsValid() {
-      return this.isNameVerified && this.checkMail;
+      return (
+        this.isNameVerified &&
+        this.checkMail &&
+        this.checkPassword &&
+        this.isPasswordVerified
+      );
     },
+    buttonReady() {
+      return this.formIsValid === true ? 'bg-secondary border-secondary' : 'bg-gray-400 border-gray-400'
+    }
   },
   methods: {
     // GETTING MODAL STATE FROM STORE
@@ -164,6 +184,10 @@ export default {
       const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
+    },
+    validPassword(password) {
+      const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+      return re.test(password);
     },
     signUserUp() {
       console.log("Enviamos informacion a firebase");
