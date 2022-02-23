@@ -53,9 +53,15 @@ const actions = {
     try {
       const result = await signInWithPopup(auth, provider)
       const googleCredentials = GoogleAuthProvider.credentialFromResult(result)
+      const googleToken = googleCredentials.accessToken;
+      const user = result.user
       console.log(result, googleCredentials)
     } catch (error) {
-      console.error(error)
+      const errorCode = error.code
+      const errorMessage = error.message
+      const email = error.email
+      const credential = GoogleAuthProvider.credentialFromError(error)
+      console.log(errorCode, errorMessage, email, credential)
     }
   }
 };

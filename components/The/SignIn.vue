@@ -83,7 +83,7 @@ export default {
     ...mapGetters("user", ["getModal", "getSignIn"]),
   },
   methods: {
-    ...mapActions("user", ["showModal", "activeSignIn"]),
+    ...mapActions("user", ["showModal", "activeSignIn", "signInWithGoogle"]),
     closeSingIn() {
       if (this.getModal) {
         this.showModal(false);
@@ -92,6 +92,7 @@ export default {
     },
     loginWithGoogle() {
       console.log("estamos conectando con google");
+      this.signInWithGoogle()
     },
     validEmail() {
       const re =
