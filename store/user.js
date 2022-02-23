@@ -47,7 +47,7 @@ const actions = {
   activeSignUp({ commit }, payload) {
     commit("SHOW_SIGNUP", payload);
   },
-  async signInWithGoogle({ commit }, payload) {
+  async loginWithGoogle({ commit }, payload) {
     const auth = fireAuth
     const provider = new GoogleAuthProvider
     try {

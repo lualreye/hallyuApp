@@ -4,7 +4,7 @@
     class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 relative z-50 bg-lightPink p-1 rounded-md"
   >
     <div
-      class="w-full h-full rounded-3xl py-2 px-3 flex flex-col justify-between items-start border border-secondary"
+      class="w-full h-full rounded-3xl py-1 px-3 flex flex-col justify-between items-start border border-secondary"
     >
       <!-- CLOSE BUTTON -->
       <div class="w-full flex justify-end items-start px-2 py-1">
@@ -21,13 +21,8 @@
           Ingresa con
         </p>
         <!-- GOOGLE BUTTON -->
-        <div class="my-4 w-full flex justify-center items-center py-2">
-          <button
-            class="w-8 h-8 rounded-md border border-secondary flex justify-center items-center"
-            @click="loginWithGoogle"
-          >
-            <img :src="image" class="w-6 h-6" />
-          </button>
+        <div class="my-1 w-full flex justify-center items-center py-2">
+          <GlobalGoogleButton />
         </div>
         <!-- EMAIL LOGIN -->
         <div class="w-full flex flex-col justify-start items-center">
@@ -126,7 +121,6 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    image: require("@/static/images/logo/google.png"),
     name: "",
     email: "",
     password: "",
@@ -177,10 +171,6 @@ export default {
         this.showModal(false);
         this.activeSignUp(false);
       }
-    },
-    // LOGIN WITH GOOGLE
-    loginWithGoogle() {
-      console.log("estamos conectando con google");
     },
     // REGEX TO VALIDATE EMAIL
     validEmail(email) {

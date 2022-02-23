@@ -22,12 +22,7 @@
         </p>
         <!-- GOOGLE BUTTON -->
         <div class="my-4 w-full flex justify-center items-center py-2">
-          <button
-            class="w-8 h-8 rounded-md border border-secondary flex justify-center items-center"
-            @click="loginWithGoogle"
-          >
-            <img :src="image" class="w-6 h-6" />
-          </button>
+          <GlobalGoogleButton />
         </div>
         <!-- EMAIL LOGIN -->
         <div class="w-full flex flex-col justify-start items-center">
@@ -89,10 +84,6 @@ export default {
         this.showModal(false);
         this.activeSignIn(false);
       }
-    },
-    loginWithGoogle() {
-      console.log("estamos conectando con google");
-      this.signInWithGoogle()
     },
     validEmail() {
       const re =
