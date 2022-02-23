@@ -1,3 +1,12 @@
+import { fireAuth } from "../static/js/firebaseConfig";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+
 const state = () => ({
   isModalActive: false,
   isSignUpActive: false,
@@ -25,7 +34,7 @@ const mutations = {
   },
   SHOW_SIGNUP(state, boolean) {
     state.isSignUpActive = boolean;
-  }
+  },
 };
 
 const actions = {
@@ -33,11 +42,22 @@ const actions = {
     commit("SHOW_MODAL", payload);
   },
   activeSignIn({ commit }, payload) {
-    commit("SHOW_SIGNIN", payload)
+    commit("SHOW_SIGNIN", payload);
   },
   activeSignUp({ commit }, payload) {
-    commit("SHOW_SIGNUP", payload)
+    commit("SHOW_SIGNUP", payload);
   },
+  async signInWithGoogle({ commit }, payload) {
+    const auth = fireAuth
+    const provider = new GoogleAuthProvider
+    try {
+      const result = await signInWithPopup(auth, provider)
+      const googleCredentials = GoogleAuthProvider.credentialFromResult(result)
+      console.log(result, googleCredentials)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 };
 
 export { state, getters, mutations, actions };

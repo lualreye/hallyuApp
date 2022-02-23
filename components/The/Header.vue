@@ -26,10 +26,18 @@
         </div>
         <div class="w-2/3 flex jsutify-center items-center">
           <div class="w-1/2 hidden lg:flex justify-center items-center mr-2">
-            <GlobalHButton name="Inicia Sesión" buttonColor="primary" @click="toSignIn" />
+            <GlobalHButton
+              name="Inicia Sesión"
+              buttonColor="primary"
+              @click="toSignIn"
+            />
           </div>
           <div class="w-1/2 hidden lg:flex justify-center items-center">
-            <GlobalHButton name="Regístrate" buttonColor="secondary" @click="toSignUp" />
+            <GlobalHButton
+              name="Regístrate"
+              buttonColor="secondary"
+              @click="toSignUp"
+            />
           </div>
         </div>
       </div>
@@ -59,13 +67,13 @@ export default {
       }
     },
     toSignIn() {
-      this.showModal(true)
-      this.activeSignIn(true)
+      this.showModal(true);
+      this.activeSignIn(true);
     },
     toSignUp() {
-      this.showModal(true)
-      this.activeSignUp(true)
-    }
+      this.showModal(true);
+      this.activeSignUp(true);
+    },
   },
 };
 </script>
