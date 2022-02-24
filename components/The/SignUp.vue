@@ -38,7 +38,7 @@
               type="name"
               required
               v-model="name"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="Han"
             />
             <span
@@ -55,7 +55,7 @@
               type="email"
               required
               v-model="email"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="junegull@gmail.com"
             />
             <span
@@ -72,7 +72,7 @@
               type="password"
               required
               v-model="password"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
             />
             <span
@@ -92,7 +92,7 @@
               type="password"
               required
               v-model="passwordRepeated"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-white rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:secondary outline-none focus:outline-none text-secondary focus:text-secondary"
               placeholder="********"
             />
             <span
@@ -159,7 +159,7 @@ export default {
     buttonReady() {
       return this.formIsValid === true
         ? "bg-secondary border-secondary"
-        : "bg-gray-400 border-gray-400";
+        : "bg-gray-400 text-white border-gray-400";
     },
   },
   methods: {
