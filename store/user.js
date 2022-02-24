@@ -94,8 +94,9 @@ const actions = {
   },
   async signInWithEmail({ commit }, payload) {
     const auth = fireAuth
+    console.log(payload)
     try{
-      const credentialResults = signInWithEmailAndPassword(auth, payload.email, payload.password)
+      const credentialResults = await signInWithEmailAndPassword(auth, payload.email, payload.password)
       const user = credentialResults.user
       console.log(user)
     } catch(error) {
