@@ -14,7 +14,7 @@ const state = () => ({
   isSignUpActive: false,
   isSignInActive: false,
   user: null,
-  error: null
+  error: null,
 });
 
 const getters = {
@@ -28,11 +28,11 @@ const getters = {
     return state.isSignUpActive;
   },
   getUser(state) {
-    return state.user
+    return state.user;
   },
   getError(state) {
-    return state.error
-  }
+    return state.error;
+  },
 };
 
 const mutations = {
@@ -46,14 +46,14 @@ const mutations = {
     state.isSignUpActive = boolean;
   },
   SET_USER(state, userData) {
-    state.user = userData
+    state.user = userData;
   },
   SET_ERROR(state, error) {
-    state.error = error
+    state.error = error;
   },
   CLEAR_ERROR(state) {
-    state.error = null
-  }
+    state.error = null;
+  },
 };
 
 const actions = {
@@ -66,60 +66,77 @@ const actions = {
   activeSignUp({ commit }, payload) {
     commit("SHOW_SIGNUP", payload);
   },
+  // LOGIN WITH GOOGLE
+  // CREATING USER IN DATABASE
   async loginWithGoogle({ commit }, payload) {
-    const auth = fireAuth
-    const db = fireDataBase
-    const provider = new GoogleAuthProvider
+    const auth = fireAuth;
+    const db = fireDataBase;
+    const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(auth, provider)
-      const googleCredentials = GoogleAuthProvider.credentialFromResult(result)
+      const result = await signInWithPopup(auth, provider);
+      const googleCredentials = GoogleAuthProvider.credentialFromResult(result);
       const googleToken = googleCredentials.accessToken;
-      const userResult = result.user
+      const userResult = result.user;
       const user = {
         uid: userResult.uid,
         name: userResult.displayName,
         email: userResult.email,
-        image: userResult.photoURL
-      }
+        image: userResult.photoURL,
+      };
       const userRef = doc(collection(db, "users"));
-      console.log(user)
-      console.log(userRef)
-      await setDoc(userRef, {...user});
-      commit('SET_USER', user)
+      console.log(user);
+      console.log(userRef);
+      await setDoc(userRef, { ...user });
+      commit("SET_USER", user);
     } catch (error) {
-      const errorCode = error.code
-      const errorMessage = error.message
-      const email = error.email
-      const credential = GoogleAuthProvider.credentialFromError(error)
-      console.log(errorCode, errorMessage, email, credential)
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(errorCode, errorMessage, email, credential);
     }
   },
+  // SIGNUP WITH CREDENTIALS
+  // CREATING USER IN DATABASE
   async signUpWithEmail({ commit }, payload) {
-    const auth = fireAuth
+    const auth = fireAuth;
+    const db = fireDataBase;
     try {
-      const credentialResults = await createUserWithEmailAndPassword(auth, payload.email, payload.password)
+      const credentialResults = await createUserWithEmailAndPassword(
+        auth,
+        payload.email,
+        payload.password
+      );
       const user = {
         name: payload.name,
         email: payload.email,
         uid: credentialResults.user.uid,
-        image: ''
-      }
-      commit('SET_USER', user)
+        image: "",
+      };
+      const userRef = doc(collection(db, "users"));
+      await setDoc(userRef, { ...user });
+      commit("SET_USER", user);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   },
+  // SIGNIN WITH CREDENTIALS
+  // GETTING USER DATA FROM DATABASE
   async signInWithEmail({ commit }, payload) {
-    const auth = fireAuth
-    console.log(payload)
-    try{
-      const credentialResults = await signInWithEmailAndPassword(auth, payload.email, payload.password)
-      const userUid = credentialResults.user.uid
-      console.log(userUid)
-    } catch(error) {
-      console.error(error)
+    const auth = fireAuth;
+    console.log(payload);
+    try {
+      const credentialResults = await signInWithEmailAndPassword(
+        auth,
+        payload.email,
+        payload.password
+      );
+      const userUid = credentialResults.user.uid;
+      console.log(userUid);
+    } catch (error) {
+      console.error(error);
     }
-  }
+  },
 };
 
 export { state, getters, mutations, actions };
