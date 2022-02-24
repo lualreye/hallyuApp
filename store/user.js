@@ -92,7 +92,7 @@ const actions = {
       console.error(error)
     }
   },
-  async signInWith({ commit }, payload) {
+  async signInWithEmail({ commit }, payload) {
     const auth = fireAuth
     try{
       const credentialResults = signInWithEmailAndPassword(auth, payload.email, payload.password)
