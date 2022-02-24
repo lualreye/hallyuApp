@@ -163,8 +163,8 @@ export default {
     },
   },
   methods: {
-    // GETTING MODAL STATE FROM STORE
-    ...mapActions("user", ["showModal", "activeSignUp"]),
+    // GETTING  ACTIONS FROM STORE
+    ...mapActions("user", ["showModal", "activeSignUp", "signUpWithEmail"]),
     // DISPATCH ACTION TO CAHNGE MODAL STATE
     closeSignUp() {
       if (this.getModal) {
@@ -183,9 +183,12 @@ export default {
       return re.test(password);
     },
     signUserUp() {
-      console.log("Enviamos informacion a firebase");
-      this.showModal(false);
-      this.activeSignUp(false);
+      const user = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      this.signUpWithEmail(user)
     },
   },
 };

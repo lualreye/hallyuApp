@@ -76,6 +76,16 @@ const actions = {
       const credential = GoogleAuthProvider.credentialFromError(error)
       console.log(errorCode, errorMessage, email, credential)
     }
+  },
+  async signUpWithEmail({ commit }, payload) {
+    const auth = fireAuth
+    console.log(payload)
+    try {
+      const result = await createUserWithEmailAndPassword(auth, payload.email, payload.password)
+      console.log(result)
+    } catch (error) {
+      console.error(error)
+    }
   }
 };
 
