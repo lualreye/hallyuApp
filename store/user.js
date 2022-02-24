@@ -11,7 +11,8 @@ const state = () => ({
   isModalActive: false,
   isSignUpActive: false,
   isSignInActive: false,
-  user: null
+  user: null,
+  error: null
 });
 
 const getters = {
@@ -26,6 +27,9 @@ const getters = {
   },
   getUser(state) {
     return state.user
+  },
+  getError(state) {
+    return state.error
   }
 };
 
@@ -39,8 +43,14 @@ const mutations = {
   SHOW_SIGNUP(state, boolean) {
     state.isSignUpActive = boolean;
   },
-  GET_USER(state, userData) {
+  SET_USER(state, userData) {
     state.user = userData
+  },
+  SET_ERROR(state, error) {
+    state.error = error
+  },
+  CLEAR_ERROR(state) {
+    state.error = null
   }
 };
 
@@ -68,7 +78,7 @@ const actions = {
         email: userResult.email,
         image: userResult.photoURL
       }
-      commit('GET_USER', user)
+      commit('SET_USER', user)
     } catch (error) {
       const errorCode = error.code
       const errorMessage = error.message
@@ -87,7 +97,7 @@ const actions = {
         uid: credentialResults.user.uid,
         image: ''
       }
-      commit('GET_USER', user)
+      commit('SET_USER', user)
     } catch (error) {
       console.error(error)
     }
@@ -97,8 +107,8 @@ const actions = {
     console.log(payload)
     try{
       const credentialResults = await signInWithEmailAndPassword(auth, payload.email, payload.password)
-      const user = credentialResults.user
-      console.log(user)
+      const userUid = credentialResults.user.uid
+      console.log(userUid)
     } catch(error) {
       console.error(error)
     }
