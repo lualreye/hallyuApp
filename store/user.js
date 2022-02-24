@@ -1,4 +1,5 @@
 import { fireAuth } from "../static/js/firebaseConfig";
+import { fireDataBase } from "../static/js/firebaseConfig";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -6,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { doc, setDoc, collection } from "firebase/firestore";
 
 const state = () => ({
   isModalActive: false,
@@ -66,6 +68,7 @@ const actions = {
   },
   async loginWithGoogle({ commit }, payload) {
     const auth = fireAuth
+    const db = fireDataBase
     const provider = new GoogleAuthProvider
     try {
       const result = await signInWithPopup(auth, provider)
@@ -78,6 +81,10 @@ const actions = {
         email: userResult.email,
         image: userResult.photoURL
       }
+      const userRef = doc(collection(db, "users"));
+      console.log(user)
+      console.log(userRef)
+      await setDoc(userRef, {...user});
       commit('SET_USER', user)
     } catch (error) {
       const errorCode = error.code
