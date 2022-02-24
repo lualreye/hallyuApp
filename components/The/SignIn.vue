@@ -111,7 +111,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("user", ["showModal", "activeSignIn", "signInWithGoogle"]),
+    ...mapActions("user", ["showModal", "activeSignIn", "signInWithGoogle", "signInWithEmail"]),
     closeSingIn() {
       if (this.getModal) {
         this.showModal(false);
@@ -132,7 +132,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      console.log(user);
+      this.signInWithEmail(user)
     },
   },
 };
