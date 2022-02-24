@@ -79,7 +79,6 @@ const actions = {
   },
   async signUpWithEmail({ commit }, payload) {
     const auth = fireAuth
-    console.log(payload)
     try {
       const credentialResults = await createUserWithEmailAndPassword(auth, payload.email, payload.password)
       const user = {
@@ -88,8 +87,18 @@ const actions = {
         uid: credentialResults.user.uid,
         image: ''
       }
-      console.log(user)
+      commit('GET_USER', user)
     } catch (error) {
+      console.error(error)
+    }
+  },
+  async signInWith({ commit }, payload) {
+    const auth = fireAuth
+    try{
+      const credentialResults = signInWithEmailAndPassword(auth, payload.email, payload.password)
+      const user = credentialResults.user
+      console.log(user)
+    } catch(error) {
       console.error(error)
     }
   }
