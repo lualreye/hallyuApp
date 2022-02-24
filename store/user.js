@@ -11,6 +11,7 @@ const state = () => ({
   isModalActive: false,
   isSignUpActive: false,
   isSignInActive: false,
+  user: null
 });
 
 const getters = {
@@ -23,6 +24,9 @@ const getters = {
   getSignUp(state) {
     return state.isSignUpActive;
   },
+  getUser(state) {
+    return state.user
+  }
 };
 
 const mutations = {
@@ -35,6 +39,9 @@ const mutations = {
   SHOW_SIGNUP(state, boolean) {
     state.isSignUpActive = boolean;
   },
+  GET_USER(state, userData) {
+    state.user = userData
+  }
 };
 
 const actions = {
@@ -54,8 +61,14 @@ const actions = {
       const result = await signInWithPopup(auth, provider)
       const googleCredentials = GoogleAuthProvider.credentialFromResult(result)
       const googleToken = googleCredentials.accessToken;
-      const user = result.user
-      console.log(result, googleCredentials)
+      const userResult = result.user
+      const user = {
+        uid: userResult.uid,
+        name: userResult.displayName,
+        email: userResult.email,
+        image: userResult.photoURL
+      }
+      commit('GET_USER', user)
     } catch (error) {
       const errorCode = error.code
       const errorMessage = error.message
