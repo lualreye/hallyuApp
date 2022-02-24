@@ -81,8 +81,14 @@ const actions = {
     const auth = fireAuth
     console.log(payload)
     try {
-      const result = await createUserWithEmailAndPassword(auth, payload.email, payload.password)
-      console.log(result)
+      const credentialResults = await createUserWithEmailAndPassword(auth, payload.email, payload.password)
+      const user = {
+        name: payload.name,
+        email: payload.email,
+        uid: credentialResults.user.uid,
+        image: ''
+      }
+      console.log(user)
     } catch (error) {
       console.error(error)
     }
