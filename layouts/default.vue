@@ -18,7 +18,7 @@ export default {
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
-    ...mapGetters("user", ["getModal"]),
+    ...mapGetters("user", ["getModal", "getUser"]),
     stopScrolling() {
       return this.showMenu || this.showCart || this.getModal;
     },
