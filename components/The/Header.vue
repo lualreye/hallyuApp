@@ -11,7 +11,7 @@
       >
         <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
       </figure>
-      <div class="w-24 lg:w-96 flex justify-end items-center">
+      <div class="w-28 lg:w-96 flex justify-end items-center">
         <div class="w-1/3 flex justify-center items-center mr-4">
           <GlobalIconButton
             iconName="like"
@@ -23,8 +23,19 @@
             classes="bg-primary p-1"
             @click="getCart"
           />
+          <GlobalHIcon
+            v-if="!user"
+            iconName="userAccount"
+            classes="bg-primary p-1"
+          />
+          <div
+            v-else-if="user"
+            class="bg-primary rounded-full w-10 h-10 ml-1 p-1 flex justify-center items-center"
+          >
+            <img :src="userImage" :alt="userName" class="w-full h-full object-cover" />
+          </div>
         </div>
-        <div class="w-2/3 flex jsutify-center items-center">
+        <div v-if="!getUser" class="w-2/3 flex jsutify-center items-center">
           <div class="w-1/2 hidden lg:flex justify-center items-center mr-2">
             <GlobalHButton
               name="Inicia Sesión"
@@ -48,9 +59,28 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  data: () => ({
+    userImage: '',
+    userName: ''
+  }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
+    ...mapGetters("user", ["getUser"]),
+    user() {
+      if(!this.getUser) {
+        return false
+      } else {
+        this.userImage = this.getUser.image
+        this.userName = this.getUser.name
+        return true
+      }
+    }
+  },
+  watch: {
+    getUser(value) {
+      return value === null ? false : true
+    }
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
