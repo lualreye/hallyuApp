@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc, collection } from "firebase/firestore";
+import { doc, setDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 const state = () => ({
   isModalActive: false,
@@ -84,8 +84,6 @@ const actions = {
         image: userResult.photoURL,
       };
       const userRef = doc(collection(db, "users"));
-      console.log(user);
-      console.log(userRef);
       await setDoc(userRef, { ...user });
       commit("SET_USER", user);
     } catch (error) {
@@ -124,7 +122,7 @@ const actions = {
   // GETTING USER DATA FROM DATABASE
   async signInWithEmail({ commit }, payload) {
     const auth = fireAuth;
-    console.log(payload);
+    const db = fireDataBase;
     try {
       const credentialResults = await signInWithEmailAndPassword(
         auth,
@@ -132,7 +130,13 @@ const actions = {
         payload.password
       );
       const userUid = credentialResults.user.uid;
-      console.log(userUid);
+      const docRef = collection(db, "users");
+      const userQuery = query(docRef, where("uid", "==", userUid));
+      const userDocs = await getDocs(userQuery)
+      let user;
+      userDocs.forEach(doc => user = doc.data())
+      console.log(user)
+      commit("SET_USER", user);
     } catch (error) {
       console.error(error);
     }
