@@ -135,7 +135,6 @@ const actions = {
       const userDocs = await getDocs(userQuery)
       let user;
       userDocs.forEach(doc => user = doc.data())
-      console.log(user)
       commit("SET_USER", user);
     } catch (error) {
       console.error(error);
