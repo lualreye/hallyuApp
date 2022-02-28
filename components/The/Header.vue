@@ -27,7 +27,7 @@
             <GlobalIconButton
               v-if="!user"
               iconName="userAccount"
-              class="bg-primary p-1"
+              class="bg-primary p-1 ml-1"
               @click="getProfile"
             />
             <button v-else class="w-10 h-10 rounded-full bg-primary ml-1">
