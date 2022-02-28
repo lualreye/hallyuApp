@@ -7,7 +7,16 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc, collection, getDocs, query, where } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  getDoc,
+  exists,
+} from "firebase/firestore";
 
 const state = () => ({
   isModalActive: false,
@@ -77,21 +86,32 @@ const actions = {
       const googleCredentials = GoogleAuthProvider.credentialFromResult(result);
       const googleToken = googleCredentials.accessToken;
       const userResult = result.user;
-      const user = {
-        uid: userResult.uid,
-        name: userResult.displayName,
-        email: userResult.email,
-        image: userResult.photoURL,
-      };
-      const userRef = doc(collection(db, "users"));
-      await setDoc(userRef, { ...user });
-      commit("SET_USER", user);
+      const userRef = collection(db, "users");
+      const userQuery = query(userRef, where("email", "==", userResult.email));
+      const userSnap = await getDocs(userQuery);
+      let user;
+      if (userSnap.docs.length !== 0) {
+        userSnap.forEach((doc) => {
+          user = doc.data();
+        });
+        commit("SET_USER", user);
+      } else {
+        user = {
+          uid: userResult.uid,
+          name: userResult.displayName,
+          email: userResult.email,
+          image: userResult.photoURL,
+        };
+        const docRef = doc(userRef)
+        await setDoc(docRef, { ...user });
+        commit("SET_USER", user);
+      }
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       const email = error.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(errorCode, errorMessage, email, credential);
+      console.error("Error: ", errorCode, errorMessage, email, credential);
     }
   },
   // SIGNUP WITH CREDENTIALS
@@ -132,10 +152,11 @@ const actions = {
       const userUid = credentialResults.user.uid;
       const docRef = collection(db, "users");
       const userQuery = query(docRef, where("uid", "==", userUid));
-      const userDocs = await getDocs(userQuery)
+      const userDocs = await getDocs(userQuery);
       let user;
-      userDocs.forEach(doc => { user = doc.data()})
-      console.log(user)
+      userDocs.forEach((doc) => {
+        user = doc.data();
+      });
       commit("SET_USER", user);
     } catch (error) {
       console.error(error);
