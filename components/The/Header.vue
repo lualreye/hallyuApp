@@ -23,16 +23,16 @@
             classes="bg-primary p-1"
             @click="getCart"
           />
-          <GlobalHIcon
-            v-if="!user"
-            iconName="userAccount"
-            classes="bg-primary p-1"
-          />
-          <div
-            v-else-if="user"
-            class="bg-primary rounded-full w-10 h-10 ml-1 p-1 flex justify-center items-center"
-          >
-            <img :src="userImage" :alt="userName" class="w-full h-full object-cover" />
+          <div v-if="getUser" class="flex justify-center items-center">
+            <GlobalIconButton
+              v-if="!user"
+              iconName="userAccount"
+              class="bg-primary p-1"
+              @click="getProfile"
+            />
+            <button v-else class="w-10 h-10 rounded-full bg-primary ml-1">
+              <img :src="getUser.image" :alt="getUser.name" class="rounded-full" />
+            </button>
           </div>
         </div>
         <div v-if="!getUser" class="w-2/3 flex jsutify-center items-center">
@@ -60,27 +60,32 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    userImage: '',
-    userName: ''
+    userImage: "",
+    userName: "",
   }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("user", ["getUser"]),
     user() {
-      if(!this.getUser) {
-        return false
+      if (this.getUser !== null) {
+        if(this.getUser.image !== '') {
+          this.userName = this.getUser.name
+          this.userImage = this.getUser.image
+          return true
+        } else {
+          this.userName = this.getUser.name
+          return false
+        }
       } else {
-        this.userImage = this.getUser.image
-        this.userName = this.getUser.name
-        return true
+        return
       }
-    }
+    },
   },
   watch: {
     getUser(value) {
-      return value === null ? false : true
-    }
+      return value === null ? false : true;
+    },
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
@@ -104,6 +109,9 @@ export default {
       this.showModal(true);
       this.activeSignUp(true);
     },
+    getProfile() {
+      console.log('user modal Profile')
+    }
   },
 };
 </script>
