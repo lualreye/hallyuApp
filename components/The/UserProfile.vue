@@ -135,12 +135,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions("user", ["activeMenu", "changeUserInformation"]),
-    ...mapActions("users", ["updateUserProfile"]),
+    ...mapActions("user", ["activeMenu", "changeUserImage"]),
+    ...mapActions("userData", ["updateUserProfile"]),
     onChange(event) {
       const file = event.target.files[0];
       this.image.imageObject = file;
       this.image.imageUrl = URL.createObjectURL(file);
+      let image = this.image.imageUrl
+      this.changeUserImage(image)
     },
     editProfile() {
       if (this.editing) {
@@ -150,7 +152,7 @@ export default {
       }
     },
     saveUserData() {
-      const user = {
+      const userData = {
         name: this.name,
         image: this.userImage,
         email: getUser.email,

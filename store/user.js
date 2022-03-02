@@ -56,6 +56,9 @@ const mutations = {
   SET_USER(state, userData) {
     state.user = userData;
   },
+  SET_USER_IMAGE(state, userImage) {
+    state.user.image = userImage
+  },
   SET_ERROR(state, error) {
     state.error = error;
   },
@@ -179,6 +182,10 @@ const actions = {
     } catch (error) {
       console.error(error)
     }
+  },
+  // UPDATING INFORMATION
+  changeUserImage({ commit }, payload) {
+    commit('SET_USER_IMAGE', payload)
   }
 };
 
