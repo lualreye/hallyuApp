@@ -11,8 +11,8 @@
       >
         <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
       </figure>
-      <div class="w-28 lg:w-96 flex justify-end items-center">
-        <div class="w-1/3 flex justify-center items-center mr-4">
+      <div class="w-auto lg:w-96 flex justify-end items-center">
+        <div class="w-auto lg:w-1/3 flex justify-center items-center mr-2">
           <GlobalIconButton
             iconName="like"
             classes="bg-primary p-1"
