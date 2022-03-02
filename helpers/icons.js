@@ -11,6 +11,7 @@ import {
   mdiInstagram,
   mdiMagnify,
   mdiMenu,
+  mdiPencil,
   mdiVolumeHigh,
   mdiVolumeOff,
   mdiWhatsapp,
@@ -31,5 +32,6 @@ export default {
   calendar: mdiCalendarMonth,
   right: mdiChevronRight,
   copyright: mdiCopyright,
-  close: mdiClose
+  close: mdiClose,
+  edit: mdiPencil
 };
