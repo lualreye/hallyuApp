@@ -23,7 +23,7 @@
             classes="bg-primary p-1"
             @click="getCart"
           />
-          <div v-if="getUser" class="flex justify-center items-center">
+          <div v-if="getUser" class="flex justify-center items-center relative">
             <GlobalIconButton
               v-if="!user"
               iconName="userAccount"
@@ -33,6 +33,9 @@
             <button v-else class="w-10 h-10 rounded-full bg-primary ml-1">
               <img :src="getUser.image" :alt="getUser.name" class="rounded-full" />
             </button>
+            <div class="absolute top-full right-1/4 z-50">
+              <TheUserProfile />
+            </div>
           </div>
         </div>
         <div v-if="!getUser" class="w-2/3 flex jsutify-center items-center">
