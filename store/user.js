@@ -95,6 +95,9 @@ const actions = {
           user = doc.data();
         });
         commit("SET_USER", user);
+        commit("SHOW_SIGNIN", false)
+        commit("SHOW_SIGNUP", false)
+        commit("SHOW_MODAL", false)
       } else {
         user = {
           uid: userResult.uid,
@@ -105,6 +108,9 @@ const actions = {
         const docRef = doc(userRef)
         await setDoc(docRef, { ...user });
         commit("SET_USER", user);
+        commit("SHOW_SIGNIN", false)
+        commit("SHOW_SIGNUP", false)
+        commit("SHOW_MODAL", false)
       }
     } catch (error) {
       const errorCode = error.code;
@@ -134,6 +140,8 @@ const actions = {
       const userRef = doc(collection(db, "users"));
       await setDoc(userRef, { ...user });
       commit("SET_USER", user);
+      commit("SHOW_SIGNUP", false)
+      commit("SHOW_MODAL", false)
     } catch (error) {
       console.error(error);
     }
@@ -158,10 +166,21 @@ const actions = {
         user = doc.data();
       });
       commit("SET_USER", user);
+      commit("SHOW_SIGNIN", false)
+      commit("SHOW_MODAL", false)
     } catch (error) {
       console.error(error);
     }
   },
+  async signUserOut({ commit }, payload) {
+    const auth = fireAuth
+    try {
+      const signOutMessage = await signOut(auth)
+      commit("SET_USER", null)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 };
 
 export { state, getters, mutations, actions };
