@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig)
 const fireAnalytics = getAnalytics(app)
 const fireAuth = getAuth(app)
 const fireDataBase = getFirestore(app)
-const fireStore = getStorage(app)
+const fireStorage = getStorage(app)
 const fireFunctions = getFunctions(app)
 
 export {
@@ -28,6 +28,6 @@ export {
   fireAnalytics,
   fireAuth,
   fireDataBase,
-  fireStore,
+  fireStorage,
   fireFunctions
 }
