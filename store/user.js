@@ -15,7 +15,6 @@ import {
   query,
   where,
   getDoc,
-  exists,
 } from "firebase/firestore";
 
 const state = () => ({
