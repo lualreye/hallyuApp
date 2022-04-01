@@ -1,18 +1,10 @@
 <template>
   <div>
-    <div v-if="true">
+    <div v-if="getProfile">
       <!-- NO EDITING PROFILE -->
       <div v-if="!editing" class="w-96 bg-lightPink p-2 rounded-3xl">
         <div class="w-full h-full border border-primary rounded-3xl">
           <div class="w-full py-3 px-3">
-            <div class="w-full flex justify-end items-center">
-              <button
-                class="border border-primary rounded-full w-5 h-5 flex justify-center items-center"
-                @click="closeModal"
-              >
-                <GlobalHIcon name="close" class="text-primary" />
-              </button>
-            </div>
             <div class="w-full">
               <figure
                 class="w-20 h-20 mb-6 flex justify-center items-center rounded-full mx-auto"
@@ -58,7 +50,7 @@
             <div class="w-full flex justify-end items-center">
               <button
                 class="border border-secondary rounded-full w-5 h-5 flex justify-center items-center"
-                @click="closeModal"
+                @click="editProfile"
               >
                 <GlobalHIcon name="close" class="text-secondary" />
               </button>
@@ -125,6 +117,7 @@ export default {
   }),
   computed: {
     ...mapGetters("user", ["getUser", "getModal"]),
+    ...mapGetters("userData", ["getProfile"]),
     isUserImage() {
       this.image.imageUrl = this.getUser.image
       if(!this.image.imageUrl.length) {
