@@ -160,25 +160,54 @@ const actions = {
   async signInWithEmail({ commit }, payload) {
     const auth = fireAuth;
     const db = fireDataBase;
+    let user;
     try {
       const credentialResults = await signInWithEmailAndPassword(
         auth,
         payload.email,
         payload.password
       );
-      const userUid = credentialResults.user.uid;
-      const docRef = collection(db, "users");
-      const userQuery = query(docRef, where("uid", "==", userUid));
-      const userDocs = await getDocs(userQuery);
-      let user;
-      userDocs.forEach((doc) => {
-        user = doc.data();
-      });
-      commit("SET_USER", user);
-      commit("SHOW_SIGNIN", false);
-      commit("SHOW_MODAL", false);
+
+      const userId = await fireAuth.currentUser.getIdTokenResult()
+
+      if(userId.claims.admin) {
+        const adminRole = userId.claims.admin
+        let role = {adminRole}
+        const userUid = credentialResults.user.uid;
+        const docRef = collection(db, "team");
+        const userQuery = query(docRef, where("uid", "==", userUid));
+        const userDocs = await getDocs(userQuery);
+        userDocs.forEach((doc) => {
+          user = {
+            ...doc.data(),
+            role: role
+          };
+          console.log(user)
+        });
+        commit("SET_USER", user);
+        commit("SHOW_SIGNIN", false);
+        commit("SHOW_MODAL", false);
+      } else if(userId.claims.costumer) {
+        const userRol = userId.claims.costumer
+        let role = { userRol }
+        const userUid = credentialResults.user.uid;
+        const docRef = collection(db, "users");
+        const userQuery = query(docRef, where("uid", "==", userUid));
+        const userDocs = await getDocs(userQuery);
+        userDocs.forEach((doc) => {
+          user = {
+            ...doc.data(),
+            role: role
+          }
+        });
+        commit("SET_USER", user);
+        commit("SHOW_SIGNIN", false);
+        commit("SHOW_MODAL", false);
+      } else {
+        console.error("ROLE_NOT_FOUND")
+      }
     } catch (error) {
-      console.error(error);
+      console.error("USER_NOT_AUTHENTICATED", error);
     }
   },
   async signUserOut({ commit }, payload) {
@@ -198,6 +227,7 @@ const actions = {
     commit("SET_USER_NAME", payload);
   },
   // TODO: params(*) name, email, password
+  // sign admin up
   async signAdminUp({ commit }, payload) {
     try {
       const auth = fireAuth;
