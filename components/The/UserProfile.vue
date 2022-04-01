@@ -21,7 +21,7 @@
                   v-if="isUserImage"
                   :src="image.imageUrl"
                   :alt="getUser.name"
-                  class="rounded-full w-full object-cover"
+                  class="rounded-full w-full h-20 object-cover"
                 />
                 <p
                   v-else
@@ -74,7 +74,7 @@
                   v-if="isUserImage"
                   :src="image.imageUrl"
                   :alt="getUser.name"
-                  class="rounded-full w-full object-cover"
+                  class="rounded-full w-full h-32 object-cover"
                 />
                 <p
                   v-else
@@ -98,11 +98,11 @@
                 v-model="userName"
                 type="text"
                 :placeholder="getUser.name"
-                class="w-full placeholder-textColor border border-textColor rounded-full py-1 px-2 outline-none focus:outline-none bg-aquamarine focus:bg-white mt-2"
+                class="w-full placeholder-textColor border border-textColor rounded-full py-1 px-4 outline-none focus:outline-none bg-aquamarine focus:bg-white mt-2"
               />
             </div>
             <div class="w-full flex justify-center items-center mt-8">
-              <GlobalHButton name="Guardar" buttonColor="secondary" />
+              <GlobalHButton name="Guardar" buttonColor="secondary" @click="updateUserData" />
             </div>
           </div>
         </div>
@@ -133,9 +133,15 @@ export default {
         return true
       }
     },
+    isUserName() {
+      return this.getUser.name
+    },
+    getUserName() {
+      this.editUserName(this.userName)
+    }
   },
   methods: {
-    ...mapActions("user", ["activeMenu", "changeUserImage"]),
+    ...mapActions("user", ["activeMenu", "changeUserImage", "changeUserName"]),
     ...mapActions("userData", ["updateUserProfile"]),
     onChange(event) {
       const file = event.target.files[0];
@@ -151,13 +157,17 @@ export default {
         this.editing = true;
       }
     },
-    saveUserData() {
+    editUserName(name) {
+      this.changeUserName(name)
+    },
+    updateUserData() {
+      this.changeUserName(this.userName)
       const userData = {
         name: this.name,
-        image: this.userImage,
-        email: getUser.email,
+        image: this.image.imageUrl,
+        email: this.getUser.email,
       };
-      console.log(user);
+      console.log(userData);
     },
     closeModal() {
       if (this.getModal) {
