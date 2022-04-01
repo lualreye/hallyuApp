@@ -1,18 +1,30 @@
 import { fireStorage, fireDataBase } from "../static/js/firebaseConfig"
 import { doc, getDocs, updateDoc } from "firebase/firestore"
 
-const state = () => ({})
+const state = () => ({
+  profileIsOpen: false
+})
 
 const getters = {
-
+  getProfile(state) {
+    return state.profileIsOpen
+  }
 }
 
 const mutations = {
-
+  SHOW_PROFILE(state, boolean) {
+    state.profileIsOpen = boolean
+  }
 }
 
 
 const actions = {
+  //TODO: params(*) boolean
+  // open menu
+  showProfile({commit}, payload) {
+    commit("SHOW_PROFILE", payload)
+  },
+  // TODO: params object image
   async udpateProfile({ commit }, payload) {
     const storeRef = fireStorage
     const db = fireDataBase
