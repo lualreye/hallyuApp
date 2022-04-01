@@ -1,5 +1,6 @@
 import { fireAuth } from "../static/js/firebaseConfig";
 import { fireDataBase } from "../static/js/firebaseConfig";
+import { fireFunctions } from "../static/js/firebaseConfig";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -7,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+
 import {
   doc,
   setDoc,
@@ -16,6 +18,8 @@ import {
   where,
   getDoc,
 } from "firebase/firestore";
+
+import { httpsCallable } from "firebase/functions";
 
 const state = () => ({
   isModalActive: false,
@@ -57,10 +61,10 @@ const mutations = {
     state.user = userData;
   },
   SET_USER_IMAGE(state, userImage) {
-    state.user.image = userImage
+    state.user.image = userImage;
   },
   SET_USER_NAME(state, userName) {
-    state.user.image = userName
+    state.user.image = userName;
   },
   SET_ERROR(state, error) {
     state.error = error;
@@ -80,8 +84,8 @@ const actions = {
   activeSignUp({ commit }, payload) {
     commit("SHOW_SIGNUP", payload);
   },
-  // LOGIN WITH GOOGLE
-  // CREATING USER IN DATABASE
+  // TODO: login with google
+  // TODO: creating user in firebase
   async loginWithGoogle({ commit }, payload) {
     const auth = fireAuth;
     const db = fireDataBase;
@@ -100,9 +104,9 @@ const actions = {
           user = doc.data();
         });
         commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false)
-        commit("SHOW_SIGNUP", false)
-        commit("SHOW_MODAL", false)
+        commit("SHOW_SIGNIN", false);
+        commit("SHOW_SIGNUP", false);
+        commit("SHOW_MODAL", false);
       } else {
         user = {
           uid: userResult.uid,
@@ -110,12 +114,12 @@ const actions = {
           email: userResult.email,
           image: userResult.photoURL,
         };
-        const docRef = doc(userRef)
+        const docRef = doc(userRef);
         await setDoc(docRef, { ...user });
         commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false)
-        commit("SHOW_SIGNUP", false)
-        commit("SHOW_MODAL", false)
+        commit("SHOW_SIGNIN", false);
+        commit("SHOW_SIGNUP", false);
+        commit("SHOW_MODAL", false);
       }
     } catch (error) {
       const errorCode = error.code;
@@ -125,8 +129,8 @@ const actions = {
       console.error("Error: ", errorCode, errorMessage, email, credential);
     }
   },
-  // SIGNUP WITH CREDENTIALS
-  // CREATING USER IN DATABASE
+  // TODO: params(*) name, email, password
+  // creating user in firebase
   async signUpWithEmail({ commit }, payload) {
     const auth = fireAuth;
     const db = fireDataBase;
@@ -145,14 +149,14 @@ const actions = {
       const userRef = doc(collection(db, "users"));
       await setDoc(userRef, { ...user });
       commit("SET_USER", user);
-      commit("SHOW_SIGNUP", false)
-      commit("SHOW_MODAL", false)
+      commit("SHOW_SIGNUP", false);
+      commit("SHOW_MODAL", false);
     } catch (error) {
       console.error(error);
     }
   },
-  // SIGNIN WITH CREDENTIALS
-  // GETTING USER DATA FROM DATABASE
+  // TODO: params(*) email, password
+  // login user and fetching data
   async signInWithEmail({ commit }, payload) {
     const auth = fireAuth;
     const db = fireDataBase;
@@ -171,28 +175,44 @@ const actions = {
         user = doc.data();
       });
       commit("SET_USER", user);
-      commit("SHOW_SIGNIN", false)
-      commit("SHOW_MODAL", false)
+      commit("SHOW_SIGNIN", false);
+      commit("SHOW_MODAL", false);
     } catch (error) {
       console.error(error);
     }
   },
   async signUserOut({ commit }, payload) {
-    const auth = fireAuth
+    const auth = fireAuth;
     try {
-      const signOutMessage = await signOut(auth)
-      commit("SET_USER", null)
+      const signOutMessage = await signOut(auth);
+      commit("SET_USER", null);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   },
-  // UPDATING INFORMATION
+  // TODO: updating user information
   changeUserImage({ commit }, payload) {
-    commit('SET_USER_IMAGE', payload)
+    commit("SET_USER_IMAGE", payload);
   },
   changeUserName({ commit }, payload) {
-    commit("SET_USER_NAME", payload)
-  }
+    commit("SET_USER_NAME", payload);
+  },
+  // TODO: params(*) name, email, password
+  async signAdminUp({ commit }, payload) {
+    try {
+      const auth = fireAuth;
+      const db = fireDataBase;
+      const credentialsResult = await createUserWithEmailAndPassword(
+        auth,
+        payload.email,
+        payload.password
+      );
+      const setAdmin = httpsCallable(fireFunctions, 'setAdmin')
+      console.log(credentialsResult);
+    } catch (err) {
+      console.error("SIGN_ADMIN_ERROR", err);
+    }
+  },
 };
 
 export { state, getters, mutations, actions };
