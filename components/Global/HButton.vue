@@ -22,7 +22,7 @@ export default {
   computed: {
     color() {
       const color = 'bg-primary'
-      if(!this.buttonColor.length) {
+      if(!this.buttonColor) {
         return color
       }
       return `bg-`+this.buttonColor
