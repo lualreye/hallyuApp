@@ -28,7 +28,7 @@
               v-if="!user"
               iconName="userAccount"
               class="bg-primary p-1 ml-1"
-              @click="getProfile"
+              @click="activeProfile"
             />
             <button v-else class="w-10 h-10 rounded-full bg-primary ml-1">
               <img :src="getUser.image" :alt="getUser.name" class="rounded-full" />
@@ -70,6 +70,7 @@ export default {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("user", ["getUser"]),
+    ...mapGetters("userData", ["getProfile"]),
     user() {
       if (this.getUser !== null) {
         if(this.getUser.image !== '') {
@@ -94,6 +95,7 @@ export default {
     ...mapActions("config_drawer", ["activeMenu"]),
     ...mapActions("cart", ["activeCart"]),
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
+    ...mapActions("userData", ["showProfile"]),
     openMenu() {
       if (!this.showMenu) {
         this.activeMenu(true);
@@ -102,6 +104,8 @@ export default {
     getCart() {
       if (!this.showCart) {
         this.activeCart(true);
+      } else {
+        this.activeCart(false)
       }
     },
     toSignIn() {
@@ -112,8 +116,12 @@ export default {
       this.showModal(true);
       this.activeSignUp(true);
     },
-    getProfile() {
-      console.log('user modal Profile')
+    activeProfile() {
+      if(this.getProfile) {
+        this.showProfile(false)
+      } else {
+        this.showProfile(true)
+      }
     }
   },
 };
