@@ -38,7 +38,7 @@
               </p>
             </button>
             <div class="w-full flex justify-center items-center mt-8">
-              <GlobalHButton name="Cerrar Sesión" buttonColor="primary" />
+              <GlobalHButton name="Cerrar Sesión" buttonColor="primary" @click="closeSession" />
             </div>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     ...mapActions("user", ["activeMenu", "changeUserImage", "changeUserName"]),
-    ...mapActions("userData", ["updateUserProfile"]),
+    ...mapActions("userData", ["updateUserProfile", "showProfile"]),
     onChange(event) {
       const file = event.target.files[0];
       this.image.imageObject = file;
@@ -154,21 +154,37 @@ export default {
       this.changeUserName(name)
     },
     updateUserData() {
-      this.changeUserName(this.userName)
+      let name
+      if(this.userName === "") {
+        name = this.isUserName
+      } else {
+        name = this.userName
+      }
+
+      let image;
+      if(this.image.imageUrl === "") {
+        image = ""
+        this.changeUserImage = ""
+      } else {
+        image = this.image.imageUrl
+      }
       const userData = {
-        name: this.name,
-        image: this.image.imageUrl,
+        name: name,
+        image: image,
         email: this.getUser.email,
       };
       console.log(userData);
     },
     closeModal() {
-      if (this.getModal) {
-        this.activeMenu(false);
+      if (this.getProfile) {
+        this.showProfile(false);
       } else {
-        this.activeMenu(true);
+        this.showProfile(true);
       }
     },
+    closeSession() {
+      this.closeModal()
+    }
   },
 };
 </script>
