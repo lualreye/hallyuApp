@@ -207,8 +207,16 @@ const actions = {
         payload.email,
         payload.password
       );
-      const setAdmin = httpsCallable(fireFunctions, 'setAdmin')
-      console.log(credentialsResult);
+      const user = {
+        email: payload.email,
+        image: "",
+        name: payload.name,
+        uid: credentialsResult.user.uid
+      }
+      const setAdmin = httpsCallable(fireFunctions, "setAdmin");
+      await setAdmin({ uid: credentialsResult.user.uid });
+      const newTeamRef = doc(collection(db, "team"))
+      await setDoc(newTeamRef, user)
     } catch (err) {
       console.error("SIGN_ADMIN_ERROR", err);
     }
