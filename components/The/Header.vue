@@ -30,8 +30,8 @@
               class="bg-primary p-1 ml-1"
               @click="activeProfile"
             />
-            <button v-else class="w-10 h-10 rounded-full bg-primary ml-1">
-              <img :src="getUser.image" :alt="getUser.name" class="rounded-full" />
+            <button v-else class="w-10 h-10 rounded-full bg-primary ml-1" @click="activeProfile">
+              <img :src="getUser.image" :alt="getUser.name" class="rounded-full w-10 h-10 object-cover" />
             </button>
             <div class="absolute top-full right-1/4 z-50">
               <TheUserProfile />
