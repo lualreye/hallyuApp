@@ -1,59 +1,56 @@
-import { fireStorage, fireDataBase } from "../static/js/firebaseConfig"
-import { doc, getDocs, updateDoc } from "firebase/firestore"
+import { fireStorage, fireDataBase } from "../static/js/firebaseConfig";
+import { doc, getDocs, updateDoc, collection, where, query } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const state = () => ({
-  profileIsOpen: false
-})
+  profileIsOpen: false,
+});
 
 const getters = {
   getProfile(state) {
-    return state.profileIsOpen
-  }
-}
+    return state.profileIsOpen;
+  },
+};
 
 const mutations = {
   SHOW_PROFILE(state, boolean) {
-    state.profileIsOpen = boolean
-  }
-}
-
+    state.profileIsOpen = boolean;
+  },
+};
 
 const actions = {
   //TODO: params(*) boolean
   // open menu
-  showProfile({commit}, payload) {
-    commit("SHOW_PROFILE", payload)
+  showProfile({ commit }, payload) {
+    commit("SHOW_PROFILE", payload);
   },
-  // TODO: params object image
-  async udpateProfile({ commit }, payload) {
-    const storeRef = fireStorage
-    const db = fireDataBase
-    console.log(payload.email)
+  // TODO: params(*) object image, username
+  async updateProfile({ commit }, payload) {
+    const db = fireDataBase;
+    let userId
     try {
-      let userUid;
-      const userCollectionRef = collection(db, "users")
-      const userQuery = query(userCollectionRef, where("users", "==", payload.email))
-      const userSnapshot = await getDocs(userQuery)
-      userSnapshot.forEach((doc) => {
-        userUid = doc.uid
-      })
-      const docRef = doc(fireDataBase, "users", userUid)
-      console.log(docRef, payload.email, payload,image)
-      // await updateDoc(docRef, {
-      //   image: payload.image
-      //   name: payload.name
-      // })
+      const collectionRef = collection(db, "users");
+      const userQuery = query(collectionRef, where("email", "==", payload.email));
+      const userResult = await getDocs(userQuery)
+      userResult.forEach((doc) => {
+        userId = doc.id;
+      });
+      const filename = payload.image.imageUrl.split("/").pop();
+      const ext = payload.image.imageObject.name.split(".").pop();
+      const file = filename + "." + ext;
+      const imagesRef = ref(fireStorage, "users/" + file);
+      await uploadBytes(imagesRef, payload.image.imageObject);
+      const imageUrl = await getDownloadURL(imagesRef);
+      const userData = {
+        image: imageUrl,
+        name: payload.name
+      }
+      const userRef = doc(db, "users", userId)
+      await updateDoc(userRef, userData);
     } catch (error) {
-      console.error(error)
+      console.error("ERROR_UPDATING_DATA", error);
     }
-  }
-}
+  },
+};
 
-
-
-export {
-  state,
-  getters,
-  mutations,
-  actions
-}
+export { state, getters, mutations, actions };

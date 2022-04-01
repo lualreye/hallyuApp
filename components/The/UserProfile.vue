@@ -135,7 +135,7 @@ export default {
   },
   methods: {
     ...mapActions("user", ["activeMenu", "changeUserImage", "changeUserName"]),
-    ...mapActions("userData", ["updateUserProfile", "showProfile"]),
+    ...mapActions("userData", ["updateProfile", "showProfile"]),
     onChange(event) {
       const file = event.target.files[0];
       this.image.imageObject = file;
@@ -166,14 +166,14 @@ export default {
         image = ""
         this.changeUserImage = ""
       } else {
-        image = this.image.imageUrl
+        image = this.image
       }
       const userData = {
         name: name,
         image: image,
         email: this.getUser.email,
       };
-      console.log(userData);
+      this.updateProfile(userData);
     },
     closeModal() {
       if (this.getProfile) {
