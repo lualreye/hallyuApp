@@ -49,7 +49,4 @@ export default {
   build: {
   },
 
-  router: {
-    middleware: "authenticated"
-  }
 }
