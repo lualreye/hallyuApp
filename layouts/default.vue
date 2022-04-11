@@ -25,11 +25,6 @@ export default {
     getOverlay() {
       return this.showMenu || this.showCart || this.getModal;
     },
-    redirection() {
-      if (this.getUser ===  null || this.getUser === undefined) {
-        return
-      } else (this.getUser.role)
-    }
   },
   watch: {
     getOverlay(value) {
@@ -39,6 +34,13 @@ export default {
         this.stopBodyScrolling(value);
       }
     },
+    getUser(value) {
+      if(value === null || undefined) {
+        return
+      } else if (value.role.adminRole) {
+        this.$router.push("/admin/dashboard")
+      }
+    }
   },
   methods: {
     stopBodyScrolling(value) {
