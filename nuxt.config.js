@@ -49,4 +49,8 @@ export default {
   build: {
   },
 
+  router: {
+    middleware: "adminAuth"
+  }
+
 }

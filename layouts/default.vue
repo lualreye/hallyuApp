@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
@@ -31,17 +31,16 @@ export default {
       if (value) {
         this.stopBodyScrolling(value);
       } else {
-        this.stopBodyScrolling(value)
+        this.stopBodyScrolling(value);
       }
     },
   },
   methods: {
     stopBodyScrolling(value) {
       if (value) {
-        document.documentElement.style.overflow = 'hidden'
+        document.documentElement.style.overflow = "hidden";
       } else {
-        document.documentElement.style.overflow = null
-
+        document.documentElement.style.overflow = null;
       }
     },
   },
