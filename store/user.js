@@ -16,7 +16,6 @@ import {
   getDocs,
   query,
   where,
-  getDoc,
 } from "firebase/firestore";
 
 import { httpsCallable } from "firebase/functions";
@@ -182,7 +181,6 @@ const actions = {
             ...doc.data(),
             role: role
           };
-          console.log(user)
         });
         commit("SET_USER", user);
         commit("SHOW_SIGNIN", false);
