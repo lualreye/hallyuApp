@@ -25,6 +25,11 @@ export default {
     getOverlay() {
       return this.showMenu || this.showCart || this.getModal;
     },
+    redirection() {
+      if (this.getUser ===  null || this.getUser === undefined) {
+        return
+      } else (this.getUser.role)
+    }
   },
   watch: {
     getOverlay(value) {

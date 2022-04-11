@@ -198,6 +198,7 @@ const actions = {
             role: role
           }
         });
+        console.log(user)
         commit("SET_USER", user);
         commit("SHOW_SIGNIN", false);
         commit("SHOW_MODAL", false);
