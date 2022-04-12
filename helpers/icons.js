@@ -1,4 +1,9 @@
 import {
+  mdiFileTableBoxMultipleOutline,
+  mdiCloudOutline,
+  mdiCurrencyUsd,
+  mdiFolderCogOutline,
+  mdiWrap,
   mdiAccount,
   mdiBellBadge,
   mdiCalendarMonth,
@@ -15,6 +20,7 @@ import {
   mdiVolumeHigh,
   mdiVolumeOff,
   mdiWhatsapp,
+  mdiFileDocumentEditOutline,
 } from "@mdi/js";
 
 export default {
@@ -33,5 +39,11 @@ export default {
   right: mdiChevronRight,
   copyright: mdiCopyright,
   close: mdiClose,
-  edit: mdiPencil
+  edit: mdiPencil,
+  dashboardMenu: mdiWrap,
+  incomes: mdiCurrencyUsd,
+  settings: mdiFolderCogOutline,
+  edit: mdiFileDocumentEditOutline,
+  inventory: mdiFileTableBoxMultipleOutline,
+  cloud: mdiCloudOutline,
 };
