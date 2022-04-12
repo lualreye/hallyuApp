@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center">
+  <div class="w-full flex justify-center items-center">
     <DashboardMenu />
-    <Nuxt />
+    <Nuxt class="flex-1" />
   </div>
 </template>
