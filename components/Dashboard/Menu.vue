@@ -35,12 +35,18 @@
           :key="index"
           :to="item.link"
           class="w-full flex justify-start items-center h-8"
-          :class="{'justify-start': isMenuOpen, 'justify-center': !isMenuOpen}"
+          :class="{
+            'justify-start': isMenuOpen,
+            'justify-center': !isMenuOpen,
+          }"
         >
           <div class="w-5 h-5 flex justify-center items-center mr-2">
             <GlobalHIcon :name="item.icon" class="text-textColor font-medium" />
           </div>
-          <p class="text-textColor text-sm" :class="{ hidden: !isMenuOpen }">
+          <p
+            class="text-textColor text-sm"
+            :class="{ hidden: !isMenuOpen }"
+          >
             {{ item.name }}
           </p>
         </nuxt-link>
@@ -55,7 +61,7 @@ export default {
     menu: [
       {
         name: "Resumen de ventas",
-        link: "sales",
+        link: "dashboard",
         icon: "incomes",
       },
       {
@@ -79,7 +85,7 @@ export default {
         icon: "cloud",
       },
     ],
-    isMenuOpen: false,
+    isMenuOpen: true,
   }),
   methods: {
     showMenu() {
