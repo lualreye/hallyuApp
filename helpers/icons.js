@@ -1,4 +1,6 @@
 import {
+  mdiCubeSend,
+  mdiHandshakeOutline,
   mdiCubeOutline,
   mdiChevronDown,
   mdiChevronUp,
@@ -51,5 +53,7 @@ export default {
   cloud: mdiCloudOutline,
   arrowUp: mdiChevronUp,
   arrowDown: mdiChevronDown,
-  orders: mdiCubeOutline
+  orders: mdiCubeOutline,
+  ordersInProcess: mdiCubeSend,
+  ordersReceived: mdiHandshakeOutline
 };
