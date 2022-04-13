@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="h-screen border-r border-textColor flex justify-center items-center"
+    class="h-screen border-r border-gray-200 flex justify-center items-center"
     :class="{
       'w-12': !isMenuOpen,
       'w-56': isMenuOpen,
