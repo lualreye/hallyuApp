@@ -16,8 +16,12 @@
         <div class="w-full">
           <DashboardCardsOrders :orders="orders" />
         </div>
-        <div class="bg-primary">1</div>
-        <div class="bg-primary">1</div>
+        <div class="w-full">
+          <DashboardCardsOrdersInProcess :ordersInProcess="ordersInProcess" />
+        </div>
+        <div class="w-full">
+          <DashboardCardsOrdersReceived :ordersReceived="ordersReceived" />
+        </div>
       </div>
     </div>
   </div>
@@ -49,6 +53,8 @@ export default {
     },
     monthIncome: 1240,
     orders: 22,
+    ordersInProcess: 16,
+    ordersReceived: 56,
   }),
 };
 </script>
