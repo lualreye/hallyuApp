@@ -1,4 +1,6 @@
 import {
+  mdiChevronDown,
+  mdiChevronUp,
   mdiFileTableBoxMultipleOutline,
   mdiCloudOutline,
   mdiCurrencyUsd,
@@ -46,4 +48,6 @@ export default {
   edit: mdiFileDocumentEditOutline,
   inventory: mdiFileTableBoxMultipleOutline,
   cloud: mdiCloudOutline,
+  arrowUp: mdiChevronUp,
+  arrowDown: mdiChevronDown
 };
