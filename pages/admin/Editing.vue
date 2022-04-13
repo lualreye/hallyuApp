@@ -1,9 +1,8 @@
 <template>
   <div>
-    Soy el club hallyu
+    Soy el editor de blog
   </div>
 </template>
-
 
 
 <script>
