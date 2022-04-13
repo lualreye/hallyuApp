@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
+    "chart.js": "^3.7.1",
     "core-js": "^3.15.1",
     "firebase": "^9.6.7",
     "nuxt": "^2.2.0",
     "vue-awesome-countdown": "^1.1.4",
+    "vue-chartjs": "^4.0.5",
     "vue-rate-it": "^2.1.0"
   },
   "devDependencies": {
