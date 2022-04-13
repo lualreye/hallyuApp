@@ -7,7 +7,18 @@
         <DashboardCardsIncomesGraph :chart-data="chartData" />
       </div>
       <!-- INCOME CARDS -->
-      <div class="w-full lg:w-2/5 flex justify-center items-center p-3"></div>
+      <div
+        class="w-full lg:w-2/5 grid grid-cols-2 grid-rows-2 place-items-center gap-4 p-3"
+      >
+        <div class="w-full">
+          <DashboardCardsSalesResume :monthIncome="monthIncome" />
+        </div>
+        <div class="w-full">
+          <DashboardCardsOrders :orders="orders" />
+        </div>
+        <div class="bg-primary">1</div>
+        <div class="bg-primary">1</div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +47,8 @@ export default {
         },
       ],
     },
+    monthIncome: 1240,
+    orders: 22,
   }),
 };
 </script>
