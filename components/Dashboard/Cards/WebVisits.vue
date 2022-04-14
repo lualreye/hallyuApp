@@ -1,8 +1,12 @@
 <template>
-  <div class="w-full py-6 px-3 bg-lightPink rounded-lg shadow-md">
+  <div
+    class="w-11/12 lg:w-full h-48 flex flex-col justify-between items-center py-6 px-3 bg-lightPink rounded-lg shadow-md"
+  >
     <div class="w-full">
-      <p class="text-hBlack font-open">Visitas en la web</p>
-      <p class="text-hBlack font-light text-xs font-open mb-16">Diarias</p>
+      <p class="text-hBlack font-open text-sm">Visitas en la web</p>
+      <p class="text-hBlack font-light text-xs font-open">Diarias</p>
+    </div>
+    <div class="w-full">
       <p class="text-lg text-hBlack font-open font-medium mb-1">
         {{ visits }}
       </p>

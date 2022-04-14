@@ -27,17 +27,19 @@
     <!-- DETAIL SECTION -->
     <div class="w-full flex flex-wrap justify-between items-center mt-6">
       <!-- ANALYTIC SECTION -->
-      <div class="w-full md:w-2/5 flex justify-between items-center">
-        <div class="w-10/12 flex justify-center items-center">
+      <div class="w-full lg:w-2/5 flex justify-between items-center">
+        <div class="w-1/2 lg:w-5/12 flex justify-start lg:justify-center items-center">
           <DashboardCardsWebVisits :visits="visits" />
         </div>
-        <div class="w-10/12 flex justify-center items-center">
+        <div class="w-1/2 lg:w-5/12 flex justify-end lg:justify-center items-center">
           <DashboardCardsCartForgotten :forgottenCarts="forgottenCarts" />
         </div>
       </div>
       <!-- CATEGORIES SECTION -->
       <div class="w-full flex justify-center items-center">
+        <div class="w-full lg:w-3/5 flex justify-center items-center">
 
+        </div>
       </div>
     </div>
   </div>
