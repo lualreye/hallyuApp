@@ -12,18 +12,23 @@
         class="w-full h-20 flex justify-evenly items-center"
         :class="{ 'p-1': !isMenuOpen, 'p-6': isMenuOpen }"
       >
-        <figure
-          class="w-32 flex justify-center items-center"
-          :class="{ hidden: !isMenuOpen }"
-        >
-          <img src="@/static/images/logo/logotipo.png" alt="HallyuStore" />
+        <div v-if="isMobile" class="flex justify-center items-center">
+          <figure
+            class="w-32 flex justify-center items-center"
+            :class="{ hidden: !isMenuOpen }"
+          >
+            <img src="@/static/images/logo/logotipo.png" alt="HallyuStore" />
+          </figure>
+          <button
+            class="w-6 h-6 flex justify-center items-center"
+            @click="showMenu"
+          >
+            <GlobalHIcon name="dashboardMenu" class="text-primary" />
+          </button>
+        </div>
+        <figure v-else class="w-10 h-10 flex justify-center items-center p-1">
+          <img src="@/static/images/logo/imagotipo.png" alt="hallyStore" />
         </figure>
-        <button
-          class="w-6 h-6 flex justify-center items-center"
-          @click="showMenu"
-        >
-          <GlobalHIcon name="dashboardMenu" class="text-primary" />
-        </button>
       </div>
       <!-- MENU SECTION -->
       <ul
@@ -43,10 +48,7 @@
           <div class="w-5 h-5 flex justify-center items-center mr-2">
             <GlobalHIcon :name="item.icon" class="text-textColor font-medium" />
           </div>
-          <p
-            class="text-textColor text-sm"
-            :class="{ hidden: !isMenuOpen }"
-          >
+          <p class="text-textColor text-sm" :class="{ hidden: !isMenuOpen }">
             {{ item.name }}
           </p>
         </nuxt-link>
@@ -85,16 +87,15 @@ export default {
         icon: "cloud",
       },
     ],
-    isMenuOpen: true,
+    isMenuOpen: false,
+    isMobile: false
   }),
   methods: {
     showMenu() {
       if (this.isMenuOpen) {
         this.isMenuOpen = false;
-        console.log("Falso");
       } else {
         this.isMenuOpen = true;
-        console.log("Verdadero");
       }
     },
   },
