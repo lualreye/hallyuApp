@@ -46,6 +46,15 @@
         <DashboardCardsCategoriesSales :chartData="barData" />
       </div>
     </div>
+    <!-- SELLED PRODUCT -->
+    <div class="w-full grid grid-rows-1 grid-cols-2 gap-x-8 mt-6">
+      <div class="w-full flex justify-center items-center">
+        <DashboardCardsMostSelled />
+      </div>
+      <div class="w-full flex justify-center items-center">
+
+      </div>
+    </div>
   </div>
 </template>
 
