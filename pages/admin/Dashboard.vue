@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-center items-center">
+  <div class="w-full flex shrink justify-center items-center">
     <!-- INCOMES SECTION -->
     <div class="w-full flex justify-center items-center flex-wrap">
       <!-- SALES -->
