@@ -1,9 +1,9 @@
 <template>
   <header
-    class="py-5 px-1 sm:px-2 md:px-4 flex w-full shrink justify-center items-center mb-1"
+    class="px-1 sm:px-2 md:px-4 flex w-full shrink justify-center items-center mb-1 sticky top-0 left-0 right-0 bg-background"
   >
     <div
-      class="w-full flex justify-center items-center border-b border-primary py-1 pb-3"
+      class="w-full flex justify-center items-center border-b border-primary pb-3 py-5"
     >
       <p
         class="w-full flex justify-between items-center font-medium text-base sm:text-lg text-hBlack font-open"
