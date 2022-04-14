@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full lg:w-11/12 h-48 flex flex-col justfy-between items-center bg-background rounded-lg shadow-md"
+    class="w-full lg:w-11/12 h-48 flex flex-col justfy-between items-center bg-background border border-aquemarine rounded-lg shadow-md py-1 px-2 md:py-2 md:px-3"
   >
     <div class="w-full">
       <p class="w-full text-hBlack font-open">Ventas por categorias</p>

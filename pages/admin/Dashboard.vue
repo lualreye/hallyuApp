@@ -42,10 +42,8 @@
         </div>
       </div>
       <!-- CATEGORIES SECTION -->
-      <div class="w-full flex justify-center items-center">
-        <div class="w-full lg:w-3/5 flex justify-center items-center">
-          <DashboardCardsCategoriesSales :chartData="barData" />
-        </div>
+      <div class="w-full lg:w-3/5 flex justify-center items-center mt-6 lg:mt-0">
+        <DashboardCardsCategoriesSales :chartData="barData" />
       </div>
     </div>
   </div>
