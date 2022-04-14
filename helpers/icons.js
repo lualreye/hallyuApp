@@ -1,4 +1,5 @@
 import {
+  mdiCartRemove,
   mdiEyeOutline,
   mdiCubeSend,
   mdiHandshakeOutline,
@@ -57,5 +58,6 @@ export default {
   orders: mdiCubeOutline,
   ordersInProcess: mdiCubeSend,
   ordersReceived: mdiHandshakeOutline,
-  eye: mdiEyeOutline
+  eye: mdiEyeOutline,
+  forgottenCart: mdiCartRemove
 };
