@@ -1,18 +1,18 @@
 <template>
   <div
-    class="w-full h-80 flex flex-col justify-between items-center rounded-lg shadow-md bg-background p-6"
+    class="w-full flex flex-col justify-between items-center rounded-lg shadow-md bg-background p-6"
   >
     <p class="text-lg font-open text-hBlack w-full">Top 10 menos vendidos</p>
     <div class="w-full flex flex-col justify-center items-center">
-      <div class="w-full flex justify-center items-center">
+      <div class="w-full flex flex-col justify-center items-center">
         <DashboardCardsVotedProduct
           v-for="(product, index) in products"
           :key="index"
           :productImage="product.image"
           :productName="product.name"
           :salesTotal="salesTotal"
-          :salesnumber="product.salesNumber"
-          :color="product.color"
+          :salesNumber="product.salesNumber"
+          :color="colors[index]"
         />
       </div>
     </div>
@@ -32,7 +32,7 @@ export default {
       default: 500,
     },
   },
-  data: {
+  data: () => ({
     colors: [
       "#89F095",
       "#89E3A3",
@@ -45,6 +45,6 @@ export default {
       "#89F094",
       "#89F094",
     ],
-  },
+  }),
 };
 </script>

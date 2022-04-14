@@ -49,10 +49,10 @@
     <!-- SELLED PRODUCT -->
     <div class="w-full grid grid-rows-1 grid-cols-2 gap-x-8 mt-6">
       <div class="w-full flex justify-center items-center">
-        <DashboardCardsMostSelled />
+        <DashboardCardsMostSelled :salesTotal="mostSelled[0].salesNumber" :products="mostSelled" />
       </div>
       <div class="w-full flex justify-center items-center">
-
+        <DashboardCardsLowestSelled :salesTotal="lowestSelled[9].salesNumber" :products="lowestSelled" />
       </div>
     </div>
   </div>
@@ -98,6 +98,111 @@ export default {
     ordersReceived: 56,
     forgottenCarts: 123,
     visits: 1850,
+    salesTotal: 1250,
+    mostSelled: [
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 2300,
+      },
+    ],
+    lowestSelled: [
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 20,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 30,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 50,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 70,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 100,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 300,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 400,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 500,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 600,
+      },
+      {
+        image: require("@/static/images/idols/han.jpg"),
+        name: "Product de la muerte",
+        salesNumber: 700,
+      },
+    ],
   }),
 };
 </script>
