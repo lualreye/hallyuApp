@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full flex shrink justify-center items-center">
+  <div class="w-full flex flex-col shrink justify-center items-center p-1 md:p-4">
     <!-- INCOMES SECTION -->
     <div class="w-full flex justify-center items-center flex-wrap">
       <!-- SALES -->
-      <div class="w-full lg:w-3/5 flex justify-center items-center px-1 my-3 sm:p-3">
+      <div class="w-full lg:w-3/5 flex justify-center items-center px-1 my-3">
         <DashboardCardsIncomesGraph :chart-data="chartData" />
       </div>
       <!-- INCOME CARDS -->
       <div
-        class="w-full lg:w-2/5 grid grid-cols-2 grid-rows-2 place-items-center gap-2 sm:gap-4 px-1 my-3 sm:p-3"
+        class="w-full lg:w-2/5 grid grid-cols-2 grid-rows-2 place-items-center gap-2 sm:gap-4 px-1 my-3"
       >
         <div class="w-full">
           <DashboardCardsSalesResume :monthIncome="monthIncome" />
@@ -22,6 +22,22 @@
         <div class="w-full">
           <DashboardCardsOrdersReceived :ordersReceived="ordersReceived" />
         </div>
+      </div>
+    </div>
+    <!-- DETAIL SECTION -->
+    <div class="w-full flex flex-wrap justify-between items-center mt-6">
+      <!-- ANALYTIC SECTION -->
+      <div class="w-full md:w-2/5 flex justify-between items-center">
+        <div class="w-1/2 flex justify-center items-center">
+          <DashboardCardsWebVisits />
+        </div>
+        <div class="w-1/2 flex justify-center items-center">
+
+        </div>
+      </div>
+      <!-- CATEGORIES SECTION -->
+      <div class="w-full flex justify-center items-center">
+
       </div>
     </div>
   </div>

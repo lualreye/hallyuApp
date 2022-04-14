@@ -1,4 +1,5 @@
 import {
+  mdiEyeOutline,
   mdiCubeSend,
   mdiHandshakeOutline,
   mdiCubeOutline,
@@ -55,5 +56,6 @@ export default {
   arrowDown: mdiChevronDown,
   orders: mdiCubeOutline,
   ordersInProcess: mdiCubeSend,
-  ordersReceived: mdiHandshakeOutline
+  ordersReceived: mdiHandshakeOutline,
+  eye: mdiEyeOutline
 };
