@@ -5,7 +5,7 @@
     <div class="w-full">
       <p class="w-full text-hBlack font-open">Ventas por categorias</p>
     </div>
-    <div class="flex justify-center items-center">
+    <div class="w-full">
       <BarChartGenerator
         :chart-options="chartOptions"
         :chart-data="chartData"
@@ -25,7 +25,6 @@ import {
   BarElement,
   LinearScale,
   CategoryScale,
-  PointElement,
 } from "chart.js";
 
 ChartJS.register(
@@ -34,8 +33,7 @@ ChartJS.register(
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale,
-  PointElement
+  LinearScale
 );
 
 export default {
