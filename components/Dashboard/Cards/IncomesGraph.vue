@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full shadow-md border border-aquemarine flex flex-col justify-between items-center rounded-lg py-1 px-2 sm:p-6"
+    class="w-full shadow-md border border-aquemarine flex flex-col justify-between items-center rounded-lg py-1 px-2 md:py-2 md:px-3"
   >
     <p class="text-hBlack w-full">Ventas históricas</p>
     <div class="w-full">
