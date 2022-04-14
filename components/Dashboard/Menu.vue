@@ -9,10 +9,10 @@
     <div class="w-full h-full flex flex-col justify-start items-center">
       <!-- LOGO SECTION -->
       <div
-        class="w-full h-20 flex justify-evenly items-center"
+        class="w-full h-auto sm:h-20 justify-evenly items-center sm:flex my-2"
         :class="{ 'p-1': !isMenuOpen, 'p-6': isMenuOpen }"
       >
-        <div v-if="isMobile" class="flex justify-center items-center">
+        <div class="hidden sm:flex justify-center items-center">
           <figure
             class="w-32 flex justify-center items-center"
             :class="{ hidden: !isMenuOpen }"
@@ -26,7 +26,7 @@
             <GlobalHIcon name="dashboardMenu" class="text-primary" />
           </button>
         </div>
-        <figure v-else class="w-10 h-10 flex justify-center items-center p-1">
+        <figure class="w-10 h-10 flex justify-center items-center p-1 sm:hidden">
           <img src="@/static/images/logo/imagotipo.png" alt="hallyStore" />
         </figure>
       </div>
@@ -88,7 +88,6 @@ export default {
       },
     ],
     isMenuOpen: false,
-    isMobile: false
   }),
   methods: {
     showMenu() {
