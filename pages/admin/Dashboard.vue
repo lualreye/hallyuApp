@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex flex-col shrink justify-center items-center p-1 md:p-4"
+    class="w-full flex flex-col shrink justify-center items-center p-1 md:px-4 md:py-1 overflow-auto"
   >
     <!-- INCOMES SECTION -->
     <div class="w-full flex justify-center items-center flex-wrap">

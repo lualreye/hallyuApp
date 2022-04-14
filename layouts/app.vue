@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex justify-center 2xl:justify-start items-start">
     <DashboardMenu />
-    <div class="flex-grow shrink w-8/12 flex flex-col max-w-screen-2xl">
+    <div class="flex-grow shrink w-8/12 flex flex-col max-w-screen-2xl relative">
       <DashboardHeader />
       <Nuxt />
     </div>

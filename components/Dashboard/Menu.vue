@@ -1,6 +1,6 @@
 <template>
   <aside
-    class="h-screen max-h-screen border-r border-gray-200 flex justify-center items-center"
+    class="h-screen max-h-screen border-r border-gray-200 flex justify-center items-center sticky top-0 left-0 bottom-0 overflow-hidden"
     :class="{
       'w-12': !isMenuOpen,
       'w-64': isMenuOpen,
@@ -45,7 +45,7 @@
             'justify-center': !isMenuOpen,
           }"
         >
-          <div class="w-5 h-5 flex justify-center items-center mr-0 md:mr-2">
+          <div class="w-5 h-5 flex justify-center items-center mr-0 sm:mr-2">
             <GlobalHIcon :name="item.icon" class="text-textColor font-medium" />
           </div>
           <p class="text-textColor text-sm" :class="{ hidden: !isMenuOpen }">
