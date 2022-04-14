@@ -1,6 +1,6 @@
 <template>
   <header
-    class="py-5 px-1 sm:px-4 w-11/12 sm:w-full flex justify-center items-center mb-1"
+    class="py-5 px-1 sm:px-4 w-full flex-1 flex justify-center items-center mb-1"
   >
     <div
       class="w-full flex justify-center items-center border-b border-primary py-1 pb-3"

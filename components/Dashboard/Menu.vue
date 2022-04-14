@@ -1,9 +1,9 @@
 <template>
   <aside
-    class="h-screen border-r border-gray-200 flex justify-center items-center"
+    class="h-screen max-h-screen border-r border-gray-200 flex justify-center items-center"
     :class="{
       'w-12': !isMenuOpen,
-      'w-56': isMenuOpen,
+      'w-64': isMenuOpen,
     }"
   >
     <div class="w-full h-full flex flex-col justify-start items-center">
@@ -39,13 +39,13 @@
           v-for="(item, index) in menu"
           :key="index"
           :to="item.link"
-          class="w-full flex justify-start items-center h-8"
+          class="w-full flex items-center h-8"
           :class="{
             'justify-start': isMenuOpen,
             'justify-center': !isMenuOpen,
           }"
         >
-          <div class="w-5 h-5 flex justify-center items-center mr-2">
+          <div class="w-5 h-5 flex justify-center items-center mr-0 md:mr-2">
             <GlobalHIcon :name="item.icon" class="text-textColor font-medium" />
           </div>
           <p class="text-textColor text-sm" :class="{ hidden: !isMenuOpen }">
