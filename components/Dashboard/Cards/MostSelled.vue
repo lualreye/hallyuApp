@@ -31,6 +31,18 @@ export default {
       required: true,
       default: 500
     }
-  }
+  },
+  colors: [
+      "#F5DF72",
+      "#F5C960",
+      "#F5BB54",
+      "#F5AE48",
+      "#F59F3C",
+      "#F59130",
+      "#F58325",
+      "#F57519",
+      "#F5680D",
+      "#F55901",
+    ]
 };
 </script>
