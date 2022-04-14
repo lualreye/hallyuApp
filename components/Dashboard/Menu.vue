@@ -1,5 +1,5 @@
 <template>
-  <nav
+  <aside
     class="h-screen border-r border-gray-200 flex justify-center items-center"
     :class="{
       'w-12': !isMenuOpen,
@@ -52,7 +52,7 @@
         </nuxt-link>
       </ul>
     </div>
-  </nav>
+  </aside>
 </template>
 
 <script>

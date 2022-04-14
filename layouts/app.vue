@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full flex justify-center items-center">
+  <div class="flex justify-center items-start">
     <DashboardMenu />
-    <div class="w-full h-screen flex flex-col justify-center items-center">
+    <div class="h-full w-11/12 sm:w-full flex flex-col justify-center items-center">
       <DashboardHeader />
       <Nuxt class="flex-1" />
     </div>
