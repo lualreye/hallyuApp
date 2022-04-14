@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      gridTemplateColumns: {
+        "auto-fit": "repeat(auto-fit, minmax(280px, 560px))",
+      },
       fontFamily: {
         junegull: ["junegull"],
         open: ['"Open Sans"'],

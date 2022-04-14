@@ -42,12 +42,12 @@
         </div>
       </div>
       <!-- CATEGORIES SECTION -->
-      <div class="w-full lg:w-3/5 flex justify-center items-center mt-6 lg:mt-0">
+      <div class="w-full lg:w-3/5 flex md:justify-center lg:justify-end items-center mt-6 lg:mt-0">
         <DashboardCardsCategoriesSales :chartData="barData" />
       </div>
     </div>
     <!-- SELLED PRODUCT -->
-    <div class="w-full grid grid-rows-1 grid-cols-2 gap-x-8 mt-6">
+    <div class="w-full grid grid-rows-1 grid-cols-auto-fit gap-8 my-6">
       <div class="w-full flex justify-center items-center">
         <DashboardCardsMostSelled :salesTotal="mostSelled[0].salesNumber" :products="mostSelled" />
       </div>
@@ -108,47 +108,47 @@ export default {
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1900,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1800,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1700,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1600,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1500,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1350,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1320,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1220,
       },
       {
         image: require("@/static/images/idols/han.jpg"),
         name: "Product de la muerte",
-        salesNumber: 2300,
+        salesNumber: 1200,
       },
     ],
     lowestSelled: [

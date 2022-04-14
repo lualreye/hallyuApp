@@ -1,8 +1,8 @@
 <template>
   <div
-    class="w-full flex flex-col justify-between items-center rounded-lg shadow-md bg-background p-6"
+    class="w-full flex flex-col justify-between items-center rounded-lg shadow-md bg-background border border-aquamarine p-6"
   >
-    <p class="text-lg font-open text-hBlack w-full">Top 10 más vendidos</p>
+    <p class="text-lg font-open text-hBlack w-full mb-3">Top 10 más vendidos</p>
     <div class="w-full flex flex-col justify-center items-center">
       <div class="w-full flex flex-col justify-center items-center">
         <DashboardCardsVotedProduct
@@ -34,16 +34,16 @@ export default {
   },
   data: () => ({
     colors: [
-      "#F5DF72",
-      "#F5C960",
-      "#F5BB54",
-      "#F5AE48",
-      "#F59F3C",
-      "#F59130",
-      "#F58325",
-      "#F57519",
-      "#F5680D",
-      "#F55901",
+      "#89F095",
+      "#89E3A3",
+      "#89DBAD",
+      "#89D2B7",
+      "#89CAC0",
+      "#89C2CA",
+      "#89F094",
+      "#89F094",
+      "#89F094",
+      "#89F094",
     ],
   }),
 };

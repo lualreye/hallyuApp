@@ -1,16 +1,16 @@
 <template>
-  <div class="w-full h-8 flex justify-center items-center">
+  <div class="w-full h-8 flex justify-start items-center mb-2">
     <div class="w-3/5 flex justify-center items-center">
       <figure
-        class="w-8 h-8 flex justify-center items-center rounded-lg bg-lightPink"
+        class="w-8 h-8 flex justify-center items-center rounded-lg bg-lightPink mr-2"
       >
         <img
           :src="productImage"
           :alt="productName"
-          class="w-full object-cover object-center"
+          class="w-full rounded-lg object-cover object-center"
         />
       </figure>
-      <p class="text-sm font-open text-hBlack">
+      <p class="w-full text-sm font-open text-hBlack">
         {{ productName }}
       </p>
     </div>
@@ -22,7 +22,7 @@
         id="progressBar"
         class="w-full h-1 flex justify-start items-center bg-gray-300 rounded-full"
       >
-        <div id="myBar" class="h-1" />
+        <div id="myBar" class="h-1" :style="{ width: getWidth, background: getColor }" />
       </div>
     </div>
   </div>
@@ -44,25 +44,28 @@ export default {
     salesNumber: {
       type: Number,
       required: true,
-      default: 60,
     },
     salesTotal: {
       type: Number,
       required: true,
-      default: 200
     },
     color: {
       type: String,
       required: true,
-      default: "#D4F1F0"
-    }
+      default: "#D4F1F0",
+    },
   },
-  mounted() {
-    const myBar = document.querySelector("#myBar");
-    const progressBar = document.querySelector("#progressBar").clientWidth;
-    const progress = (this.salesNumber * 100) / this.salesTotal
-    myBar.style.backgroundColor = `${this.color}`
-    myBar.style.width = `${progress}%`
+  computed: {
+    getColor() {
+      return this.color
+    },
+    getWidth() {
+      const myBar = document.querySelector("#myBar");
+      const progressBar = document.querySelector("#progressBar").clientWidth;
+      const progress = (this.salesNumber * 100) / this.salesTotal;
+      myBar.style.backgroundColor = `${this.color}`;
+      return `${progress}%`;
+    }
   },
 };
 </script>
