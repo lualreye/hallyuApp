@@ -78,7 +78,7 @@ export default {
       },
       {
         name: "Gestión de productos",
-        link: "inventory",
+        link: "inventory/total",
         icon: "inventory",
       },
       {

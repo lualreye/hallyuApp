@@ -1,5 +1,5 @@
 <template>
   <div>
-    Productos publicados
+    Soy los productos publicados
   </div>
 </template>
