@@ -86,6 +86,11 @@ export default {
         link: "/admin/club",
         icon: "cloud",
       },
+      {
+        name: "Equipo Hallyu",
+        link: "/admin/team",
+        icon: "team",
+      },
     ],
     isMenuOpen: false,
   }),
