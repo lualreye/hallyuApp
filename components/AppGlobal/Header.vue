@@ -27,6 +27,21 @@
         </div>
       </div>
     </div>
+    <!-- MENU ACCORDING TO THE ROUTE -->
+    <div class="w-full mt-3 flex justify-start items-center">
+      <ul class="flex justify-center items-center">
+        <nuxt-link
+          v-for="(item, index) in getMenu"
+          :key="index"
+          :to="item.link"
+          class="mr-6"
+        >
+          <li class="text-textColor font-open text-xs">{{ item.name }}</li>
+        </nuxt-link>
+      </ul>
+    </div>
+    <!-- DIVISION LINE -->
+    <div class="w-full h-px bg-aquamarine" />
   </header>
 </template>
 
@@ -53,6 +68,29 @@ export default {
         return "ClubHallyu";
       } else if (path[2] === "team") {
         return "Equipo Hallyu";
+      }
+    },
+    getMenu() {
+      const route = this.$route;
+      const path = route.path.split("/");
+      let menu = [];
+      if (path[2] === "dashboard") {
+        return menu;
+      } else if (path[2] === "general") {
+        return menu;
+      } else if (path[2] === "editing") {
+        return menu;
+      } else if (path[2] === "inventory") {
+        menu = [
+          { name: "Inventario de productos", link: "total" },
+          { name: "Productos publicados", link: "published" },
+          { name: "Productos en oferta", link: "offering" },
+        ];
+        return menu;
+      } else if (path[2] === "club") {
+        return menu;
+      } else if (path[2] === "team") {
+        return menu;
       }
     },
   },
