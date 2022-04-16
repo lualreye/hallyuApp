@@ -63,27 +63,27 @@ export default {
     menu: [
       {
         name: "Resumen de ventas",
-        link: "dashboard",
+        link: "/admin/dashboard",
         icon: "incomes",
       },
       {
         name: "Configuración de ventas",
-        link: "general",
+        link: "/admin/general",
         icon: "settings",
       },
       {
         name: "Blogs",
-        link: "editing",
+        link: "/admin/editing",
         icon: "edit",
       },
       {
         name: "Gestión de productos",
-        link: "inventory/total",
+        link: "/admin/inventory/total",
         icon: "inventory",
       },
       {
         name: "ClubHallyu",
-        link: "club",
+        link: "/admin/club",
         icon: "cloud",
       },
     ],

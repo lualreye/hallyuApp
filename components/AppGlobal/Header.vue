@@ -103,6 +103,6 @@ export default {
 
 <style scoped>
 a.nuxt-link-active {
-  border-bottom: 2px solid #d4f1f0;
+  border-bottom: 3px solid #87C7C9;
 }
 </style>
