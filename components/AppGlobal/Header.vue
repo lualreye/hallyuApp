@@ -73,7 +73,6 @@ export default {
     getMenu() {
       const route = this.$route;
       const path = route.path.split("/");
-      console.log(path)
       let menu = [];
       if (path[2] === "dashboard") {
         return menu;
@@ -83,9 +82,9 @@ export default {
         return menu;
       } else if (path[2] === "inventory") {
         menu = [
-          { name: "Inventario de productos", link: "admin/inventory/total" },
-          { name: "Productos publicados", link: "admin/inventory/published" },
-          { name: "Productos en oferta", link: "admin/inventory/offering" },
+          { name: "Inventario de productos", link: "total" },
+          { name: "Productos publicados", link: "published" },
+          { name: "Productos en oferta", link: "offering" },
         ];
         return menu;
       } else if (path[2] === "club") {
