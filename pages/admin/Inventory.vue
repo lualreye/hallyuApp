@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Soy el inventario
+  <div class="w-full">
+    Estamos por comenzar
   </div>
 </template>
 

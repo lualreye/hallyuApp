@@ -60,10 +60,7 @@ export default {
       return this.color
     },
     getWidth() {
-      const myBar = document.querySelector("#myBar");
-      const progressBar = document.querySelector("#progressBar").clientWidth;
       const progress = (this.salesNumber * 100) / this.salesTotal;
-      myBar.style.backgroundColor = `${this.color}`;
       return `${progress}%`;
     }
   },

@@ -5,8 +5,8 @@
     <p class="text-hBlack font-semibold font-open mb-3">$ {{ orders }}</p>
     <div class="w-full flex justify-between items-center">
       <div>
-        <p class="text-hBlack text-sm font-open">Ingresos</p>
-        <p class="text-hBlack text-xs font-light font-open">Semanal</p>
+        <p class="text-hBlack text-sm font-open">Pedidos</p>
+        <p class="text-hBlack text-xs font-light font-open">Totales</p>
       </div>
       <div class="w-5 h-5 flex justify-center items-center">
         <GlobalHIcon name="orders" />
