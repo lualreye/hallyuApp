@@ -1,4 +1,5 @@
 import {
+  mdiMicrosoftExcel,
   mdiAccountMultipleOutline,
   mdiCartRemove,
   mdiEyeOutline,
@@ -61,5 +62,6 @@ export default {
   ordersReceived: mdiHandshakeOutline,
   eye: mdiEyeOutline,
   forgottenCart: mdiCartRemove,
-  team: mdiAccountMultipleOutline
+  team: mdiAccountMultipleOutline,
+  excel: mdiMicrosoftExcel
 };

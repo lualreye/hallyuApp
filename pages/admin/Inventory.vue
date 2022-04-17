@@ -1,15 +1,19 @@
 <template>
   <div>
     <div class="w-full my-6 flex justify-start items-center">
-      <InventorySearch />
+      <div class="w-auto mr-3">
+        <InventorySearch />
+      </div>
+      <div class="w-auto mr-3">
+        <InventoryUploadInventory />
+      </div>
     </div>
-    <nuxt/>
+    <nuxt />
   </div>
 </template>
 
-
 <script>
 export default {
-  layout: "app"
-}
+  layout: "app",
+};
 </script>
