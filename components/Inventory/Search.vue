@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full max-w-sm">
     <div
       class="w-full flex justify-center items-center border border-primary rounded-lg py-2 px-3"
     >
