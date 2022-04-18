@@ -26,6 +26,26 @@
           </div>
         </div>
       </div>
+      <div
+        v-if="heroImages.length"
+        class="w-full flex justify-start items-center mt-2"
+      >
+        <GeneralCardsHeroImage :image="heroImage" :imageName="imageName" />
+      </div>
+      <div v-else class="w-full flex justify-start items-center mt-2">
+        <div class="w-full flex justify-start items-center">
+          <div
+            class="w-8 h-8 mr-3 border border-dashed border-gray-400 flex justify-center items-center rounded-lg"
+          >
+            <div class="w-6 h-6 flex justify-center items-center">
+              <GlobalHIcon name="plus" class="text-textColor" />
+            </div>
+          </div>
+          <p class="text-textColor font-open">
+            Nombre de la imagen
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +54,7 @@
 export default {
   data: () => ({
     isOpen: false,
+    heroImages: [],
   }),
   computed: {
     getIcon() {
