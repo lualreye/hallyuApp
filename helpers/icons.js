@@ -1,4 +1,5 @@
 import {
+  mdiPlay,
   mdiPlus,
   mdiTrayArrowUp,
   mdiTagRemoveOutline,
@@ -69,5 +70,6 @@ export default {
   excel: mdiMicrosoftExcel,
   newProduct: mdiTagRemoveOutline,
   upload: mdiTrayArrowUp,
-  plus: mdiPlus
+  plus: mdiPlus,
+  play: mdiPlay
 };
