@@ -7,6 +7,7 @@ import {
   query,
   where,
   setDoc,
+  getDocs,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -32,26 +33,38 @@ const mutations = {
 const actions = {
   async uploadHeroImages({ commit }, payload) {
     try {
-      const storage = fireStorage
-      const fileName = payload.name
+      const storage = fireStorage;
+      const fileName = payload.name;
       const imageRef = ref(storage, `heroImages/${fileName}`);
-      await uploadBytes(imageRef, payload)
-      const imageUrl = await getDownloadURL(imageRef)
-      const database = fireDataBase
-      const heroImageRef = doc(collection(database, "heroImages"))
+      await uploadBytes(imageRef, payload);
+      const imageUrl = await getDownloadURL(imageRef);
+      const database = fireDataBase;
+      const heroImageRef = doc(collection(database, "heroImages"));
       const heroImage = {
         name: payload.name.split(".").shift(),
-        image: imageUrl
-      }
-      await setDoc(heroImageRef, heroImage)
+        image: imageUrl,
+      };
+      await setDoc(heroImageRef, heroImage);
       commit("SET_IMAGE", heroImage);
     } catch (err) {
       console.error("CANNOT_UPLOAD_HERO_IMAGE", err);
     }
   },
-  async getHeroImages({ commit }) {
+  async fetchImages({ commit }) {
     try {
-      commit("SET_IMAGES", heroImages);
+      const db = fireDataBase;
+      const imagesSnapshot = await getDocs(collection(db, "heroImages"));
+      let images = [];
+      let heroImage;
+      imagesSnapshot.forEach((image) => {
+        let img = image.data();
+        heroImage = {
+          id: image.id,
+          ...img,
+        };
+        images.push(heroImage);
+      });
+      commit("SET_IMAGES", images);
     } catch (err) {
       console.error("CANNOT_GET_HERO_IMAGES", err);
     }

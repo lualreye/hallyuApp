@@ -16,7 +16,10 @@
         <p class="text-hBlack font-open">Imagenes de Bienvenida</p>
         <div
           class="w-40 relative flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
-          :class="{ 'bg-lightPink': isThereImage, 'bg-gray-400': !isThereImage }"
+          :class="{
+            'bg-lightPink': isThereImage,
+            'bg-gray-400': !isThereImage,
+          }"
         >
           <input
             type="file"
@@ -42,12 +45,15 @@
         />
       </div>
       <div
-        v-if="heroImages.length"
-        class="w-full flex justify-start items-center mt-2"
+        v-if="getHeroImages.length"
+        class="w-full flex flex-col justify-start items-center mt-2"
       >
         <GeneralCardsHeroImage
-          :image="heroImage.object"
-          :imageName="imageName"
+          v-for="(heroImage, index) in getHeroImages"
+          :key="index"
+          :image="heroImage.image"
+          :imageName="heroImage.name"
+          class="mt-3"
         />
       </div>
       <div v-else class="w-full flex justify-start items-center mt-2">
@@ -75,7 +81,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data: () => ({
@@ -89,6 +95,7 @@ export default {
     },
   }),
   computed: {
+    ...mapGetters("general", ["getHeroImages"]),
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
@@ -97,11 +104,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions("general", ["uploadHeroImages"]),
+    ...mapActions("general", ["uploadHeroImages", "fetchImages"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
+        this.fetchHeroImages()
         this.isOpen = true;
       }
     },
@@ -121,6 +129,13 @@ export default {
         object: null,
         imageName: "",
       };
+    },
+    fetchHeroImages() {
+      if (!this.getHeroImages.length) {
+        this.fetchImages();
+      } else {
+        console.log("no haremos fetch");
+      }
     },
   },
 };
