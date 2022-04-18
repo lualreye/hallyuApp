@@ -1,5 +1,6 @@
 <template>
   <div>
+    <InventoryCardsNewProduct />
     <div class="w-full my-6 flex justify-start items-center">
       <div class="w-auto mr-3">
         <InventorySearch />
@@ -8,7 +9,7 @@
         <InventoryUploadInventory />
       </div>
       <div class="w-auto mr-3">
-        <InventoryUploadProduct />
+        <InventoryCardsNewProduct />
       </div>
     </div>
     <nuxt />
