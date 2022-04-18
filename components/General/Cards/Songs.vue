@@ -7,7 +7,7 @@
         class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
         @click="playMusic"
       >
-        <GlobalHIcon name="play" class="text-textColor" />
+        <GlobalHIcon :name="getMusicIcon" class="text-textColor" />
       </button>
       <p class="text-textColor font-open">
         {{ songName }}
@@ -41,6 +41,11 @@ export default {
       type: String,
       required: true,
       default: "Nombre de imagen",
+    },
+  },
+  computed:{
+    getMusicIcon() {
+      return this.isPlaying === true ? "pause" : "play";
     },
   },
   mounted() {

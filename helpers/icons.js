@@ -1,4 +1,5 @@
 import {
+  mdiPause,
   mdiTrashCanOutline,
   mdiPlay,
   mdiPlus,
@@ -73,5 +74,6 @@ export default {
   upload: mdiTrayArrowUp,
   plus: mdiPlus,
   play: mdiPlay,
+  pause: mdiPause,
   delete: mdiTrashCanOutline
 };
