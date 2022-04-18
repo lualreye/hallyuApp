@@ -194,23 +194,24 @@
                   {{ category }}
                 </option>
               </select>
+              <!-- CLOTHS DETAILS -->
               <div class="w-full flex flex-col justify-center items-center">
                 <!-- SIZE -->
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Talla
                 </label>
                 <select
-                  v-model="productCategory"
+                  v-model="productSize"
                   name=""
                   id=""
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 >
                   <option
-                    v-for="(category, index) in productCategories"
+                    v-for="(size, index) in productSizes"
                     :key="index"
                     class="text-xs font-open text-textColor"
                   >
-                    {{ category }}
+                    {{ size }}
                   </option>
                 </select>
                 <!-- COLOR -->
@@ -218,26 +219,81 @@
                   Color
                 </label>
                 <select
-                  v-model="productCategory"
+                  v-model="productColor"
                   name=""
                   id=""
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 >
                   <option
-                    v-for="(category, index) in productCategories"
+                    v-for="(color, index) in productColors"
                     :key="index"
                     class="text-xs font-open text-textColor"
                   >
-                    {{ category }}
+                    {{ color }}
                   </option>
                 </select>
               </div>
             </div>
             <!-- PRODUCT OFFERS -->
             <div
-              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3"
+              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3 mt-2 lg:mt-0"
             >
-              tipo de oferta
+              <label class="w-full text-textColor font-open text-sm">
+                Ofertas
+              </label>
+              <select
+                v-model="productBand"
+                name=""
+                id=""
+                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              >
+                <option
+                  v-for="(offer, index) in productOffers"
+                  :key="index"
+                  class="text-xs font-open text-textColor"
+                >
+                  {{ offer }}
+                </option>
+              </select>
+              <!-- PRODUCT DISCOUNT -->
+              <div class="w-full flex flex-col justify-center items-center">
+                <!-- DISCOUNT -->
+                <div class="w-full">
+                  <label class="w-full text-textColor font-open text-sm">
+                    Porcentaje
+                  </label>
+                  <input
+                    v-model="productDiscount"
+                    type="Number"
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  />
+                </div>
+              </div>
+              <!-- PRODUCT DISCOUNT BY TIME -->
+              <div class="w-full flex flex-col justify-center items-center">
+                <!-- DISCOUNT TIME -->
+                <div class="w-full">
+                  <label class="w-full text-textColor font-open text-sm">
+                    Porcentaje
+                  </label>
+                  <input
+                    v-model="productDiscountTime"
+                    type="Number"
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  />
+                </div>
+                <!-- TIME -->
+                <div class="w-full">
+                  <label class="w-full text-textColor font-open text-sm">
+                    Tiempo
+                  </label>
+                  <input
+                    v-model="productOfferingTime"
+                    type="date"
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -256,6 +312,10 @@ export default {
     productDescription: "",
     productBands: ["big bang", "pink"],
     productCategories: ["moda", "snacks"],
+    productOffers: ["Descuento", "Tiempo"],
+    productDiscount: 0,
+    productDiscountTime: 0,
+    productOfferingTime: ""
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
