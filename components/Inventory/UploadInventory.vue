@@ -4,7 +4,7 @@
   >
     <input
       type="file"
-      accept=".xlsx"
+      accept=".csv"
       class="w-full absolute left-0 top-0 bottom-0 z-10 opacity-0"
     />
     <div class="w-6 h-6 flex justify-center items-center mr-1">
