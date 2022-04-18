@@ -1,12 +1,16 @@
 <template>
   <div>
-    SOY EL GENERAL
+    <GeneralHeroImages />
+    <GeneralAppMusic />
+    <GeneralCategories />
+    <GeneralFavourites />
+    <GeneralHallyuFans />
+    <GeneralBands />
   </div>
 </template>
 
-
 <script>
 export default {
-  layout: "app"
-}
+  layout: "app",
+};
 </script>
