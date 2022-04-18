@@ -134,7 +134,7 @@ export default {
       if (!this.getHeroImages.length) {
         this.fetchImages();
       } else {
-        console.log("no haremos fetch");
+        return;
       }
     },
   },
