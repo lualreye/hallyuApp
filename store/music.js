@@ -47,14 +47,27 @@ const mutations = {
       state.heroSongs[i].isPlaying = false;
     }
     if (state.playlist.length === 0) {
-      state.playlist.push(new Audio(state.heroSongs[songId].image));
+      state.playlist.push({
+        audio: new Audio(state.heroSongs[songId].image),
+        name: state.heroSongs[songId].image,
+      });
       state.heroSongs[songId].isPlaying = true;
-      state.playlist[0].play;
+      state.playlist[0].audio.play();
+      return;
     }
-    state.playlist[0].pause();
+    if (state.playlist[0].name === state.heroSongs[songId].image) {
+      state.playlist[0].audio.pause();
+      state.heroSongs[songId].isPlaying = false;
+      state.playlist = [];
+      return;
+    }
+    state.playlist[0].audio.pause();
     state.playlist = [];
-    state.playlist.push(new Audio(state.heroSongs[songId].image));
-    state.playlist[0].play();
+    state.playlist.push({
+      audio: new Audio(state.heroSongs[songId].image),
+      name: state.heroSongs[songId].image,
+    });
+    state.playlist[0].audio.play();
     state.heroSongs[songId].isPlaying = true;
   },
 };
