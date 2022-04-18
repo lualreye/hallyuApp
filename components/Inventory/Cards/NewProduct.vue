@@ -134,6 +134,17 @@
                 </div>
               </div>
             </div>
+            <!-- PRODUCT SKU -->
+            <div class="w-32 mr-3">
+              <label class="w-full text-textColor font-open text-sm">
+                SKU
+              </label>
+              <input
+                v-model="productCode"
+                type="text"
+                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              />
+            </div>
             <!-- PRODUCCT DESCRIPTION -->
             <div class="w-full flex flex-col justify-center items-center mt-1">
               <label class="w-full text-textColor font-open text-sm">
@@ -315,7 +326,8 @@ export default {
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
-    productOfferingTime: ""
+    productOfferingTime: "",
+    productCode: ""
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
