@@ -53,6 +53,7 @@
           :key="index"
           :image="heroImage.image"
           :imageName="heroImage.name"
+          :id="heroImage.id"
           class="mt-3"
         />
       </div>
@@ -109,7 +110,7 @@ export default {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
-        this.fetchHeroImages()
+        this.fetchHeroImages();
         this.isOpen = true;
       }
     },

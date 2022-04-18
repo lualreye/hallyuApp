@@ -49,6 +49,7 @@
           v-for="(heroSong, index) in getHeroSongs"
           :key="index"
           :songName="heroSong.name"
+          :id="heroSong.id"
           class="mt-3"
         />
       </div>
@@ -112,7 +113,7 @@ export default {
       const file = e.target.files[0];
       const songObject = file;
       const songName = songObject.name.split(".").shift();
-      console.log(songObject)
+      console.log(songObject);
       this.heroSong.object = songObject;
       this.heroSong.songName = songName;
     },

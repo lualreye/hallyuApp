@@ -19,6 +19,11 @@ export default {
       required: true,
       default: "Nombre de imagen",
     },
+    id: {
+      type: String,
+      required: true,
+      default: "Nombre de imagen",
+    },
   },
 };
 </script>
