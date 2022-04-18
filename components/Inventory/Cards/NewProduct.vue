@@ -3,7 +3,7 @@
     v-if="getIsModalOpen"
     class="w-10/12 sm:w-3/4 max-w-4xl absolute top-20 left-1/12 sm:left-1/8 z-50 bg-background rounded-lg shadow-md"
   >
-    <div class="w-full flex flex-col justify-center items-start p-2">
+    <div class="w-full flex flex-col justify-center items-center p-2">
       <!-- CLOSE BUTTON -->
       <div class="w-full flex justify-end items-center">
         <button
@@ -17,34 +17,225 @@
         </button>
       </div>
       <!-- DATA -->
-      <div class="w-full flex flex-wrap justify-center items-center">
+      <div
+        class="w-full flex flex-col lg:flex-row justify-center items-center lg:items-start p-2"
+      >
+        <!-- PRODUCT IMAGES -->
         <div
-          class="w-full sm:w-1/3 lg:w-1/5 p-2 flex justify-center items-center"
+          class="w-full sm:w-1/3 lg:w-1/5 p-2 flex flex-col justify-center items-center"
         >
-          Aqui subiremos fotos
-        </div>
-        <div
-          class="w-full sm:w-2/3 lg:w-4/5 flex flex-wrap justify-center items-center p-2"
-        >
-          <div class="w-full flex flex-col justify-center items-center">
-            <div class="w-full flex justify-center items-center">
-              Aqui va el nombre del producto
-            </div>
-            <div class="w-full flex justify-center items-center">
-              Aqui va la descripcion del producto
+          <!-- THUMBNAIL -->
+          <div
+            class="relative w-36 h-36 flex justify-center items-center border border-primary rounded-lg"
+          >
+            <input
+              type="file"
+              accept=".png"
+              class="absolute w-full h-32 opacity-0 z-60"
+            />
+            <div class="w-full relative px-3 flex justify-center items-center">
+              <div class="w-6 h-6 flex justify-center items-center mr-1">
+                <GlobalHIcon name="upload" class="text-textColor" />
+              </div>
+              <p class="text-textColor text-xs">Imagen Principal</p>
             </div>
           </div>
-          <div class="w-full flex justify-center items-center">
-            <div class="w-full max-w-xs flex justify-center items-center">
-              Banda
+          <!-- EXTRA IMAGES -->
+          <div class="w-36 flex flex-col justify-center items-center mt-3">
+            <div class="w-full">
+              <p class="text-textColor font-open text-xs">
+                Vistas del producto
+              </p>
             </div>
+            <div class="w-full flex justify-between items-center">
+              <div
+                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+              >
+                <input
+                  type="file"
+                  accept=".png"
+                  class="absolute w-full h-10 opacity-0 z-60"
+                />
+                <div class="w-6 h-6 flex justify-center items-center">
+                  <GlobalHIcon name="upload" class="text-textColor" />
+                </div>
+              </div>
+              <div
+                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+              >
+                <input
+                  type="file"
+                  accept=".png"
+                  class="absolute w-full h-10 opacity-0 z-60"
+                />
+                <div class="w-6 h-6 flex justify-center items-center">
+                  <GlobalHIcon name="upload" class="text-textColor" />
+                </div>
+              </div>
+              <div
+                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+              >
+                <input
+                  type="file"
+                  accept=".png"
+                  class="absolute w-full h-10 opacity-0 z-60"
+                />
+                <div class="w-6 h-6 flex justify-center items-center">
+                  <GlobalHIcon name="upload" class="text-textColor" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- PRODUCT INFORMATION -->
+        <div
+          class="w-full sm:w-2/3 lg:w-4/5 flex flex-col justify-center items-center p-2"
+        >
+          <div class="w-full flex flex-col justify-center items-start">
             <div
-              class="w-full max-w-xs flex flex-col justify-center items-center"
+              class="w-full flex flex-wrap justify-start xl:justify-start items-start"
             >
-              Categoria
+              <!-- PRODUCT NAME -->
+              <div class="w-full max-w-xs mr-3">
+                <label class="w-full text-textColor font-open text-sm">
+                  Nombre del producto
+                </label>
+                <input
+                  v-model="productName"
+                  type="text"
+                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                />
+              </div>
+              <!-- PRODUCT PRICE AND STOCK -->
+              <div
+                class="w-full max-w-xs flex flex-wrap justify-start items-center"
+              >
+                <!-- PRODUCT PRICE -->
+                <div class="w-32 mr-3">
+                  <label class="w-full text-textColor font-open text-sm">
+                    Precio
+                  </label>
+                  <input
+                    v-model="productPrice"
+                    type="Number"
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  />
+                </div>
+                <!-- PRODUCT STOCK -->
+                <div class="w-32">
+                  <label class="w-full text-textColor font-open text-sm">
+                    Stock
+                  </label>
+                  <input
+                    v-model="productStock"
+                    type="Number"
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  />
+                </div>
+              </div>
             </div>
+            <!-- PRODUCCT DESCRIPTION -->
+            <div class="w-full flex flex-col justify-center items-center mt-1">
+              <label class="w-full text-textColor font-open text-sm">
+                Descripción del producto
+              </label>
+              <input
+                v-model="productDescription"
+                type="text"
+                class="w-full h-20 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              />
+            </div>
+          </div>
+          <!-- PRODUCT DETAILS -->
+          <div
+            class="w-full flex flex-col lg:flex-row justify-center items-center md:items-start mt-3"
+          >
+            <!-- PRODUCT BAND -->
             <div
-              class="w-full max-w-xs flex flex-col justify-center items-center"
+              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3"
+            >
+              <label class="w-full text-textColor font-open text-sm">
+                Banda
+              </label>
+              <select
+                v-model="productBand"
+                name=""
+                id=""
+                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              >
+                <option
+                  v-for="(band, index) in productBands"
+                  :key="index"
+                  class="text-xs font-open text-textColor"
+                >
+                  {{ band }}
+                </option>
+              </select>
+            </div>
+            <!-- PRODUCT CATEGORY -->
+            <div
+              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3 mt-2 lg:mt-0"
+            >
+              <!-- CATEGORY -->
+              <label class="w-full text-textColor font-open text-sm">
+                Category
+              </label>
+              <select
+                v-model="productCategory"
+                name=""
+                id=""
+                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              >
+                <option
+                  v-for="(category, index) in productCategories"
+                  :key="index"
+                  class="text-xs font-open text-textColor"
+                >
+                  {{ category }}
+                </option>
+              </select>
+              <div class="w-full flex flex-col justify-center items-center">
+                <!-- SIZE -->
+                <label class="w-full text-textColor font-open text-sm mt-2">
+                  Talla
+                </label>
+                <select
+                  v-model="productCategory"
+                  name=""
+                  id=""
+                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                >
+                  <option
+                    v-for="(category, index) in productCategories"
+                    :key="index"
+                    class="text-xs font-open text-textColor"
+                  >
+                    {{ category }}
+                  </option>
+                </select>
+                <!-- COLOR -->
+                <label class="w-full text-textColor font-open text-sm mt-2">
+                  Color
+                </label>
+                <select
+                  v-model="productCategory"
+                  name=""
+                  id=""
+                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                >
+                  <option
+                    v-for="(category, index) in productCategories"
+                    :key="index"
+                    class="text-xs font-open text-textColor"
+                  >
+                    {{ category }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <!-- PRODUCT OFFERS -->
+            <div
+              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3"
             >
               tipo de oferta
             </div>
@@ -58,6 +249,14 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
+  data: () => ({
+    productName: "",
+    productPrice: 0,
+    productStock: 0,
+    productDescription: "",
+    productBands: ["big bang", "pink"],
+    productCategories: ["moda", "snacks"],
+  }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
   },

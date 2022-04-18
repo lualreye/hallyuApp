@@ -1,4 +1,5 @@
 import {
+  mdiTrayArrowUp,
   mdiTagRemoveOutline,
   mdiMicrosoftExcel,
   mdiAccountMultipleOutline,
@@ -65,5 +66,6 @@ export default {
   forgottenCart: mdiCartRemove,
   team: mdiAccountMultipleOutline,
   excel: mdiMicrosoftExcel,
-  newProduct: mdiTagRemoveOutline
+  newProduct: mdiTagRemoveOutline,
+  upload: mdiTrayArrowUp
 };
