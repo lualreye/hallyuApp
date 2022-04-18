@@ -42,6 +42,7 @@
         <GeneralCardsHeroImage
           :image="heroImage.url"
           :imageName="heroImage.imageName"
+          :id="heroImage.id"
         />
       </div>
       <div
@@ -49,11 +50,11 @@
         class="w-full flex flex-col justify-start items-center mt-2"
       >
         <GeneralCardsHeroImage
-          v-for="(heroImage, index) in getHeroImages"
+          v-for="(hero, index) in getHeroImages"
           :key="index"
-          :image="heroImage.image"
-          :imageName="heroImage.name"
-          :id="heroImage.id"
+          :image="hero.image"
+          :imageName="hero.name"
+          :id="hero.id"
           class="mt-3"
         />
       </div>
@@ -93,6 +94,7 @@ export default {
       url: null,
       object: null,
       imageName: "",
+      id: "123"
     },
   }),
   computed: {
@@ -129,6 +131,7 @@ export default {
         url: null,
         object: null,
         imageName: "",
+        id: "123"
       };
     },
     fetchHeroImages() {

@@ -1,4 +1,5 @@
 import {
+  mdiTrashCanOutline,
   mdiPlay,
   mdiPlus,
   mdiTrayArrowUp,
@@ -71,5 +72,6 @@ export default {
   newProduct: mdiTagRemoveOutline,
   upload: mdiTrayArrowUp,
   plus: mdiPlus,
-  play: mdiPlay
+  play: mdiPlay,
+  delete: mdiTrashCanOutline
 };

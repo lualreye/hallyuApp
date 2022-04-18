@@ -8,6 +8,7 @@ import {
   where,
   setDoc,
   getDocs,
+  deleteDoc,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -33,6 +34,10 @@ const mutations = {
   SET_IMAGE(state, heroImage) {
     state.heroImages.push(heroImage);
   },
+  DELETE_IMAGE(state, id) {
+    const imageId = state.heroImages.findIndex((image) => image.id === id);
+    state.heroImages.splice(imageId, 1);
+  },
   // HERO SONGS
   SET_SONGS(state, heroImages) {
     state.heroSongs = heroImages;
@@ -40,9 +45,14 @@ const mutations = {
   SET_SONG(state, heroImage) {
     state.heroSongs.push(heroImage);
   },
+  DELETE_SONG(state, id) {
+    const imageId = state.heroSongs.findIndex((image) => image.id === id);
+    state.heroImages.splice(imageId, 1);
+  },
 };
 
 const actions = {
+  // CRUD IMAGES
   async uploadHeroImages({ commit }, payload) {
     try {
       const storage = fireStorage;
@@ -55,6 +65,7 @@ const actions = {
       const heroImage = {
         name: payload.name.split(".").shift(),
         image: imageUrl,
+        id: heroImageRef.id,
       };
       await setDoc(heroImageRef, heroImage);
       commit("SET_IMAGE", heroImage);
@@ -71,9 +82,9 @@ const actions = {
       imagesSnapshot.forEach((image) => {
         let img = image.data();
         heroImage = {
-          id: image.id,
-          ...img,
+          ...img
         };
+        console.log(img)
         images.push(heroImage);
       });
       commit("SET_IMAGES", images);
@@ -81,6 +92,16 @@ const actions = {
       console.error("CANNOT_GET_HERO_IMAGES", err);
     }
   },
+  async deleteImage({ commit }, payload) {
+    try {
+      const db = fireDataBase;
+      await deleteDoc(doc(db, "heroImages", payload));
+      commit("DELETE_IMAGE", payload);
+    } catch (err) {
+      console.error("CANNOT_DELETE_IMAGE", err);
+    }
+  },
+  // TODO: CRUD SONGS
   // TODO: params(*) mp3 file
   async uploadHeroSong({ commit }, payload) {
     try {
