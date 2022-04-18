@@ -9,7 +9,7 @@
         <InventoryUploadInventory />
       </div>
       <div class="w-auto mr-3">
-        <InventoryCardsNewProduct />
+        <InventoryUploadButton />
       </div>
     </div>
     <nuxt />

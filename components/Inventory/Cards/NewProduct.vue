@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="true"
+    v-if="getIsModalOpen"
     class="w-10/12 sm:w-3/4 max-w-4xl absolute top-20 left-1/12 sm:left-1/8 z-50 bg-background rounded-lg shadow-md"
   >
     <div class="w-full flex flex-col justify-center items-start p-2">

@@ -25,7 +25,7 @@ const mutations = {
 };
 
 const actions = {
-  showProdctutModal({commit}, payload) {
+  showProductModal({commit}, payload) {
     commit("SHOW_MODAL", payload)
   },
   selectProduct({ commit }, payload) {

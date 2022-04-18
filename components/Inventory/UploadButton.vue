@@ -1,6 +1,6 @@
 <template>
-  <button class="w-32 flex justify-center items-center bg-primary py-2" @click="upload">
-    <div class="mr-1 flex jutify-center items-center">
+  <button class="w-44 flex justify-center items-center bg-primary rounded-lg py-2" @click="upload">
+    <div class="w-6 h-6 mr-1 flex jutify-center items-center">
       <GlobalHIcon name="newProduct" />
     </div>
     <p class="text-hBlack font-open">
@@ -10,10 +10,12 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
 export default {
   methods: {
+    ...mapActions("product", ["showProductModal"]),
     upload() {
-      console.log("Estamos subiendo el producto")
+      this.showProductModal(true)
     }
   }
 }
