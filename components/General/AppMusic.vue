@@ -39,7 +39,11 @@
         v-if="heroSong.songName"
         class="w-full flex justify-start items-center mt-2"
       >
-        <GeneralCardsSongs :songName="heroSong.songName" :id="heroSong.id" />
+        <GeneralCardsSongs
+          :songName="heroSong.songName"
+          :songImage="heroSong.image"
+          :id="heroSong.id"
+        />
       </div>
       <div
         v-if="getHeroSongs.length"
@@ -49,6 +53,7 @@
           v-for="(heroSong, index) in getHeroSongs"
           :key="index"
           :songName="heroSong.name"
+          :songImage="heroSong.image"
           :id="heroSong.id"
           class="mt-3"
         />
@@ -87,6 +92,7 @@ export default {
     heroSong: {
       object: null,
       songName: "",
+      songImage: "",
       id: "123",
     },
   }),
