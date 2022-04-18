@@ -16,9 +16,18 @@ const mutations = {
   SET_PRODUCT(state, selectedProduct) {
     state.selectedProduct = selectedProduct;
   },
+  RESET_PRODUCT(state) {
+    state.selectedProduct = {};
+  },
+  SHOW_MODAL(state, boolean) {
+    state.isModalOpen = boolean
+  }
 };
 
 const actions = {
+  showProdctutModal({commit}, payload) {
+    commit("SHOW_MODAL", payload)
+  },
   selectProduct({ commit }, payload) {
     // TODO: URLSearchParams(*) producId
     commit("RESET_PRODUCT");
