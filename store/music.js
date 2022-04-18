@@ -14,7 +14,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const state = () => ({
   heroSongs: [],
-  isPlaying: false,
   playlist: [],
 });
 
@@ -23,8 +22,8 @@ const getters = {
     return state.heroSongs;
   },
   getIsPlaying(state) {
-    return state.isPlaying
-  }
+    return state.isPlaying;
+  },
 };
 
 const mutations = {
@@ -40,22 +39,24 @@ const mutations = {
     state.heroSongs.splice(imageId, 1);
   },
   RESET_PLAYING_SONG(state) {
-    state.playedSong = ""
+    state.playedSong = "";
   },
   SET_PLAYING_SONG(state, id) {
-    const songId = state.heroSongs.findIndex(song => song.id === id)
-    state.heroSongs[songId].isPlaying = false
-    if(state.playlist.length === 0) {
-      state.playlist.push(new Audio(state.heroSongs[songId].image));
-      state.heroSongs[songId].isPlaying = true
-      state.playlist[0].play
+    const songId = state.heroSongs.findIndex((song) => song.id === id);
+    for (let i = 0; i < state.heroSongs.length; i++) {
+      state.heroSongs[i].isPlaying = false;
     }
-    state.playlist[0].pause()
-    state.playlist = []
-    state.playlist.push(new Audio(state.heroSongs[songId].image))
-    state.playlist[0].play()
-    state.heroSongs[songId].isPlaying = true
-  }
+    if (state.playlist.length === 0) {
+      state.playlist.push(new Audio(state.heroSongs[songId].image));
+      state.heroSongs[songId].isPlaying = true;
+      state.playlist[0].play;
+    }
+    state.playlist[0].pause();
+    state.playlist = [];
+    state.playlist.push(new Audio(state.heroSongs[songId].image));
+    state.playlist[0].play();
+    state.heroSongs[songId].isPlaying = true;
+  },
 };
 
 const actions = {
@@ -91,7 +92,7 @@ const actions = {
         let sng = song.data();
         heroSong = {
           ...sng,
-          isPlaying: false
+          isPlaying: false,
         };
         songs.push(heroSong);
       });
@@ -109,14 +110,14 @@ const actions = {
       console.error("CANNOT_DELETE_IMAGE", err);
     }
   },
-  async playMusic({commit}, payload) {
-    try{
-      commit("RESET_PLAYING_SONG")
-      commit("SET_PLAYING_SONG", payload)
-    } catch(err) {
-      console.error("CANNOT_PLAY_SONG", err)
+  async playMusic({ commit }, payload) {
+    try {
+      commit("RESET_PLAYING_SONG");
+      commit("SET_PLAYING_SONG", payload);
+    } catch (err) {
+      console.error("CANNOT_PLAY_SONG", err);
     }
-  }
+  },
 };
 
 export { state, getters, mutations, actions };

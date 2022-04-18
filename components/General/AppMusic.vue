@@ -43,6 +43,7 @@
           :songName="heroSong.songName"
           :songImage="heroSong.image"
           :id="heroSong.id"
+          state="false"
         />
       </div>
       <div
@@ -54,6 +55,7 @@
           :key="index"
           :songName="heroSong.name"
           :songImage="heroSong.image"
+          :state="heroSong.isPlaying"
           :id="heroSong.id"
           class="mt-3"
         />

@@ -33,6 +33,11 @@ export default {
       required: true,
       default: "Nombre de imagen",
     },
+    state: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     id: {
       type: String,
       required: true,
@@ -40,9 +45,8 @@ export default {
     },
   },
   computed:{
-    ...mapGetters("music", ["getIsPlaying"]),
     getMusicIcon() {
-      return this.getIsPlaying === true ? "pause" : "play";
+      return this.state === true ? "pause" : "play";
     },
   },
   methods: {
