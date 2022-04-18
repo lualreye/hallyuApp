@@ -5,7 +5,7 @@
     <div class="w-full flex justify-start items-center">
       <button
         class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
-        @click="playMusic"
+        @click="play"
       >
         <GlobalHIcon :name="getMusicIcon" class="text-textColor" />
       </button>
@@ -20,12 +20,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data: () => ({
-    isPlaying: false,
-    music: null
-  }),
   props: {
     songName: {
       type: String,
@@ -44,24 +40,15 @@ export default {
     },
   },
   computed:{
+    ...mapGetters("music", ["getIsPlaying"]),
     getMusicIcon() {
-      return this.isPlaying === true ? "pause" : "play";
+      return this.getIsPlaying === true ? "pause" : "play";
     },
   },
-  mounted() {
-    const musicOn = new Audio(this.songImage)
-    this.music = musicOn
-  },
   methods: {
-    ...mapActions("general", ["deleteSong"]),
-    playMusic() {
-      if (this.isPlaying) {
-        this.music.pause();
-        this.isPlaying = false
-      } else {
-        this.music.play();
-        this.isPlaying = true
-      }
+    ...mapActions("music", ["deleteSong", "playMusic"]),
+    play() {
+      this.playMusic(this.id)
     },
     deleteSng() {
       this.deleteSong(this.id);

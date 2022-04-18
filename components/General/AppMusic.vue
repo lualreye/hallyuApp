@@ -97,7 +97,7 @@ export default {
     },
   }),
   computed: {
-    ...mapGetters("general", ["getHeroSongs"]),
+    ...mapGetters("music", ["getHeroSongs"]),
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
@@ -106,7 +106,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("general", ["uploadHeroSong", "fetchSongs"]),
+    ...mapActions("music", ["uploadHeroSong", "fetchSongs"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
