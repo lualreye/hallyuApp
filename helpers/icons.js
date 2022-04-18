@@ -1,4 +1,5 @@
 import {
+  mdiTagRemoveOutline,
   mdiMicrosoftExcel,
   mdiAccountMultipleOutline,
   mdiCartRemove,
@@ -63,5 +64,6 @@ export default {
   eye: mdiEyeOutline,
   forgottenCart: mdiCartRemove,
   team: mdiAccountMultipleOutline,
-  excel: mdiMicrosoftExcel
+  excel: mdiMicrosoftExcel,
+  newProduct: mdiTagRemoveOutline
 };

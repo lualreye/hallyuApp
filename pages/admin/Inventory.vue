@@ -7,6 +7,9 @@
       <div class="w-auto mr-3">
         <InventoryUploadInventory />
       </div>
+      <div class="w-auto mr-3">
+        <InventoryUploadProduct />
+      </div>
     </div>
     <nuxt />
   </div>
