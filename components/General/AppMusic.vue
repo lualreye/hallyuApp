@@ -39,7 +39,7 @@
         v-if="heroSong.songName"
         class="w-full flex justify-start items-center mt-2"
       >
-        <GeneralCardsSongs :songName="heroSong.songName" />
+        <GeneralCardsSongs :songName="heroSong.songName" :id="heroSong.id" />
       </div>
       <div
         v-if="getHeroSongs.length"
@@ -78,7 +78,6 @@
 </template>
 
 <script>
-import { connectStorageEmulator } from "firebase/storage";
 import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
@@ -88,6 +87,7 @@ export default {
     heroSong: {
       object: null,
       songName: "",
+      id: "123",
     },
   }),
   computed: {
@@ -113,7 +113,6 @@ export default {
       const file = e.target.files[0];
       const songObject = file;
       const songName = songObject.name.split(".").shift();
-      console.log(songObject);
       this.heroSong.object = songObject;
       this.heroSong.songName = songName;
     },

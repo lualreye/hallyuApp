@@ -47,7 +47,7 @@ const mutations = {
   },
   DELETE_SONG(state, id) {
     const imageId = state.heroSongs.findIndex((image) => image.id === id);
-    state.heroImages.splice(imageId, 1);
+    state.heroSongs.splice(imageId, 1);
   },
 };
 
@@ -82,9 +82,8 @@ const actions = {
       imagesSnapshot.forEach((image) => {
         let img = image.data();
         heroImage = {
-          ...img
+          ...img,
         };
-        console.log(img)
         images.push(heroImage);
       });
       commit("SET_IMAGES", images);
@@ -115,6 +114,7 @@ const actions = {
       const heroSong = {
         name: payload.name.split(".").shift(),
         image: songUrl,
+        id: heroSongRef.id
       };
       await setDoc(heroSongRef, heroSong);
       commit("SET_SONG", heroSong);
@@ -131,7 +131,6 @@ const actions = {
       songsSnapshot.forEach((song) => {
         let sng = song.data();
         heroSong = {
-          id: song.id,
           ...sng,
         };
         songs.push(heroSong);
@@ -139,6 +138,15 @@ const actions = {
       commit("SET_SONGS", songs);
     } catch (err) {
       console.error("CANNOT_GET_HERO_SONGS", err);
+    }
+  },
+  async deleteSong({ commit }, payload) {
+    try {
+      const db = fireDataBase;
+      await deleteDoc(doc(db, "heroSongs", payload));
+      commit("DELETE_SONG", payload);
+    } catch (err) {
+      console.error("CANNOT_DELETE_IMAGE", err);
     }
   },
 };
