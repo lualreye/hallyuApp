@@ -15,9 +15,15 @@
       <div class="w-full flex flex-wrap justify-between items-center">
         <p class="text-hBlack font-open">Imagenes de Bienvenida</p>
         <div
-          class="w-40 relative bg-lightPink flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
+          class="w-40 relative flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
+          :class="{ 'bg-lightPink': isThereImage, 'bg-gray-400': !isThereImage }"
         >
-          <input type="file" class="absolute w-full h-full z-60 opacity-0" />
+          <input
+            type="file"
+            class="absolute w-full h-full z-60 opacity-0"
+            :disabled="!isThereImage"
+            @change="onImageChange"
+          />
           <div class="w-full flex justify-center items-center">
             <div class="w-6 h-6 flex justify-center items-center mr-2">
               <GlobalHIcon name="upload" class="text-textColor" />
@@ -27,10 +33,22 @@
         </div>
       </div>
       <div
+        v-if="heroImage.url"
+        class="w-full flex justify-start items-center mt-2"
+      >
+        <GeneralCardsHeroImage
+          :image="heroImage.url"
+          :imageName="heroImage.imageName"
+        />
+      </div>
+      <div
         v-if="heroImages.length"
         class="w-full flex justify-start items-center mt-2"
       >
-        <GeneralCardsHeroImage :image="heroImage" :imageName="imageName" />
+        <GeneralCardsHeroImage
+          :image="heroImage.object"
+          :imageName="imageName"
+        />
       </div>
       <div v-else class="w-full flex justify-start items-center mt-2">
         <div class="w-full flex justify-start items-center">
@@ -41,33 +59,68 @@
               <GlobalHIcon name="plus" class="text-textColor" />
             </div>
           </div>
-          <p class="text-textColor font-open">
-            Nombre de la imagen
-          </p>
+          <p class="text-textColor font-open">Nombre de la imagen</p>
         </div>
       </div>
+      <button
+        class="w-40 flex justify-center items-center rounded-lg py-2 mt-2"
+        :class="{ 'bg-primary': !isThereImage, 'bg-gray-400': isThereImage }"
+        :disabled="isThereImage"
+        @click="uploadImage"
+      >
+        <p class="text-textColor font-open">Guardar y Publicar</p>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     isOpen: false,
     heroImages: [],
+    isImage: false,
+    heroImage: {
+      url: null,
+      object: null,
+      imageName: "",
+    },
   }),
   computed: {
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
+    isThereImage() {
+      return this.heroImage.object === null ? true : false;
+    },
   },
   methods: {
+    ...mapActions("general", ["uploadHeroImages"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
         this.isOpen = true;
       }
+    },
+    onImageChange(e) {
+      const file = e.target.files[0];
+      const imageObject = file;
+      const imageName = imageObject.name.split(".").shift();
+      this.heroImage.object = imageObject;
+      this.heroImage.imageName = imageName;
+      this.heroImage.url = URL.createObjectURL(file);
+    },
+    uploadImage() {
+      const image = this.heroImage.object;
+      this.uploadHeroImages(image);
+      this.heroImage = {
+        url: null,
+        object: null,
+        imageName: "",
+      };
     },
   },
 };
