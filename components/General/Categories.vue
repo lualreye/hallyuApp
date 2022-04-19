@@ -81,7 +81,7 @@
                 'bg-primary': isReadyToUpload,
                 'bg-gray-400': !isReadyToUpload,
               }"
-              :disabled="!isReadyToUpload"
+              :disabled="!!isReadyToUpload"
               @click="uploadCat"
             >
               Guardar
@@ -126,7 +126,10 @@ export default {
       return this.image.url === null;
     },
     isReadyToUpload() {
-      return this.image.object !== null && this.name !== null ? true : false;
+      return this.image.object !== null &&
+        (this.name !== null && this.name !== "")
+        ? true
+        : false;
     },
   },
   methods: {
@@ -156,6 +159,7 @@ export default {
       const imgUrl = URL.createObjectURL(file);
       this.image.url = imgUrl;
       this.image.object = imgObj;
+      console.log(e.target.files[0]);
     },
     uploadCat() {
       const category = {
@@ -163,11 +167,11 @@ export default {
         img: this.image.object,
       };
       this.name = null;
-      (this.image = {
+      this.image = {
         object: null,
         url: null,
-      }),
-        console.log(category);
+      };
+      console.log(category)
     },
   },
 };
