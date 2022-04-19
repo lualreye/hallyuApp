@@ -21,7 +21,9 @@
         <!-- EDITOR -->
         <div class="w-full flex flex-wrap justify-center items-center">
           <!-- UPLOAD POST IMAGE -->
-          <div class="w-full sm:w-1/3 md:w-1/4 flex justify-center items-center">
+          <div
+            class="w-full sm:w-1/3 md:w-1/4 flex justify-center items-center"
+          >
             <div class="w-full flex justify-center items-center flex-col">
               <label class="w-full text-textColor font-open text-xs">
                 Portada
@@ -55,6 +57,17 @@
               </div>
             </div>
           </div>
+          <!-- UPLOAD POST CONTENT -->
+          <div
+            class="w-full sm:w-2/3 md:w-3/4 flex flex-col justify-center items-center"
+          >
+            <input
+              type="text"
+              v-model="title"
+              class="border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-2 outline-none focus:outline-none"
+            />
+            <div class="w-full flex justify-center items-center"></div>
+          </div>
         </div>
         <!-- BUTTONS -->
         <div class="w-full flex justify-end items-center my-2">
@@ -66,6 +79,7 @@
           </button>
           <button
             class="w-44 py-2 rounded-lg flex justify-center items-center text-textColor bg-primary"
+            :disabled="!!isReadyToUpload"
             @click="savePost"
           >
             Guardar
@@ -100,8 +114,10 @@ export default {
     },
     isReadyToUpload() {
       return this.image.object !== null &&
-        (this.title !== null && this.title !== "") &&
-        (this.body !== null && this.body !== "")
+        this.title !== null &&
+        this.title !== "" &&
+        this.body !== null &&
+        this.body !== ""
         ? true
         : false;
     },
@@ -122,10 +138,12 @@ export default {
       this.image.object = imgObj;
     },
     savePost() {
+      const day = new Date();
       const post = {
         image: this.image.object,
         title: this.title,
         body: this.body,
+        date: day.getDate(),
       };
       console.log(post);
     },
