@@ -11,27 +11,123 @@
       </div>
       <p class="text-textColor font-open">Categorías</p>
     </button>
-    <div v-if="isOpen" class="w-full mt-3">Estamos subiendo imagenes</div>
+    <div v-if="isOpen" class="w-full mt-3">
+      <button
+        v-if="!isEditing"
+        class="w-44 flex justify-start itesm-center"
+        @click="edit"
+      >
+        <div class="2-6 h-6 flex jsutify-center items-center">
+          <GlobalHIcon name="plus" class="text-textColor" />
+        </div>
+        <p class="text-textColor font-open">Añadir categoría</p>
+      </button>
+      <div v-else class="w-full max-w-sm flex justify-start items-center pl-3">
+        <!-- UPLOAD CATEGORY IMAGE -->
+        <div class="w-1/2 flex justify-center items-center">
+          <div
+            class="relative h-32 w-32 border border-primary rounded-lg flex justify-center items-center"
+          >
+            <input
+              type="file"
+              class="h-32 w-full absolute top-0 bottom-0 left-0 opacity-0 z-60"
+              @change="uploadCategoryImage"
+            />
+            <div
+              v-if="!isImage"
+              class="w-full flex justify-center items-center"
+            >
+              <img
+                :src="image.url"
+                class="w-full h-32 object-cover object-center rounded-lg"
+              />
+            </div>
+            <div
+              v-else
+              class="w-full text-textColor flex justify-center items-center"
+            >
+              <div class="w-6 h-6 flex justify-center items-center mr-2">
+                <GlobalHIcon name="upload" class="text-textColor" />
+              </div>
+              <p class="text textColor text-xs">Sube una imagen</p>
+            </div>
+          </div>
+        </div>
+        <!-- UPLOAD CATEGORY NAME -->
+        <div class="w-1/2 flex justify-center items-center">
+          <input
+            v-model="name"
+            type="text"
+            class="w-full p-2 text-textColor border border-primary rounded-lg outline-none"
+          />
+        </div>
+      </div>
+      <div
+        v-if="getCategories.length"
+        class="w-full flex flex-col justify-center items-starT"
+      >
+        <GeneralCardsCategory
+          v-for="(cat, index) in getCategories"
+          :key="index"
+          :image="cat.image"
+          :categoryName="cat.name"
+          :id="cat.id"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     isOpen: false,
+    isEditing: false,
+    name: "",
+    image: {
+      object: null,
+      url: null,
+    },
   }),
   computed: {
+    ...mapGetters("categories", ["getCategories"]),
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
+    isImage() {
+      return this.image.url === null;
+    },
   },
   methods: {
+    ...mapActions("categories", ["uploadCategory"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
         this.isOpen = true;
       }
+    },
+    edit() {
+      if (this.isEditing) {
+        this.isEditing = false;
+      } else {
+        this.isEditing = true;
+      }
+    },
+    uploadCategoryImage(e) {
+      const file = e.target.files[0];
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.image.url = imgUrl;
+      this.image.object = imgObj;
+    },
+    uploadCat() {
+      category = {
+        name: this.name,
+        img: this.image.object,
+      };
+      console.log(category);
     },
   },
 };
