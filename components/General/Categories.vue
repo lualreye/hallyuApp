@@ -22,9 +22,9 @@
         </div>
         <p class="text-textColor font-open">Añadir categoría</p>
       </button>
-      <div v-else class="w-full max-w-sm flex justify-start items-center pl-3">
+      <div v-else class="w-full max-w-sm flex flex-wrap justify-start items-center pl-3">
         <!-- UPLOAD CATEGORY IMAGE -->
-        <div class="w-1/2 flex justify-center items-center">
+        <div class="w-full sm:w-1/2 flex justify-center items-center">
           <div class="w-32 flex justify-center items-center flex-col">
             <label class="w-full text-textColor font-open text-xs">
               Portada
@@ -59,7 +59,7 @@
           </div>
         </div>
         <!-- UPLOAD CATEGORY NAME -->
-        <div class="w-1/2 flex flex-col justify-center items-center">
+        <div class="w-full sm:w-1/2 flex flex-col justify-center items-center">
           <label class="w-full text-textColor font-open text-xs">
             Nombre
           </label>
@@ -91,7 +91,7 @@
       </div>
       <div
         v-if="getCategories.length"
-        class="w-full flex flex-col justify-center items-starT"
+        class="w-full max-w-md flex flex-col justify-center items-start my-2"
       >
         <GeneralCardsCategory
           v-for="(cat, index) in getCategories"
@@ -133,12 +133,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions("categories", ["uploadCategory"]),
+    ...mapActions("categories", ["uploadCategory", "fetchCategories"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
         this.isOpen = true;
+        this.fetchCat()
       }
     },
     edit() {
@@ -159,7 +160,6 @@ export default {
       const imgUrl = URL.createObjectURL(file);
       this.image.url = imgUrl;
       this.image.object = imgObj;
-      console.log(e.target.files[0]);
     },
     uploadCat() {
       const category = {
@@ -171,8 +171,15 @@ export default {
         object: null,
         url: null,
       };
-      console.log(category)
+      this.uploadCategory(category)
     },
+    fetchCat() {
+      if(!this.getCategories.length) {
+        this.fetchCategories()
+      } else {
+        return
+      }
+    }
   },
 };
 </script>

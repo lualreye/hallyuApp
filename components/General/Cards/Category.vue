@@ -41,7 +41,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("general", ["deleteCategory"]),
+    ...mapActions("categories", ["deleteCategory"]),
     deleteCat() {
       this.deleteCategory(this.id);
     },
