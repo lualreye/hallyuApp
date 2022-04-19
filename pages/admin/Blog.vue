@@ -20,7 +20,41 @@
       <div class="w-full flex flex-col justify-center items-center">
         <!-- EDITOR -->
         <div class="w-full flex flex-wrap justify-center items-center">
-          imagenes y cuerpo
+          <!-- UPLOAD POST IMAGE -->
+          <div class="w-full sm:w-1/3 md:w-1/4 flex justify-center items-center">
+            <div class="w-full flex justify-center items-center flex-col">
+              <label class="w-full text-textColor font-open text-xs">
+                Portada
+              </label>
+              <div
+                class="relative h-32 w-full border border-primary rounded-lg flex justify-center items-center"
+              >
+                <input
+                  type="file"
+                  class="h-32 w-full absolute top-0 bottom-0 left-0 opacity-0 z-60"
+                  @change="uploadPostImage"
+                />
+                <div
+                  v-if="!isImage"
+                  class="w-full flex justify-center items-center"
+                >
+                  <img
+                    :src="image.url"
+                    class="w-full h-32 object-cover object-center rounded-lg"
+                  />
+                </div>
+                <div
+                  v-else
+                  class="w-full text-textColor flex justify-center items-center"
+                >
+                  <div class="w-6 h-6 flex justify-center items-center mr-2">
+                    <GlobalHIcon name="upload" class="text-textColor" />
+                  </div>
+                  <p class="text textColor text-xs">Sube una imagen</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- BUTTONS -->
         <div class="w-full flex justify-end items-center my-2">
@@ -60,6 +94,18 @@ export default {
     },
     body: "",
   }),
+  computed: {
+    isImage() {
+      return this.image.url === null;
+    },
+    isReadyToUpload() {
+      return this.image.object !== null &&
+        (this.title !== null && this.title !== "") &&
+        (this.body !== null && this.body !== "")
+        ? true
+        : false;
+    },
+  },
   methods: {
     editPost() {
       if (this.isEditingPost) {
@@ -67,6 +113,13 @@ export default {
       } else {
         this.isEditingPost = true;
       }
+    },
+    uploadPostImage(e) {
+      const file = e.target.files[0];
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.image.url = imgUrl;
+      this.image.object = imgObj;
     },
     savePost() {
       const post = {
