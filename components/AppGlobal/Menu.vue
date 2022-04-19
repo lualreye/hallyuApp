@@ -73,7 +73,7 @@ export default {
       },
       {
         name: "Blogs",
-        link: "/admin/editing",
+        link: "/admin/blog",
         icon: "edit",
       },
       {

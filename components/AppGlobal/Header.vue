@@ -60,7 +60,7 @@ export default {
         return "Resumen de Ventas";
       } else if (path[2] === "general") {
         return "Configuración General";
-      } else if (path[2] === "editing") {
+      } else if (path[2] === "blog") {
         return "Blogs";
       } else if (path[2] === "inventory") {
         return "Gestión de Productos";
