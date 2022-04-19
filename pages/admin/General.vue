@@ -3,7 +3,7 @@
     <GeneralHeroImages />
     <GeneralAppMusic />
     <GeneralCategories />
-    <GeneralFavourites />
+    <!-- <GeneralFavourites /> -->
     <GeneralHallyuFans />
     <GeneralBands />
   </div>
