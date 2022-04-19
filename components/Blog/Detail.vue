@@ -30,7 +30,7 @@ export default {
       required: true,
       default: "",
     },
-    fanName: {
+    postName: {
       type: String,
       required: true,
       default: "Nombre de imagen",
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     ...mapActions("posts", ["deletePost"]),
-    deleteFn() {
+    deletePs() {
       this.deletePost(this.id);
     },
   },
