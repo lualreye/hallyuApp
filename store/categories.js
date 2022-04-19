@@ -60,7 +60,7 @@ const actions = {
       const queryCategory = await getDocs(collection(db, "categories"));
       queryCategory.forEach((cat) => {
         let category = {
-          ...cat.doc(),
+          ...cat.data(),
         };
         categories.push(category);
       });

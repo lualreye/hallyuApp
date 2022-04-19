@@ -23,7 +23,7 @@ const mutations = {
     state.fans = fans;
   },
   SET_FAN(state, fan) {
-    state.categories.push(fan);
+    state.fans.push(fan);
   },
   DELETE_FAN(state, id) {
     const fanId = state.categories.findIndex((fan) => fan.id === id);
@@ -59,13 +59,13 @@ const actions = {
       const queryFan = await getDocs(collection(db, "fans"));
       queryFan.forEach((fn) => {
         let fan = {
-          ...fn.doc(),
+          ...fn.data(),
         };
         fans.push(fan);
       });
       commit("SET_FANS", fans);
     } catch (err) {
-      console.error("CANNOT_GET_FANS");
+      console.error("CANNOT_GET_FANS", err);
     }
   },
   async deleteFan({ commit }, payload) {

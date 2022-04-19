@@ -139,7 +139,7 @@ export default {
         this.isOpen = false;
       } else {
         this.isOpen = true;
-        this.fetchCat()
+        this.fetchFn()
       }
     },
     edit() {
@@ -163,7 +163,7 @@ export default {
     },
     uploadFn() {
       const fan = {
-        name: this.name,
+        name: `https://www.instagram.com/${this.name}/`,
         img: this.image.object,
       };
       this.name = null;
