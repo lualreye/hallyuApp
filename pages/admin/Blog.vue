@@ -61,12 +61,18 @@
           <div
             class="w-full sm:w-2/3 md:w-3/4 flex flex-col justify-center items-center"
           >
+            <!-- TITLE -->
             <input
               type="text"
               v-model="title"
               class="border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-2 outline-none focus:outline-none"
             />
-            <div class="w-full flex justify-center items-center"></div>
+            <!-- BODY -->
+            <div class="w-full flex justify-center items-center">
+              <client-only>
+                <AppGlobalEditor />
+              </client-only>
+            </div>
           </div>
         </div>
         <!-- BUTTONS -->
