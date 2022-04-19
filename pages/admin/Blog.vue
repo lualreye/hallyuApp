@@ -13,8 +13,8 @@
       Edicion de post
     </div>
     <!-- POSTS LIST -->
-    <div class="w-full flex flex-col justify-center items-center my-2">
-      <BlogDetail />
+    <div class="w-full max-w-2xl flex flex-col justify-center items-center my-2">
+      <BlogCardsList />
     </div>
   </div>
 </template>
