@@ -25,41 +25,68 @@
       <div v-else class="w-full max-w-sm flex justify-start items-center pl-3">
         <!-- UPLOAD CATEGORY IMAGE -->
         <div class="w-1/2 flex justify-center items-center">
-          <div
-            class="relative h-32 w-32 border border-primary rounded-lg flex justify-center items-center"
-          >
-            <input
-              type="file"
-              class="h-32 w-full absolute top-0 bottom-0 left-0 opacity-0 z-60"
-              @change="uploadCategoryImage"
-            />
+          <div class="w-32 flex justify-center items-center flex-col">
+            <label class="w-full text-textColor font-open text-xs">
+              Portada
+            </label>
             <div
-              v-if="!isImage"
-              class="w-full flex justify-center items-center"
+              class="relative h-32 w-32 border border-primary rounded-lg flex justify-center items-center"
             >
-              <img
-                :src="image.url"
-                class="w-full h-32 object-cover object-center rounded-lg"
+              <input
+                type="file"
+                class="h-32 w-full absolute top-0 bottom-0 left-0 opacity-0 z-60"
+                @change="uploadCategoryImage"
               />
-            </div>
-            <div
-              v-else
-              class="w-full text-textColor flex justify-center items-center"
-            >
-              <div class="w-6 h-6 flex justify-center items-center mr-2">
-                <GlobalHIcon name="upload" class="text-textColor" />
+              <div
+                v-if="!isImage"
+                class="w-full flex justify-center items-center"
+              >
+                <img
+                  :src="image.url"
+                  class="w-full h-32 object-cover object-center rounded-lg"
+                />
               </div>
-              <p class="text textColor text-xs">Sube una imagen</p>
+              <div
+                v-else
+                class="w-full text-textColor flex justify-center items-center"
+              >
+                <div class="w-6 h-6 flex justify-center items-center mr-2">
+                  <GlobalHIcon name="upload" class="text-textColor" />
+                </div>
+                <p class="text textColor text-xs">Sube una imagen</p>
+              </div>
             </div>
           </div>
         </div>
         <!-- UPLOAD CATEGORY NAME -->
-        <div class="w-1/2 flex justify-center items-center">
+        <div class="w-1/2 flex flex-col justify-center items-center">
+          <label class="w-full text-textColor font-open text-xs">
+            Nombre
+          </label>
           <input
             v-model="name"
             type="text"
             class="w-full p-2 text-textColor border border-primary rounded-lg outline-none"
           />
+          <div class="w-full flex justify-between items-center mt-3">
+            <div
+              class="py-2 w-20 rounded-lg flex justify-center items-center bg-lightPink"
+              @click="edit"
+            >
+              Cancelar
+            </div>
+            <div
+              class="py-2 w-20 rounded-lg flex justify-center items-center"
+              :class="{
+                'bg-primary': isReadyToUpload,
+                'bg-gray-400': !isReadyToUpload,
+              }"
+              :disabled="!isReadyToUpload"
+              @click="uploadCat"
+            >
+              Guardar
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -84,7 +111,7 @@ export default {
   data: () => ({
     isOpen: false,
     isEditing: false,
-    name: "",
+    name: null,
     image: {
       object: null,
       url: null,
@@ -98,6 +125,9 @@ export default {
     isImage() {
       return this.image.url === null;
     },
+    isReadyToUpload() {
+      return this.image.object !== null && this.name !== null ? true : false;
+    },
   },
   methods: {
     ...mapActions("categories", ["uploadCategory"]),
@@ -110,6 +140,11 @@ export default {
     },
     edit() {
       if (this.isEditing) {
+        this.name = null;
+        this.image = {
+          object: null,
+          url: null,
+        };
         this.isEditing = false;
       } else {
         this.isEditing = true;
@@ -123,11 +158,16 @@ export default {
       this.image.object = imgObj;
     },
     uploadCat() {
-      category = {
+      const category = {
         name: this.name,
         img: this.image.object,
       };
-      console.log(category);
+      this.name = null;
+      (this.image = {
+        object: null,
+        url: null,
+      }),
+        console.log(category);
     },
   },
 };
