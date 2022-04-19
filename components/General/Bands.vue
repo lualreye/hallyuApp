@@ -133,7 +133,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("bands", ["uploadBand", "fetchBand"]),
+    ...mapActions("bands", ["uploadBand", "fetchBands"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
@@ -163,7 +163,7 @@ export default {
     },
     uploadBn() {
       const band = {
-        name: `https://www.instagram.com/${this.name}`,
+        name: this.name,
         img: this.image.object,
       };
       this.name = null;

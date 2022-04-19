@@ -14,7 +14,7 @@ const state = () => ({
 
 const getters = {
   getBands(state) {
-    return state.Bands;
+    return state.bands;
   },
 };
 
