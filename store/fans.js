@@ -26,7 +26,7 @@ const mutations = {
     state.fans.push(fan);
   },
   DELETE_FAN(state, id) {
-    const fanId = state.categories.findIndex((fan) => fan.id === id);
+    const fanId = state.fans.findIndex((fan) => fan.id === id);
     state.fans.splice(fanId, 1);
   },
 };

@@ -9,7 +9,7 @@
           <GlobalHIcon :name="getIcon" class="text-textColor" />
         </div>
       </div>
-      <p class="text-textColor font-open">Fans</p>
+      <p class="text-textColor font-open">Hallyu Fans</p>
     </button>
     <div v-if="isOpen" class="w-full mt-3">
       <button
@@ -163,7 +163,7 @@ export default {
     },
     uploadFn() {
       const fan = {
-        name: `https://www.instagram.com/${this.name}/`,
+        name: `https://www.instagram.com/${this.name}`,
         img: this.image.object,
       };
       this.name = null;

@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     ...mapActions("fans", ["deleteFan"]),
-    deleteCat() {
+    deleteFn() {
       this.deleteFan(this.id);
     },
   },
