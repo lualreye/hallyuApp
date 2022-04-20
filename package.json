@@ -10,15 +10,14 @@
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
-    "@tiptap/starter-kit": "^2.0.0-beta.183",
-    "@tiptap/vue-2": "^2.0.0-beta.77",
     "chart.js": "^3.7.1",
     "core-js": "^3.15.1",
     "firebase": "^9.6.7",
     "nuxt": "^2.2.0",
     "vue-awesome-countdown": "^1.1.4",
     "vue-chartjs": "^4.0.5",
-    "vue-rate-it": "^2.1.0"
+    "vue-rate-it": "^2.1.0",
+    "vue2-editor": "^2.10.3"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^5.0.0-4",

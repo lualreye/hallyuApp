@@ -19,7 +19,7 @@
     >
       <div class="w-full flex flex-col justify-center items-center">
         <!-- EDITOR -->
-        <div class="w-full flex flex-wrap justify-center items-center">
+        <div class="w-full flex flex-wrap justify-center items-start">
           <!-- UPLOAD POST IMAGE -->
           <div
             class="w-full sm:w-1/3 md:w-1/4 flex justify-center items-center"
@@ -59,19 +59,25 @@
           </div>
           <!-- UPLOAD POST CONTENT -->
           <div
-            class="w-full sm:w-2/3 md:w-3/4 flex flex-col justify-center items-center"
+            class="w-full sm:w-2/3 md:w-3/4 flex flex-col justify-center items-center px-2"
           >
             <!-- TITLE -->
+            <label class="w-full text-textColor text-xs font-open"
+              >Título</label
+            >
             <input
               type="text"
               v-model="title"
-              class="border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-2 outline-none focus:outline-none"
+              class="w-full border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-3 outline-none focus:outline-none"
             />
             <!-- BODY -->
-            <div class="w-full flex justify-center items-center">
-              <client-only>
-                <AppGlobalEditor />
-              </client-only>
+            <label class="w-full text-textColor text-xs font-open"
+              >Contenido</label
+            >
+            <div
+              class="w-full flex justify-center items-center border border-primary rounded-lg p-2"
+            >
+              <vue-editor v-model="body" :editor-toolbar="customToolbar" />
             </div>
           </div>
         </div>
@@ -113,6 +119,18 @@ export default {
       object: null,
     },
     body: "",
+    customToolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike", { align: [] }],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ direction: "rtl" }],
+      [{ color: [] }, { background: [] }],
+      ["clean"],
+      ["link", "formula"],
+    ],
   }),
   computed: {
     isImage() {
@@ -144,12 +162,15 @@ export default {
       this.image.object = imgObj;
     },
     savePost() {
-      const day = new Date();
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth();
+      const year = date.getFullYear();
       const post = {
         image: this.image.object,
         title: this.title,
         body: this.body,
-        date: day.getDate(),
+        date: `${day}-${month + 1}-${year}`,
       };
       console.log(post);
     },
