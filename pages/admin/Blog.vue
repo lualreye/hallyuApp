@@ -90,8 +90,12 @@
             Cancelar
           </button>
           <button
-            class="w-44 py-2 rounded-lg flex justify-center items-center text-textColor bg-primary"
-            :disabled="!!isReadyToUpload"
+            class="w-44 py-2 rounded-lg flex justify-center items-center text-textColor"
+            :class="{
+              'bg-primary': isReadyToUplaod,
+              'bg-gray-400': !isReadyToUplaod,
+            }"
+            :disabled="!isReadyToUpload"
             @click="savePost"
           >
             Guardar
@@ -109,7 +113,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "app",
   data: () => ({
@@ -175,7 +179,7 @@ export default {
         body: this.body,
         date: `${day}-${month + 1}-${year}`,
       };
-      this.uploadPost(post)
+      this.uploadPost(post);
     },
   },
 };

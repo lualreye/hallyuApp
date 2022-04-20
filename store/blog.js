@@ -38,22 +38,26 @@ const actions = {
       console.log(payload);
       const db = fireDataBase;
       const storage = fireStorage;
-      const filename = payload.img.name.split(".").shift();
+      const filename = payload.image.name.split(".").shift();
+      console.log(filename)
       const imageRef = ref(storage, `posts/${filename}`);
-      await uploadBytes(imageRef, payload.img);
+      console.log(imageRef)
+      await uploadBytes(imageRef, payload.image);
       const imageUrl = await getDownloadURL(imageRef);
       const postRef = doc(collection(db, "posts"));
       const post = {
-        name: payload.name.toLowerCase(),
+        title: payload.title.toLowerCase(),
         body: payload.body,
         date: payload.date,
         image: imageUrl,
-        id: bandRef.id,
+        id: postRef.id,
+        comments: []
       };
       await setDoc(postRef, post);
       commit("SET_POST", post);
+      console.log(post)
     } catch (err) {
-      console.error("CANNOT_UPLOAD_POST");
+      console.error("CANNOT_UPLOAD_POST", err);
     }
   },
   async fetchPosts({ commit }) {
