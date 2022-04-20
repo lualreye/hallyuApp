@@ -92,8 +92,8 @@
           <button
             class="w-44 py-2 rounded-lg flex justify-center items-center text-textColor"
             :class="{
-              'bg-primary': !isReadyToUplaod,
-              'bg-gray-400': isReadyToUplaod,
+              'bg-primary': isReadyToUpload,
+              'bg-gray-400': !isReadyToUpload,
             }"
             :disabled="!isReadyToUpload"
             @click="savePost"
