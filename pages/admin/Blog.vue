@@ -92,8 +92,8 @@
           <button
             class="w-44 py-2 rounded-lg flex justify-center items-center text-textColor"
             :class="{
-              'bg-primary': isReadyToUplaod,
-              'bg-gray-400': !isReadyToUplaod,
+              'bg-primary': !isReadyToUplaod,
+              'bg-gray-400': isReadyToUplaod,
             }"
             :disabled="!isReadyToUpload"
             @click="savePost"
@@ -107,7 +107,7 @@
     <div
       class="w-full max-w-2xl flex flex-col justify-center items-center my-2"
     >
-      <BlogCardsList />
+      <BlogCardsList :posts="getPosts" />
     </div>
   </div>
 </template>
