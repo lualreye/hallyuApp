@@ -82,7 +82,7 @@
           </div>
         </div>
         <!-- BUTTONS -->
-        <div class="w-full flex justify-end items-center my-2">
+        <div class="w-full flex justify-end items-center my-2 p-2">
           <button
             class="w-44 py-2 rounded-lg flex justify-center text-textColor items-center mr-2 bg-lightPink"
             @click="editPost"
@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   layout: "app",
   data: () => ({
@@ -133,6 +134,7 @@ export default {
     ],
   }),
   computed: {
+    ...mapGetters("blog", ["getPosts"]),
     isImage() {
       return this.image.url === null;
     },
@@ -147,6 +149,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions("blog", ["uploadPost"]),
     editPost() {
       if (this.isEditingPost) {
         this.isEditingPost = false;
@@ -172,7 +175,7 @@ export default {
         body: this.body,
         date: `${day}-${month + 1}-${year}`,
       };
-      console.log(post);
+      this.uploadPost(post)
     },
   },
 };
