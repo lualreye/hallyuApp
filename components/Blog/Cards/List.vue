@@ -9,7 +9,14 @@
       </div>
       <div class="bg-primary h-px w-full" />
       <div class="w-full flex flex-col justify-center items-center my-2">
-        <BlogDetail />
+        <BlogDetail
+          v-for="(post, index) in posts"
+          :key="index"
+          :image="post.image"
+          :postName="post.name"
+          :date="post.date"
+          :id="post.id"
+        />
       </div>
     </div>
   </div>

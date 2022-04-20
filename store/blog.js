@@ -35,13 +35,10 @@ const actions = {
   // TODO params (*) post
   async uploadPost({ commit }, payload) {
     try {
-      console.log(payload);
       const db = fireDataBase;
       const storage = fireStorage;
       const filename = payload.image.name.split(".").shift();
-      console.log(filename)
       const imageRef = ref(storage, `posts/${filename}`);
-      console.log(imageRef)
       await uploadBytes(imageRef, payload.image);
       const imageUrl = await getDownloadURL(imageRef);
       const postRef = doc(collection(db, "posts"));
@@ -51,18 +48,25 @@ const actions = {
         date: payload.date,
         image: imageUrl,
         id: postRef.id,
-        comments: []
+        comments: [],
       };
       await setDoc(postRef, post);
       commit("SET_POST", post);
-      console.log(post)
     } catch (err) {
-      console.error("CANNOT_UPLOAD_POST", err);
+      console.error("CANNOT_UPLOAD_POST");
     }
   },
   async fetchPosts({ commit }) {
     try {
+      const db = fireDataBase;
       let posts = [];
+      const qSnapshot = await getDocs(collection(db, "posts"));
+      qSnapshot.forEach((post) => {
+        let ps = {
+          ...post.data(),
+        };
+        posts.push(ps);
+      });
       commit("SET_POSTS", posts);
     } catch (err) {
       console.error("CANNOT_GET_POSTS");
