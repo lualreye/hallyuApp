@@ -175,11 +175,11 @@
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               >
                 <option
-                  v-for="(band, index) in productBands"
+                  v-for="(band, index) in getBands"
                   :key="index"
                   class="text-xs font-open text-textColor"
                 >
-                  {{ band }}
+                  {{ band.name }}
                 </option>
               </select>
             </div>
@@ -198,11 +198,11 @@
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               >
                 <option
-                  v-for="(category, index) in productCategories"
+                  v-for="(category, index) in getCategories"
                   :key="index"
                   class="text-xs font-open text-textColor"
                 >
-                  {{ category }}
+                  {{ category.name }}
                 </option>
               </select>
               <!-- CLOTHS DETAILS -->
@@ -321,19 +321,25 @@ export default {
     productPrice: 0,
     productStock: 0,
     productDescription: "",
-    productBands: ["big bang", "pink"],
-    productCategories: ["moda", "snacks"],
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
     productOfferingTime: "",
-    productCode: ""
+    productCode: "",
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
+    ...mapGetters("bands", ["getBands"]),
+    ...mapGetters("categories", ["getCategories"]),
+  },
+  mounted() {
+    this.fetchBands();
+    this.fetchCategories();
   },
   methods: {
     ...mapActions("product", ["showProductModal"]),
+    ...mapActions("categories", ["fetchCategories"]),
+    ...mapActions("bands", ["fetchBands"]),
     closeProductModal() {
       if (this.getIsModalOpen) {
         this.showProductModal(false);
