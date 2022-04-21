@@ -5,37 +5,37 @@
       class="w-full flex justify-center itesm-center divide-x divide-textColor"
     >
       <div
-        class="w-1/3 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/5 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Productos
       </div>
       <div
-        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Categoría
       </div>
       <div
-        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Stock
       </div>
       <div
-        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Precio
       </div>
       <div
-        class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-1/5 md:w-1/12 flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Publicado
       </div>
       <div
-        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         Oferta
       </div>
       <div
-        class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/5 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       ></div>
     </div>
     <!-- PRODUCTS -->
@@ -64,7 +64,7 @@ export default {
         name:"camisa",
         thumbnail: require("@/static/images/idols/han.jpg"),
         stock: 25,
-        price: 28.537,
+        price: 1.005,
         category: "moda",
         published: true,
         offered: false,

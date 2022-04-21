@@ -6,7 +6,7 @@
     >
       <!-- DETALLE DE PRODUCTO -->
       <div
-        class="w-1/3 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/5 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
       >
         <div class="w-auto flex justify-center items-center">
           <input type="checkbox" class="border border-textColor w-6 h-6 mr-2" />
@@ -20,8 +20,8 @@
             />
           </figure>
         </div>
-        <p class="text-textColor w-auto font-open">
-          {{ name }}
+        <p class="text-textColor w-auto font-open text-xs md:text-base">
+          {{ getNameCapitalize }}
         </p>
       </div>
       <!-- CATEGORIA DEL PRODUCTO -->
@@ -41,23 +41,23 @@
         $ {{ getPrice }}
       </div>
       <div
-        class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-1/5 md:w-1/12 flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         <p
           v-if="published"
-          class="w-16 h-7 flex justify-center items-center rounded-lg bg-primary"
+          class="px-2 py-1 flex justify-center items-center rounded-lg bg-primary"
         >
           Sí
         </p>
         <p
           v-else
-          class="w-16 h-7 flex justify-center items-center rounded-lg bg-lightPink"
+          class="px-2 py-1 flex justify-center items-center rounded-lg bg-lightPink"
         >
           No
         </p>
       </div>
       <div
-        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
       >
         <p
           v-if="offered"
@@ -73,7 +73,7 @@
         </p>
       </div>
       <div
-        class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/5 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
       ></div>
     </div>
   </div>
@@ -117,8 +117,11 @@ export default {
   },
   computed: {
     getPrice() {
-      const price = Number(Math.abs(this.price).toPrecision(15));
-      return Math.round(price) / 100 * Math.sign(this.price)
+      const price = Number((Math.abs(this.price) * 100).toPrecision(15));
+      return Math.round(price) / (100 * Math.sign(this.price));
+    },
+    getNameCapitalize() {
+      return this.name.charAt(0).toUpperCase() + this.name.slice(1);
     },
   },
 };
