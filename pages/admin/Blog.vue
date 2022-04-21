@@ -168,13 +168,13 @@ export default {
         this.isEditingPost = true;
       }
     },
-    uploadPostImage(e) {
-      const file = e.target.files[0];
-      const imgObj = file;
-      const imgUrl = URL.createObjectURL(file);
-      this.image.url = imgUrl;
-      this.image.object = imgObj;
-    },
+  uploadPostImage(e) {
+    const file = e.target.files[0];
+    const imgObj = file;
+    const imgUrl = URL.createObjectURL(file);
+    this.image.url = imgUrl;
+    this.image.object = imgObj;
+  },
     savePost() {
       const date = new Date();
       const day = date.getDate();

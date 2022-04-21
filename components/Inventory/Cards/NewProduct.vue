@@ -34,14 +34,20 @@
               class="absolute w-full h-32 opacity-0 z-60"
               @change="getThumbnail"
             />
-            <div v-if="!thumbnail.url" class="w-full relative px-3 flex justify-center items-center">
+            <div
+              v-if="!thumbnail.url"
+              class="w-full relative px-3 flex justify-center items-center"
+            >
               <div class="w-6 h-6 flex justify-center items-center mr-1">
                 <GlobalHIcon name="upload" class="text-textColor" />
               </div>
               <p class="text-textColor text-xs">Imagen Principal</p>
             </div>
-            <figure class="w-full h-32 rounded-lg flex justify-center items-center">
-              <img :src="thumbnail.url" alt="">
+            <figure
+              v-else
+              class="w-full h-32 rounded-lg flex justify-center items-center"
+            >
+              <img :src="thumbnail.url" alt="" />
             </figure>
           </div>
           <!-- EXTRA IMAGES -->
@@ -105,7 +111,7 @@
                   Nombre del producto
                 </label>
                 <input
-                  v-model="productName"
+                  v-model="name"
                   type="text"
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 />
@@ -120,7 +126,7 @@
                     Precio
                   </label>
                   <input
-                    v-model="productPrice"
+                    v-model="price"
                     type="Number"
                     class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                   />
@@ -131,7 +137,7 @@
                     Stock
                   </label>
                   <input
-                    v-model="productStock"
+                    v-model="stock"
                     type="Number"
                     class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                   />
@@ -144,7 +150,7 @@
                 SKU
               </label>
               <input
-                v-model="productCode"
+                v-model="sku"
                 type="text"
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               />
@@ -155,7 +161,7 @@
                 Descripción del producto
               </label>
               <input
-                v-model="productDescription"
+                v-model="description"
                 type="text"
                 class="w-full h-20 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               />
@@ -173,7 +179,7 @@
                 Banda
               </label>
               <select
-                v-model="productBand"
+                v-model="band"
                 name=""
                 id=""
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
@@ -321,24 +327,43 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    productName: "",
-    productPrice: 0,
-    productStock: 0,
-    productDescription: "",
+    name: "",
+    price: 0,
+    stock: 0,
+    description: "",
+    band: "",
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
     productOfferingTime: "",
-    productCode: "",
+    sku: "",
     thumbnail: {
       object: null,
-      url: null
-    }
+      url: null,
+    },
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("categories", ["getCategories"]),
+    isThumbnail() {
+      return this.thumbnail.url !== null && this.thumbnail.url !== "";
+    },
+    isName() {
+      return this.name !== null && this.name !== "";
+    },
+    isPrice() {
+      return this.price !== null && this.price !== "" && this.price >= 0;
+    },
+    isStock() {
+      return this.price !== null && this.price !== "" && this.price >= 0;
+    },
+    isSKU() {
+      return this.name !== null && this.name !== "";
+    },
+    isDescription() {
+      return this.description !== null && this.decription !== "";
+    },
   },
   mounted() {
     this.fetchBands();
@@ -361,6 +386,14 @@ export default {
       const imgUrl = URL.createObjectURL(file);
       this.thumbnail.url = imgUrl;
       this.thumbnail.object = imgObj;
+    },
+    uploadPr() {
+      const product = {
+        name: this.name,
+        thumbnail: this.thumbnail.object,
+        price: this.price,
+        stock: this.stock,
+      };
     },
   },
 };
