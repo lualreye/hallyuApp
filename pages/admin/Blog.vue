@@ -152,8 +152,15 @@ export default {
         : false;
     },
   },
+  mounted() {
+    if(!this.getPosts.length) {
+      this.fetchPosts()
+    } else {
+      return
+    }
+  },
   methods: {
-    ...mapActions("blog", ["uploadPost"]),
+    ...mapActions("blog", ["uploadPost", "fetchPosts"]),
     editPost() {
       if (this.isEditingPost) {
         this.isEditingPost = false;
