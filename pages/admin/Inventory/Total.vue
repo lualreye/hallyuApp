@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full max-w-5xl">
     <!-- LABELS -->
     <div
       class="w-full flex justify-center itesm-center divide-x divide-textColor"
