@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-5xl">
+  <div class="w-full max-w-5xl my-3">
     <!-- LABELS -->
     <div
       class="w-full flex justify-center itesm-center divide-x divide-textColor"
@@ -14,7 +14,7 @@
             class="w-10 h-10 flex justify-center items-center bg-lightPink rounded-lg"
           >
             <img
-              :src="image"
+              :src="thumbnail"
               :alt="name"
               class="flex justify-center items-center rounded-lg object-cover object-center"
             />
@@ -38,7 +38,7 @@
       <div
         class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
       >
-        $ {{ price }}
+        $ {{ getPrice }}
       </div>
       <div
         class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
@@ -57,9 +57,20 @@
         </p>
       </div>
       <div
-        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
       >
-        {{ offer }}
+        <p
+          v-if="offered"
+          class="p-2 flex justify-center items-center rounded-lg bg-primary"
+        >
+          {{ offer.name }}
+        </p>
+        <p
+          v-else
+          class="w-16 h-7 flex justify-center items-center rounded-lg bg-lightPink"
+        >
+          No tiene
+        </p>
       </div>
       <div
         class="w-1/3 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
@@ -97,8 +108,18 @@ export default {
     },
     offer: {
       type: Object,
-      required: true
-    }
+      required: false,
+    },
+    offered: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  computed: {
+    getPrice() {
+      const price = Number(Math.abs(this.price).toPrecision(15));
+      return Math.round(price) / 100 * Math.sign(this.price)
+    },
   },
 };
 </script>
