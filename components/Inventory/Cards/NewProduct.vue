@@ -231,7 +231,10 @@
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Talla
                 </label>
-                <div class="w-full flex justify-start items-center mb-1">
+                <div
+                  v-if="sizes.length"
+                  class="w-full flex justify-start items-center mb-1"
+                >
                   <span
                     v-for="size in sizes"
                     :key="size"
@@ -242,23 +245,18 @@
                     </p>
                     <button
                       class="w-4 h-4 flex justify-center bg-gray-300 itemscenter rounded-full"
+                      @click="deleteSize(size)"
                     >
-                      <GlobalHIcon name="close" @click="deleteSize(size)" />
+                      <GlobalHIcon name="close" />
                     </button>
                   </span>
                 </div>
-                <select
-                  v-model="sizes"
+                <input
+                  v-model="size"
+                  type="text"
+                  @keyup.enter="onSizeEnter"
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
-                >
-                  <option
-                    v-for="(size, index) in productSizes"
-                    :key="index"
-                    class="text-xs font-open text-textColor"
-                  >
-                    {{ size }}
-                  </option>
-                </select>
+                />
                 <!-- COLOR -->
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Color
@@ -376,6 +374,7 @@ export default {
     band: "",
     category: "",
     offer: "",
+    size: "",
     sizes: [],
     productSizes: ["s", "m", "l"],
     productOffers: ["Descuento", "Tiempo"],
@@ -498,6 +497,10 @@ export default {
         this.showProductModal(true);
       }
     },
+    onSizeEnter() {
+      this.sizes.push(this.size);
+      this.size = ""
+    },
     getThumbnail(e) {
       const file = e.target.files[0];
       console.log(file);
@@ -508,8 +511,8 @@ export default {
       console.log(this.thumbnail);
     },
     deleteSize(s) {
-      const index = this.sizes.findIndex(size => size === s)
-      console.log(index)
+      const index = this.sizes.findIndex((size) => size === s);
+      this.sizes.splice(index, 1)
     },
     uploadPr() {
       let offerType;
