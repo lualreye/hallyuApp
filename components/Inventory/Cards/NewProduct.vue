@@ -184,6 +184,9 @@
                 id=""
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               >
+                <option class="text-xs font-open text-textColor">
+                  Sin banda
+                </option>
                 <option
                   v-for="(band, index) in getBands"
                   :key="index"
@@ -202,7 +205,7 @@
                 Category
               </label>
               <select
-                v-model="productCategory"
+                v-model="category"
                 name=""
                 id=""
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
@@ -216,7 +219,10 @@
                 </option>
               </select>
               <!-- CLOTHS DETAILS -->
-              <div class="w-full flex flex-col justify-center items-center">
+              <div
+                v-if="fashionTaken"
+                class="w-full flex flex-col justify-center items-center"
+              >
                 <!-- SIZE -->
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Talla
@@ -263,11 +269,12 @@
                 Ofertas
               </label>
               <select
-                v-model="productBand"
-                name=""
-                id=""
+                v-model="offer"
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               >
+                <option class="text-xs font-open text-textColor">
+                  Sin Oferta
+                </option>
                 <option
                   v-for="(offer, index) in productOffers"
                   :key="index"
@@ -277,7 +284,10 @@
                 </option>
               </select>
               <!-- PRODUCT DISCOUNT -->
-              <div class="w-full flex flex-col justify-center items-center">
+              <div
+                v-if="discountTaken"
+                class="w-full flex flex-col justify-center items-center"
+              >
                 <!-- DISCOUNT -->
                 <div class="w-full">
                   <label class="w-full text-textColor font-open text-sm">
@@ -291,7 +301,10 @@
                 </div>
               </div>
               <!-- PRODUCT DISCOUNT BY TIME -->
-              <div class="w-full flex flex-col justify-center items-center">
+              <div
+                v-else-if="timeDiscountTaken"
+                class="w-full flex flex-col justify-center items-center"
+              >
                 <!-- DISCOUNT TIME -->
                 <div class="w-full">
                   <label class="w-full text-textColor font-open text-sm">
@@ -332,6 +345,8 @@ export default {
     stock: 0,
     description: "",
     band: "",
+    category: "",
+    offer: "",
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
@@ -364,6 +379,18 @@ export default {
     isDescription() {
       return this.description !== null && this.decription !== "";
     },
+    isCategory() {
+      return this.category !== null && this.category !== "";
+    },
+    fashionTaken() {
+      return this.category === "moda";
+    },
+    discountTaken() {
+      return this.offer === "Descuento";
+    },
+    timeDiscountTaken() {
+      return this.offer === "Tiempo";
+    },
   },
   mounted() {
     this.fetchBands();
@@ -393,6 +420,8 @@ export default {
         thumbnail: this.thumbnail.object,
         price: this.price,
         stock: this.stock,
+        description: this.description,
+        band: this.band,
       };
     },
   },
