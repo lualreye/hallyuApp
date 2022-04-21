@@ -30,15 +30,19 @@
           >
             <input
               type="file"
-              accept=".png"
+              accept=".png, .jpg, jpeg, webp"
               class="absolute w-full h-32 opacity-0 z-60"
+              @change="getThumbnail"
             />
-            <div class="w-full relative px-3 flex justify-center items-center">
+            <div v-if="!thumbnail.url" class="w-full relative px-3 flex justify-center items-center">
               <div class="w-6 h-6 flex justify-center items-center mr-1">
                 <GlobalHIcon name="upload" class="text-textColor" />
               </div>
               <p class="text-textColor text-xs">Imagen Principal</p>
             </div>
+            <figure class="w-full h-32 rounded-lg flex justify-center items-center">
+              <img :src="thumbnail.url" alt="">
+            </figure>
           </div>
           <!-- EXTRA IMAGES -->
           <div class="w-36 flex flex-col justify-center items-center mt-3">
@@ -326,6 +330,10 @@ export default {
     productDiscountTime: 0,
     productOfferingTime: "",
     productCode: "",
+    thumbnail: {
+      object: null,
+      url: null
+    }
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
@@ -346,6 +354,13 @@ export default {
       } else {
         this.showProductModal(true);
       }
+    },
+    getThumbnail(e) {
+      const file = e.target.files[0];
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.thumbnail.url = imgUrl;
+      this.thumbnail.object = imgObj;
     },
   },
 };
