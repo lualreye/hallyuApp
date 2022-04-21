@@ -167,7 +167,7 @@
               <input
                 v-model="description"
                 type="text"
-                class="w-full h-20 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               />
             </div>
           </div>
@@ -231,10 +231,24 @@
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Talla
                 </label>
+                <div class="w-full flex justify-start items-center mb-1">
+                  <span
+                    v-for="size in sizes"
+                    :key="size"
+                    class="bg-lightPink flex justify-center items-center rounded-lg text-textColor px-1"
+                  >
+                    <p class="text-textColor font-open mr-1">
+                      {{ size }}
+                    </p>
+                    <button
+                      class="w-4 h-4 flex justify-center bg-gray-300 itemscenter rounded-full"
+                    >
+                      <GlobalHIcon name="close" @click="deleteSize(size)" />
+                    </button>
+                  </span>
+                </div>
                 <select
-                  v-model="productSize"
-                  name=""
-                  id=""
+                  v-model="sizes"
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 >
                   <option
@@ -249,20 +263,11 @@
                 <label class="w-full text-textColor font-open text-sm mt-2">
                   Color
                 </label>
-                <select
-                  v-model="productColor"
-                  name=""
-                  id=""
+                <div
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 >
-                  <option
-                    v-for="(color, index) in productColors"
-                    :key="index"
-                    class="text-xs font-open text-textColor"
-                  >
-                    {{ color }}
-                  </option>
-                </select>
+                  <input type="color" />
+                </div>
               </div>
             </div>
             <!-- PRODUCT OFFERS -->
@@ -371,6 +376,8 @@ export default {
     band: "",
     category: "",
     offer: "",
+    sizes: [],
+    productSizes: ["s", "m", "l"],
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
@@ -409,10 +416,10 @@ export default {
       return this.price !== null && this.price !== "" && this.price > 0;
     },
     isStock() {
-      return this.price !== null && this.price !== "" && this.price >= 0;
+      return this.stock !== null && this.stock !== "" && this.stock >= 0;
     },
     isSKU() {
-      return this.name !== null && this.name !== "";
+      return this.sku !== null && this.sku !== "";
     },
     isDescription() {
       return this.description !== null && this.decription !== "";
@@ -455,6 +462,7 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
     closeProductModal() {
       if (this.getIsModalOpen) {
+        console.log("Estamos cerrando el modal");
         (this.name = ""),
           (this.price = 0),
           (this.stock = 0),
@@ -492,10 +500,16 @@ export default {
     },
     getThumbnail(e) {
       const file = e.target.files[0];
+      console.log(file);
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.thumbnail.url = imgUrl;
       this.thumbnail.object = imgObj;
+      console.log(this.thumbnail);
+    },
+    deleteSize(s) {
+      const index = this.sizes.findIndex(size => size === s)
+      console.log(index)
     },
     uploadPr() {
       let offerType;
@@ -521,7 +535,7 @@ export default {
         offered: this.isOffer,
         offer: offerType,
         clothes: {
-          size: this.size,
+          size: this.sizes,
           color: this.colors,
         },
         likes: 0,
