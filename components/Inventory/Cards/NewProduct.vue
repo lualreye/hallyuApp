@@ -47,7 +47,11 @@
               v-else
               class="w-full h-32 rounded-lg flex justify-center items-center"
             >
-              <img :src="thumbnail.url" alt="" />
+              <img
+                :src="thumbnail.url"
+                alt=""
+                class="w-full h-32 object-cover object-center rounded-lg"
+              />
             </figure>
           </div>
           <!-- EXTRA IMAGES -->
@@ -332,6 +336,26 @@
           </div>
         </div>
       </div>
+      <!-- BUTTONS -->
+      <div class="w-full flex justify-center md:justify-end items-center my-2">
+        <button
+          class="py-2 w-44 bg-lightPink flex justify-center items-center rounded-lg text-textColor mr-2"
+          @click="closeProductModal"
+        >
+          Cancelar
+        </button>
+        <button
+          class="py-2 w-44 flex justify-center items-center rounded-lg text-textColor"
+          :class="{
+            'bg-primary': isReadyToUpload,
+            'bg-gray-400': !isReadyToUpload,
+          }"
+          :disable="isReadyToUpload"
+          @click="uploadPr"
+        >
+          Guardar
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -356,6 +380,20 @@ export default {
       object: null,
       url: null,
     },
+    images: [
+      {
+        object: null,
+        url: null,
+      },
+      {
+        object: null,
+        url: null,
+      },
+      {
+        object: null,
+        url: null,
+      },
+    ],
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
@@ -368,7 +406,7 @@ export default {
       return this.name !== null && this.name !== "";
     },
     isPrice() {
-      return this.price !== null && this.price !== "" && this.price >= 0;
+      return this.price !== null && this.price !== "" && this.price > 0;
     },
     isStock() {
       return this.price !== null && this.price !== "" && this.price >= 0;
@@ -382,6 +420,9 @@ export default {
     isCategory() {
       return this.category !== null && this.category !== "";
     },
+    isOffer() {
+      return this.offer !== null && this.offer !== "";
+    },
     fashionTaken() {
       return this.category === "moda";
     },
@@ -390,6 +431,18 @@ export default {
     },
     timeDiscountTaken() {
       return this.offer === "Tiempo";
+    },
+    isReadyToUpload() {
+      return (
+        this.isName &&
+        this.isPrice &&
+        this.isStock &&
+        this.isSKU &&
+        this.isDescription &&
+        this.isCategory &&
+        this.isOffer &&
+        this.isThumbnail
+      );
     },
   },
   mounted() {
@@ -402,7 +455,37 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
     closeProductModal() {
       if (this.getIsModalOpen) {
-        this.showProductModal(false);
+        (this.name = ""),
+          (this.price = 0),
+          (this.stock = 0),
+          (this.description = ""),
+          (this.band = ""),
+          (this.category = ""),
+          (this.offer = ""),
+          (this.productOffers = ["Descuento", "Tiempo"]),
+          (this.productDiscount = 0),
+          (this.productDiscountTime = 0),
+          (this.productOfferingTime = ""),
+          (this.sku = ""),
+          (this.thumbnail = {
+            object: null,
+            url: null,
+          }),
+          (this.images = [
+            {
+              object: null,
+              url: null,
+            },
+            {
+              object: null,
+              url: null,
+            },
+            {
+              object: null,
+              url: null,
+            },
+          ]),
+          this.showProductModal(false);
       } else {
         this.showProductModal(true);
       }
@@ -415,14 +498,39 @@ export default {
       this.thumbnail.object = imgObj;
     },
     uploadPr() {
+      let offerType;
+      if (this.offer === "Descuento") {
+        offerType = productDiscount;
+      } else if (this.offer === "Tiempo") {
+        offerType = {
+          discount: this.productDiscountTime,
+          time: this.productOfferingTime,
+        };
+      } else {
+        offerType = {};
+      }
       const product = {
         name: this.name,
         thumbnail: this.thumbnail.object,
+        images: this.images,
         price: this.price,
         stock: this.stock,
         description: this.description,
         band: this.band,
+        category: this.category,
+        offered: this.isOffer,
+        offer: offerType,
+        clothes: {
+          size: this.size,
+          color: this.colors,
+        },
+        likes: 0,
+        published: false,
+        sales: 0,
+        sku: this.sku,
+        favorite: false,
       };
+      console.log(product);
     },
   },
 };
