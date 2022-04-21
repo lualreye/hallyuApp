@@ -13,7 +13,7 @@
           v-for="(post, index) in posts"
           :key="index"
           :image="post.image"
-          :postName="post.name"
+          :postName="post.title"
           :date="post.date"
           :id="post.id"
         />
