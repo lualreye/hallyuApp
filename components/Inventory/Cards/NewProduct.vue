@@ -61,7 +61,10 @@
                 Vistas del producto
               </p>
             </div>
-            <div class="w-full flex justify-between items-center">
+            <div
+              v-if="!fashionTaken"
+              class="w-full flex justify-between items-center"
+            >
               <div
                 class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
               >
@@ -236,8 +239,8 @@
                   class="w-full flex justify-start items-center mb-1"
                 >
                   <span
-                    v-for="size in sizes"
-                    :key="size"
+                    v-for="(size, index) in sizes"
+                    :key="index"
                     class="bg-lightPink flex justify-center items-center rounded-lg text-textColor px-1"
                   >
                     <p class="text-textColor font-open mr-1">
@@ -258,13 +261,46 @@
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 />
                 <!-- COLOR -->
-                <label class="w-full text-textColor font-open text-sm mt-2">
-                  Color
-                </label>
-                <div
-                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
-                >
-                  <input type="color" />
+                <div class="w-full flex flex-col justify-center items-cen">
+                  <div v-if="images.length" class="w-full flex justify-center">
+                    <figure v-for="(image, index) in imagesByColor" :key="index" class="border border-primary w-10 h-10 flex justify-center items-center">
+                      <img :src="image" alt="">
+                    </figure>
+                    <div class="w-4 h-4 flex justify-center border border-primary"></div>
+                  </div>
+                  <label class="w-full text-textColor font-open text-sm mt-2">
+                    Color
+                  </label>
+                  <div
+                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  >
+                    <input type="color" />
+                  </div>
+                  <!-- GET IMAGE BY COLOR -->
+                  <div
+                    class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                  >
+                    <input
+                      type="file"
+                      accept=".png"
+                      class="absolute w-full h-10 opacity-0 z-60"
+                    />
+                    <div class="w-6 h-6 flex justify-center items-center">
+                      <GlobalHIcon name="upload" class="text-textColor" />
+                    </div>
+                  </div>
+                  <div
+                    class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                  >
+                    <input
+                      type="file"
+                      accept=".png"
+                      class="absolute w-full h-10 opacity-0 z-60"
+                    />
+                    <div class="w-6 h-6 flex justify-center items-center">
+                      <GlobalHIcon name="upload" class="text-textColor" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -386,6 +422,7 @@ export default {
       object: null,
       url: null,
     },
+    imagesByColor: [],
     images: [
       {
         object: null,
@@ -499,7 +536,7 @@ export default {
     },
     onSizeEnter() {
       this.sizes.push(this.size);
-      this.size = ""
+      this.size = "";
     },
     getThumbnail(e) {
       const file = e.target.files[0];
@@ -512,7 +549,7 @@ export default {
     },
     deleteSize(s) {
       const index = this.sizes.findIndex((size) => size === s);
-      this.sizes.splice(index, 1)
+      this.sizes.splice(index, 1);
     },
     uploadPr() {
       let offerType;
