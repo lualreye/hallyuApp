@@ -264,7 +264,7 @@
                 <div class="w-full flex flex-col justify-center items-center">
                   <div
                     v-if="images.length"
-                    class="w-full flex justify-center mt-2"
+                    class="w-full flex justify-center flex-wrap mt-2"
                   >
                     <figure
                       v-for="(image, index) in imagesByColor"
@@ -560,7 +560,6 @@ export default {
     // TODO: params(*) boolean
     closeProductModal() {
       if (this.getIsModalOpen) {
-        console.log("Estamos cerrando el modal");
         this.showProductModal(false);
         this.resetVariables();
       } else {
@@ -575,6 +574,9 @@ export default {
 
     getThumbnail(e) {
       const file = e.target.files[0];
+      if(file === "" || file === null || file === undefined) {
+        return
+      }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.thumbnail.url = imgUrl;
@@ -583,6 +585,9 @@ export default {
 
     loadImageByColor(e) {
       const file = e.target.files[0];
+      if(file === "" || file === null || file === undefined) {
+        return
+      }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.imagesState = {
@@ -597,10 +602,8 @@ export default {
         ...this.imagesState,
         color: color,
       });
-      console.log(this.imagesByColor, this.imagesState);
       this.color = "";
       this.imagesState = {};
-      console.log(this.color, this.imagesState);
     },
 
     deleteSize(s) {
