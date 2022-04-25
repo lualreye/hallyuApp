@@ -263,10 +263,22 @@
                 <!-- COLOR -->
                 <div class="w-full flex flex-col justify-center items-cen">
                   <div v-if="images.length" class="w-full flex justify-center">
-                    <figure v-for="(image, index) in imagesByColor" :key="index" class="border border-primary w-10 h-10 flex justify-center items-center">
-                      <img :src="image" alt="">
+                    <figure
+                      v-for="(image, index) in imagesByColor"
+                      :key="index"
+                      class="border border-primary w-10 h-10 flex justify-center items-center"
+                    >
+                      <img
+                        :src="image.url"
+                        alt=""
+                        class="w-full h-10 object-cover object-center"
+                      />
+                      <div
+                        class="w-4 h-4 rouned-full p-1 justify-center items-center mt-2"
+                      >
+                        <div :style="{ background: image.color }" class="w-full rounded-full" />
+                      </div>
                     </figure>
-                    <div class="w-4 h-4 flex justify-center border border-primary"></div>
                   </div>
                   <label class="w-full text-textColor font-open text-sm mt-2">
                     Color
@@ -278,19 +290,7 @@
                   </div>
                   <!-- GET IMAGE BY COLOR -->
                   <div
-                    class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
-                  >
-                    <input
-                      type="file"
-                      accept=".png"
-                      class="absolute w-full h-10 opacity-0 z-60"
-                    />
-                    <div class="w-6 h-6 flex justify-center items-center">
-                      <GlobalHIcon name="upload" class="text-textColor" />
-                    </div>
-                  </div>
-                  <div
-                    class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                    class="mt-2 relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
                   >
                     <input
                       type="file"
