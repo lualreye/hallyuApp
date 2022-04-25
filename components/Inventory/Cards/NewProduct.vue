@@ -62,6 +62,24 @@
               </p>
             </div>
             <div
+              v-if="images.length"
+              class="w-full flex justify-center items-center flex-wrap"
+            >
+              <figure
+                v-for="(image, index) in images"
+                :key="index"
+                class="border border-primary rounded-lg w-10 h-10 flex justify-center items-center mr-2 relative"
+              >
+                <img :src="image.url" />
+                <button
+                  class="w-5 h-5 flex justify-center items-center absolute -top-1 -right-1"
+                  @click="deleteExtraImages(index)"
+                >
+                  <GlobalHIcon name="close" class="text-pink-700" />
+                </button>
+              </figure>
+            </div>
+            <div
               v-if="!fashionTaken"
               class="w-full flex justify-between items-center"
             >
@@ -72,35 +90,23 @@
                   type="file"
                   accept=".png"
                   class="absolute w-full h-10 opacity-0 z-60"
+                  @change="loadExtraImage"
                 />
-                <div class="w-6 h-6 flex justify-center items-center">
+                <div class="w-5 h-5 flex justify-center items-center">
                   <GlobalHIcon name="upload" class="text-textColor" />
                 </div>
               </div>
-              <div
-                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+              <button
+                class="rounded-lg text-textColor font-open py-1 px-2"
+                :class="{
+                  'bg-primary': isReadyExtraImage,
+                  'bg-gray-400': !isReadyExtraImage,
+                }"
+                :disable="isReadyExtraImage"
+                @click="saveExtraImage"
               >
-                <input
-                  type="file"
-                  accept=".png"
-                  class="absolute w-full h-10 opacity-0 z-60"
-                />
-                <div class="w-6 h-6 flex justify-center items-center">
-                  <GlobalHIcon name="upload" class="text-textColor" />
-                </div>
-              </div>
-              <div
-                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
-              >
-                <input
-                  type="file"
-                  accept=".png"
-                  class="absolute w-full h-10 opacity-0 z-60"
-                />
-                <div class="w-6 h-6 flex justify-center items-center">
-                  <GlobalHIcon name="upload" class="text-textColor" />
-                </div>
-              </div>
+                Cargar
+              </button>
             </div>
           </div>
         </div>
@@ -287,7 +293,7 @@
                           class="w-5 h-5 flex justify-center items-center absolute top-0 right-0 bg-lightPik"
                           @click="deleteImageByColor(index)"
                         >
-                          <GlobalHIcon name="close" class="text-textColor" />
+                          <GlobalHIcon name="close" class="text-pink-700" />
                         </button>
                       </div>
                     </figure>
@@ -460,20 +466,8 @@ export default {
       url: null,
     },
     imagesByColor: [],
-    images: [
-      {
-        object: null,
-        url: null,
-      },
-      {
-        object: null,
-        url: null,
-      },
-      {
-        object: null,
-        url: null,
-      },
-    ],
+    images: [],
+    extraImage: {},
     imagesState: {},
   }),
   computed: {
@@ -482,6 +476,9 @@ export default {
     ...mapGetters("categories", ["getCategories"]),
     isThumbnail() {
       return this.thumbnail.url !== null && this.thumbnail.url !== "";
+    },
+    isExtraImage() {
+      return this.extraImage !== {} ? true : false;
     },
     isName() {
       return this.name !== null && this.name !== "";
@@ -589,6 +586,29 @@ export default {
       this.thumbnail.object = imgObj;
     },
 
+    loadExtraImage(e) {
+      const file = e.target.files[0];
+      if (file === "" || file === null || file === undefined) {
+        return;
+      }
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.extraImage = {
+        object: imgObj,
+        url: imgUrl,
+      };
+    },
+
+    saveExtraImage() {
+      this.images.push(this.extraImage);
+      this.extraImage = {};
+      console.log(this.images);
+    },
+
+    deleteExtraImages(id) {
+      this.images.splice(id, 1);
+    },
+
     loadImageByColor(e) {
       const file = e.target.files[0];
       if (file === "" || file === null || file === undefined) {
@@ -613,7 +633,7 @@ export default {
     },
 
     deleteImageByColor(id) {
-      this.imagesByColor.splice(id, 1)
+      this.imagesByColor.splice(id, 1);
     },
 
     deleteSize(s) {
