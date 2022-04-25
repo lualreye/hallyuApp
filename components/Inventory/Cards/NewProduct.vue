@@ -269,7 +269,7 @@
                     <figure
                       v-for="(image, index) in imagesByColor"
                       :key="index"
-                      class="rounded-lg mr-2 flex justify-center items-center p-1 mt-2"
+                      class="rounded-lg mr-2 flex justify-center items-center p-1 mt-2 relative"
                     >
                       <img
                         :src="image.url"
@@ -283,6 +283,12 @@
                           :style="{ backgroundColor: image.color }"
                           class="w-3 h-3 rounded-full"
                         />
+                        <button
+                          class="w-5 h-5 flex justify-center items-center absolute top-0 right-0 bg-lightPik"
+                          @click="deleteImageByColor(index)"
+                        >
+                          <GlobalHIcon name="close" class="text-textColor" />
+                        </button>
                       </div>
                     </figure>
                   </div>
@@ -574,8 +580,8 @@ export default {
 
     getThumbnail(e) {
       const file = e.target.files[0];
-      if(file === "" || file === null || file === undefined) {
-        return
+      if (file === "" || file === null || file === undefined) {
+        return;
       }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
@@ -585,8 +591,8 @@ export default {
 
     loadImageByColor(e) {
       const file = e.target.files[0];
-      if(file === "" || file === null || file === undefined) {
-        return
+      if (file === "" || file === null || file === undefined) {
+        return;
       }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
@@ -604,6 +610,10 @@ export default {
       });
       this.color = "";
       this.imagesState = {};
+    },
+
+    deleteImageByColor(id) {
+      this.imagesByColor.splice(id, 1)
     },
 
     deleteSize(s) {
