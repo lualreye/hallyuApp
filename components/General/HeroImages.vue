@@ -94,7 +94,7 @@ export default {
       url: null,
       object: null,
       imageName: "",
-      id: "123"
+      id: "123",
     },
   }),
   computed: {
@@ -118,6 +118,9 @@ export default {
     },
     onImageChange(e) {
       const file = e.target.files[0];
+      if (file === "" || file === null || file === undefined) {
+        return;
+      }
       const imageObject = file;
       const imageName = imageObject.name.split(".").shift();
       this.heroImage.object = imageObject;
@@ -131,7 +134,7 @@ export default {
         url: null,
         object: null,
         imageName: "",
-        id: "123"
+        id: "123",
       };
     },
     fetchHeroImages() {

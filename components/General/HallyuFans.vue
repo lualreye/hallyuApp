@@ -22,7 +22,10 @@
         </div>
         <p class="text-textColor font-open">Añadir fan</p>
       </button>
-      <div v-else class="w-full max-w-sm flex flex-wrap justify-start items-center pl-3">
+      <div
+        v-else
+        class="w-full max-w-sm flex flex-wrap justify-start items-center pl-3"
+      >
         <!-- UPLOAD FAN IMAGE -->
         <div class="w-full sm:w-1/2 flex justify-center items-center">
           <div class="w-32 flex justify-center items-center flex-col">
@@ -63,11 +66,16 @@
           <label class="w-full text-textColor font-open text-xs">
             Nombre
           </label>
-          <input
-            v-model="name"
-            type="text"
-            class="w-full p-2 text-textColor border border-primary rounded-lg outline-none"
-          />
+          <div
+            class="w-full p-2 text-textColor border border-primary rounded-lg flex justify-center items-center"
+          >
+            <p class="text-textColor mr-2">@</p>
+            <input
+              v-model="name"
+              type="text"
+              class="w-3/4 border-none outline-none"
+            />
+          </div>
           <div class="w-full flex justify-between items-center mt-3">
             <div
               class="py-2 w-20 rounded-lg flex justify-center items-center bg-lightPink"
@@ -127,7 +135,8 @@ export default {
     },
     isReadyToUpload() {
       return this.image.object !== null &&
-        (this.name !== null && this.name !== "")
+        this.name !== null &&
+        this.name !== ""
         ? true
         : false;
     },
@@ -139,7 +148,7 @@ export default {
         this.isOpen = false;
       } else {
         this.isOpen = true;
-        this.fetchFn()
+        this.fetchFn();
       }
     },
     edit() {
@@ -156,6 +165,9 @@ export default {
     },
     uploadFanImage(e) {
       const file = e.target.files[0];
+      if (file === "" || file === null || file === undefined) {
+        return;
+      }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.image.url = imgUrl;
@@ -171,15 +183,15 @@ export default {
         object: null,
         url: null,
       };
-      this.uploadFan(fan)
+      this.uploadFan(fan);
     },
     fetchFn() {
-      if(!this.getFans.length) {
-        this.fetchFans()
+      if (!this.getFans.length) {
+        this.fetchFans();
       } else {
-        return
+        return;
       }
-    }
+    },
   },
 };
 </script>

@@ -156,6 +156,9 @@ export default {
     },
     uploadBandImage(e) {
       const file = e.target.files[0];
+      if(file === "" || file === null || file === undefined) {
+        return
+      }
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.image.url = imgUrl;
