@@ -261,22 +261,28 @@
                   class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                 />
                 <!-- COLOR -->
-                <div class="w-full flex flex-col justify-center items-cen">
-                  <div v-if="images.length" class="w-full flex justify-center">
+                <div class="w-full flex flex-col justify-center items-center">
+                  <div
+                    v-if="images.length"
+                    class="w-full flex justify-center mt-2"
+                  >
                     <figure
                       v-for="(image, index) in imagesByColor"
                       :key="index"
-                      class="border border-primary w-10 h-10 flex justify-center items-center"
+                      class="rounded-lg mr-2 flex justify-center items-center p-1 mt-2"
                     >
                       <img
                         :src="image.url"
                         alt=""
-                        class="w-full h-10 object-cover object-center"
+                        class="w-10 h-10 mr-1 border border-primary object-cover rounded-lg"
                       />
                       <div
-                        class="w-4 h-4 rouned-full p-1 justify-center items-center mt-2"
+                        class="w-6 h-6 p-1 flex justify-center items-center border border-primary rounded-full"
                       >
-                        <div :style="{ background: image.color }" class="w-full rounded-full" />
+                        <div
+                          :style="{ backgroundColor: image.color }"
+                          class="w-3 h-3 rounded-full"
+                        />
                       </div>
                     </figure>
                   </div>
@@ -286,20 +292,40 @@
                   <div
                     class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
                   >
-                    <input type="color" />
+                    <input v-model="color" type="color" />
                   </div>
                   <!-- GET IMAGE BY COLOR -->
-                  <div
-                    class="mt-2 relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
-                  >
-                    <input
-                      type="file"
-                      accept=".png"
-                      class="absolute w-full h-10 opacity-0 z-60"
-                    />
-                    <div class="w-6 h-6 flex justify-center items-center">
-                      <GlobalHIcon name="upload" class="text-textColor" />
+                  <div class="w-full mt-3 flex justify-between items-center">
+                    <div
+                      class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                    >
+                      <input
+                        type="file"
+                        accept=".png, .jpg, .webp"
+                        class="absolute w-full h-10 opacity-0 z-60"
+                        @change="loadImageByColor"
+                      />
+                      <div class="w-6 h-6 flex justify-center items-center">
+                        <GlobalHIcon name="upload" class="text-textColor" />
+                      </div>
                     </div>
+                    <figure
+                      v-if="imagesState !== {}"
+                      class="w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                    >
+                      <img
+                        v-if="imagesState !== {}"
+                        :src="imagesState.url"
+                        class="object-center object-cover w-full h-10 rounded-lg border-none"
+                      />
+                    </figure>
+                    <div v-else />
+                    <button
+                      class="bg-primary flex justify-center items-center shadow-md py-1 px-2 rounded-lg text-textColor"
+                      @click="saveImageByColor"
+                    >
+                      Cargar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -412,6 +438,7 @@ export default {
     offer: "",
     size: "",
     sizes: [],
+    color: "",
     productSizes: ["s", "m", "l"],
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
@@ -437,6 +464,7 @@ export default {
         url: null,
       },
     ],
+    imagesState: {},
   }),
   computed: {
     ...mapGetters("product", ["getIsModalOpen"]),
@@ -496,57 +524,79 @@ export default {
     ...mapActions("product", ["showProductModal"]),
     ...mapActions("categories", ["fetchCategories"]),
     ...mapActions("bands", ["fetchBands"]),
+
+    resetVariables() {
+      (this.name = ""),
+        (this.price = 0),
+        (this.stock = 0),
+        (this.description = ""),
+        (this.band = ""),
+        (this.category = ""),
+        (this.offer = ""),
+        (this.color = ""),
+        (this.size = ""),
+        (this.sizes = []),
+        (this.productSizes = ["s", "m", "l"]),
+        (this.productOffers = ["Descuento", "Tiempo"]),
+        (this.productDiscount = 0),
+        (this.productDiscountTime = 0),
+        (this.productOfferingTime = ""),
+        (this.sku = ""),
+        (this.thumbnail = {
+          object: null,
+          url: null,
+        }),
+        (this.imagesByColor = []),
+        (this.images = []),
+        (this.imagesState = {});
+    },
+
+    // TODO: params(*) boolean
     closeProductModal() {
       if (this.getIsModalOpen) {
         console.log("Estamos cerrando el modal");
-        (this.name = ""),
-          (this.price = 0),
-          (this.stock = 0),
-          (this.description = ""),
-          (this.band = ""),
-          (this.category = ""),
-          (this.offer = ""),
-          (this.productOffers = ["Descuento", "Tiempo"]),
-          (this.productDiscount = 0),
-          (this.productDiscountTime = 0),
-          (this.productOfferingTime = ""),
-          (this.sku = ""),
-          (this.thumbnail = {
-            object: null,
-            url: null,
-          }),
-          (this.images = [
-            {
-              object: null,
-              url: null,
-            },
-            {
-              object: null,
-              url: null,
-            },
-            {
-              object: null,
-              url: null,
-            },
-          ]),
-          this.showProductModal(false);
+        this.showProductModal(false);
+        this.resetVariables();
       } else {
         this.showProductModal(true);
       }
     },
+
     onSizeEnter() {
       this.sizes.push(this.size);
       this.size = "";
     },
+
     getThumbnail(e) {
       const file = e.target.files[0];
-      console.log(file);
       const imgObj = file;
       const imgUrl = URL.createObjectURL(file);
       this.thumbnail.url = imgUrl;
       this.thumbnail.object = imgObj;
-      console.log(this.thumbnail);
     },
+
+    loadImageByColor(e) {
+      const file = e.target.files[0];
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.imagesState = {
+        object: imgObj,
+        url: imgUrl,
+      };
+    },
+
+    saveImageByColor() {
+      const color = this.color;
+      this.imagesByColor.push({
+        ...this.imagesState,
+        color: color,
+      });
+      console.log(this.imagesByColor, this.imagesState);
+      this.color = "";
+      this.imagesState = {};
+      console.log(this.color, this.imagesState);
+    },
+
     deleteSize(s) {
       const index = this.sizes.findIndex((size) => size === s);
       this.sizes.splice(index, 1);
