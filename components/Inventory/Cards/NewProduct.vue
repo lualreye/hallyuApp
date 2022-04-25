@@ -321,7 +321,12 @@
                     </figure>
                     <div v-else />
                     <button
-                      class="bg-primary flex justify-center items-center shadow-md py-1 px-2 rounded-lg text-textColor"
+                      class="flex justify-center items-center shadow-md py-1 px-2 rounded-lg text-textColor"
+                      :class="{
+                        'bg-primary': isReadyImageByColor,
+                        'bg-gray-400': !isReadyImageByColor,
+                      }"
+                      :disable="isReadyImageByColor"
                       @click="saveImageByColor"
                     >
                       Cargar
@@ -439,7 +444,6 @@ export default {
     size: "",
     sizes: [],
     color: "",
-    productSizes: ["s", "m", "l"],
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
@@ -491,6 +495,9 @@ export default {
     isCategory() {
       return this.category !== null && this.category !== "";
     },
+    isReadyImageByColor() {
+      return this.color !== "" && this.imagesState !== {} ? true : false;
+    },
     isOffer() {
       return this.offer !== null && this.offer !== "";
     },
@@ -536,7 +543,6 @@ export default {
         (this.color = ""),
         (this.size = ""),
         (this.sizes = []),
-        (this.productSizes = ["s", "m", "l"]),
         (this.productOffers = ["Descuento", "Tiempo"]),
         (this.productDiscount = 0),
         (this.productDiscountTime = 0),
