@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mx-auto">
     <the-hero :image="heroImage" class="max-w-screen-2xl" />
-    <the-line-decoration />
+    <the-line-decoration class="mt-4" />
     <the-limited-products
       :urgentProducts="urgentProducts"
       class="max-w-screen-2xl"

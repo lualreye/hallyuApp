@@ -1,20 +1,20 @@
 <template>
   <div
-    class="w-full py-2 flex justify-center items-center"
+    class="w-full py-1 flex justify-center items-center"
     :style="{ backgroundColor: bgColor }"
   >
     <div class="w-full max-w-xs flex justify-center items-center">
       <p
-        class="text-background font-open text-xs"
+        class="text-background font-open text-xs mr-3"
         :style="{ color: letterColor }"
       >
-        {{ spanishTest }}
+        {{ spanishText }}
       </p>
       <p
         class="text-background font-open text-xs"
         :style="{ color: letterColor }"
       >
-        {{ koreanTest }}
+        {{ koreanText }}
       </p>
     </div>
   </div>
