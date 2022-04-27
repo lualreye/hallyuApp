@@ -1,31 +1,31 @@
 <template>
   <div class="w-full mx-auto">
-    <the-hero :image="heroImage" class="max-w-screen-2xl" />
+    <the-hero :image="heroImage" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration class="mt-4" />
     <the-limited-products
       :urgentProducts="urgentProducts"
-      class="max-w-screen-2xl"
+      class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration />
-    <the-favourites :comments="comments" class="max-w-screen-2xl" />
+    <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration />
-    <the-offers :offers="offers" class="max-w-screen-2xl" />
+    <the-offers :offers="offers" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration />
     <the-new-products
       :newProductsArray="newProducts"
-      class="max-w-screen-2xl"
+      class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration />
-    <the-categories :categories="categories" class="max-w-screen-2xl" />
-    <the-cta class="max-w-screen-2xl" />
-    <the-blog :posts="posts" class="max-w-screen-2xl" />
+    <the-categories :categories="categories" class="max-w-screen-2xl mx-auto" />
+    <the-cta class="max-w-screen-2xl mx-auto" />
+    <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration />
     <the-community
       :instagramProfiles="instagramProfiles"
-      class="max-w-screen-2xl"
+      class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration />
-    <the-bands :bands="bands" class="max-w-screen-2xl" />
+    <the-bands :bands="bands" class="max-w-screen-2xl mx-auto" />
   </div>
 </template>
 
