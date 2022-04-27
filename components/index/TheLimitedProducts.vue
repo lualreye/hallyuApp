@@ -6,14 +6,14 @@
         <first-type />
       </div>
       <h2 class="text-xl sm:text-4xl font-junegull text-textColor">
-        Hallyu on Clock
+        Ofertas Flash
       </h2>
       <div class="parenthesis-two w-11 h-11 relative">
         <first-type />
       </div>
     </div>
     <!-- RENDERIZADO DE TARJETAS DE PRODUCTOS LIMITADOS -->
-    <div class="flex justify-start mt-8 py-12 pl-6 items-center overflow-x-scroll">
+    <div class="flex justify-start mt-8 py-12 pl-6 items-center overflow-x-scroll product-container">
       <div
         v-for="(product, i) in urgentProducts"
         :key="i"
@@ -55,5 +55,13 @@ export default {
 }
 .parenthesis-two {
   transform: rotate(200.95deg);
+}
+
+.product-container {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.product-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 </style>

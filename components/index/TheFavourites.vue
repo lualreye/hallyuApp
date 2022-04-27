@@ -46,7 +46,7 @@
 
     <!-- RENDERIZADO DE TARJETAS DE LOS COMENTARIOS DE LOS USUARIOS -->
     <div
-      class="flex justify-start mt-4 py-12 pl-1 sm:pl-6 items-center overflow-x-scroll"
+      class="flex justify-start mt-4 py-12 pl-1 sm:pl-6 items-center overflow-x-scroll favourites-container"
     >
       <div
         v-for="(userComment, i) in comments"
@@ -88,5 +88,12 @@ export default {
 <style scoped>
 .parenthesis-two {
   transform: rotate(180deg);
+}
+.favourites-container {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.favourites-container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 </style>
