@@ -1,30 +1,48 @@
 <template>
-  <div class="w-full h-7 flex justify-center items-center" :style="{backgroundColor: color}">
-    <div class="w-full max-w-md fkex justify-center items-center">
-      <p class="text-background font-open">
+  <div
+    class="w-full py-2 flex justify-center items-center"
+    :style="{ backgroundColor: bgColor }"
+  >
+    <div class="w-full max-w-xs flex justify-center items-center">
+      <p
+        class="text-background font-open text-xs"
+        :style="{ color: letterColor }"
+      >
         {{ spanishTest }}
       </p>
-      <p class="text-background font-open">
+      <p
+        class="text-background font-open text-xs"
+        :style="{ color: letterColor }"
+      >
         {{ koreanTest }}
       </p>
     </div>
   </div>
 </template>
 
-
 <script>
 export default {
   props: {
     spanishText: {
-      type:String,
+      type: String,
       required: true,
-      default: Hallyu
+      default: Hallyu,
     },
     koreanText: {
-      type:String,
+      type: String,
       required: true,
-      default: Coreano
+      default: Coreano,
     },
-  }
-}
+    bgColor: {
+      type: String,
+      required: true,
+      default: "#C2847A",
+    },
+    letterColor: {
+      type: String,
+      required: true,
+      default: "#7F2CCB",
+    },
+  },
+};
 </script>
