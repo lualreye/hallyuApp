@@ -1,15 +1,31 @@
 <template>
-  <div class="w-full max-w-screen-2xl mx-auto">
-    <the-hero :image="heroImage" />
-    <the-limited-products :urgentProducts="urgentProducts" />
-    <the-favourites :comments="comments" />
-    <the-offers :offers="offers" />
-    <the-new-products :newProductsArray="newProducts" />
-    <the-categories :categories="categories" />
-    <the-cta />
-    <the-blog :posts="posts" />
-    <the-community :instagramProfiles="instagramProfiles" />
-    <the-bands :bands="bands" />
+  <div class="w-full mx-auto">
+    <the-hero :image="heroImage" class="max-w-screen-2xl" />
+    <the-line-decoration />
+    <the-limited-products
+      :urgentProducts="urgentProducts"
+      class="max-w-screen-2xl"
+    />
+    <the-line-decoration />
+    <the-favourites :comments="comments" class="max-w-screen-2xl" />
+    <the-line-decoration />
+    <the-offers :offers="offers" class="max-w-screen-2xl" />
+    <the-line-decoration />
+    <the-new-products
+      :newProductsArray="newProducts"
+      class="max-w-screen-2xl"
+    />
+    <the-line-decoration />
+    <the-categories :categories="categories" class="max-w-screen-2xl" />
+    <the-cta class="max-w-screen-2xl" />
+    <the-blog :posts="posts" class="max-w-screen-2xl" />
+    <the-line-decoration />
+    <the-community
+      :instagramProfiles="instagramProfiles"
+      class="max-w-screen-2xl"
+    />
+    <the-line-decoration />
+    <the-bands :bands="bands" class="max-w-screen-2xl" />
   </div>
 </template>
 
@@ -22,8 +38,9 @@ import TheNewProducts from "~/components/index/TheNewProducts";
 import TheCategories from "~/components/index/TheCategories.vue";
 import TheCta from "~/components/index/TheCta.vue";
 import TheBlog from "../components/index/TheBlog.vue";
-import TheCommunity from '../components/index/TheCommunity.vue';
-import TheBands from "~/components/index/TheBands.vue"
+import TheCommunity from "../components/index/TheCommunity.vue";
+import TheBands from "~/components/index/TheBands.vue";
+import TheLineDecoration from "../components/index/TheLineDecoration.vue";
 export default {
   components: {
     TheHero,
@@ -35,7 +52,8 @@ export default {
     TheCta,
     TheBlog,
     TheCommunity,
-    TheBands
+    TheBands,
+    TheLineDecoration,
   },
   data: () => ({
     heroImage: require("~/static/images/idols/han.jpg"),
@@ -220,48 +238,48 @@ export default {
     ],
     instagramProfiles: [
       {
-        instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: 'luis'
+        instagramUserImage: require("~/static/images/idols/han.jpg"),
+        instagramUserName: "luis",
       },
       {
-        instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: 'luis'
+        instagramUserImage: require("~/static/images/idols/han.jpg"),
+        instagramUserName: "luis",
       },
       {
-        instagramUserImage: require('~/static/images/bands/BTS.svg'),
-        instagramUserName: 'luis'
+        instagramUserImage: require("~/static/images/bands/BTS.svg"),
+        instagramUserName: "luis",
       },
       {
-        instagramUserImage: require('~/static/images/idols/han.jpg'),
-        instagramUserName: 'luis'
+        instagramUserImage: require("~/static/images/idols/han.jpg"),
+        instagramUserName: "luis",
       },
     ],
     bands: [
       {
-        bandImage: require('~/static/images/bands/BTS.svg'),
-        bandName: 'BTS'
+        bandImage: require("~/static/images/bands/BTS.svg"),
+        bandName: "BTS",
       },
       {
-        bandImage: require('~/static/images/bands/BP.svg'),
-        bandName: 'BLACKPINK'
+        bandImage: require("~/static/images/bands/BP.svg"),
+        bandName: "BLACKPINK",
       },
       {
-        bandImage: require('~/static/images/bands/BTS.svg'),
-        bandName: 'BTS'
+        bandImage: require("~/static/images/bands/BTS.svg"),
+        bandName: "BTS",
       },
       {
-        bandImage: require('~/static/images/bands/BP.svg'),
-        bandName: 'BLACKPINK'
+        bandImage: require("~/static/images/bands/BP.svg"),
+        bandName: "BLACKPINK",
       },
       {
-        bandImage: require('~/static/images/bands/BTS.svg'),
-        bandName: 'BTS'
+        bandImage: require("~/static/images/bands/BTS.svg"),
+        bandName: "BTS",
       },
       {
-        bandImage: require('~/static/images/bands/BP.svg'),
-        bandName: 'BLACKPINK'
+        bandImage: require("~/static/images/bands/BP.svg"),
+        bandName: "BLACKPINK",
       },
-    ]
+    ],
   }),
 };
 </script>
