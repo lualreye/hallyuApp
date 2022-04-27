@@ -50,23 +50,21 @@
     </div>
     <!-- RIGHT CONTAINER, AQUI OBTENEMOS LA IMAGEN DE LA BASE DE DATOS -->
     <div class="w-full lg:w-1/2 mt-4 lg:mt-0">
-      <div class="w-full relative">
+      <figure
+        class="w-full flex justify-center items-center lg:w-3/4 mx-auto rounded-b-lg relative max-w-xs"
+      >
         <div
-          class="w-28 md:w-44 xl:w-48 py-4 md:py-6 xl:py-8 absolute top-4 z-20 left-0 rounded-full bg-lightPink flex justify-center items-center"
+          class="py-3 px-4 z-20 rounded-full bg-lightPink flex justify-center items-center absolute -left-3 top-3"
         >
           <p class="text-xl text-primary font-bold">Hola :)</p>
         </div>
-        <figure
-          class="w-full flex justify-center items-center lg:w-3/4 mx-auto rounded-b-lg relative"
-        >
-          <img
-            :src="image"
-            alt="hero-image"
-            class="w-full rounded-t-full rounded-b-lg relative z-10"
-          />
-          <div class="imageBg" />
-        </figure>
-      </div>
+        <img
+          :src="image"
+          alt="hero-image"
+          class="w-full rounded-t-full rounded-b-lg relative z-10"
+        />
+        <div class="imageBg" />
+      </figure>
     </div>
   </div>
 </template>
@@ -91,7 +89,7 @@ export default {
   position: absolute;
   top: 2.5%;
   left: 2.5%;
-  background: #FFE0E8;
+  background: #ffe0e8;
   border-radius: 100% 100% 8px 8px;
 }
 </style>
