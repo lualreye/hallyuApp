@@ -26,12 +26,12 @@ export default {
     spanishText: {
       type: String,
       required: true,
-      default: Hallyu,
+      default: "Hallyu",
     },
     koreanText: {
       type: String,
       required: true,
-      default: Coreano,
+      default: "Coreano",
     },
     bgColor: {
       type: String,
