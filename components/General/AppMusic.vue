@@ -25,7 +25,6 @@
             <div class="w-full flex justify-start items-center">
               <button
                 class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
-                @click="playSng"
               >
                 <GlobalHIcon :name="getMusicIcon" class="text-textColor" />
               </button>
