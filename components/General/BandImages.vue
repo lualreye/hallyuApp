@@ -49,7 +49,7 @@
         v-if="getBandImages.length"
         class="w-full flex flex-col justify-start items-center mt-2"
       >
-        <GeneralCardsHeroImage
+        <GeneralCardsBandImage
           v-for="(bandImage, index) in getBandImages"
           :key="index"
           :image="bandImage.image"
@@ -88,9 +88,9 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     isOpen: false,
-    heroImages: [],
+    bandImages: [],
     isImage: false,
-    heroImage: {
+    bandImage: {
       url: null,
       object: null,
       imageName: "",
@@ -112,7 +112,7 @@ export default {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
-        this.fetchBandImages();
+        this.fetchBnImages();
         this.isOpen = true;
       }
     },
@@ -137,7 +137,7 @@ export default {
         id: "123",
       };
     },
-    fetchBandImages() {
+    fetchBnImages() {
       if (!this.getBandImages.length) {
         this.fetchBandImages();
       } else {

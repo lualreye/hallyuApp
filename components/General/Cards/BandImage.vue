@@ -41,7 +41,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("bandImages", ["deleteBandImage"]),
+    ...mapActions("bandImage", ["deleteBandImage"]),
     deleteBn() {
       this.deleteBandImage(this.id);
     },

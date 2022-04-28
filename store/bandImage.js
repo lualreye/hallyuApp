@@ -71,7 +71,7 @@ const actions = {
         };
         images.push(bandImage);
       });
-      commit("SET_IMAGES", images);
+      commit("SET_BAND_IMAGES", images);
     } catch (err) {
       console.error("CANNOT_GET_BAND_IMAGES", err);
     }
