@@ -18,16 +18,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="hero.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="hero.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="hero.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -35,7 +35,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="hero.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -48,16 +48,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="flash.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="flash.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="flash.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -65,7 +65,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="flash.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -78,16 +78,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="favourites.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="favourites.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="favourites.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -95,7 +95,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="favourites.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -108,16 +108,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="simpleOffer.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="simpleOffer.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="simpleOffer.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -125,7 +125,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="simpleOffer.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -168,16 +168,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="blog.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="blog.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="blog.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -185,7 +185,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="blog.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -198,16 +198,16 @@
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
+            <input v-model="community.bgColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
+            <input v-model="community.textColor" type="color" />
           </div>
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en español</p>
             <input
-              v-model="spanishText"
+              v-model="community.spanishText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -215,7 +215,7 @@
           <div class="w-full flex justify-between items-start mt-1">
             <p class="text-textColor font-open text-sm">Frase en koreano</p>
             <input
-              v-model="koreanText"
+              v-model="community.koreanText"
               type="text"
               class="border border-primary rounded-lg py-1 px-2"
             />
@@ -230,6 +230,48 @@
 export default {
   data: () => ({
     isOpen: false,
+    hero: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    flash: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    favourites: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    offer: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    simpleOffer: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    blog: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
+    community: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: ""
+    },
   }),
   computed: {
     getIcon() {
