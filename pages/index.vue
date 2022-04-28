@@ -17,7 +17,7 @@
     />
     <the-line-decoration />
     <the-categories :categories="categories" class="max-w-screen-2xl mx-auto" />
-    <the-cta class="max-w-screen-2xl mx-auto" />
+    <the-cta class="mx-auto" />
     <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration />
     <the-community

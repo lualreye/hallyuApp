@@ -15,7 +15,7 @@
         "
         :style="{ backgroundImage: 'url(' + bgImage + ')' }"
       >
-        <div class="relative w-full mx-auto py-20">
+        <div class="relative w-full max-w-7xl mx-auto py-20">
           <div
             class="
               w-40
