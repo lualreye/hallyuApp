@@ -6,6 +6,7 @@
     <GeneralCategories />
     <!-- <GeneralFavourites /> -->
     <GeneralHallyuFans />
+    <GeneralIndexQuotes />
     <GeneralBands />
   </div>
 </template>

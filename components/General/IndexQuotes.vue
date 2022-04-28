@@ -1,0 +1,71 @@
+<template>
+  <div class="w-full flex flex-col justify-center items-start mt-3">
+    <button
+      class="w-96 flex justify-start items-center border border-text-gray-400 rounded-lg p-2"
+      @click="openModal"
+    >
+      <div>
+        <div class="w-6 h-6 flex justify-center items-center mr-3">
+          <GlobalHIcon :name="getIcon" class="text-textColor" />
+        </div>
+      </div>
+      <p class="text-textColor font-open">Subir Frases de Incio</p>
+    </button>
+    <div v-if="isOpen" class="w-full max-w-md mt-3 p-2">
+      <!-- HERO QUOTE -->
+      <div class="w-full flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Hero</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- OFFERING QUOTE -->
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data: () => ({
+    isOpen: false,
+  }),
+  computed: {
+    getIcon() {
+      return this.isOpen === true ? "arrowUp" : "arrowDown";
+    },
+  },
+  methods: {
+    resetData() {},
+    openModal() {
+      if (this.isOpen) {
+        this.isOpen = false;
+      } else {
+        this.isOpen = true;
+      }
+    },
+  },
+};
+</script>
