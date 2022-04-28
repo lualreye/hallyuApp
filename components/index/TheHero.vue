@@ -51,7 +51,7 @@
     <!-- RIGHT CONTAINER, AQUI OBTENEMOS LA IMAGEN DE LA BASE DE DATOS -->
     <div class="w-full lg:w-1/2 mt-4 lg:mt-0">
       <figure
-        class="w-full flex justify-center items-center lg:w-3/4 mx-auto rounded-b-lg relative max-w-xs"
+        class="w-full flex justify-center items-center lg:w-3/4 mx-auto rounded-b-lg relative max-w-xs lg:max-w-xl"
       >
         <div
           class="py-3 px-4 z-20 rounded-full bg-lightPink flex justify-center items-center absolute -left-3 top-3"
