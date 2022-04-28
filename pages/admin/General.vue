@@ -1,6 +1,7 @@
 <template>
   <div>
     <GeneralHeroImages />
+    <GeneralBandImages />
     <GeneralAppMusic />
     <GeneralCategories />
     <!-- <GeneralFavourites /> -->
