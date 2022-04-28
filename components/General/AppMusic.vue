@@ -12,19 +12,45 @@
       <p class="text-textColor font-open">Música</p>
     </button>
     <div v-if="isOpen" class="w-full max-w-md mt-3 p-2">
-      <div class="w-full flex flex-wrap justify-between items-center">
+      <div class="w-full flex flex-col justify-between items-start">
         <p class="text-hBlack font-open">Música de Hallyu</p>
+        <!-- FAKE SONG  -->
         <div
-          class="w-40 relative flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
-          :class="{
-            'bg-lightPink': isThereSong,
-            'bg-gray-400': !isThereSong,
-          }"
+          v-if="heroSong.songName"
+          class="w-full flex justify-start items-center mt-2"
+        >
+          <div
+            class="w-full flex justify-between items-center hover:bg-primary rounded-lg p-2"
+          >
+            <div class="w-full flex justify-start items-center">
+              <button
+                class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
+                @click="playSng"
+              >
+                <GlobalHIcon :name="getMusicIcon" class="text-textColor" />
+              </button>
+              <p class="text-textColor font-open">
+                {{ heroSong.songName }}
+              </p>
+            </div>
+            <button
+              class="w-6 h-6 flex justify-center items-center"
+              @click="resetSng"
+            >
+              <GlobalHIcon
+                name="delete"
+                class="text-textColor hover:text-pink-600"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="w-40 bg-lightPink relative flex justify-center items-center py-2 rounded-lg mt-3"
         >
           <input
             type="file"
             class="absolute w-full h-full z-60 opacity-0"
-            :disabled="!isThereSong"
+            accept=".mp3"
             @change="onSongChange"
           />
           <div class="w-full flex justify-center items-center">
@@ -34,17 +60,6 @@
             <p class="text-textColor font-open">Subir canción</p>
           </div>
         </div>
-      </div>
-      <div
-        v-if="heroSong.songName"
-        class="w-full flex justify-start items-center mt-2"
-      >
-        <GeneralCardsSongs
-          :songName="heroSong.songName"
-          :songImage="heroSong.image"
-          :id="heroSong.id"
-          state="false"
-        />
       </div>
       <div
         v-if="getHeroSongs.length"
@@ -106,6 +121,9 @@ export default {
     isThereSong() {
       return this.heroSong.object === null ? true : false;
     },
+    getMusicIcon() {
+      return this.state === true ? "pause" : "play";
+    },
   },
   methods: {
     ...mapActions("music", ["uploadHeroSong", "fetchSongs"]),
@@ -127,9 +145,14 @@ export default {
     uploadSong() {
       const song = this.heroSong.object;
       this.uploadHeroSong(song);
+      this.resetSng()
+    },
+    resetSng() {
       this.heroSong = {
         object: null,
-        imageName: "",
+        songName: "",
+        songImage: "",
+        id: "123",
       };
     },
     fetchHeroSongs() {
