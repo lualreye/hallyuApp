@@ -15,16 +15,43 @@
       <div class="w-full flex flex-wrap justify-between items-center">
         <p class="text-hBlack font-open">Imagenes de Bandas para Productos</p>
         <div
-          class="w-40 relative flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
-          :class="{
-            'bg-lightPink': isThereImage,
-            'bg-gray-400': !isThereImage,
-          }"
+          v-if="bandImage.url"
+          class="w-full flex justify-start items-center mt-2"
+        >
+          <!-- FAKE IMAGE IN BAND IMAGE -->
+          <div
+            class="w-full flex justify-between items-center hover:bg-primary rounded-lg p-2"
+          >
+            <div class="w-full flex justify-start items-center">
+              <div
+                class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
+              >
+                <img
+                  :src="bandImage.url"
+                  class="w-full h-8 rounded-lg object-cover object-center"
+                />
+              </div>
+              <p class="text-textColor font-open">
+                {{ bandImage.name }}
+              </p>
+            </div>
+            <button
+              class="w-6 h-6 flex justify-center items-center"
+              @click="resetBandImage"
+            >
+              <GlobalHIcon
+                name="delete"
+                class="text-textColor hover:text-pink-600"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="w-40 bg-lightPink relative flex justify-center items-center py-2 rounded-lg mt-3"
         >
           <input
             type="file"
             class="absolute w-full h-full z-60 opacity-0"
-            :disabled="!isThereImage"
             @change="onImageChange"
           />
           <div class="w-full flex justify-center items-center">
@@ -34,16 +61,6 @@
             <p class="text-textColor font-open">Subir imagen</p>
           </div>
         </div>
-      </div>
-      <div
-        v-if="bandImage.url"
-        class="w-full flex justify-start items-center mt-2"
-      >
-        <GeneralCardsBandImage
-          :image="bandImage.url"
-          :imageName="bandImage.imageName"
-          :id="bandImage.id"
-        />
       </div>
       <div
         v-if="getBandImages.length"
@@ -130,6 +147,14 @@ export default {
     uploadImage() {
       const image = this.bandImage.object;
       this.uploadBandImages(image);
+      this.bandImage = {
+        url: null,
+        object: null,
+        imageName: "",
+        id: "123",
+      };
+    },
+    resetBandImage() {
       this.bandImage = {
         url: null,
         object: null,

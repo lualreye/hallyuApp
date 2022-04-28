@@ -79,6 +79,7 @@ const actions = {
   async deleteBandImage({ commit }, payload) {
     try {
       const db = fireDataBase;
+      console.log(payload)
       await deleteDoc(doc(db, "bandImages", payload));
       commit("DELETE_BAND_IMAGE", payload);
     } catch (err) {
