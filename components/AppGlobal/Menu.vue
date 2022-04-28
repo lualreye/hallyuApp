@@ -105,3 +105,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+a.nuxt-link-active {
+  border-right: 3px solid #87c7c9;
+  background: #d3f2f3;
+  border-radius: 4px 0 0 4px;
+}
+</style>
