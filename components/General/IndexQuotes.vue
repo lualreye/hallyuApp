@@ -42,7 +42,186 @@
           </div>
         </div>
       </div>
-      <!-- OFFERING QUOTE -->
+      <!-- FLASH QUOTE -->
+      <div class="w-full mt-2 flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Oferta flash</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- FAVOURITES QUOTE -->
+      <div class="mt-2 w-full flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Favoritos</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- SIMPLE OFFERING QUOTE -->
+      <div class="w-full mt-2  flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de ofertas</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- FAVOURITES QUOTE -->
+      <div class="mt-2 w-full flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Hero</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- BLOG QUOTE -->
+      <div class="w-full mt-2 flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Blog</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- COMMUNITY QUOTE -->
+      <div class="mt-2 w-full flex flex-col justify-between items-start">
+        <p class="text-textColor font-open text-xl mb-3">Frase de Comunidad</p>
+        <div class="w-full p-2 rounded-lg border border-primary">
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de fondo</p>
+            <input v-model="bgColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Color de letra</p>
+            <input v-model="textColor" type="color" />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en español</p>
+            <input
+              v-model="spanishText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+          <div class="w-full flex justify-between items-start mt-1">
+            <p class="text-textColor font-open text-sm">Frase en koreano</p>
+            <input
+              v-model="koreanText"
+              type="text"
+              class="border border-primary rounded-lg py-1 px-2"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
