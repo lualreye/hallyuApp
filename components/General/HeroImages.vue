@@ -12,19 +12,41 @@
       <p class="text-textColor font-open">Subir Portadas</p>
     </button>
     <div v-if="isOpen" class="w-full max-w-md mt-3 p-2">
-      <div class="w-full flex flex-wrap justify-between items-center">
+      <div class="w-full flex flex-col flex-wrap justify-between items-start">
         <p class="text-hBlack font-open">Imagenes de Bienvenida</p>
         <div
-          class="w-40 relative flex justify-center items-center py-2 rounded-lg mt-3 sm:mt-0"
-          :class="{
-            'bg-lightPink': isThereImage,
-            'bg-gray-400': !isThereImage,
-          }"
+          v-if="heroImage.url"
+          class="w-full flex justify-between items-center hover:bg-primary rounded-lg p-2"
+        >
+          <div class="w-full flex justify-start items-center">
+            <div
+              class="w-8 h-8 mr-3 bg-aquamarine flex justify-center items-center rounded-lg"
+            >
+              <img
+                :src="heroImage.url"
+                class="w-full h-8 rounded-lg object-cover object-center"
+              />
+            </div>
+            <p class="text-textColor font-open">
+              {{ heroImage.imageName }}
+            </p>
+          </div>
+          <button
+            class="w-6 h-6 flex justify-center items-center"
+            @click="resetImage"
+          >
+            <GlobalHIcon
+              name="delete"
+              class="text-textColor hover:text-pink-600"
+            />
+          </button>
+        </div>
+        <div
+          class="w-40 bg-lightPink relative flex justify-center items-center py-2 rounded-lg mt-3"
         >
           <input
             type="file"
             class="absolute w-full h-full z-60 opacity-0"
-            :disabled="!isThereImage"
             @change="onImageChange"
           />
           <div class="w-full flex justify-center items-center">
@@ -34,16 +56,6 @@
             <p class="text-textColor font-open">Subir imagen</p>
           </div>
         </div>
-      </div>
-      <div
-        v-if="heroImage.url"
-        class="w-full flex justify-start items-center mt-2"
-      >
-        <GeneralCardsHeroImage
-          :image="heroImage.url"
-          :imageName="heroImage.imageName"
-          :id="heroImage.id"
-        />
       </div>
       <div
         v-if="getHeroImages.length"
@@ -130,6 +142,9 @@ export default {
     uploadImage() {
       const image = this.heroImage.object;
       this.uploadHeroImages(image);
+      this.resetImage()
+    },
+    resetImage() {
       this.heroImage = {
         url: null,
         object: null,
