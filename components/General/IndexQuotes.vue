@@ -9,191 +9,210 @@
           <GlobalHIcon :name="getIcon" class="text-textColor" />
         </div>
       </div>
-      <p class="text-textColor font-open">Subir Frases de Incio</p>
+      <p class="text-textColor font-open">Subir Frases de Inicio</p>
     </button>
-    <div v-if="isOpen" class="w-full max-w-md mt-3 p-2">
-      <!-- HERO QUOTE -->
-      <div class="w-full flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de Hero</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="hero.bgColor" type="color" />
+    <div v-if="isOpen" class="w-full max-w-5xl mt-3 p-2">
+      <!-- FIRST SECTION -->
+      <div class="w-full lg:w-3/4 flex flex-wrap justify-between items-center">
+        <!-- HERO QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">Frase de Hero</p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="hero.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="hero.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="hero.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="hero.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="hero.textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="hero.spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="hero.koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
+        </div>
+        <!-- FLASH QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">
+            Frase de Oferta flash
+          </p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="flash.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="flash.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="flash.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="flash.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
         </div>
       </div>
-      <!-- FLASH QUOTE -->
-      <div class="w-full mt-2 flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de Oferta flash</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="flash.bgColor" type="color" />
+      <!-- SECOND SECTION -->
+      <div
+        class="w-full lg:w-3/4 flex flex-wrap justify-between items-center mt-2"
+      >
+        <!--  FAVOURITES BY COMMUNITY QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">
+            Frase de Favoritos
+          </p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="communityFavs.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="communityFavs.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="communityFavs.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="communityFavs.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="flash.textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="flash.spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="flash.koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
+        </div>
+        <!-- SIMPLE OFFERING QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">Frase de ofertas</p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="simpleOffer.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="simpleOffer.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="simpleOffer.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="simpleOffer.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
         </div>
       </div>
-      <!-- FAVOURITES QUOTE -->
-      <div class="mt-2 w-full flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de Favoritos</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="favourites.bgColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="favourites.textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="favourites.spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="favourites.koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-        </div>
-      </div>
-      <!-- SIMPLE OFFERING QUOTE -->
-      <div class="w-full mt-2  flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de ofertas</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="simpleOffer.bgColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="simpleOffer.textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="simpleOffer.spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="simpleOffer.koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
+      <!-- THIRD SECTION -->
+      <div
+        class="w-full lg:w-3/4 flex flex-wrap justify-between items-center mt-2"
+      >
+        <!-- POPULAR QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">
+            Frase de Recomendados
+          </p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="popular.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="popular.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="popular.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="popular.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <!-- FAVOURITES QUOTE -->
-      <div class="mt-2 w-full flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de Hero</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="bgColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-        </div>
-      </div>
-      <!-- BLOG QUOTE -->
-      <div class="w-full mt-2 flex flex-col justify-between items-start">
-        <p class="text-textColor font-open text-xl mb-3">Frase de Blog</p>
-        <div class="w-full p-2 rounded-lg border border-primary">
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de fondo</p>
-            <input v-model="blog.bgColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Color de letra</p>
-            <input v-model="blog.textColor" type="color" />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en español</p>
-            <input
-              v-model="blog.spanishText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
-          </div>
-          <div class="w-full flex justify-between items-start mt-1">
-            <p class="text-textColor font-open text-sm">Frase en koreano</p>
-            <input
-              v-model="blog.koreanText"
-              type="text"
-              class="border border-primary rounded-lg py-1 px-2"
-            />
+        <!-- BLOG QUOTE -->
+        <div class="w-80 flex flex-col justify-between items-start">
+          <p class="text-textColor font-open text-xl mb-3">Frase de Blog</p>
+          <div class="w-full p-2 rounded-lg border border-primary">
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de fondo</p>
+              <input v-model="blog.bgColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Color de letra</p>
+              <input v-model="blog.textColor" type="color" />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en español</p>
+              <input
+                v-model="blog.spanishText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
+            <div class="w-full flex justify-between items-start mt-1">
+              <p class="text-textColor font-open text-sm">Frase en koreano</p>
+              <input
+                v-model="blog.koreanText"
+                type="text"
+                class="border border-primary rounded-lg py-1 px-2"
+              />
+            </div>
           </div>
         </div>
       </div>
       <!-- COMMUNITY QUOTE -->
-      <div class="mt-2 w-full flex flex-col justify-between items-start">
+      <div class="w-80 flex flex-col justify-between items-start mt-2">
         <p class="text-textColor font-open text-xl mb-3">Frase de Comunidad</p>
         <div class="w-full p-2 rounded-lg border border-primary">
           <div class="w-full flex justify-between items-start mt-1">
@@ -222,11 +241,25 @@
           </div>
         </div>
       </div>
+      <!-- SAVE BUTTON -->
+      <div class="w-64 flex justify-start items-center mt-2">
+        <button
+          class="py-2 px-3 rounded-lg"
+          :class="{
+            'bg-primary': isReadyToUpload,
+            'bg-gray-400': !isReadyToUpload,
+          }"
+          @click="sendQuotes"
+        >
+          <p class="text-textColor font-open">Guardar</p>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
     isOpen: false,
@@ -234,59 +267,188 @@ export default {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
     flash: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
-    favourites: {
+    communityFavs: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
     offer: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
+    },
+    popular: {
+      bgColor: "",
+      textColor: "",
+      spanishText: "",
+      koreanText: "",
     },
     simpleOffer: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
     blog: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
     community: {
       bgColor: "",
       textColor: "",
       spanishText: "",
-      koreanText: ""
+      koreanText: "",
     },
   }),
   computed: {
+    ...mapGetters("quotes", ["getQuotes"]),
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
+    isReadyToUpload() {
+      return (this.hero = {
+        bgColor: "",
+        textColor: "",
+        spanishText: "",
+        koreanText: "",
+      }),
+        (this.flash = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.communityFavs = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.offer = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.popular = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.simpleOffer = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.blog = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.community = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        });
+    }
   },
   methods: {
-    resetData() {},
+    ...mapActions("quotes", ["uploadQuotes", "fetchQuotes"]),
+    resetData() {
+      (this.hero = {
+        bgColor: "",
+        textColor: "",
+        spanishText: "",
+        koreanText: "",
+      }),
+        (this.flash = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.communityFavs = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.offer = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.popular = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.simpleOffer = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.blog = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
+        (this.community = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        });
+    },
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
       } else {
         this.isOpen = true;
+        this.fetchQ()
       }
     },
+    sendQuotes() {
+      const quotes = {
+        hero : this.hero,
+        flash : this.flash,
+        communityFavs: this.communityFavs,
+        offers: this.offer,
+        popular: this.popular,
+        simpleOffer: this.simpleOffer,
+        blog: this.blog,
+        community: this.community
+      }
+      console.log(quotes)
+      this.uploadQuotes(quotes)
+    },
+    fetchQ() {
+      if(this.getQuotes === {}) {
+        this.fetchQuotes()
+      } else {
+        return
+      }
+    }
   },
 };
 </script>
