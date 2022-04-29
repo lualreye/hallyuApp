@@ -263,6 +263,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
     isOpen: false,
+    id: "",
     hero: {
       bgColor: "",
       textColor: "",
@@ -276,12 +277,6 @@ export default {
       koreanText: "",
     },
     communityFavs: {
-      bgColor: "",
-      textColor: "",
-      spanishText: "",
-      koreanText: "",
-    },
-    offer: {
       bgColor: "",
       textColor: "",
       spanishText: "",
@@ -443,16 +438,15 @@ export default {
       }
     },
     setData() {
-      const quotes = JSON.parse(JSON.stringify(this.getQuotes))
-      console.log(quotes)
+      const quotes = JSON.parse(JSON.stringify(this.getQuotes));
       this.hero = quotes.hero;
       this.blog = quotes.blog;
       this.community = quotes.community;
       this.communityFavs = quotes.communityFavs;
-      this.offer = quotes.offer;
       this.simpleOffer = quotes.simpleOffer;
       this.popular = quotes.popular;
       this.flash = quotes.flash;
+      this.id = quotes.id;
     },
     fetchQ() {
       if (!Object.keys(this.getQuotes).lenght) {
@@ -466,17 +460,18 @@ export default {
         hero: this.hero,
         flash: this.flash,
         communityFavs: this.communityFavs,
-        offer: this.offer,
         popular: this.popular,
         simpleOffer: this.simpleOffer,
         blog: this.blog,
         community: this.community,
       };
-      const data = {
-        id: this.getQuotes.id,
-        quotes: quotes,
-      };
-      this.uploadQuotes(data);
+      const data = JSON.parse(
+        JSON.stringify({
+          quotes: quotes,
+        })
+      );
+      this.uploadQuotes({ ...data, id: this.id });
+      this.setData();
     },
   },
 };

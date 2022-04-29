@@ -18,28 +18,28 @@ const mutations = {
 };
 
 const actions = {
-  async fetchQuotes({commit}) {
+  async fetchQuotes({ commit }) {
     try {
-      const db = fireDataBase
-      const quoteQuery = query(collection(db, "quotes"))
+      const db = fireDataBase;
+      const quoteQuery = query(collection(db, "quotes"));
       let quotes;
-      const quoteSnap = await getDocs(quoteQuery)
+      const quoteSnap = await getDocs(quoteQuery);
       quoteSnap.forEach((quote) => {
-        quotes = quote.data()
-      })
-      commit("SET_QUOTES", quotes)
-    }catch(e) {
-      console.error("CANNOT_GET_QUOTES",e)
+        quotes = quote.data();
+      });
+      commit("SET_QUOTES", quotes);
+    } catch (e) {
+      console.error("CANNOT_GET_QUOTES", e);
     }
   },
   async uploadQuotes({ commit }, payload) {
     try {
       const db = fireDataBase;
-      const quoteRef = doc(db, "quotes", payload.id)
-      const quotes = payload.quotes;
+      console.log(payload);
+      const quoteRef = doc(db, "quotes", payload.id);
+      const quotes = { ...payload.quotes, id: payload.id };
       await updateDoc(quoteRef, quotes);
-      console.log("pasamos")
-      commit("SET_QUOTES", payload.quotes)
+      commit("SET_QUOTES", quotes);
     } catch (e) {
       console.error("CANNOT_SAVE_QUOTES", e);
     }
