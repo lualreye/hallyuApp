@@ -370,17 +370,17 @@ export default {
       );
     },
     setQuotes() {
-      return Object.keys(this.getQuotes).length !== 0 ? true : false
+      return Object.keys(this.getQuotes).length !== 0 ? true : false;
     },
   },
   watch: {
     setQuotes(value) {
-      if(value === true) {
-        this.setData()
+      if (value === true) {
+        this.setData();
       } else {
-        return
+        return;
       }
-    }
+    },
   },
   methods: {
     ...mapActions("quotes", ["uploadQuotes", "fetchQuotes"]),
@@ -443,28 +443,16 @@ export default {
       }
     },
     setData() {
-      this.hero = this.getQuotes.hero;
-      this.blog = this.getQuotes.blog;
-      this.community = this.getQuotes.community;
-      this.communityFavs = this.getQuotes.communityFavs;
-      this.offer = this.getQuotes.offer;
-      this.simpleOffer = this.getQuotes.simpleOffer;
-      this.popular = this.getQuotes.popular;
-      this.flash = this.getQuotes.flash;
-    },
-    sendQuotes() {
-      const quotes = {
-        hero: this.hero,
-        flash: this.flash,
-        communityFavs: this.communityFavs,
-        offers: this.offer,
-        popular: this.popular,
-        simpleOffer: this.simpleOffer,
-        blog: this.blog,
-        community: this.community,
-      };
-      console.log(quotes);
-      this.uploadQuotes(quotes);
+      const quotes = JSON.parse(JSON.stringify(this.getQuotes))
+      console.log(quotes)
+      this.hero = quotes.hero;
+      this.blog = quotes.blog;
+      this.community = quotes.community;
+      this.communityFavs = quotes.communityFavs;
+      this.offer = quotes.offer;
+      this.simpleOffer = quotes.simpleOffer;
+      this.popular = quotes.popular;
+      this.flash = quotes.flash;
     },
     fetchQ() {
       if (!Object.keys(this.getQuotes).lenght) {
@@ -472,6 +460,23 @@ export default {
       } else {
         return;
       }
+    },
+    sendQuotes() {
+      const quotes = {
+        hero: this.hero,
+        flash: this.flash,
+        communityFavs: this.communityFavs,
+        offer: this.offer,
+        popular: this.popular,
+        simpleOffer: this.simpleOffer,
+        blog: this.blog,
+        community: this.community,
+      };
+      const data = {
+        id: this.getQuotes.id,
+        quotes: quotes,
+      };
+      this.uploadQuotes(data);
     },
   },
 };
