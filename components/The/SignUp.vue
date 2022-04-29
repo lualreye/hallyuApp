@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="getSignUp"
-    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 relative z-50 bg-lightPink p-1 rounded-md"
+    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 fixed z-50 bg-lightPink p-1 rounded-md"
   >
     <div
       class="w-full h-full rounded-3xl py-1 px-3 flex flex-col justify-between items-start border border-secondary"
