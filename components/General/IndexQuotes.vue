@@ -384,56 +384,6 @@ export default {
   },
   methods: {
     ...mapActions("quotes", ["uploadQuotes", "fetchQuotes"]),
-    resetData() {
-      (this.hero = {
-        bgColor: "",
-        textColor: "",
-        spanishText: "",
-        koreanText: "",
-      }),
-        (this.flash = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.communityFavs = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.offer = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.popular = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.simpleOffer = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.blog = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        }),
-        (this.community = {
-          bgColor: "",
-          textColor: "",
-          spanishText: "",
-          koreanText: "",
-        });
-    },
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;

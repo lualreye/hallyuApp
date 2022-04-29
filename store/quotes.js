@@ -35,7 +35,6 @@ const actions = {
   async uploadQuotes({ commit }, payload) {
     try {
       const db = fireDataBase;
-      console.log(payload);
       const quoteRef = doc(db, "quotes", payload.id);
       const quotes = { ...payload.quotes, id: payload.id };
       await updateDoc(quoteRef, quotes);
