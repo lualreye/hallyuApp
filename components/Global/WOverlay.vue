@@ -3,10 +3,7 @@
     v-show="getModal"
     class="w-screen h-screen bg-gray-100 opacity-70 flex justify-center items-center fixed z-40 top-0 left-0 right-0 bottom-0"
     @click="closeModal"
-  >
-    <TheSignIn class="opacity-100" />
-    <TheSignUp class="opacity-100" />
-  </div>
+  ></div>
 </template>
 
 <script>
