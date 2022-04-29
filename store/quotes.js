@@ -1,5 +1,5 @@
 import { fireDataBase } from "../static/js/firebaseConfig";
-import { getDocs, collection, setDoc, doc, query } from "firebase/firestore";
+import { getDocs, collection, updateDoc, doc, query } from "firebase/firestore";
 
 const state = () => ({
   quotes: {},
@@ -27,7 +27,6 @@ const actions = {
       quoteSnap.forEach((quote) => {
         quotes = quote.data()
       })
-      console.log(quotes)
       commit("SET_QUOTES", quotes)
     }catch(e) {
       console.error("CANNOT_GET_QUOTES",e)
@@ -36,12 +35,13 @@ const actions = {
   async uploadQuotes({ commit }, payload) {
     try {
       const db = fireDataBase;
-      const quoteRef = doc(collection(db, "quotes"))
-      console.log(payload, ...payload);
-      const quotes = payload;
-      await setDoc(quoteRef, quotes);
+      const quoteRef = doc(db, "quotes", payload.id)
+      const quotes = payload.quotes;
+      await updateDoc(quoteRef, quotes);
+      console.log("pasamos")
+      commit("SET_QUOTES", payload.quotes)
     } catch (e) {
-      console.error("CANNOTE_SAVE_QUOTES", e);
+      console.error("CANNOT_SAVE_QUOTES", e);
     }
   },
 };
