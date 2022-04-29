@@ -5,6 +5,8 @@
     <TheCart />
     <GlobalHOverlay />
     <GlobalWOverlay />
+    <TheSignIn />
+    <TheSignUp />
     <Nuxt />
     <TheFooter class="mt-auto" />
   </div>
@@ -33,12 +35,12 @@ export default {
       }
     },
     getUser(value) {
-      if(value === null || undefined) {
-        return
+      if (value === null || undefined) {
+        return;
       } else if (value.role.adminRole) {
-        this.$router.push("/admin/dashboard")
+        this.$router.push("/admin/dashboard");
       }
-    }
+    },
   },
   methods: {
     stopBodyScrolling(value) {
