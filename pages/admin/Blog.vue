@@ -70,6 +70,15 @@
               v-model="title"
               class="w-full border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-3 outline-none focus:outline-none"
             />
+            <!-- DESCRIPTION -->
+            <label class="w-full text-textColor text-xs font-open"
+              >Descripción</label
+            >
+            <textarea
+              type="text"
+              v-model="description"
+              class="w-full border border-primary rounded-lg py-2 px-2 text-textColor font-open font-medium mb-3 outline-none focus:outline-none"
+            />
             <!-- BODY -->
             <label class="w-full text-textColor text-xs font-open"
               >Contenido</label
@@ -123,6 +132,7 @@ export default {
       url: null,
       object: null,
     },
+    description: "",
     body: "",
     customToolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -147,7 +157,9 @@ export default {
         this.title !== null &&
         this.title !== "" &&
         this.body !== null &&
-        this.body !== ""
+        this.body !== "" &&
+        this.description !== null &&
+        this.description !== ""
         ? true
         : false;
     },
@@ -183,6 +195,7 @@ export default {
       const post = {
         image: this.image.object,
         title: this.title,
+        description: this.description,
         body: this.body,
         date: `${day}-${month + 1}-${year}`,
       };
