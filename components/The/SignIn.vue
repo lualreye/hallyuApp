@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="getSignIn"
-    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-1/3 fixed z-50 bg-aquamarine p-1 rounded-md opacity-100"
+    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-24 fixed z-50 bg-aquamarine p-1 rounded-md opacity-100"
   >
     <div
       class="w-full h-full rounded-3xl py-2 px-3 flex flex-col justify-between items-start border border-secondary"
