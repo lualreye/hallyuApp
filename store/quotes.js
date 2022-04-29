@@ -1,4 +1,4 @@
-import { fireDatabase } from "../static/js/firebaseConfig";
+import { fireDataBase } from "../static/js/firebaseConfig";
 import { getDocs, collection, setDoc, doc, query } from "firebase/firestore";
 
 const state = () => ({
@@ -6,7 +6,7 @@ const state = () => ({
 });
 
 const getters = {
-  getQuotes(quotes) {
+  getQuotes(state) {
     return state.quotes;
   },
 };
@@ -20,7 +20,7 @@ const mutations = {
 const actions = {
   async fetchQuotes({commit}) {
     try {
-      const db = fireDatabase
+      const db = fireDataBase
       const quoteQuery = query(collection(db, "quotes"))
       let quotes;
       const quoteSnap = await getDocs(quoteQuery)
@@ -35,8 +35,8 @@ const actions = {
   },
   async uploadQuotes({ commit }, payload) {
     try {
-      const db = fireDatabase;
-      const quoteRef = doc(collection(db, "quotes"));
+      const db = fireDataBase;
+      const quoteRef = doc(collection(db, "quotes"))
       console.log(payload, ...payload);
       const quotes = payload;
       await setDoc(quoteRef, quotes);

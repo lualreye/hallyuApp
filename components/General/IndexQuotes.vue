@@ -318,12 +318,13 @@ export default {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
     isReadyToUpload() {
-      return (this.hero = {
-        bgColor: "",
-        textColor: "",
-        spanishText: "",
-        koreanText: "",
-      }),
+      return (
+        (this.hero = {
+          bgColor: "",
+          textColor: "",
+          spanishText: "",
+          koreanText: "",
+        }),
         (this.flash = {
           bgColor: "",
           textColor: "",
@@ -365,7 +366,20 @@ export default {
           textColor: "",
           spanishText: "",
           koreanText: "",
-        });
+        })
+      );
+    },
+    setQuotes() {
+      return Object.keys(this.getQuotes).length !== 0 ? true : false
+    },
+  },
+  watch: {
+    setQuotes(value) {
+      if(value === true) {
+        this.setData()
+      } else {
+        return
+      }
     }
   },
   methods: {
@@ -425,30 +439,40 @@ export default {
         this.isOpen = false;
       } else {
         this.isOpen = true;
-        this.fetchQ()
+        this.fetchQ();
       }
+    },
+    setData() {
+      this.hero = this.getQuotes.hero;
+      this.blog = this.getQuotes.blog;
+      this.community = this.getQuotes.community;
+      this.communityFavs = this.getQuotes.communityFavs;
+      this.offer = this.getQuotes.offer;
+      this.simpleOffer = this.getQuotes.simpleOffer;
+      this.popular = this.getQuotes.popular;
+      this.flash = this.getQuotes.flash;
     },
     sendQuotes() {
       const quotes = {
-        hero : this.hero,
-        flash : this.flash,
+        hero: this.hero,
+        flash: this.flash,
         communityFavs: this.communityFavs,
         offers: this.offer,
         popular: this.popular,
         simpleOffer: this.simpleOffer,
         blog: this.blog,
-        community: this.community
-      }
-      console.log(quotes)
-      this.uploadQuotes(quotes)
+        community: this.community,
+      };
+      console.log(quotes);
+      this.uploadQuotes(quotes);
     },
     fetchQ() {
-      if(this.getQuotes === {}) {
-        this.fetchQuotes()
+      if (!Object.keys(this.getQuotes).lenght) {
+        this.fetchQuotes();
       } else {
-        return
+        return;
       }
-    }
+    },
   },
 };
 </script>
