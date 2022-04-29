@@ -376,6 +376,11 @@ export default {
         return;
       }
     },
+    getQuotes(newValue,  oldValue) {
+      if (newValue !== oldValue) {
+        this.setData()
+      }
+    }
   },
   methods: {
     ...mapActions("quotes", ["uploadQuotes", "fetchQuotes"]),
@@ -471,7 +476,6 @@ export default {
         })
       );
       this.uploadQuotes({ ...data, id: this.id });
-      this.setData();
     },
   },
 };
