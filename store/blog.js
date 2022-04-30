@@ -10,12 +10,16 @@ import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 
 const state = () => ({
   posts: [],
+  editingPost: {},
 });
 
 const getters = {
   getPosts(state) {
     return state.posts;
   },
+  getEditingPost(state) {
+    return state.editingPost
+  }
 };
 
 const mutations = {
@@ -29,6 +33,13 @@ const mutations = {
     const postId = state.posts.findIndex((post) => post.id === id);
     state.posts.splice(postId, 1);
   },
+  RESET_EDITING_POST(state) {
+    state.editingPost = {}
+  },
+  SET_EDITING_POST(state, id) {
+    const postId = state.posts.findIndex((post) => post.id === id)
+    state.editingPost = state.posts[postId]
+  }
 };
 
 const actions = {
@@ -79,6 +90,13 @@ const actions = {
       console.error("CANNOT _DELETE_POST");
     }
   },
+  editPost({commit}, payload) {
+    commit("RESET_POST")
+    commit("SET_EDITING_POST", payload)
+  },
+  resetEditingPost({commit}) {
+    commit("RESET_EDITING_POST")
+  }
 };
 
 export { state, getters, mutations, actions };
