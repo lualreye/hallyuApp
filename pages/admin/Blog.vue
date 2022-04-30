@@ -172,12 +172,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions("blog", ["uploadPost", "fetchPosts"]),
+    ...mapActions("blog", ["uploadPost", "fetchPosts", "resetEditingPost"]),
     editPost() {
       if (this.isEditingPost) {
         this.isEditingPost = false;
       } else {
         this.isEditingPost = true;
+        this.resetEditingPost()
       }
     },
   uploadPostImage(e) {
