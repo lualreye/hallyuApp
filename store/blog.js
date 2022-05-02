@@ -11,6 +11,7 @@ import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 const state = () => ({
   posts: [],
   editingPost: {},
+  isEditing: false
 });
 
 const getters = {
@@ -19,6 +20,9 @@ const getters = {
   },
   getEditingPost(state) {
     return state.editingPost
+  },
+  getIsEditing(state) {
+    return state.isEditing
   }
 };
 
@@ -39,6 +43,9 @@ const mutations = {
   SET_EDITING_POST(state, id) {
     const postId = state.posts.findIndex((post) => post.id === id)
     state.editingPost = state.posts[postId]
+  },
+  SET_EDITING(state, boolean) {
+    state.isEditing = boolean
   }
 };
 
@@ -63,6 +70,7 @@ const actions = {
       };
       await setDoc(postRef, post);
       commit("SET_POST", post);
+      commit("SET_EDITING", false);
     } catch (err) {
       console.error("CANNOT_UPLOAD_POST");
     }
@@ -91,11 +99,15 @@ const actions = {
     }
   },
   editPost({commit}, payload) {
-    commit("RESET_POST")
+    commit("RESET_EDITING_POST")
     commit("SET_EDITING_POST", payload)
+    commit("SET_EDITING", true)
   },
   resetEditingPost({commit}) {
     commit("RESET_EDITING_POST")
+  },
+  showEditing({commit}, payload) {
+    commit("SET_EDITING", payload)
   }
 };
 

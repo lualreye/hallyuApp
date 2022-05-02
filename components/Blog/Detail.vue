@@ -18,6 +18,12 @@
     <div class="w-auto flex justify-center items-center">
       <p class="text-textColor font-light text-sm mr-2">{{ date }}</p>
       <button
+        class="w-6 h-6 flex justify-center items-center mr-2"
+        @click="editPs"
+      >
+        <GlobalHIcon name="edit" class="text-textColor hover:text-secondary" />
+      </button>
+      <button
         class="w-6 h-6 flex justify-center items-center"
         @click="deletePs"
       >
@@ -51,9 +57,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions("posts", ["deletePost"]),
+    ...mapActions("blog", ["deletePost", "editPost", "resetEditingPost"]),
     deletePs() {
       this.deletePost(this.id);
+    },
+    editPs() {
+      this.resetEditingPost()
+      this.editPost(this.id);
     },
   },
 };

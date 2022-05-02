@@ -14,7 +14,7 @@
     </div>
     <!-- POST EDITOR -->
     <div
-      v-if="isEditingPost"
+      v-if="getIsEditing"
       class="w-full max-w-3xl flex justify-center items-center my-2"
     >
       <div class="w-full flex flex-col justify-center items-center">
@@ -126,7 +126,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   layout: "app",
   data: () => ({
-    isEditingPost: false,
     title: "",
     image: {
       url: null,
@@ -148,7 +147,7 @@ export default {
     ],
   }),
   computed: {
-    ...mapGetters("blog", ["getPosts"]),
+    ...mapGetters("blog", ["getPosts", "getIsEditing", "getEditingPost"]),
     isImage() {
       return this.image.url === null;
     },
@@ -163,31 +162,56 @@ export default {
         ? true
         : false;
     },
+    isData() {
+      return Object.keys(this.getEditingPost).length !== 0 ? true : false;
+    },
+  },
+  watch: {
+    isData(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.setEditingData();
+      }
+    },
   },
   mounted() {
-    if(!this.getPosts.length) {
-      this.fetchPosts()
+    if (!this.getPosts.length) {
+      this.fetchPosts();
     } else {
-      return
+      return;
     }
   },
   methods: {
-    ...mapActions("blog", ["uploadPost", "fetchPosts", "resetEditingPost"]),
+    ...mapActions("blog", [
+      "uploadPost",
+      "fetchPosts",
+      "resetEditingPost",
+      "showEditing",
+    ]),
     editPost() {
-      if (this.isEditingPost) {
-        this.isEditingPost = false;
+      if (this.getIsEditing) {
+        this.showEditing(false);
+        this.resetEditingPost();
       } else {
-        this.isEditingPost = true;
-        this.resetEditingPost()
+        this.showEditing(true);
+        this.resetEditingPost();
       }
     },
-  uploadPostImage(e) {
-    const file = e.target.files[0];
-    const imgObj = file;
-    const imgUrl = URL.createObjectURL(file);
-    this.image.url = imgUrl;
-    this.image.object = imgObj;
-  },
+    uploadPostImage(e) {
+      const file = e.target.files[0];
+      const imgObj = file;
+      const imgUrl = URL.createObjectURL(file);
+      this.image.url = imgUrl;
+      this.image.object = imgObj;
+    },
+    setEditingData() {
+      if (this.getIsEditing && Object.keys(this.getEditingPost).length) {
+        const post = JSON.parse(JSON.stringify(this.getEditingPost));
+        (this.title = post.title),
+        (this.description = post.description),
+        (this.body = post.body),
+        (this.image.url = post.image);
+      }
+    },
     savePost() {
       const date = new Date();
       const day = date.getDate();
