@@ -152,7 +152,7 @@ export default {
       return this.image.url === null;
     },
     isReadyToUpload() {
-      return this.image.object !== null &&
+      return this.image.url !== null &&
         this.title !== null &&
         this.title !== "" &&
         this.body !== null &&
@@ -207,9 +207,9 @@ export default {
       if (this.getIsEditing && Object.keys(this.getEditingPost).length) {
         const post = JSON.parse(JSON.stringify(this.getEditingPost));
         (this.title = post.title),
-        (this.description = post.description),
-        (this.body = post.body),
-        (this.image.url = post.image);
+          (this.description = post.description),
+          (this.body = post.body),
+          (this.image.url = post.image);
       }
     },
     savePost() {
@@ -217,14 +217,35 @@ export default {
       const day = date.getDate();
       const month = date.getMonth();
       const year = date.getFullYear();
-      const post = {
-        image: this.image.object,
-        title: this.title,
-        description: this.description,
-        body: this.body,
-        date: `${day}-${month + 1}-${year}`,
-      };
+      let post;
+      if (this.isData) {
+        if (this.image.object instanceof File) {
+          post = {
+            image: this.image.object,
+          };
+        } else {
+          post = {
+            image: this.image.url
+          }
+        }
+        post = {
+          title: this.title,
+          description: this.description,
+          body: this.body,
+          date: `${day}-${month + 1}-${year}`,
+          ...post
+        };
+      } else {
+        post = {
+          image: this.image.object,
+          title: this.title,
+          description: this.description,
+          body: this.body,
+          date: `${day}-${month + 1}-${year}`,
+        };
+      }
       this.uploadPost(post);
+      console.log(post)
     },
   },
 };
