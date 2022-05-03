@@ -295,7 +295,7 @@
                         class="w-6 h-6 p-1 flex justify-center items-center border border-primary rounded-full"
                       >
                         <div
-                          :style="{ backgroundColor: image.color }"
+                          :style="{ backgroundColor: image.name }"
                           class="w-3 h-3 rounded-full"
                         />
                         <button
