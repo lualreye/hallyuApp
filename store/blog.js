@@ -128,11 +128,14 @@ const actions = {
       console.error("CANNOT_GET_POSTS");
     }
   },
-  async deletePost({ commit }, payload) {
+  async deletePost({ commit, getters }, payload) {
     try {
+      const db = fireDataBase
+      const postId = getters.getPosts.findIndex(x => x.id === payload)
+      await deleteDoc(doc(db, "posts", getters.getPosts[postId].id))
       commit("DELETE_POST", payload);
     } catch (err) {
-      console.error("CANNOT _DELETE_POST");
+      console.error("CANNOT _DELETE_POST", err);
     }
   },
   editPost({ commit }, payload) {
@@ -140,7 +143,7 @@ const actions = {
     commit("SET_EDITING_POST", payload);
     commit("SET_EDITING", true);
   },
-  resetEditingPost({ commit }) {
+  resetEditingPost({ commit, getters }) {
     commit("RESET_EDITING_POST");
   },
   showEditing({ commit }, payload) {
