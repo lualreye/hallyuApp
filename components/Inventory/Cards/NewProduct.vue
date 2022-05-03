@@ -61,9 +61,10 @@
                 Vistas del producto
               </p>
             </div>
+            <!-- EXTRAS IMAGES ARRAY PREVIEW -->
             <div
               v-if="images.length"
-              class="w-full flex justify-center items-center flex-wrap"
+              class="w-full flex justify-center items-center flex-wrap my-1"
             >
               <figure
                 v-for="(image, index) in images"
@@ -79,6 +80,7 @@
                 </button>
               </figure>
             </div>
+            <!-- EXTRA IMAGE PREVIEW -->
             <div
               v-if="!fashionTaken"
               class="w-full flex justify-between items-center"
@@ -86,15 +88,23 @@
               <div
                 class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
               >
-                <input
-                  type="file"
-                  accept=".png"
-                  class="absolute w-full h-10 opacity-0 z-60"
-                  @change="loadExtraImage"
-                />
-                <div class="w-5 h-5 flex justify-center items-center">
-                  <GlobalHIcon name="upload" class="text-textColor" />
+                <div v-if="!Object.keys(extraImage).length" class="w-auto">
+                  <input
+                    type="file"
+                    accept=".png"
+                    class="absolute w-full h-10 opacity-0 z-60"
+                    @change="loadExtraImage"
+                  />
+                  <div class="w-5 h-5 flex justify-center items-center">
+                    <GlobalHIcon name="upload" class="text-textColor" />
+                  </div>
                 </div>
+                <figure
+                  v-else
+                  class="w-full h-10 flex justify-center items-center"
+                >
+                  <img :src="extraImage.url" />
+                </figure>
               </div>
               <button
                 class="rounded-lg text-textColor font-open py-1 px-2"
@@ -269,7 +279,7 @@
                 <!-- COLOR -->
                 <div class="w-full flex flex-col justify-center items-center">
                   <div
-                    v-if="images.length"
+                    v-if="imagesByColor.length"
                     class="w-full flex justify-center flex-wrap mt-2"
                   >
                     <figure
@@ -279,7 +289,6 @@
                     >
                       <img
                         :src="image.url"
-                        alt=""
                         class="w-10 h-10 mr-1 border border-primary object-cover rounded-lg"
                       />
                       <div
@@ -311,27 +320,26 @@
                     <div
                       class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
                     >
-                      <input
-                        type="file"
-                        accept=".png, .jpg, .webp"
-                        class="absolute w-full h-10 opacity-0 z-60"
-                        @change="loadImageByColor"
-                      />
-                      <div class="w-6 h-6 flex justify-center items-center">
-                        <GlobalHIcon name="upload" class="text-textColor" />
+                      <div
+                        v-if="!Object.keys(imagesState).length"
+                        class="w-auto"
+                      >
+                        <input
+                          type="file"
+                          accept=".png, .jpg, .webp"
+                          class="absolute w-full h-10 opacity-0 z-60"
+                          @change="loadImageByColor"
+                        />
+                        <div class="w-6 h-6 flex justify-center items-center">
+                          <GlobalHIcon name="upload" class="text-textColor" />
+                        </div>
                       </div>
-                    </div>
-                    <figure
-                      v-if="imagesState !== {}"
-                      class="w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
-                    >
                       <img
-                        v-if="imagesState !== {}"
+                        v-else
                         :src="imagesState.url"
-                        class="object-center object-cover w-full h-10 rounded-lg border-none"
+                        class="w-full h-10 object-cover object-center"
                       />
-                    </figure>
-                    <div v-else />
+                    </div>
                     <button
                       class="flex justify-center items-center shadow-md py-1 px-2 rounded-lg text-textColor"
                       :class="{
@@ -452,7 +460,7 @@ export default {
     description: "",
     band: "",
     category: "",
-    offer: "",
+    offer: {},
     size: "",
     sizes: [],
     color: "",
@@ -477,8 +485,8 @@ export default {
     isThumbnail() {
       return this.thumbnail.url !== null && this.thumbnail.url !== "";
     },
-    isExtraImage() {
-      return this.extraImage !== {} ? true : false;
+    isReadyExtraImage() {
+      return Object.keys(this.extraImage).length !== 0 ? true : false;
     },
     isName() {
       return this.name !== null && this.name !== "";
@@ -499,10 +507,10 @@ export default {
       return this.category !== null && this.category !== "";
     },
     isReadyImageByColor() {
-      return this.color !== "" && this.imagesState !== {} ? true : false;
+      return this.color !== "" && (Object.keys(this.imagesState).length) ? true : false;
     },
     isOffer() {
-      return this.offer !== null && this.offer !== "";
+      return Object.keys(this.offer).length !== 0 ? true : false;
     },
     fashionTaken() {
       return this.category === "moda";
@@ -536,28 +544,29 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
 
     resetVariables() {
-      (this.name = ""),
-        (this.price = 0),
-        (this.stock = 0),
-        (this.description = ""),
-        (this.band = ""),
-        (this.category = ""),
-        (this.offer = ""),
-        (this.color = ""),
-        (this.size = ""),
-        (this.sizes = []),
-        (this.productOffers = ["Descuento", "Tiempo"]),
-        (this.productDiscount = 0),
-        (this.productDiscountTime = 0),
-        (this.productOfferingTime = ""),
-        (this.sku = ""),
-        (this.thumbnail = {
-          object: null,
-          url: null,
-        }),
-        (this.imagesByColor = []),
-        (this.images = []),
-        (this.imagesState = {});
+      this.name = "";
+      this.price = 0;
+      this.stock = 0;
+      this.description = "";
+      this.band = "";
+      this.category = "";
+      this.offer = {};
+      this.size = "";
+      this.sizes = [];
+      this.color = "";
+      this.productOffers = ["Descuento", "Tiempo"];
+      this.productDiscount = 0;
+      this.productDiscountTime = 0;
+      this.productOfferingTime = "";
+      this.sku = "";
+      (this.thumbnail = {
+        object: null,
+        url: null,
+      }),
+        (this.imagesByColor = []);
+      this.images = [];
+      this.extraImage = {};
+      this.imagesState = {};
     },
 
     // TODO: params(*) boolean
@@ -602,7 +611,6 @@ export default {
     saveExtraImage() {
       this.images.push(this.extraImage);
       this.extraImage = {};
-      console.log(this.images);
     },
 
     deleteExtraImages(id) {
@@ -626,7 +634,7 @@ export default {
       const color = this.color;
       this.imagesByColor.push({
         ...this.imagesState,
-        color: color,
+        name: color,
       });
       this.color = "";
       this.imagesState = {};
@@ -665,7 +673,7 @@ export default {
         offer: offerType,
         clothes: {
           size: this.sizes,
-          color: this.colors,
+          colors: { ...this.imagesByColor },
         },
         likes: 0,
         published: false,
@@ -673,7 +681,8 @@ export default {
         sku: this.sku,
         favorite: false,
       };
-      console.log(product);
+      this.uploadProduct(product);
+      this.closeProductModal();
     },
   },
 };
