@@ -11,7 +11,7 @@ import {
 
 const state = () => ({
   isModalOpen: false,
-  selectedProduct: null,
+  selectedProduct: {},
   products: [],
 });
 
@@ -19,7 +19,7 @@ const getters = {
   getIsModalOpen(state) {
     return state.isModalOpen;
   },
-  getProduct(state) {
+  getSelectedProduct(state) {
     return state.selectedProduct;
   },
   getProducts(state) {
@@ -51,8 +51,8 @@ const actions = {
       const db = fireDataBase;
       const storage = fireStorage;
       // UPDATE PRODUCT
-      if (Objects.keys(getters.selectedProduct).length) {
-        const productId = getters.selectedProduct.id;
+      if (Object.keys(getters.getSelectedProduct).length) {
+        const productId = getters.getSelectedProduct.id;
         let updatedProduct;
         const productRef = doc(db, "products", productId);
         // UPDATING THUMBNAIL
@@ -115,11 +115,11 @@ const actions = {
         }
         // UPDATING PRODUCT
         updatedProduct = {
-          ...payload
-        }
-        console.log(updatedProduct)
+          ...payload,
+        };
+        console.log(updatedProduct);
       } else {
-        console.log({ ...payload });
+        console.log("Estamos en else", { ...payload });
       }
       // UPLOAD PRODUCT
       // commit("SET_PRODUCT", product);
