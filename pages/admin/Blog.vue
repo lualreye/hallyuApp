@@ -245,7 +245,6 @@ export default {
         };
       }
       this.uploadPost(post);
-      console.log(post)
     },
   },
 };
