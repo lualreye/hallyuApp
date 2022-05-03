@@ -167,7 +167,8 @@
                 </div>
               </div>
             </div>
-            <!-- PRODUCT SKU -->
+            <div class="w-full flex justify-start items-center flex-wrap">
+              <!-- PRODUCT SKU -->
             <div class="w-32 mr-3">
               <label class="w-full text-textColor font-open text-sm">
                 SKU
@@ -177,6 +178,18 @@
                 type="text"
                 class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
               />
+            </div>
+              <!-- RECOMMENDED PRODUCT -->
+            <div class="w-32 mr-3">
+              <label class="w-full text-textColor font-open text-sm">
+                Recomendado?
+              </label>
+              <input
+                v-model="recommended"
+                type="checkbox"
+                class="w-6 h-6 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+              />
+            </div>
             </div>
             <!-- PRODUCCT DESCRIPTION -->
             <div class="w-full flex flex-col justify-center items-center mt-1">
@@ -461,9 +474,10 @@ export default {
     band: "",
     category: "",
     offer: {},
+    recommended: false,
     size: "",
     sizes: [],
-    color: "",
+    color: "#000",
     productOffers: ["Descuento", "Tiempo"],
     productDiscount: 0,
     productDiscountTime: 0,
@@ -510,7 +524,7 @@ export default {
       return this.color !== "" && (Object.keys(this.imagesState).length) ? true : false;
     },
     isOffer() {
-      return Object.keys(this.offer).length !== 0 ? true : false;
+      return Object.keys(this.offer).length !== 0 && this.offer !== "" ? true : false;
     },
     fashionTaken() {
       return this.category === "moda";
@@ -539,10 +553,9 @@ export default {
     this.fetchCategories();
   },
   methods: {
-    ...mapActions("product", ["showProductModal"]),
+    ...mapActions("product", ["showProductModal", "uploadProduct"]),
     ...mapActions("categories", ["fetchCategories"]),
     ...mapActions("bands", ["fetchBands"]),
-
     resetVariables() {
       this.name = "";
       this.price = 0;
@@ -553,7 +566,7 @@ export default {
       this.offer = {};
       this.size = "";
       this.sizes = [];
-      this.color = "";
+      this.color = "#000";
       this.productOffers = ["Descuento", "Tiempo"];
       this.productDiscount = 0;
       this.productDiscountTime = 0;
@@ -567,6 +580,7 @@ export default {
       this.images = [];
       this.extraImage = {};
       this.imagesState = {};
+      this.recommended = {};
     },
 
     // TODO: params(*) boolean
@@ -636,7 +650,7 @@ export default {
         ...this.imagesState,
         name: color,
       });
-      this.color = "";
+      this.color = "#000";
       this.imagesState = {};
     },
 
@@ -679,7 +693,7 @@ export default {
         published: false,
         sales: 0,
         sku: this.sku,
-        favorite: false,
+        recommended: this.recommended,
       };
       this.uploadProduct(product);
       this.closeProductModal();
