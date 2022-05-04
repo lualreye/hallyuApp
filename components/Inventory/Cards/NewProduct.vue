@@ -530,6 +530,11 @@ export default {
         ? true
         : false;
     },
+    hasOffer() {
+      return Object.keys(this.offer).length !== 0 && this.offer !== "" && this.offer !== "Sin Oferta"
+        ? true
+        : false;
+    },
     fashionTaken() {
       return this.category === "moda";
     },
@@ -687,7 +692,7 @@ export default {
         description: this.description,
         band: this.band,
         category: this.category,
-        offered: this.isOffer,
+        offered: this.hasOffer,
         offer: offerType,
         clothes: {
           size: this.sizes,
