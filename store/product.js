@@ -151,6 +151,7 @@ const actions = {
         }
         const productRef = doc(collection(db, "products"))
         const newProduct = {
+          id: productRef,
           images: imgUrls,
           clothes: {
             sizes: payload.clothes.size,
@@ -181,7 +182,17 @@ const actions = {
     }
   },
   async fetchProducts({commit}, payload) {
-
+    const db = fireDataBase
+    try {
+      const querySnapshot = await getDocs(collection(db))
+      let products;
+      querySnapshot.forEach(product => {
+        products.push(product.data())
+      })
+      commit("SET_PRODUCTS", products)
+    } catch (err) {
+      console.error("CANNOT_GET_PRODUCTS", err)
+    }
   },
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
