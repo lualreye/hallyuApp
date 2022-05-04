@@ -39,7 +39,10 @@
       ></div>
     </div>
     <!-- PRODUCTS -->
-    <div v-if="getTotalProducts.length" class="w-full flex flex-col justify-center items-center mt-2">
+    <div
+      v-if="getTotalProducts.length"
+      class="w-full flex flex-col justify-center items-center mt-2"
+    >
       <InventoryCardsProductDetail
         v-for="(product, index) in getTotalProducts"
         :key="index"
@@ -51,6 +54,8 @@
         :published="product.published"
         :offered="product.offered"
         :offer="product.offer"
+        :id="product.id"
+        :selected="product.selected"
       />
     </div>
   </div>
@@ -63,8 +68,8 @@ export default {
     ...mapGetters("inventoryTotal", ["getTotalProducts"]),
   },
   mounted() {
-    if(!this.getTotalProducts.length) {
-      this.fetchProducts()
+    if (!this.getTotalProducts.length) {
+      this.fetchProducts();
     }
   },
   methods: {

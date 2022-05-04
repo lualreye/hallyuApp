@@ -9,7 +9,11 @@
         class="w-2/5 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
       >
         <div class="w-auto flex justify-center items-center">
-          <input type="checkbox" class="border border-textColor w-6 h-6 mr-2" />
+          <input
+            type="checkbox"
+            v-model="selected"
+            class="border border-textColor w-6 h-6 mr-2"
+          />
           <figure
             class="w-10 h-10 flex justify-center items-center bg-lightPink rounded-lg"
           >
@@ -80,8 +84,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex"
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
+    selected: {
+      type: Boolean,
+      required: true
+    },
     name: {
       type: String,
       required: true,
@@ -123,6 +136,21 @@ export default {
     getNameCapitalize() {
       return this.name.charAt(0).toUpperCase() + this.name.slice(1);
     },
+    isSelected() {
+      return this.selected;
+    },
+  },
+  watch: {
+    isSelected(value) {
+      if (value) {
+        console.log(this.id)
+      } else {
+        console.log("deseleccionamos")
+      }
+    },
+  },
+  methods: {
+    ...mapActions("product", ["selectProduct", "unselectProduct"]),
   },
 };
 </script>

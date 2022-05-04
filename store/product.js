@@ -35,9 +35,15 @@ const mutations = {
     state.products = products;
   },
   SELECT_PRODUCT(state, selectedProduct) {
+    state.product
     state.selectedProduct = selectedProduct;
   },
   RESET_SELECTED_PRODUCT(state) {
+    state.products.forEach((product, index) => {
+      if (product.selected) {
+        state.product[index].selected = false
+      }
+    })
     state.selectedProduct = {};
   },
   SHOW_MODAL(state, boolean) {
@@ -151,7 +157,7 @@ const actions = {
         }
         const productRef = doc(collection(db, "products"))
         const newProduct = {
-          id: productRef,
+          id: productRef.id,
           images: imgUrls,
           clothes: {
             sizes: payload.clothes.size,
@@ -184,11 +190,14 @@ const actions = {
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
   },
+  unselectProduct({commit}) {
+    commit("RESET_SELECTED_PRODUCT");
+  },
   selectProduct({ commit }, payload) {
     // TODO: URLSearchParams(*) producId
     commit("RESET_SELECTED_PRODUCT");
     // HACEMOS LA BUSQUEDA
-    commit("SELECT_PRODUCT", selectedProduct);
+    commit("SELECT_PRODUCT", payload);
   },
 };
 
