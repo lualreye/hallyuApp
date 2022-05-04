@@ -121,8 +121,6 @@ const actions = {
       }
       // UPLOADING PRODUCT
       else {
-        let newProduct;
-        console.log({...payload})
         const thumbnailName = payload.thumbnail.name.split(".").shift();
         const thumbnailRef = ref(storage, `products/${thumbnailName}`);
         await uploadBytes(thumbnailRef, payload.thumbnail);
@@ -148,17 +146,42 @@ const actions = {
             const imageRef = ref(storage, `products/extras/${filename}`);
             await uploadBytes(imageRef, payload.clothes.colors[i].object);
             const url = await getDownloadURL(imageRef);
-            imgByColor.push(url);
+            imgByColor.push({image:url, name:payload.clothes.colors[i].name});
           }
         }
-        console.log(imgUrls, imgByColor)
-        console.log("Estamos en else", { ...payload });
+        const productRef = doc(collection(db, "products"))
+        const newProduct = {
+          images: imgUrls,
+          clothes: {
+            sizes: payload.clothes.size,
+            colors: imgByColor
+          },
+          thumbnail: thumbnailUrl,
+          category: payload.category,
+          description: payload.description,
+          band: payload.band,
+          likes: payload.likes,
+          offer: payload.offer,
+          offered: payload.offered,
+          price: Number(payload.price),
+          published: false,
+          recommended: payload.recommended,
+          name: payload.name,
+          sales: payload.sales,
+          sku: payload.sku,
+          stock: payload.stock
+        }
+        await setDoc(productRef, newProduct)
+        console.log("Estamos en else", newProduct);
+        commit("SET_PRODUCT", newProduct);
       }
       // UPLOAD PRODUCT
-      // commit("SET_PRODUCT", product);
     } catch (err) {
       console.error("CANNOT_UPLOAD_PRODUCT", err);
     }
+  },
+  async fetchProducts({commit}, payload) {
+
   },
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
