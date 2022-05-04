@@ -39,7 +39,7 @@
       ></div>
     </div>
     <!-- PRODUCTS -->
-    <div class="w-full flex flex-col justify-center items-center mt-2">
+    <div v-if="getTotalProducts.length" class="w-full flex flex-col justify-center items-center mt-2">
       <InventoryCardsProductDetail
         v-for="(product, index) in getTotalProducts"
         :key="index"
@@ -57,54 +57,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-  data: () => ({
-    getTotalProducts: [
-      {
-        name:"camisa",
-        thumbnail: require("@/static/images/idols/han.jpg"),
-        stock: 25,
-        price: 1.005,
-        category: "moda",
-        published: true,
-        offered: false,
-        offer: {}
-      },
-      {
-        name:"camisa",
-        thumbnail: require("@/static/images/idols/han.jpg"),
-        stock: 25,
-        price: 28.537,
-        category: "moda",
-        published: true,
-        offered: true,
-        offer: {
-          name: "tiempo"
-        }
-      },
-      {
-        name:"camisa",
-        thumbnail: require("@/static/images/idols/han.jpg"),
-        stock: 25,
-        price: 28.537,
-        category: "moda",
-        published: false,
-        offered: true,
-        offer: {
-          name: "descuento"
-        }
-      },
-      {
-        name:"camisa",
-        thumbnail: require("@/static/images/idols/han.jpg"),
-        stock: 25,
-        price: 28.537,
-        category: "moda",
-        published: true,
-        offered: false,
-        offer: {}
-      },
-    ]
-  })
-}
+  computed: {
+    ...mapGetters("inventoryTotal", ["getTotalProducts"]),
+  },
+  mounted() {
+    if(!this.getTotalProducts.length) {
+      this.fetchProducts()
+    }
+  },
+  methods: {
+    ...mapActions("inventoryTotal", ["fetchProducts"]),
+  },
+};
 </script>
