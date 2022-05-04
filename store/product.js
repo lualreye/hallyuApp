@@ -60,7 +60,7 @@ const actions = {
           const filename = payload.thumbnail.split(".").shift();
           const thumbnailRef = ref(storage, `products/${filename}`);
           await uploadBytes(thumbnailRef, payload.thumbnail);
-          const imageUrl = getDownloadURL(thumbnailRef);
+          const imageUrl = await getDownloadURL(thumbnailRef);
           await updateDoc(productRef, { thumbnail: imageUrl });
         } else {
           updatedProduct = {
@@ -72,10 +72,10 @@ const actions = {
         if (payload.images.length) {
           for (let i = 0; i < payload.images.length; i++) {
             if (payload.images[i] instanceof File) {
-              const filename = payload.images[i].split(".").shift();
+              const filename = payload.images[i].name.split(".").shift();
               const imageRef = ref(storage, `products/${filename}`);
               await uploadBytes(imageRef, payload.images[i]);
-              const imageUrl = getDownloadURL(imageRef);
+              const imageUrl = await getDownloadURL(imageRef);
               images[i] = imageUrl;
             } else {
               images[i] = payload.images[i];
@@ -92,12 +92,12 @@ const actions = {
         if (payload.clothes.colors.images.length) {
           for (let i = 0; i < payload.clothes.colors.images.length; i++) {
             if (payload.clothes.colors.images[i].object instanceof File) {
-              const filename = payload.clothes.colors.images[i]
+              const filename = payload.clothes.colors.images[i].name
                 .split(".")
                 .shift();
               const imageRef = ref(storage, `products/clothes/${filename}`);
               await uploadBytes(imageRef, payload.clothes.colors.images[i]);
-              imageUrl = getDownloadURL(imageRef);
+              imageUrl = await getDownloadURL(imageRef);
               imgByColor.push({
                 name: payload.clothes.colors[i].name,
                 image: imageUrl,
@@ -118,7 +118,40 @@ const actions = {
           ...payload,
         };
         console.log(updatedProduct);
-      } else {
+      }
+      // UPLOADING PRODUCT
+      else {
+        let newProduct;
+        console.log({...payload})
+        const thumbnailName = payload.thumbnail.name.split(".").shift();
+        const thumbnailRef = ref(storage, `products/${thumbnailName}`);
+        await uploadBytes(thumbnailRef, payload.thumbnail);
+        const thumbnailUrl = await getDownloadURL(thumbnailRef);
+        // GETTING EXTRA IMAGES
+        let imgUrls = [];
+        if (payload.images.length) {
+          for (let i = 0; i < payload.images.length; i++) {
+            const filename = payload.images[i].object.name.split(".").shift();
+            const imageRef = ref(storage, `products/extras/${filename}`);
+            await uploadBytes(imageRef, payload.images[i]);
+            const url = await getDownloadURL(imageRef);
+            imgUrls.push(url);
+          }
+        }
+        // GETTING IMAGES CLOTHES
+        let imgByColor = [];
+        if (payload.clothes.colors.length) {
+          for (let i = 0; i < payload.clothes.colors.length; i++) {
+            const filename = payload.clothes.colors[i].object.name
+              .split(".")
+              .shift();
+            const imageRef = ref(storage, `products/extras/${filename}`);
+            await uploadBytes(imageRef, payload.clothes.colors[i].object);
+            const url = await getDownloadURL(imageRef);
+            imgByColor.push(url);
+          }
+        }
+        console.log(imgUrls, imgByColor)
         console.log("Estamos en else", { ...payload });
       }
       // UPLOAD PRODUCT

@@ -169,27 +169,27 @@
             </div>
             <div class="w-full flex justify-start items-center flex-wrap">
               <!-- PRODUCT SKU -->
-            <div class="w-32 mr-3">
-              <label class="w-full text-textColor font-open text-sm">
-                SKU
-              </label>
-              <input
-                v-model="sku"
-                type="text"
-                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
-              />
-            </div>
+              <div class="w-32 mr-3">
+                <label class="w-full text-textColor font-open text-sm">
+                  SKU
+                </label>
+                <input
+                  v-model="sku"
+                  type="text"
+                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                />
+              </div>
               <!-- RECOMMENDED PRODUCT -->
-            <div class="w-32 mr-3">
-              <label class="w-full text-textColor font-open text-sm">
-                Recomendado?
-              </label>
-              <input
-                v-model="recommended"
-                type="checkbox"
-                class="w-6 h-6 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
-              />
-            </div>
+              <div class="w-32 mr-3">
+                <label class="w-full text-textColor font-open text-sm">
+                  Recomendado?
+                </label>
+                <input
+                  v-model="recommended"
+                  type="checkbox"
+                  class="w-6 h-6 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                />
+              </div>
             </div>
             <!-- PRODUCCT DESCRIPTION -->
             <div class="w-full flex flex-col justify-center items-center mt-1">
@@ -521,10 +521,14 @@ export default {
       return this.category !== null && this.category !== "";
     },
     isReadyImageByColor() {
-      return this.color !== "" && (Object.keys(this.imagesState).length) ? true : false;
+      return this.color !== "" && Object.keys(this.imagesState).length
+        ? true
+        : false;
     },
     isOffer() {
-      return Object.keys(this.offer).length !== 0 && this.offer !== "" ? true : false;
+      return Object.keys(this.offer).length !== 0 && this.offer !== ""
+        ? true
+        : false;
     },
     fashionTaken() {
       return this.category === "moda";
@@ -580,7 +584,7 @@ export default {
       this.images = [];
       this.extraImage = {};
       this.imagesState = {};
-      this.recommended = {};
+      this.recommended = false;
     },
 
     // TODO: params(*) boolean
@@ -687,7 +691,7 @@ export default {
         offer: offerType,
         clothes: {
           size: this.sizes,
-          colors: { ...this.imagesByColor },
+          colors: [...this.imagesByColor],
         },
         likes: 0,
         published: false,
