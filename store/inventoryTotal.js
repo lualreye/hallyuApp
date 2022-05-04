@@ -1,3 +1,6 @@
+import { fireDataBase } from "../static/js/firebaseConfig"
+import { getDocs, collection } from "firebase/firestore"
+
 const state = () => ({
   totalProducts: []
 })
@@ -10,7 +13,7 @@ const getters = {
 
 const mutations = {
   SET_TOTAL_PRODUCTS(state, totalProducts) {
-    state.totalProducs = totalProducts
+    state.totalProducts = totalProducts
   },
   SET_PRODUCT(state, product) {
     state.totalProducts.push(product)
@@ -27,23 +30,24 @@ const mutations = {
 
 
 const actions = {
-  async uploadProduct({commit}, payload) {
+  async fetchProducts({ commit }) {
+    const db = fireDataBase;
     try {
-      console.log(payload)
-      const product = {}
-      commit("SET_PRODUCT", product)
-    } catch(err) {
-      console.error("CANNOT_UPDATE_PRODUCT")
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const products = [];
+      querySnapshot.forEach((product) => {
+        products.push(product.data());
+      });
+      commit("SET_TOTAL_PRODUCTS", products);
+    } catch (err) {
+      console.error("CANNOT_GET_PRODUCTS", err);
     }
   },
-  async fetchTotalProducts({commit}) {
-    try {
-      const products = []
-      commit("SET_TOTAL_PRODUCTS", products)
-    } catch(err) {
-      console.error("CANNOT_GET_PRODUCTLIST")
-    }
-  },
+};
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions
 }
-
-
