@@ -12,7 +12,6 @@ import {
 const state = () => ({
   isModalOpen: false,
   selectedProduct: {},
-  products: [],
 });
 
 const getters = {
@@ -22,20 +21,13 @@ const getters = {
   getSelectedProduct(state) {
     return state.selectedProduct;
   },
-  getProducts(state) {
-    return state.products;
-  },
 };
 
 const mutations = {
   SET_PRODUCT(state, newProduct) {
     state.products.push(newProduct);
   },
-  SET_PRODUCTS(state, products) {
-    state.products = products;
-  },
   SELECT_PRODUCT(state, selectedProduct) {
-    state.product
     state.selectedProduct = selectedProduct;
   },
   RESET_SELECTED_PRODUCT(state) {
@@ -193,11 +185,13 @@ const actions = {
   unselectProduct({commit}) {
     commit("RESET_SELECTED_PRODUCT");
   },
-  selectProduct({ commit }, payload) {
+  selectProduct({ commit, rootState }, payload) {
     // TODO: URLSearchParams(*) producId
     commit("RESET_SELECTED_PRODUCT");
     // HACEMOS LA BUSQUEDA
-    commit("SELECT_PRODUCT", payload);
+    const products = rootState.inventoryTotal.totalProducts
+    const selectedProduct = products.filter(product => product.id === payload)
+    commit("SELECT_PRODUCT", selectedProduct[0]);
   },
 };
 

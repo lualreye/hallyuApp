@@ -6,21 +6,54 @@
     >
       <!-- DETALLE DE PRODUCTO -->
       <div
-        class="w-2/5 md:w-3/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="
+          w-2/5
+          md:w-3/12
+          flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-base
+          font-open
+        "
       >
         <div class="w-auto flex justify-center items-center">
-          <input
-            type="checkbox"
-            v-model="selected"
-            class="border border-textColor w-6 h-6 mr-2"
-          />
+          <button
+            class="
+              border border-textColor
+              w-6
+              h-6
+              mr-2
+              rounded-lg
+              flex
+              justify-center
+              items-center
+            "
+            @click="select"
+          >
+            <div v-if="isSelected" class="w-4 h-4 rounded-lg bg-green-500" />
+          </button>
           <figure
-            class="w-10 h-10 flex justify-center items-center bg-lightPink rounded-lg"
+            class="
+              w-10
+              h-10
+              flex
+              justify-center
+              items-center
+              bg-lightPink
+              rounded-lg
+            "
           >
             <img
               :src="thumbnail"
               :alt="name"
-              class="flex justify-center items-center rounded-lg object-cover object-center"
+              class="
+                flex
+                justify-center
+                items-center
+                rounded-lg
+                object-cover object-center
+              "
             />
           </figure>
         </div>
@@ -30,38 +63,99 @@
       </div>
       <!-- CATEGORIA DEL PRODUCTO -->
       <div
-        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="
+          w-2/12
+          hidden
+          md:flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-base
+          font-open
+        "
       >
         {{ category }}
       </div>
       <div
-        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="
+          w-1/12
+          hidden
+          md:flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-base
+          font-open
+        "
       >
         {{ stock }}
       </div>
       <div
-        class="w-1/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="
+          w-1/12
+          hidden
+          md:flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-base
+          font-open
+        "
       >
         $ {{ getPrice }}
       </div>
       <div
-        class="w-1/5 md:w-1/12 flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
+        class="
+          w-1/5
+          md:w-1/12
+          flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-sm
+          font-open
+        "
       >
         <p
           v-if="published"
-          class="px-2 py-1 flex justify-center items-center rounded-lg bg-primary"
+          class="
+            px-2
+            py-1
+            flex
+            justify-center
+            items-center
+            rounded-lg
+            bg-primary
+          "
         >
           Sí
         </p>
         <p
           v-else
-          class="px-2 py-1 flex justify-center items-center rounded-lg bg-lightPink"
+          class="
+            px-2
+            py-1
+            flex
+            justify-center
+            items-center
+            rounded-lg
+            bg-lightPink
+          "
         >
           No
         </p>
       </div>
       <div
-        class="w-2/12 hidden md:flex justify-center items-center text-hBlack text-xs md:text-sm font-open"
+        class="
+          w-2/12
+          hidden
+          md:flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-sm
+          font-open
+        "
       >
         <p
           v-if="offered"
@@ -71,29 +165,46 @@
         </p>
         <p
           v-else
-          class="w-16 h-7 flex justify-center items-center rounded-lg bg-lightPink"
+          class="
+            w-16
+            h-7
+            flex
+            justify-center
+            items-center
+            rounded-lg
+            bg-lightPink
+          "
         >
           No tiene
         </p>
       </div>
       <div
-        class="w-2/5 md:w-2/12 flex justify-center items-center text-hBlack text-xs md:text-base font-open"
+        class="
+          w-2/5
+          md:w-2/12
+          flex
+          justify-center
+          items-center
+          text-hBlack text-xs
+          md:text-base
+          font-open
+        "
       ></div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     selected: {
       type: Boolean,
-      required: true
+      required: true,
     },
     name: {
       type: String,
@@ -140,17 +251,15 @@ export default {
       return this.selected;
     },
   },
-  watch: {
-    isSelected(value) {
-      if (value) {
-        console.log(this.id)
-      } else {
-        console.log("deseleccionamos")
-      }
-    },
-  },
   methods: {
     ...mapActions("product", ["selectProduct", "unselectProduct"]),
+    select() {
+      if (this.isSelected) {
+        this.unselectproduct();
+      } else {
+        this.selectProduct(this.id);
+      }
+    },
   },
 };
 </script>
