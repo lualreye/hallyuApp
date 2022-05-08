@@ -252,10 +252,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions("product", ["selectProduct", "unselectProduct"]),
+    ...mapActions("inventoryTotal", ["selectProduct", "unselectProduct"]),
     select() {
       if (this.isSelected) {
-        this.unselectproduct();
+        this.unselectProduct();
       } else {
         this.selectProduct(this.id);
       }

@@ -11,32 +11,17 @@ import {
 
 const state = () => ({
   isModalOpen: false,
-  selectedProduct: {},
 });
 
 const getters = {
   getIsModalOpen(state) {
     return state.isModalOpen;
   },
-  getSelectedProduct(state) {
-    return state.selectedProduct;
-  },
 };
 
 const mutations = {
   SET_PRODUCT(state, newProduct) {
     state.products.push(newProduct);
-  },
-  SELECT_PRODUCT(state, selectedProduct) {
-    state.selectedProduct = selectedProduct;
-  },
-  RESET_SELECTED_PRODUCT(state) {
-    state.products.forEach((product, index) => {
-      if (product.selected) {
-        state.product[index].selected = false
-      }
-    })
-    state.selectedProduct = {};
   },
   SHOW_MODAL(state, boolean) {
     state.isModalOpen = boolean;
@@ -144,16 +129,19 @@ const actions = {
             const imageRef = ref(storage, `products/extras/${filename}`);
             await uploadBytes(imageRef, payload.clothes.colors[i].object);
             const url = await getDownloadURL(imageRef);
-            imgByColor.push({image:url, name:payload.clothes.colors[i].name});
+            imgByColor.push({
+              image: url,
+              name: payload.clothes.colors[i].name,
+            });
           }
         }
-        const productRef = doc(collection(db, "products"))
+        const productRef = doc(collection(db, "products"));
         const newProduct = {
           id: productRef.id,
           images: imgUrls,
           clothes: {
             sizes: payload.clothes.size,
-            colors: imgByColor
+            colors: imgByColor,
           },
           thumbnail: thumbnailUrl,
           category: payload.category,
@@ -168,9 +156,9 @@ const actions = {
           name: payload.name,
           sales: payload.sales,
           sku: payload.sku,
-          stock: payload.stock
-        }
-        await setDoc(productRef, newProduct)
+          stock: payload.stock,
+        };
+        await setDoc(productRef, newProduct);
         console.log("Estamos en else", newProduct);
         commit("SET_PRODUCT", newProduct);
       }
@@ -181,17 +169,6 @@ const actions = {
   },
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
-  },
-  unselectProduct({commit}) {
-    commit("RESET_SELECTED_PRODUCT");
-  },
-  selectProduct({ commit, rootState }, payload) {
-    // TODO: URLSearchParams(*) producId
-    commit("RESET_SELECTED_PRODUCT");
-    // HACEMOS LA BUSQUEDA
-    const products = rootState.inventoryTotal.totalProducts
-    const selectedProduct = products.filter(product => product.id === payload)
-    commit("SELECT_PRODUCT", selectedProduct[0]);
   },
 };
 

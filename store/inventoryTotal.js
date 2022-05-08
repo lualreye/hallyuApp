@@ -3,11 +3,15 @@ import { getDocs, collection } from "firebase/firestore";
 
 const state = () => ({
   totalProducts: [],
+  selectedProduct: {},
 });
 
 const getters = {
   getTotalProducts(state) {
     return state.totalProducts;
+  },
+  getSelectedProduct(state) {
+    return state.selectedProduct;
   },
 };
 
@@ -24,9 +28,20 @@ const mutations = {
     );
     state.totalProducts.splice(productId, 1);
   },
-  UPDATE_PRODUCT(state, product) {
-    const productId = state.totalProducts.findIndex((pr) => pr.id === id);
-    state.totalProducts[productId] = product;
+  SELECT_PRODUCT(state, productId) {
+    const index = state.totalProducts.findIndex((pr) => pr.id === productId);
+    const pr = state.totalProducts.filter((pr) => pr.id === productId);
+    state.totalProducts[index].selected = true;
+    state.selectedProduct = pr[0];
+    console.log(state.selectedProduct);
+  },
+  RESET_SELECTED_PRODUCT(state) {
+    state.totalProducts.forEach((product, index) => {
+      if (product.selected) {
+        state.totalProducts[index].selected = false;
+      }
+    });
+    state.selectedProduct = {};
   },
 };
 
@@ -43,6 +58,15 @@ const actions = {
     } catch (err) {
       console.error("CANNOT_GET_PRODUCTS", err);
     }
+  },
+  unselectProduct({ commit }) {
+    commit("RESET_SELECTED_PRODUCT");
+  },
+  selectProduct({ commit }, payload) {
+    // TODO: URLSearchParams(*) producId
+    commit("RESET_SELECTED_PRODUCT");
+    // HACEMOS LA BUSQUEDA
+    commit("SELECT_PRODUCT", payload);
   },
 };
 
