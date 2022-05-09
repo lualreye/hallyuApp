@@ -922,7 +922,6 @@ export default {
         this.category = selected.category;
         this.offer = selected.offer;
         this.sizes = selected.clothes.sizes;
-        this.imagesByColor = selected.clothes.colors;
         this.productDiscount = 0;
         this.productDiscountTime = 0;
         this.productOfferingTime = "";
@@ -933,8 +932,13 @@ export default {
         }),
           (this.images = selected.images);
         this.recommended = selected.recommended;
-      } else {
-        this.resetVariables();
+        this.imagesByColor = selected.clothes.colors.map((img) => {
+          return {
+            name: img.name,
+            url: img.image,
+          };
+        });
+        console.log(this.imagesByColor);
       }
     },
   },
@@ -973,12 +977,13 @@ export default {
       this.recommended = false;
     },
 
-    // TODO: params(*) boolean
+    // TODO: reset component variables
     closeProductModal() {
       if (this.getIsModalOpen) {
         this.showProductModal(false);
         this.resetVariables();
       } else {
+        this.resetVariables();
         this.showProductModal(true);
       }
     },
