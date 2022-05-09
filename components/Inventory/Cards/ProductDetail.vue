@@ -2,7 +2,7 @@
   <div class="w-full max-w-5xl my-3">
     <!-- LABELS -->
     <div
-      class="w-full flex justify-center itesm-center divide-x divide-textColor"
+      class="w-full flex justify-center items-center divide-x divide-textColor"
     >
       <!-- DETALLE DE PRODUCTO -->
       <div
@@ -10,7 +10,7 @@
           w-2/5
           md:w-3/12
           flex
-          justify-center
+          justify-start
           items-center
           text-hBlack text-xs
           md:text-base
@@ -42,6 +42,7 @@
               items-center
               bg-lightPink
               rounded-lg
+              mr-2
             "
           >
             <img
@@ -58,7 +59,7 @@
           </figure>
         </div>
         <p class="text-textColor w-auto font-open text-xs md:text-base">
-          {{ getNameCapitalize }}
+          {{ getNameCapitalize.substr(0, 15) }}
         </p>
       </div>
       <!-- CATEGORIA DEL PRODUCTO -->
@@ -189,7 +190,16 @@
           md:text-base
           font-open
         "
-      ></div>
+      >
+        <div v-if="isSelected" class="w-full flex justify-center items-center">
+          <button class="w-6 h-6 mr-2 flex justify-center items-center">
+            <GlobalHIcon name="edit" class="text-gray-500" />
+          </button>
+          <button class="w-6 h-6 flex justify-center items-center">
+            <GlobalHIcon name="delete" class="text-gray-500" />
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
