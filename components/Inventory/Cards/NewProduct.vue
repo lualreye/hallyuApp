@@ -914,7 +914,6 @@ export default {
       if (Object.keys(newVal).length !== 0) {
         if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
           const selected = JSON.parse(JSON.stringify(this.getSelectedProduct));
-          console.log(selected);
           this.name = selected.name;
           this.price = selected.price;
           this.stock = selected.stock;
@@ -939,7 +938,6 @@ export default {
               url: img.image,
             };
           });
-          console.log(this.imagesByColor);
         }
       } else {
         this.resetVariables();
