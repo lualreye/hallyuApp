@@ -171,6 +171,18 @@ const actions = {
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
   },
+  async publishProduct({ commit }, payload) {
+    const db = fireDataBase;
+    try {
+      const productRef = doc(fireDataBase, "products", payload.id);
+      await updateDoc(productRef, {
+        published: payload.publish,
+      });
+      commit("inventoryTotal/PUBLISH_PRODUCT", payload, { root: true });
+    } catch (err) {
+      console.error("CANNOT_PUBLISH_PRODUCT", err);
+    }
+  },
   async deleteProduct({ commit }, payload) {
     commit("inventoryTotal/RESET_SELECTED_PRODUCT", null, { root: true });
     const db = fireDataBase;

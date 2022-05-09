@@ -33,7 +33,6 @@ const mutations = {
     const pr = state.totalProducts.filter((pr) => pr.id === productId);
     state.totalProducts[index].selected = true;
     state.selectedProduct = pr[0];
-    console.log(state.selectedProduct);
   },
   RESET_SELECTED_PRODUCT(state) {
     state.totalProducts.forEach((product, index) => {
@@ -42,6 +41,10 @@ const mutations = {
       }
     });
     state.selectedProduct = {};
+  },
+  PUBLISH_PRODUCT(state, publish) {
+    const index = state.totalProducts.findIndex((pr) => pr.id === publish.id);
+    state.totalProducts[index].published = publish.publish;
   },
 };
 

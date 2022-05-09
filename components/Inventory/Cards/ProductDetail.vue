@@ -126,8 +126,9 @@
           font-open
         "
       >
-        <p
-          v-if="published"
+        <button
+          v-if="isPublished"
+          @click="publish"
           class="
             px-2
             py-1
@@ -139,9 +140,10 @@
           "
         >
           Sí
-        </p>
-        <p
+        </button>
+        <button
           v-else
+          @click="publish"
           class="
             px-2
             py-1
@@ -153,7 +155,7 @@
           "
         >
           No
-        </p>
+        </button>
       </div>
       <div
         class="
@@ -272,10 +274,13 @@ export default {
     isSelected() {
       return this.selected;
     },
+    isPublished() {
+      return this.published;
+    },
   },
   methods: {
     ...mapActions("inventoryTotal", ["selectProduct", "unselectProduct"]),
-    ...mapActions("product", ["deleteProduct"]),
+    ...mapActions("product", ["deleteProduct", "publishProduct"]),
     select() {
       if (this.isSelected) {
         this.unselectProduct();
@@ -285,6 +290,19 @@ export default {
     },
     deletePr() {
       this.deleteProduct(this.id);
+    },
+    publish() {
+      if (this.isPublished) {
+        this.publishProduct({
+          id: this.id,
+          publish: false,
+        });
+      } else {
+        this.publishProduct({
+          id: this.id,
+          publish: true,
+        });
+      }
     },
   },
 };
