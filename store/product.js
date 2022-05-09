@@ -171,6 +171,17 @@ const actions = {
   showProductModal({ commit }, payload) {
     commit("SHOW_MODAL", payload);
   },
+  async deleteProduct({ commit }, payload) {
+    commit("inventoryTotal/RESET_SELECTED_PRODUCT", null, { root: true });
+    const db = fireDataBase;
+    console.log(payload, "Estamos en deleting");
+    try {
+      await deleteDoc(doc(db, "products", payload));
+      commit("inventoryTotal/DELETE_PRODUCT", payload, { root: true });
+    } catch (err) {
+      console.error("CANNOT_DELETE_PRODUCT", err);
+    }
+  },
 };
 
 export { state, getters, mutations, actions };

@@ -204,7 +204,10 @@
           <button class="w-6 h-6 mr-3 flex justify-center items-center">
             <GlobalHIcon name="edit" class="text-gray-500" />
           </button>
-          <button class="w-6 h-6 flex justify-center items-center">
+          <button
+            @click="deletePr"
+            class="w-6 h-6 flex justify-center items-center"
+          >
             <GlobalHIcon name="delete" class="text-gray-500" />
           </button>
         </div>
@@ -272,12 +275,16 @@ export default {
   },
   methods: {
     ...mapActions("inventoryTotal", ["selectProduct", "unselectProduct"]),
+    ...mapActions("product", ["deleteProduct"]),
     select() {
       if (this.isSelected) {
         this.unselectProduct();
       } else {
         this.selectProduct(this.id);
       }
+    },
+    deletePr() {
+      this.deleteProduct(this.id);
     },
   },
 };
