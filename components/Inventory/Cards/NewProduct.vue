@@ -933,6 +933,8 @@ export default {
         }),
           (this.images = selected.images);
         this.recommended = selected.recommended;
+      } else {
+        this.resetVariables();
       }
     },
   },
