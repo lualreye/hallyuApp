@@ -844,7 +844,7 @@ export default {
     ...mapGetters("categories", ["getCategories"]),
     ...mapGetters("inventoryTotal", ["getSelectedProduct"]),
     isThereSelectedProduct() {
-      return Object.keys(this.getSelectedProduct).length !== 0 ? true : false;
+      return this.getSelectedProduct;
     },
     isThumbnail() {
       return this.thumbnail.url !== null && this.thumbnail.url !== "";
@@ -910,35 +910,39 @@ export default {
     },
   },
   watch: {
-    isThereSelectedProduct(value) {
-      if (value) {
-        const selected = JSON.parse(JSON.stringify(this.getSelectedProduct));
-        console.log(selected);
-        this.name = selected.name;
-        this.price = selected.price;
-        this.stock = selected.stock;
-        this.description = selected.description;
-        this.band = selected.band;
-        this.category = selected.category;
-        this.offer = selected.offer;
-        this.sizes = selected.clothes.sizes;
-        this.productDiscount = 0;
-        this.productDiscountTime = 0;
-        this.productOfferingTime = "";
-        this.sku = selected.sku;
-        (this.thumbnail = {
-          object: null,
-          url: selected.thumbnail,
-        }),
-          (this.images = selected.images);
-        this.recommended = selected.recommended;
-        this.imagesByColor = selected.clothes.colors.map((img) => {
-          return {
-            name: img.name,
-            url: img.image,
-          };
-        });
-        console.log(this.imagesByColor);
+    isThereSelectedProduct(newVal, oldVal) {
+      if (Object.keys(newVal).length !== 0) {
+        if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+          const selected = JSON.parse(JSON.stringify(this.getSelectedProduct));
+          console.log(selected);
+          this.name = selected.name;
+          this.price = selected.price;
+          this.stock = selected.stock;
+          this.description = selected.description;
+          this.band = selected.band;
+          this.category = selected.category;
+          this.offer = selected.offer;
+          this.sizes = selected.clothes.sizes;
+          this.productDiscount = 0;
+          this.productDiscountTime = 0;
+          this.productOfferingTime = "";
+          this.sku = selected.sku;
+          (this.thumbnail = {
+            object: null,
+            url: selected.thumbnail,
+          }),
+            (this.images = selected.images);
+          this.recommended = selected.recommended;
+          this.imagesByColor = selected.clothes.colors.map((img) => {
+            return {
+              name: img.name,
+              url: img.image,
+            };
+          });
+          console.log(this.imagesByColor);
+        }
+      } else {
+        this.resetVariables();
       }
     },
   },
