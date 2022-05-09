@@ -29,18 +29,19 @@ const mutations = {
 };
 
 const actions = {
-  async uploadProduct({ commit, getters }, payload) {
+  async uploadProduct({ commit, rootState }, payload) {
     try {
       const db = fireDataBase;
       const storage = fireStorage;
+
       // UPDATE PRODUCT
-      if (Object.keys(getters.getSelectedProduct).length) {
-        const productId = getters.getSelectedProduct.id;
+      if (Object.keys(rootState.inventoryTotal.selectedProduct).length) {
+        const productId = rootState.inventoryTotal.selectedProduct.id;
         let updatedProduct;
         const productRef = doc(db, "products", productId);
         // UPDATING THUMBNAIL
         if (payload.thumbnail instanceof File) {
-          const filename = payload.thumbnail.split(".").shift();
+          const filename = payload.thumbnail.name.split(".").shift();
           const thumbnailRef = ref(storage, `products/${filename}`);
           await uploadBytes(thumbnailRef, payload.thumbnail);
           const imageUrl = await getDownloadURL(thumbnailRef);
@@ -160,7 +161,7 @@ const actions = {
         };
         await setDoc(productRef, newProduct);
         console.log("Estamos en else", newProduct);
-        commit("SET_PRODUCT", newProduct);
+        commit("inventory/SET_PRODUCT", newProduct, { root: true });
       }
       // UPLOAD PRODUCT
     } catch (err) {
