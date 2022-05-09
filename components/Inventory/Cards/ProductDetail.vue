@@ -2,7 +2,16 @@
   <div class="w-full max-w-5xl my-3">
     <!-- LABELS -->
     <div
-      class="w-full flex justify-center items-center divide-x divide-textColor"
+      class="
+        w-full
+        flex
+        justify-center
+        items-center
+        divide-x divide-textColor
+        rounded-lg
+        px-2
+      "
+      :class="{ 'bg-aquamarine': isSelected }"
     >
       <!-- DETALLE DE PRODUCTO -->
       <div
@@ -192,7 +201,7 @@
         "
       >
         <div v-if="isSelected" class="w-full flex justify-center items-center">
-          <button class="w-6 h-6 mr-2 flex justify-center items-center">
+          <button class="w-6 h-6 mr-3 flex justify-center items-center">
             <GlobalHIcon name="edit" class="text-gray-500" />
           </button>
           <button class="w-6 h-6 flex justify-center items-center">
