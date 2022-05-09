@@ -1,7 +1,19 @@
 <template>
   <div
     v-if="getIsModalOpen"
-    class="w-10/12 sm:w-3/4 max-w-4xl absolute top-20 left-1/12 sm:left-1/8 z-50 bg-background rounded-lg shadow-md"
+    class="
+      w-10/12
+      sm:w-3/4
+      max-w-4xl
+      absolute
+      top-20
+      left-1/12
+      sm:left-1/8
+      z-50
+      bg-background
+      rounded-lg
+      shadow-md
+    "
   >
     <div class="w-full flex flex-col justify-center items-center p-2">
       <!-- CLOSE BUTTON -->
@@ -18,15 +30,40 @@
       </div>
       <!-- DATA -->
       <div
-        class="w-full flex flex-col lg:flex-row justify-center items-center lg:items-start p-2"
+        class="
+          w-full
+          flex flex-col
+          lg:flex-row
+          justify-center
+          items-center
+          lg:items-start
+          p-2
+        "
       >
         <!-- PRODUCT IMAGES -->
         <div
-          class="w-full sm:w-1/3 lg:w-1/5 p-2 flex flex-col justify-center items-center"
+          class="
+            w-full
+            sm:w-1/3
+            lg:w-1/5
+            p-2
+            flex flex-col
+            justify-center
+            items-center
+          "
         >
           <!-- THUMBNAIL -->
           <div
-            class="relative w-36 h-36 flex justify-center items-center border border-primary rounded-lg"
+            class="
+              relative
+              w-36
+              h-36
+              flex
+              justify-center
+              items-center
+              border border-primary
+              rounded-lg
+            "
           >
             <input
               type="file"
@@ -69,11 +106,30 @@
               <figure
                 v-for="(image, index) in images"
                 :key="index"
-                class="border border-primary rounded-lg w-10 h-10 flex justify-center items-center mr-2 relative"
+                class="
+                  border border-primary
+                  rounded-lg
+                  w-10
+                  h-10
+                  flex
+                  justify-center
+                  items-center
+                  mr-2
+                  relative
+                "
               >
                 <img :src="image.url" />
                 <button
-                  class="w-5 h-5 flex justify-center items-center absolute -top-1 -right-1"
+                  class="
+                    w-5
+                    h-5
+                    flex
+                    justify-center
+                    items-center
+                    absolute
+                    -top-1
+                    -right-1
+                  "
                   @click="deleteExtraImages(index)"
                 >
                   <GlobalHIcon name="close" class="text-pink-700" />
@@ -86,7 +142,16 @@
               class="w-full flex justify-between items-center"
             >
               <div
-                class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                class="
+                  relative
+                  w-10
+                  h-10
+                  flex
+                  justify-center
+                  items-center
+                  border border-primary
+                  rounded-lg
+                "
               >
                 <div v-if="!Object.keys(extraImage).length" class="w-auto">
                   <input
@@ -122,11 +187,25 @@
         </div>
         <!-- PRODUCT INFORMATION -->
         <div
-          class="w-full sm:w-2/3 lg:w-4/5 flex flex-col justify-center items-center p-2"
+          class="
+            w-full
+            sm:w-2/3
+            lg:w-4/5
+            flex flex-col
+            justify-center
+            items-center
+            p-2
+          "
         >
           <div class="w-full flex flex-col justify-center items-start">
             <div
-              class="w-full flex flex-wrap justify-start xl:justify-start items-start"
+              class="
+                w-full
+                flex flex-wrap
+                justify-start
+                xl:justify-start
+                items-start
+              "
             >
               <!-- PRODUCT NAME -->
               <div class="w-full max-w-xs mr-3">
@@ -136,12 +215,28 @@
                 <input
                   v-model="name"
                   type="text"
-                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  class="
+                    w-full
+                    text-hBlack
+                    font-open
+                    text-sm
+                    border border-primary
+                    rounded-lg
+                    outline-none
+                    focus:outline-none
+                    p-2
+                  "
                 />
               </div>
               <!-- PRODUCT PRICE AND STOCK -->
               <div
-                class="w-full max-w-xs flex flex-wrap justify-start items-center"
+                class="
+                  w-full
+                  max-w-xs
+                  flex flex-wrap
+                  justify-start
+                  items-center
+                "
               >
                 <!-- PRODUCT PRICE -->
                 <div class="w-32 mr-3">
@@ -151,7 +246,17 @@
                   <input
                     v-model="price"
                     type="Number"
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   />
                 </div>
                 <!-- PRODUCT STOCK -->
@@ -162,7 +267,17 @@
                   <input
                     v-model="stock"
                     type="Number"
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   />
                 </div>
               </div>
@@ -176,7 +291,17 @@
                 <input
                   v-model="sku"
                   type="text"
-                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  class="
+                    w-full
+                    text-hBlack
+                    font-open
+                    text-sm
+                    border border-primary
+                    rounded-lg
+                    outline-none
+                    focus:outline-none
+                    p-2
+                  "
                 />
               </div>
               <!-- RECOMMENDED PRODUCT -->
@@ -187,7 +312,18 @@
                 <input
                   v-model="recommended"
                   type="checkbox"
-                  class="w-6 h-6 text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  class="
+                    w-6
+                    h-6
+                    text-hBlack
+                    font-open
+                    text-sm
+                    border border-primary
+                    rounded-lg
+                    outline-none
+                    focus:outline-none
+                    p-2
+                  "
                 />
               </div>
             </div>
@@ -199,17 +335,42 @@
               <input
                 v-model="description"
                 type="text"
-                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                class="
+                  w-full
+                  text-hBlack
+                  font-open
+                  text-sm
+                  border border-primary
+                  rounded-lg
+                  outline-none
+                  focus:outline-none
+                  p-2
+                "
               />
             </div>
           </div>
           <!-- PRODUCT DETAILS -->
           <div
-            class="w-full flex flex-col lg:flex-row justify-center items-center md:items-start mt-3"
+            class="
+              w-full
+              flex flex-col
+              lg:flex-row
+              justify-center
+              items-center
+              md:items-start
+              mt-3
+            "
           >
             <!-- PRODUCT BAND -->
             <div
-              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3"
+              class="
+                w-full
+                lg:w-1/3
+                flex flex-col
+                justify-center
+                items-center
+                pr-3
+              "
             >
               <label class="w-full text-textColor font-open text-sm">
                 Banda
@@ -218,7 +379,17 @@
                 v-model="band"
                 name=""
                 id=""
-                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                class="
+                  w-full
+                  text-hBlack
+                  font-open
+                  text-sm
+                  border border-primary
+                  rounded-lg
+                  outline-none
+                  focus:outline-none
+                  p-2
+                "
               >
                 <option class="text-xs font-open text-textColor">
                   Sin banda
@@ -234,7 +405,16 @@
             </div>
             <!-- PRODUCT CATEGORY -->
             <div
-              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3 mt-2 lg:mt-0"
+              class="
+                w-full
+                lg:w-1/3
+                flex flex-col
+                justify-center
+                items-center
+                pr-3
+                mt-2
+                lg:mt-0
+              "
             >
               <!-- CATEGORY -->
               <label class="w-full text-textColor font-open text-sm">
@@ -244,7 +424,17 @@
                 v-model="category"
                 name=""
                 id=""
-                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                class="
+                  w-full
+                  text-hBlack
+                  font-open
+                  text-sm
+                  border border-primary
+                  rounded-lg
+                  outline-none
+                  focus:outline-none
+                  p-2
+                "
               >
                 <option
                   v-for="(category, index) in getCategories"
@@ -270,13 +460,29 @@
                   <span
                     v-for="(size, index) in sizes"
                     :key="index"
-                    class="bg-lightPink flex justify-center items-center rounded-lg text-textColor px-1"
+                    class="
+                      bg-lightPink
+                      flex
+                      justify-center
+                      items-center
+                      rounded-lg
+                      text-textColor
+                      px-1
+                    "
                   >
                     <p class="text-textColor font-open mr-1">
                       {{ size }}
                     </p>
                     <button
-                      class="w-4 h-4 flex justify-center bg-gray-300 itemscenter rounded-full"
+                      class="
+                        w-4
+                        h-4
+                        flex
+                        justify-center
+                        bg-gray-300
+                        itemscenter
+                        rounded-full
+                      "
                       @click="deleteSize(size)"
                     >
                       <GlobalHIcon name="close" />
@@ -287,7 +493,17 @@
                   v-model="size"
                   type="text"
                   @keyup.enter="onSizeEnter"
-                  class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                  class="
+                    w-full
+                    text-hBlack
+                    font-open
+                    text-sm
+                    border border-primary
+                    rounded-lg
+                    outline-none
+                    focus:outline-none
+                    p-2
+                  "
                 />
                 <!-- COLOR -->
                 <div class="w-full flex flex-col justify-center items-center">
@@ -298,21 +514,56 @@
                     <figure
                       v-for="(image, index) in imagesByColor"
                       :key="index"
-                      class="rounded-lg mr-2 flex justify-center items-center p-1 mt-2 relative"
+                      class="
+                        rounded-lg
+                        mr-2
+                        flex
+                        justify-center
+                        items-center
+                        p-1
+                        mt-2
+                        relative
+                      "
                     >
                       <img
                         :src="image.url"
-                        class="w-10 h-10 mr-1 border border-primary object-cover rounded-lg"
+                        class="
+                          w-10
+                          h-10
+                          mr-1
+                          border border-primary
+                          object-cover
+                          rounded-lg
+                        "
                       />
                       <div
-                        class="w-6 h-6 p-1 flex justify-center items-center border border-primary rounded-full"
+                        class="
+                          w-6
+                          h-6
+                          p-1
+                          flex
+                          justify-center
+                          items-center
+                          border border-primary
+                          rounded-full
+                        "
                       >
                         <div
                           :style="{ backgroundColor: image.name }"
                           class="w-3 h-3 rounded-full"
                         />
                         <button
-                          class="w-5 h-5 flex justify-center items-center absolute top-0 right-0 bg-lightPik"
+                          class="
+                            w-5
+                            h-5
+                            flex
+                            justify-center
+                            items-center
+                            absolute
+                            top-0
+                            right-0
+                            bg-lightPik
+                          "
                           @click="deleteImageByColor(index)"
                         >
                           <GlobalHIcon name="close" class="text-pink-700" />
@@ -324,14 +575,33 @@
                     Color
                   </label>
                   <div
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   >
                     <input v-model="color" type="color" />
                   </div>
                   <!-- GET IMAGE BY COLOR -->
                   <div class="w-full mt-3 flex justify-between items-center">
                     <div
-                      class="relative w-10 h-10 flex justify-center items-center border border-primary rounded-lg"
+                      class="
+                        relative
+                        w-10
+                        h-10
+                        flex
+                        justify-center
+                        items-center
+                        border border-primary
+                        rounded-lg
+                      "
                     >
                       <div
                         v-if="!Object.keys(imagesState).length"
@@ -354,7 +624,16 @@
                       />
                     </div>
                     <button
-                      class="flex justify-center items-center shadow-md py-1 px-2 rounded-lg text-textColor"
+                      class="
+                        flex
+                        justify-center
+                        items-center
+                        shadow-md
+                        py-1
+                        px-2
+                        rounded-lg
+                        text-textColor
+                      "
                       :class="{
                         'bg-primary': isReadyImageByColor,
                         'bg-gray-400': !isReadyImageByColor,
@@ -370,14 +649,33 @@
             </div>
             <!-- PRODUCT OFFERS -->
             <div
-              class="w-full lg:w-1/3 flex flex-col justify-center items-center pr-3 mt-2 lg:mt-0"
+              class="
+                w-full
+                lg:w-1/3
+                flex flex-col
+                justify-center
+                items-center
+                pr-3
+                mt-2
+                lg:mt-0
+              "
             >
               <label class="w-full text-textColor font-open text-sm">
                 Ofertas
               </label>
               <select
                 v-model="offer"
-                class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                class="
+                  w-full
+                  text-hBlack
+                  font-open
+                  text-sm
+                  border border-primary
+                  rounded-lg
+                  outline-none
+                  focus:outline-none
+                  p-2
+                "
               >
                 <option class="text-xs font-open text-textColor">
                   Sin Oferta
@@ -403,7 +701,17 @@
                   <input
                     v-model="productDiscount"
                     type="Number"
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   />
                 </div>
               </div>
@@ -420,7 +728,17 @@
                   <input
                     v-model="productDiscountTime"
                     type="Number"
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   />
                 </div>
                 <!-- TIME -->
@@ -431,7 +749,17 @@
                   <input
                     v-model="productOfferingTime"
                     type="date"
-                    class="w-full text-hBlack font-open text-sm border border-primary rounded-lg outline-none focus:outline-none p-2"
+                    class="
+                      w-full
+                      text-hBlack
+                      font-open
+                      text-sm
+                      border border-primary
+                      rounded-lg
+                      outline-none
+                      focus:outline-none
+                      p-2
+                    "
                   />
                 </div>
               </div>
@@ -442,13 +770,31 @@
       <!-- BUTTONS -->
       <div class="w-full flex justify-center md:justify-end items-center my-2">
         <button
-          class="py-2 w-44 bg-lightPink flex justify-center items-center rounded-lg text-textColor mr-2"
+          class="
+            py-2
+            w-44
+            bg-lightPink
+            flex
+            justify-center
+            items-center
+            rounded-lg
+            text-textColor
+            mr-2
+          "
           @click="closeProductModal"
         >
           Cancelar
         </button>
         <button
-          class="py-2 w-44 flex justify-center items-center rounded-lg text-textColor"
+          class="
+            py-2
+            w-44
+            flex
+            justify-center
+            items-center
+            rounded-lg
+            text-textColor
+          "
           :class="{
             'bg-primary': isReadyToUpload,
             'bg-gray-400': !isReadyToUpload,
@@ -496,6 +842,10 @@ export default {
     ...mapGetters("product", ["getIsModalOpen"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("categories", ["getCategories"]),
+    ...mapGetters("inventoryTotal", ["getSelectedProduct"]),
+    isThereSelectedProduct() {
+      return Object.keys(this.getSelectedProduct).length !== 0 ? true : false;
+    },
     isThumbnail() {
       return this.thumbnail.url !== null && this.thumbnail.url !== "";
     },
@@ -531,7 +881,9 @@ export default {
         : false;
     },
     hasOffer() {
-      return Object.keys(this.offer).length !== 0 && this.offer !== "" && this.offer !== "Sin Oferta"
+      return Object.keys(this.offer).length !== 0 &&
+        this.offer !== "" &&
+        this.offer !== "Sin Oferta"
         ? true
         : false;
     },
@@ -555,6 +907,33 @@ export default {
         this.isOffer &&
         this.isThumbnail
       );
+    },
+  },
+  watch: {
+    isThereSelectedProduct(value) {
+      if (value) {
+        const selected = JSON.parse(JSON.stringify(this.getSelectedProduct));
+        console.log(selected);
+        this.name = selected.name;
+        this.price = selected.price;
+        this.stock = selected.stock;
+        this.description = selected.description;
+        this.band = selected.band;
+        this.category = selected.category;
+        this.offer = selected.offer;
+        this.sizes = selected.clothes.sizes;
+        this.imagesByColor = selected.clothes.colors;
+        this.productDiscount = 0;
+        this.productDiscountTime = 0;
+        this.productOfferingTime = "";
+        this.sku = selected.sku;
+        (this.thumbnail = {
+          object: null,
+          url: selected.thumbnail,
+        }),
+          (this.images = selected.images);
+        this.recommended = selected.recommended;
+      }
     },
   },
   mounted() {
