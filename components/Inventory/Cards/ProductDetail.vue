@@ -203,7 +203,10 @@
         "
       >
         <div v-if="isSelected" class="w-full flex justify-center items-center">
-          <button class="w-6 h-6 mr-3 flex justify-center items-center">
+          <button
+            @click="edit"
+            class="w-6 h-6 mr-3 flex justify-center items-center"
+          >
             <GlobalHIcon name="edit" class="text-gray-500" />
           </button>
           <button
@@ -264,6 +267,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters("product", ["getIsModalOpen"]),
     getPrice() {
       const price = Number((Math.abs(this.price) * 100).toPrecision(15));
       return Math.round(price) / (100 * Math.sign(this.price));
@@ -280,7 +284,11 @@ export default {
   },
   methods: {
     ...mapActions("inventoryTotal", ["selectProduct", "unselectProduct"]),
-    ...mapActions("product", ["deleteProduct", "publishProduct"]),
+    ...mapActions("product", [
+      "deleteProduct",
+      "publishProduct",
+      "showProductModal",
+    ]),
     select() {
       if (this.isSelected) {
         this.unselectProduct();
@@ -302,6 +310,13 @@ export default {
           id: this.id,
           publish: true,
         });
+      }
+    },
+    edit() {
+      if (this.getIsModalOpen) {
+        this.showProductModal(false);
+      } else {
+        this.showProductModal(true);
       }
     },
   },
