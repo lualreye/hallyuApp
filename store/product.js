@@ -160,8 +160,11 @@ const actions = {
           stock: payload.stock,
         };
         await setDoc(productRef, newProduct);
-        console.log("Estamos en else", newProduct);
-        commit("inventory/SET_PRODUCT", newProduct, { root: true });
+        commit(
+          "inventoryTotal/SET_PRODUCT",
+          { ...newProduct, selected: false },
+          { root: true }
+        );
       }
       // UPLOAD PRODUCT
     } catch (err) {
