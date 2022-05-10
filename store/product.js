@@ -52,26 +52,26 @@ const actions = {
           };
         }
         // UPDATING EXTRA IMAGES
-        let images;
+        let images = [];
         if (payload.images.length !== 0) {
-          console.log("Estamos dentro de la condicion");
           for (let i = 0; i < payload.images.length; i++) {
-            console.log(payload.images[i]);
-            if (payload.images[i] instanceof File) {
-              const filename = payload.images[i].name.split(".").shift();
+            if (payload.images[i].object instanceof File) {
+              const filename = payload.images[i].object.name.split(".").shift();
               const imageRef = ref(storage, `products/${filename}`);
+              console.log(filename, imageRef);
               await uploadBytes(imageRef, payload.images[i]);
               const imageUrl = await getDownloadURL(imageRef);
               images[i] = imageUrl;
             } else {
-              images[i] = payload.images[i];
+              images[i] = payload.images[i].image;
             }
           }
           await updateDoc(productRef, { images: images });
         } else if (payload.images.length === 0) {
           updatedProduct = {
-            images: [],
+            images: payload.images,
           };
+          await updateDoc(productRef, { images: images });
         } else {
           console.log("WE_CANNOT_UPLOAD_EXTRA_IMAGES");
         }
