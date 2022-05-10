@@ -67,6 +67,14 @@ const actions = {
             }
           }
           await updateDoc(productRef, { images: images });
+          commit(
+            "inventoryTotal/UPDATE_EXTRA_IMAGES",
+            {
+              id: productRef.id,
+              images: images,
+            },
+            { root: true }
+          );
         } else if (payload.images.length === 0) {
           updatedProduct = {
             images: payload.images,
