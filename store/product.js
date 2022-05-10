@@ -36,6 +36,7 @@ const actions = {
 
       // UPDATE PRODUCT
       if (Object.keys(rootState.inventoryTotal.selectedProduct).length) {
+        console.log(payload);
         const productId = rootState.inventoryTotal.selectedProduct.id;
         let updatedProduct;
         const productRef = doc(db, "products", productId);
@@ -53,8 +54,11 @@ const actions = {
         }
         // UPDATING EXTRA IMAGES
         let images;
-        if (payload.images.length) {
+        console.log(payload.images.length);
+        if (payload.images.length !== 0) {
+          console.log("Estamos dentro de la condicion");
           for (let i = 0; i < payload.images.length; i++) {
+            console.log(payload.images[i]);
             if (payload.images[i] instanceof File) {
               const filename = payload.images[i].name.split(".").shift();
               const imageRef = ref(storage, `products/${filename}`);
@@ -66,13 +70,16 @@ const actions = {
             }
           }
           await updateDoc(productRef, { images: images });
-        } else {
+        } else if (payload.images.length === 0) {
           updatedProduct = {
-            images: payload.images,
+            images: [],
           };
+        } else {
+          console.log("WE_CANNOT_UPLOAD_EXTRA_IMAGES");
         }
         // UPDATING COLOR IMAGES
         let imgByColor;
+        console.log("Estamos debajdo de images");
         if (payload.clothes.colors.images.length) {
           for (let i = 0; i < payload.clothes.colors.images.length; i++) {
             if (payload.clothes.colors.images[i].object instanceof File) {
@@ -98,10 +105,7 @@ const actions = {
           await updateDoc(productRef, { "clothes.color": [] });
         }
         // UPDATING PRODUCT
-        updatedProduct = {
-          ...payload,
-        };
-        console.log(updatedProduct);
+        console.log("Vamos a editar la informacion", payload);
       }
       // UPLOADING PRODUCT
       else {
