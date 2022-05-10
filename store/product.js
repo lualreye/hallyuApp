@@ -53,21 +53,18 @@ const actions = {
         }
         // UPDATING EXTRA IMAGES
         let images = [];
-        console.log(payload.images);
         if (payload.images.length !== 0) {
           for (let i = 0; i < payload.images.length; i++) {
             if (typeof payload.images[i] === "object") {
               const filename = payload.images[i].object.name.split(".").shift();
               const imageRef = ref(storage, `products/extras/${filename}`);
-              console.log(filename, imageRef);
-              await uploadBytes(imageRef, payload.images[i]);
+              await uploadBytes(imageRef, payload.images[i].object);
               const imageUrl = await getDownloadURL(imageRef);
               images[i] = imageUrl;
             } else {
               images[i] = payload.images[i];
             }
           }
-          console.log(images);
           await updateDoc(productRef, { images: images });
           commit(
             "inventoryTotal/UPDATE_EXTRA_IMAGES",
@@ -83,7 +80,7 @@ const actions = {
           };
           await updateDoc(productRef, { images: images });
         } else {
-          console.log("WE_CANNOT_UPLOAD_EXTRA_IMAGES");
+          console.error("WE_CANNOT_UPLOAD_EXTRA_IMAGES");
         }
         // UPDATING COLOR IMAGES
         let imgByColor;
@@ -218,7 +215,6 @@ const actions = {
   async deleteProduct({ commit }, payload) {
     commit("inventoryTotal/RESET_SELECTED_PRODUCT", null, { root: true });
     const db = fireDataBase;
-    console.log(payload, "Estamos en deleting");
     try {
       await deleteDoc(doc(db, "products", payload));
       commit("inventoryTotal/DELETE_PRODUCT", payload, { root: true });
