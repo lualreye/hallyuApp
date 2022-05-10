@@ -118,7 +118,8 @@
                   relative
                 "
               >
-                <img :src="image.url" />
+                <img v-if="typeof image === 'object'" :src="image.url" />
+                <img v-else :src="image" />
                 <button
                   class="
                     w-5
