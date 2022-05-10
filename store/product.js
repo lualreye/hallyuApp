@@ -83,16 +83,16 @@ const actions = {
           console.error("WE_CANNOT_UPLOAD_EXTRA_IMAGES");
         }
         // UPDATING COLOR IMAGES
-        let imgByColor;
+        let imgByColor = [];
         if (payload.clothes.colors.length) {
           for (let i = 0; i < payload.clothes.colors.length; i++) {
-            if (payload.clothes.colors[i].image.object instanceof File) {
-              const filename = payload.clothes.colors.images[i].name
+            if ("object" in payload.clothes.colors[i]) {
+              const filename = payload.clothes.colors[i].object.name
                 .split(".")
                 .shift();
               const imageRef = ref(storage, `products/clothes/${filename}`);
-              await uploadBytes(imageRef, payload.clothes.colors.images[i]);
-              imageUrl = await getDownloadURL(imageRef);
+              await uploadBytes(imageRef, payload.clothes.colors[i].object);
+              let imageUrl = await getDownloadURL(imageRef);
               imgByColor.push({
                 name: payload.clothes.colors[i].name,
                 image: imageUrl,
@@ -104,9 +104,20 @@ const actions = {
               });
             }
           }
+          console.log(imgByColor);
           await updateDoc(productRef, { "clothes.colors": imgByColor });
+          commit(
+            "inventoryTotal/UPDATE_IMAGES_BY_COLOR",
+            { id: productRef.id, colors: imgByColor },
+            { root: true }
+          );
         } else {
           await updateDoc(productRef, { "clothes.color": [] });
+          commit(
+            "inventoryTotal/UPDATE_IMAGES_BY_COLOR",
+            { id: productRef, colors: [] },
+            { root: true }
+          );
         }
         // UPDATING PRODUCT DETAIL
         updatedProduct = {

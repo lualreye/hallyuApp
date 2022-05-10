@@ -33,6 +33,13 @@ const mutations = {
     const index = state.totalProducts.findIndex((pr) => pr.id === id);
     state.totalProducts[index].images = product.images;
   },
+  UPDATE_IMAGES_BY_COLOR(state, product) {
+    console.log(product);
+    const id = product.id;
+    const index = state.totalProducts.findIndex((pr) => pr.id === id);
+    console.log(index);
+    state.totalProducts[index].clothes.colors = product.colors;
+  },
   UPDATE_PRODUCT(state, product) {
     const id = product.id;
     const index = state.totalProducts.findIndex((pr) => pr.id === id);
