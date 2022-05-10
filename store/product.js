@@ -36,7 +36,6 @@ const actions = {
 
       // UPDATE PRODUCT
       if (Object.keys(rootState.inventoryTotal.selectedProduct).length) {
-        console.log(payload);
         const productId = rootState.inventoryTotal.selectedProduct.id;
         let updatedProduct;
         const productRef = doc(db, "products", productId);
@@ -54,7 +53,6 @@ const actions = {
         }
         // UPDATING EXTRA IMAGES
         let images;
-        console.log(payload.images.length);
         if (payload.images.length !== 0) {
           console.log("Estamos dentro de la condicion");
           for (let i = 0; i < payload.images.length; i++) {
@@ -79,10 +77,9 @@ const actions = {
         }
         // UPDATING COLOR IMAGES
         let imgByColor;
-        console.log("Estamos debajdo de images");
-        if (payload.clothes.colors.images.length) {
-          for (let i = 0; i < payload.clothes.colors.images.length; i++) {
-            if (payload.clothes.colors.images[i].object instanceof File) {
+        if (payload.clothes.colors.length) {
+          for (let i = 0; i < payload.clothes.colors.length; i++) {
+            if (payload.clothes.colors[i].image.object instanceof File) {
               const filename = payload.clothes.colors.images[i].name
                 .split(".")
                 .shift();
@@ -104,8 +101,26 @@ const actions = {
         } else {
           await updateDoc(productRef, { "clothes.color": [] });
         }
-        // UPDATING PRODUCT
-        console.log("Vamos a editar la informacion", payload);
+        // UPDATING PRODUCT DETAIL
+        updatedProduct = {
+          id: productRef.id,
+          category: payload.category,
+          description: payload.description,
+          band: payload.band,
+          offer: payload.offer,
+          offered: payload.offered,
+          price: Number(payload.price),
+          recommended: payload.recommended,
+          name: payload.name,
+          sku: payload.sku,
+          stock: payload.stock,
+        };
+        await updateDoc(productRef, { ...updatedProduct });
+        commit(
+          "inventoryTotal/UPDATE_PRODUCT",
+          { ...updatedProduct },
+          { root: true }
+        );
       }
       // UPLOADING PRODUCT
       else {

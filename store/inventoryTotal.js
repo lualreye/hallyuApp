@@ -28,6 +28,12 @@ const mutations = {
     );
     state.totalProducts.splice(productId, 1);
   },
+  UPDATE_PRODUCT(state, product) {
+    const id = product.id;
+    const index = state.totalProducts.findIndex((pr) => pr.id === id);
+    const updatedProduct = Object.assign(state.totalProducts[index], product);
+    state.totalProducts[index] = updatedProduct;
+  },
   SELECT_PRODUCT(state, productId) {
     const index = state.totalProducts.findIndex((pr) => pr.id === productId);
     const pr = state.totalProducts.filter((pr) => pr.id === productId);
