@@ -29,11 +29,9 @@ const mutations = {
     state.totalProducts.splice(productId, 1);
   },
   UPDATE_EXTRA_IMAGES(state, product) {
-    console.log(product);
     const id = product.id;
     const index = state.totalProducts.findIndex((pr) => pr.id === id);
     state.totalProducts[index].images = product.images;
-    console.log((state.totalProducts[index].images = product.images));
   },
   UPDATE_PRODUCT(state, product) {
     const id = product.id;
