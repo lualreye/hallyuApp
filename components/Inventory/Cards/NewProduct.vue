@@ -1075,7 +1075,7 @@ export default {
         name: this.name,
         thumbnail: this.thumbnail.object,
         images: this.images,
-        price: this.price,
+        price: Number(this.price),
         stock: Number(this.stock),
         description: this.description,
         band: this.band,
