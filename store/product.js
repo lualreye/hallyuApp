@@ -53,19 +53,21 @@ const actions = {
         }
         // UPDATING EXTRA IMAGES
         let images = [];
+        console.log(payload.images);
         if (payload.images.length !== 0) {
           for (let i = 0; i < payload.images.length; i++) {
-            if (payload.images[i].object instanceof File) {
+            if (typeof payload.images[i] === "object") {
               const filename = payload.images[i].object.name.split(".").shift();
-              const imageRef = ref(storage, `products/${filename}`);
+              const imageRef = ref(storage, `products/extras/${filename}`);
               console.log(filename, imageRef);
               await uploadBytes(imageRef, payload.images[i]);
               const imageUrl = await getDownloadURL(imageRef);
               images[i] = imageUrl;
             } else {
-              images[i] = payload.images[i].image;
+              images[i] = payload.images[i];
             }
           }
+          console.log(images);
           await updateDoc(productRef, { images: images });
           commit(
             "inventoryTotal/UPDATE_EXTRA_IMAGES",
@@ -154,7 +156,7 @@ const actions = {
             const filename = payload.clothes.colors[i].object.name
               .split(".")
               .shift();
-            const imageRef = ref(storage, `products/extras/${filename}`);
+            const imageRef = ref(storage, `products/colors/${filename}`);
             await uploadBytes(imageRef, payload.clothes.colors[i].object);
             const url = await getDownloadURL(imageRef);
             imgByColor.push({

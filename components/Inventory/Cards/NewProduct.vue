@@ -885,7 +885,7 @@ export default {
       return Object.keys(this.offer).length !== 0 &&
         this.offer !== "" &&
         this.offer !== "Sin Oferta"
-        ? true
+        ? this.offer
         : false;
     },
     fashionTaken() {
