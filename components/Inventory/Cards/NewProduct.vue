@@ -1061,9 +1061,9 @@ export default {
       this.sizes.splice(index, 1);
     },
     uploadPr() {
-      let offerType;
+      let offerType = {};
       if (this.offer === "Descuento") {
-        offerType = productDiscount;
+        offerType = this.productDiscount;
       } else if (this.offer === "Tiempo") {
         offerType = {
           discount: this.productDiscountTime,
@@ -1072,6 +1072,7 @@ export default {
       } else {
         offerType = {};
       }
+      console.log(offerType);
       const product = {
         name: this.name,
         thumbnail: this.thumbnail.object,
