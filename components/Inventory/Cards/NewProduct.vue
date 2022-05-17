@@ -691,7 +691,7 @@
               </select>
               <!-- PRODUCT DISCOUNT -->
               <div
-                v-if="discountTaken"
+                v-if="discountTaken === 'Descuento'"
                 class="w-full flex flex-col justify-center items-center"
               >
                 <!-- DISCOUNT -->
@@ -718,7 +718,7 @@
               </div>
               <!-- PRODUCT DISCOUNT BY TIME -->
               <div
-                v-else-if="timeDiscountTaken"
+                v-else-if="discountTaken === 'Tiempo'"
                 class="w-full flex flex-col justify-center items-center"
               >
                 <!-- DISCOUNT TIME -->
@@ -892,10 +892,7 @@ export default {
       return this.category === "moda";
     },
     discountTaken() {
-      return this.offer === "Descuento";
-    },
-    timeDiscountTaken() {
-      return this.offer === "Tiempo";
+      return this.offer;
     },
     isReadyToUpload() {
       return (
@@ -1062,9 +1059,9 @@ export default {
     },
     uploadPr() {
       let offerType = {};
-      if (this.offer === "Descuento") {
+      if (this.discountTaken === "Descuento") {
         offerType = this.productDiscount;
-      } else if (this.offer === "Tiempo") {
+      } else if (this.discountTaken === "Tiempo") {
         offerType = {
           discount: this.productDiscountTime,
           time: this.productOfferingTime,

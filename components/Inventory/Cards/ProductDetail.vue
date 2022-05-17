@@ -170,10 +170,17 @@
         "
       >
         <p
-          v-if="offered"
+          v-if="offered === 'Descuento'"
           class="p-2 flex justify-center items-center rounded-lg bg-primary"
         >
-          {{ offer.name }}
+          Desc. | % {{ offer }}
+        </p>
+        <p
+          v-else-if="offered === 'Tiempo'"
+          class="p-2 flex justify-center items-center rounded-lg bg-primary"
+        >
+          Time | <span class="text-hBlack text-xs">{{ offer.time }}</span> | %
+          {{ offer.discount }}
         </p>
         <p
           v-else
