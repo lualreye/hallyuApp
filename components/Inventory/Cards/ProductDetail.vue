@@ -265,7 +265,7 @@ export default {
       required: true,
     },
     offer: {
-      type: Object,
+      type: [Object, Number, String],
       required: false,
     },
     offered: {

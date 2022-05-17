@@ -1060,10 +1060,10 @@ export default {
     uploadPr() {
       let offerType = {};
       if (this.discountTaken === "Descuento") {
-        offerType = this.productDiscount;
+        offerType = Number(this.productDiscount);
       } else if (this.discountTaken === "Tiempo") {
         offerType = {
-          discount: this.productDiscountTime,
+          discount: Number(this.productDiscountTime),
           time: this.productOfferingTime,
         };
       } else {
