@@ -269,7 +269,7 @@ export default {
       required: false,
     },
     offered: {
-      type: Boolean,
+      type: [Boolean, String],
       required: true,
     },
   },
