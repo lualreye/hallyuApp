@@ -1069,7 +1069,6 @@ export default {
       } else {
         offerType = {};
       }
-      console.log(offerType);
       const product = {
         name: this.name,
         thumbnail: this.thumbnail.object,
