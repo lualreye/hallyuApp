@@ -104,7 +104,6 @@ const actions = {
               });
             }
           }
-          console.log(imgByColor);
           await updateDoc(productRef, { "clothes.colors": imgByColor });
           commit(
             "inventoryTotal/UPDATE_IMAGES_BY_COLOR",
