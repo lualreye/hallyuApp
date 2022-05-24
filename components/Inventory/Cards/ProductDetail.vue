@@ -67,7 +67,7 @@
             />
           </figure>
         </div>
-        <p class="text-textColor w-auto font-open text-xs md:text-base">
+        <p class="text-textColor w-auto font-open text-xs lg:text-base">
           {{ getNameCapitalize.substr(0, 15) }}
         </p>
       </div>
@@ -80,7 +80,7 @@
           justify-center
           items-center
           text-hBlack text-xs
-          md:text-base
+          lg:text-base
           font-open
         "
       >
@@ -165,7 +165,7 @@
           justify-center
           items-center
           text-hBlack text-xs
-          md:text-sm
+          lg:text-sm
           font-open
         "
       >
@@ -173,14 +173,15 @@
           v-if="offered === 'Descuento'"
           class="p-2 flex justify-center items-center rounded-lg bg-primary"
         >
-          Desc. | % {{ offer }}
+          Desc. | %{{ offer }}
         </p>
         <p
           v-else-if="offered === 'Tiempo'"
           class="p-2 flex justify-center items-center rounded-lg bg-primary"
         >
-          Time | <span class="text-hBlack text-xs">{{ offer.time }}</span> | %
-          {{ offer.discount }}
+          Time | <span class="text-hBlack text-xs">{{ offer.time }}</span> | %{{
+            offer.discount
+          }}
         </p>
         <p
           v-else
