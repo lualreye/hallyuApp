@@ -1,7 +1,12 @@
 <template>
   <div class="w-full mx-auto">
-    <the-hero :image="heroImage" class="max-w-screen-2xl mx-auto" />
+    <the-hero
+      v-if="heroImage.length"
+      :image="heroImage"
+      class="max-w-screen-2xl mx-auto"
+    />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.hero.bgColor"
       :letterColor="getQuotes.hero.textColor"
       :koreanText="getQuotes.hero.koreanText"
@@ -13,6 +18,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.flash.bgColor"
       :letterColor="getQuotes.flash.textColor"
       :koreanText="getQuotes.flash.koreanText"
@@ -20,6 +26,7 @@
     />
     <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.popular.bgColor"
       :letterColor="getQuotes.popular.textColor"
       :koreanText="getQuotes.popular.koreanText"
@@ -27,6 +34,7 @@
     />
     <the-offers :offers="offers" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.simpleOffer.bgColor"
       :letterColor="getQuotes.simpleOffer.textColor"
       :koreanText="getQuotes.simpleOffer.koreanText"
@@ -37,6 +45,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.community.bgColor"
       :letterColor="getQuotes.community.textColor"
       :koreanText="getQuotes.community.koreanText"
@@ -46,6 +55,7 @@
     <the-cta class="mx-auto" />
     <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.blog.bgColor"
       :letterColor="getQuotes.blog.textColor"
       :koreanText="getQuotes.blog.koreanText"
@@ -56,6 +66,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
+      v-if="getQuotes.length"
       :bgColor="getQuotes.communityFavs.bgColor"
       :letterColor="getQuotes.communityFavs.textColor"
       :koreanText="getQuotes.communityFavs.koreanText"
@@ -93,7 +104,7 @@ export default {
     TheLineDecoration,
   },
   data: () => ({
-    heroImage: require("~/static/images/idols/han.jpg"),
+    heroImage: "",
     urgentProducts: [
       {
         image: require("~/static/images/idols/han.jpg"),
@@ -319,15 +330,37 @@ export default {
     ],
   }),
   mounted() {
+    if (!this.getHeroImages.length) {
+      this.fetchImages();
+    }
     if (!Object.keys(this.getQuotes).length) {
       this.fetchQuotes();
     }
   },
   computed: {
+    ...mapGetters("general", ["getHeroImages"]),
     ...mapGetters("quotes", ["getQuotes"]),
+    areThereHeroImages() {
+      return this.getHeroImages.length === 0 ? false : true;
+    },
+  },
+  watch: {
+    areThereHeroImages(value) {
+      if (value) {
+        this.heroImage =
+          this.getHeroImages[
+            Math.floor(this.randomNumber(this.getHeroImages.length))
+          ].image;
+        console.log(this.heroImage);
+      }
+    },
   },
   methods: {
+    ...mapActions("general", ["fetchImages"]),
     ...mapActions("quotes", ["fetchQuotes"]),
+    randomNumber(max) {
+      return Math.random() * (max - 0) + 0;
+    },
   },
 };
 </script>
