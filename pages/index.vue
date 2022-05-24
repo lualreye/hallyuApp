@@ -1,30 +1,66 @@
 <template>
   <div class="w-full mx-auto">
     <the-hero :image="heroImage" class="max-w-screen-2xl mx-auto" />
-    <the-line-decoration class="mt-4" />
+    <the-line-decoration
+      :bgColor="getQuotes.hero.bgColor"
+      :letterColor="getQuotes.hero.textColor"
+      :koreanText="getQuotes.hero.koreanText"
+      :spanishText="getQuotes.hero.spanishText"
+      class="mt-4"
+    />
     <the-limited-products
       :urgentProducts="urgentProducts"
       class="max-w-screen-2xl mx-auto"
     />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.flash.bgColor"
+      :letterColor="getQuotes.flash.textColor"
+      :koreanText="getQuotes.flash.koreanText"
+      :spanishText="getQuotes.flash.spanishText"
+    />
     <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.popular.bgColor"
+      :letterColor="getQuotes.popular.textColor"
+      :koreanText="getQuotes.popular.koreanText"
+      :spanishText="getQuotes.popular.spanishText"
+    />
     <the-offers :offers="offers" class="max-w-screen-2xl mx-auto" />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.simpleOffer.bgColor"
+      :letterColor="getQuotes.simpleOffer.textColor"
+      :koreanText="getQuotes.simpleOffer.koreanText"
+      :spanishText="getQuotes.simpleOffer.spanishText"
+    />
     <the-new-products
       :newProductsArray="newProducts"
       class="max-w-screen-2xl mx-auto"
     />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.community.bgColor"
+      :letterColor="getQuotes.community.textColor"
+      :koreanText="getQuotes.community.koreanText"
+      :spanishText="getQuotes.community.spanishText"
+    />
     <the-categories :categories="categories" class="max-w-screen-2xl mx-auto" />
     <the-cta class="mx-auto" />
     <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.blog.bgColor"
+      :letterColor="getQuotes.blog.textColor"
+      :koreanText="getQuotes.blog.koreanText"
+      :spanishText="getQuotes.blog.spanishText"
+    />
     <the-community
       :instagramProfiles="instagramProfiles"
       class="max-w-screen-2xl mx-auto"
     />
-    <the-line-decoration />
+    <the-line-decoration
+      :bgColor="getQuotes.communityFavs.bgColor"
+      :letterColor="getQuotes.communityFavs.textColor"
+      :koreanText="getQuotes.communityFavs.koreanText"
+      :spanishText="getQuotes.communityFavs.spanishText"
+    />
     <the-bands :bands="bands" class="max-w-screen-2xl mx-auto" />
   </div>
 </template>
@@ -41,6 +77,7 @@ import TheBlog from "../components/index/TheBlog.vue";
 import TheCommunity from "../components/index/TheCommunity.vue";
 import TheBands from "~/components/index/TheBands.vue";
 import TheLineDecoration from "../components/index/TheLineDecoration.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     TheHero,
@@ -281,5 +318,16 @@ export default {
       },
     ],
   }),
+  mounted() {
+    if (!Object.keys(this.getQuotes).length) {
+      this.fetchQuotes();
+    }
+  },
+  computed: {
+    ...mapGetters("quotes", ["getQuotes"]),
+  },
+  methods: {
+    ...mapActions("quotes", ["fetchQuotes"]),
+  },
 };
 </script>
