@@ -14,7 +14,8 @@
       class="mt-4"
     />
     <the-limited-products
-      :urgentProducts="urgentProducts"
+      v-if="getFlashProducts.length"
+      :urgentProducts="getFlashProducts"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -106,48 +107,6 @@ export default {
   data: () => ({
     heroImage: "",
     quotes: false,
-    urgentProducts: [
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 3,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 4,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: "hola1",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 6,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        stock: 5,
-        timesLeft: 100000000,
-        productName: "Nombre del producto",
-        state: true,
-        link: "hola",
-      },
-    ],
     comments: [
       {
         comment:
@@ -337,10 +296,14 @@ export default {
     if (!Object.keys(this.getQuotes).length) {
       this.fetchQuotes();
     }
+    if (!this.getFlashProducts.length) {
+      this.fetchFlashProducts();
+    }
   },
   computed: {
     ...mapGetters("general", ["getHeroImages"]),
     ...mapGetters("quotes", ["getQuotes"]),
+    ...mapGetters("cart", ["getFlashProducts"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
     },
@@ -366,6 +329,7 @@ export default {
   methods: {
     ...mapActions("general", ["fetchImages"]),
     ...mapActions("quotes", ["fetchQuotes"]),
+    ...mapActions("cart", ["fetchFlashProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
     },

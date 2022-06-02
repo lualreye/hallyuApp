@@ -20,12 +20,13 @@
         class="flex justify-center items-center mr-6 w-64 h-64 p-6"
       >
         <urgent-product-card
-          :image="product.image"
+          :image="product.thumbnail"
           :stock="product.stock"
-          :productName="product.productName"
-          :timesLeft="product.timesLeft"
-          :state="product.state"
-          :link="product.link"
+          :productName="product.name"
+          :timesLeft="product.offer.time"
+          :state="product.published"
+          :link="product.id"
+          :id="product.id"
         />
       </div>
     </div>
