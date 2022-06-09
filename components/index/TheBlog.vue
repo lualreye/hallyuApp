@@ -60,10 +60,10 @@
       >
         <post-preview
           :title="post.title"
-          :abstract="post.abstract"
-          :authorName="post.authorName"
-          :authorImage="post.authorImage"
-          :thumbnail="post.thumbnail"
+          :abstract="post.description"
+          :authorName="post.userName"
+          :authorImage="post.userImage"
+          :thumbnail="post.image"
           :id="post.id"
           :date="post.date"
         />

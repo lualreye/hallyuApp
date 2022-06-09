@@ -54,7 +54,7 @@
     />
     <the-categories :categories="categories" class="max-w-screen-2xl mx-auto" />
     <the-cta class="mx-auto" />
-    <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
+    <the-blog v-if="arePosts" :posts="getPosts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
       v-if="areQuotes"
       :bgColor="getQuotes.blog.bgColor"
@@ -63,6 +63,7 @@
       :spanishText="getQuotes.blog.spanishText"
     />
     <the-community
+      v-if="areFans"
       :instagramProfiles="getFans"
       class="max-w-screen-2xl mx-auto"
     />
@@ -231,18 +232,6 @@ export default {
         categoryName: "Super Categoria",
       },
     ],
-    posts: [
-      {
-        title: "Este es un titulo increible",
-        abstract:
-          "Esta es una descripcion o un resumen increible de lo que se pude hacer dentro de la seccion del post",
-        thumbnail: require("~/static/images/idols/han.jpg"),
-        authorName: "Luis Reyes",
-        authorImage: require("~/static/images/idols/han.jpg"),
-        id: "hola",
-        date: "2/02/2021",
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -260,12 +249,16 @@ export default {
     if (!this.getFans.length) {
       this.fetchFans()
     }
+    if (!this.getPosts.length) {
+      this.fetchPosts()
+    }
   },
   computed: {
     ...mapGetters("general", ["getHeroImages"]),
     ...mapGetters("quotes", ["getQuotes"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
+    ...mapGetters("blog", ["getPosts"]),
     ...mapGetters("cart", ["getFlashProducts"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -278,6 +271,9 @@ export default {
     },
     areFans() {
       return this.getFans.length;
+    },
+    arePosts() {
+      return this.getPosts.length;
     }
   },
   watch: {
@@ -295,6 +291,7 @@ export default {
     ...mapActions("quotes", ["fetchQuotes"]),
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),
+    ...mapActions("blog", ["fetchPosts"]),
     ...mapActions("cart", ["fetchFlashProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
