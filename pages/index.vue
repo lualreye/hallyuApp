@@ -73,7 +73,7 @@
       :koreanText="getQuotes.communityFavs.koreanText"
       :spanishText="getQuotes.communityFavs.spanishText"
     />
-    <the-bands :bands="bands" class="max-w-screen-2xl mx-auto" />
+    <the-bands v-if="areBands" :bands="getBands" class="max-w-screen-2xl mx-auto" />
   </div>
 </template>
 
@@ -261,32 +261,6 @@ export default {
         instagramUserName: "luis",
       },
     ],
-    bands: [
-      {
-        bandImage: require("~/static/images/bands/BTS.svg"),
-        bandName: "BTS",
-      },
-      {
-        bandImage: require("~/static/images/bands/BP.svg"),
-        bandName: "BLACKPINK",
-      },
-      {
-        bandImage: require("~/static/images/bands/BTS.svg"),
-        bandName: "BTS",
-      },
-      {
-        bandImage: require("~/static/images/bands/BP.svg"),
-        bandName: "BLACKPINK",
-      },
-      {
-        bandImage: require("~/static/images/bands/BTS.svg"),
-        bandName: "BTS",
-      },
-      {
-        bandImage: require("~/static/images/bands/BP.svg"),
-        bandName: "BLACKPINK",
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -298,10 +272,14 @@ export default {
     if (!this.getFlashProducts.length) {
       this.fetchFlashProducts();
     }
+    if (!this.getBands.length) {
+      this.fetchBands()
+    }
   },
   computed: {
     ...mapGetters("general", ["getHeroImages"]),
     ...mapGetters("quotes", ["getQuotes"]),
+    ...mapGetters("bands", ["getBands"]),
     ...mapGetters("cart", ["getFlashProducts"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -309,6 +287,9 @@ export default {
     areQuotes() {
       return Object.keys(this.getQuotes).length !== 0;
     },
+    areBands() {
+      return this.getBands.length;
+    }
   },
   watch: {
     areThereHeroImages(value) {
@@ -323,6 +304,7 @@ export default {
   methods: {
     ...mapActions("general", ["fetchImages"]),
     ...mapActions("quotes", ["fetchQuotes"]),
+    ...mapActions("bands", ["fetchBands"]),
     ...mapActions("cart", ["fetchFlashProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;

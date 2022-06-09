@@ -82,7 +82,7 @@
           mb-8
         "
       >
-        <band-card :bandImage="band.bandImage" :bandName="band.bandName" />
+        <band-card :bandImage="band.image" :bandName="band.name" />
       </div>
     </div>
   </div>
