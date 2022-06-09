@@ -1,15 +1,15 @@
 <template>
-  <nuxt-link :to="link" class="w-64">
+  <div class="w-64 flex flex-col items-center">
     <div class="relative flex justify-center items-center">
       <span
         class="
-          bg-secondary
+          bg-lightPink
           rounded-xl
           w-16
           py-2
           absolute
-          top-0
-          left-0
+          -top-4
+          -left-4
           shadow-lg
           z-20
         "
@@ -39,7 +39,12 @@
         <img :src="image" :alt="productName" class="w-full rounded-lg" />
       </figure>
     </div>
-  </nuxt-link>
+    <button
+      @click="getToTheCart(id)"
+      class="w-4/5 py-2 rounded-full mt-6 bg-primary text-white font-open shadow-md">
+      Agregar al carrito
+    </button>
+  </div>
 </template>
 
 <script>
