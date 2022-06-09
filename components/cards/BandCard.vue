@@ -15,8 +15,8 @@
           shadow-xl
         "
       >
-        <figure class="w-28 h-28 mx-auto my-auto flex justify-center">
-          <img :src="bandImage" :alt="bandName" class="w-full h-full" />
+        <figure class="w-36 h-36 mx-auto my-auto flex justify-center items-center">
+          <img :src="bandImage" :alt="bandName" class="w-full h-36" />
         </figure>
       </nuxt-link>
       <p
