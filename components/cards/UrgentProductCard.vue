@@ -131,9 +131,9 @@ export default {
       const date = new Date().getTime()
       const difference = date - productTime
       if (productTime < date) {
-        console.log("El producto esta fuera de tiempo")
+        console.log('el producto esta fuera de tiempo')
+        return
       }
-      console.log(productTime, date, difference)
       return difference
     },
     getToTheCart(id) {
