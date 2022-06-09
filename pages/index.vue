@@ -6,7 +6,7 @@
       class="max-w-screen-2xl mx-auto my-4"
     />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.hero.bgColor"
       :letterColor="getQuotes.hero.textColor"
       :koreanText="getQuotes.hero.koreanText"
@@ -19,7 +19,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.flash.bgColor"
       :letterColor="getQuotes.flash.textColor"
       :koreanText="getQuotes.flash.koreanText"
@@ -27,7 +27,7 @@
     />
     <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.popular.bgColor"
       :letterColor="getQuotes.popular.textColor"
       :koreanText="getQuotes.popular.koreanText"
@@ -35,7 +35,7 @@
     />
     <the-offers :offers="offers" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.simpleOffer.bgColor"
       :letterColor="getQuotes.simpleOffer.textColor"
       :koreanText="getQuotes.simpleOffer.koreanText"
@@ -46,7 +46,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.community.bgColor"
       :letterColor="getQuotes.community.textColor"
       :koreanText="getQuotes.community.koreanText"
@@ -56,7 +56,7 @@
     <the-cta class="mx-auto" />
     <the-blog :posts="posts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.blog.bgColor"
       :letterColor="getQuotes.blog.textColor"
       :koreanText="getQuotes.blog.koreanText"
@@ -67,7 +67,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
-      v-if="quotes"
+      v-if="areQuotes"
       :bgColor="getQuotes.communityFavs.bgColor"
       :letterColor="getQuotes.communityFavs.textColor"
       :koreanText="getQuotes.communityFavs.koreanText"
@@ -106,7 +106,6 @@ export default {
   },
   data: () => ({
     heroImage: "",
-    quotes: false,
     comments: [
       {
         comment:
@@ -308,7 +307,7 @@ export default {
       return this.getHeroImages.length === 0 ? false : true;
     },
     areQuotes() {
-      return this.getQuotes.length === 0 ? false : true;
+      return Object.keys(this.getQuotes).length !== 0;
     },
   },
   watch: {
@@ -318,11 +317,6 @@ export default {
           this.getHeroImages[
             Math.floor(this.randomNumber(this.getHeroImages.length))
           ].image;
-      }
-    },
-    areQuotes(value) {
-      if (value) {
-        this.quotes = true;
       }
     },
   },
