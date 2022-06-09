@@ -1,11 +1,12 @@
 <template>
-  <nuxt-link :to="link" v-if="state" class="w-48 p-2">
+  <div v-if="state" class="w-52 p-2">
     <div class="relative">
       <div
         class="
           w-16
           h-16
           flex
+          mx-2
           justify-center
           items-center
           rounded-lg
@@ -14,34 +15,35 @@
           left-0
         "
         :class="{
-          'bg-primary': isEven,
-          'bg-secondary': !isEven,
+          'bg-aquamarine': isEven,
+          'bg-lightPink': !isEven,
         }"
       >
         <p class="text-textColor font-junegull text-lg">{{ discount }} %</p>
       </div>
-      <div
+      <figure
         class="
           rounded-t-full rounded-b-lg
           w-44
           h-60
-          product-image
           flex
           justify-center
           items-center
           mb-2
+          mx-auto
         "
-        :style="{ backgroundImage: 'url(' + image + ')' }"
         :class="{
           'product-image': isEven,
           'product-image-2': !isEven,
         }"
-      />
+      >
+        <img :src="image" :alt="productName" class="w-full h-60 object-cover object-center rounded-t-full rounded-b-lg">
+      </figure>
       <div
-        class="flex-col justify-center items-center rounded-2xl w-full py-2"
+        class="flex-col justify-center items-center rounded-2xl w-full py-2 mt-5"
         :class="{
-          'bg-primary': isEven,
-          'bg-secondary': !isEven,
+          'bg-aquamarine': isEven,
+          'bg-lightPink': !isEven,
         }"
       >
         <p
@@ -58,9 +60,14 @@
         <p class="w-full text-center text-textColor font-junegull text-xl mt-1">
           $ {{ priceWithDiscount }}
         </p>
+        <button
+          @click="getToTheCart(id)"
+          class="w-full py-2 rounded-full mt-6 bg-primary text-white font-open shadow-md">
+          Agregar al carrito
+        </button>
       </div>
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -110,6 +117,11 @@ export default {
       return (this.newPrice = this.price - this.price * (this.discount / 100));
     },
   },
+  methods: {
+    getToTheCart(id) {
+      console.log(id)
+    }
+  }
 };
 </script>
 
