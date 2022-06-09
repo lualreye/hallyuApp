@@ -6,7 +6,7 @@
         <ninth-type />
       </div>
       <h2 class="text-xl sm:text-4xl font-junegull text-textColor">
-        Hallyu on Clock
+        Comunidad Hallyu
       </h2>
       <div class="ml-4 parenthesis-two w-11 h-11 relative mt-2">
         <ninth-type />
@@ -52,8 +52,8 @@
         class="flex justify-center items-center w-full md:w-1/2 lg:w-1/3 p-6"
       >
         <instagram-profile-card
-          :instagramUserName="profile.instagramUserName"
-          :instagramUserImage="profile.instagramUserImage"
+          :instagramUserName="profile.name"
+          :instagramUserImage="profile.image"
         />
       </div>
     </div>

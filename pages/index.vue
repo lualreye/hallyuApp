@@ -63,7 +63,7 @@
       :spanishText="getQuotes.blog.spanishText"
     />
     <the-community
-      :instagramProfiles="instagramProfiles"
+      :instagramProfiles="getFans"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -243,24 +243,6 @@ export default {
         date: "2/02/2021",
       },
     ],
-    instagramProfiles: [
-      {
-        instagramUserImage: require("~/static/images/idols/han.jpg"),
-        instagramUserName: "luis",
-      },
-      {
-        instagramUserImage: require("~/static/images/idols/han.jpg"),
-        instagramUserName: "luis",
-      },
-      {
-        instagramUserImage: require("~/static/images/bands/BTS.svg"),
-        instagramUserName: "luis",
-      },
-      {
-        instagramUserImage: require("~/static/images/idols/han.jpg"),
-        instagramUserName: "luis",
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -275,11 +257,15 @@ export default {
     if (!this.getBands.length) {
       this.fetchBands()
     }
+    if (!this.getFans.length) {
+      this.fetchFans()
+    }
   },
   computed: {
     ...mapGetters("general", ["getHeroImages"]),
     ...mapGetters("quotes", ["getQuotes"]),
     ...mapGetters("bands", ["getBands"]),
+    ...mapGetters("fans", ["getFans"]),
     ...mapGetters("cart", ["getFlashProducts"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -289,6 +275,9 @@ export default {
     },
     areBands() {
       return this.getBands.length;
+    },
+    areFans() {
+      return this.getFans.length;
     }
   },
   watch: {
@@ -305,6 +294,7 @@ export default {
     ...mapActions("general", ["fetchImages"]),
     ...mapActions("quotes", ["fetchQuotes"]),
     ...mapActions("bands", ["fetchBands"]),
+    ...mapActions("fans", ["fetchFans"]),
     ...mapActions("cart", ["fetchFlashProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
