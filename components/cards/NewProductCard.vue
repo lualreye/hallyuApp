@@ -66,6 +66,11 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    getToCart(id) {
+      console.log(id)
+    }
   }
 };
 </script>
