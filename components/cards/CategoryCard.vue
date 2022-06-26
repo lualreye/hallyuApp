@@ -23,7 +23,7 @@
             items-center
           "
         >
-          <img :src="image" :alt="categoryName" class="rounded-xl w-full" />
+          <img :src="image" :alt="categoryName" class="rounded-xl w-full h-48 object-cover object-center" />
           <div
             id="image-hover"
             class="
@@ -43,7 +43,7 @@
               rounded-xl
             "
           >
-            <p class="text-aquamarine text-xl font-open font-bold">
+            <p class="text-aquamarine text-xl font-open font-bold text-center">
               {{ categoryName }}
             </p>
           </div>

@@ -60,7 +60,7 @@
       >
         <category-card
           :order="i"
-          :categoryName="category.categoryName"
+          :categoryName="category.name"
           :image="category.image"
         />
       </div>

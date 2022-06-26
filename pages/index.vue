@@ -52,9 +52,9 @@
       :koreanText="getQuotes.community.koreanText"
       :spanishText="getQuotes.community.spanishText"
     />
-    <the-categories :categories="categories" class="max-w-screen-2xl mx-auto" />
+    <the-categories v-if="getCategories.length" :categories="getCategories" class="max-w-screen-2xl mx-auto" />
     <the-cta class="mx-auto" />
-    <the-blog v-if="arePosts" :posts="getPosts" class="max-w-screen-2xl mx-auto" />
+    <the-blog v-if="arePosts" :posts="getPosts.slice(0, 3)" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
       v-if="areQuotes"
       :bgColor="getQuotes.blog.bgColor"
@@ -64,7 +64,7 @@
     />
     <the-community
       v-if="areFans"
-      :instagramProfiles="getFans"
+      :instagramProfiles="getFans.slice(0, 7)"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -74,7 +74,7 @@
       :koreanText="getQuotes.communityFavs.koreanText"
       :spanishText="getQuotes.communityFavs.spanishText"
     />
-    <the-bands v-if="areBands" :bands="getBands" class="max-w-screen-2xl mx-auto" />
+    <the-bands v-if="areBands" :bands="getBands.slice(0, 9)" class="max-w-screen-2xl mx-auto" />
   </div>
 </template>
 
@@ -210,28 +210,6 @@ export default {
         productName: "Este es un nombre de producto",
       },
     ],
-    categories: [
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-      },
-      {
-        image: require("~/static/images/idols/han.jpg"),
-        categoryName: "Super Categoria",
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -252,6 +230,9 @@ export default {
     if (!this.getPosts.length) {
       this.fetchPosts()
     }
+    if (!this.getPosts.length) {
+      this.fetchCategories()
+    }
   },
   computed: {
     ...mapGetters("general", ["getHeroImages"]),
@@ -260,6 +241,7 @@ export default {
     ...mapGetters("fans", ["getFans"]),
     ...mapGetters("blog", ["getPosts"]),
     ...mapGetters("cart", ["getFlashProducts"]),
+    ...mapGetters("categories", ["getCategories"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
     },
@@ -293,6 +275,7 @@ export default {
     ...mapActions("fans", ["fetchFans"]),
     ...mapActions("blog", ["fetchPosts"]),
     ...mapActions("cart", ["fetchFlashProducts"]),
+    ...mapActions("categories", ["fetchCategories"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
     },
