@@ -15,13 +15,13 @@
           class="w-full flex flex-col justify-between items-start py-4 lg:w-1/2 relative"
         >
           <p
-            class="text-lg sm:text-xl text-textColor font-bold font-open w-full mb-4"
+            class="text-lg sm:text-xl text-textColor font-bold font-open w-full text-center lg:text-left mb-4"
           >
             {{ title }}
           </p>
           <div class="flex justify-start items-center w-full">
             <!-- DATOS DEL AUTOR DEL POST -->
-            <div class="flex justify-start items-center mr-3 w-3/5">
+            <div class="flex justify-end lg:justify-start items-center mr-3 w-3/5">
               <figure
                 class="w-7 h-7 rounded-full flex justify-center items-center mr-2"
               >
@@ -36,7 +36,7 @@
               </p>
             </div>
             <!-- DATOS DE LA FECHA DE PUBLICACION -->
-            <div class="flex justify-start items-center mr-3 w-2/5">
+            <div class="flex justify-start items-center mr-3 w-3/5">
               <div class="w-5 h-5 flex justify-center items-center mr-2">
                 <GlobalHIcon name="calendar" class="text-textColor" />
               </div>
@@ -49,18 +49,18 @@
         <div
           class="w-full flex flex-col justify-start items-center py-4 lg:w-1/2 relative"
         >
-          <p class="text-xl text-textColor font-xl w-full">
+          <p class="text-xl text-center lg:text-center text-textColor font-xl w-full">
             {{ abstract }}
           </p>
           <div class="flex justify-start items-center w-full">
-            <div class="flex justify-start items-center w-full mt-2">
-              <p class="text-sm font-light text-textColor mr-3">
+            <div class="flex flex-col lg:flex-row justify-start items-center w-full mt-2">
+              <p class="text-sm font-light text-center lg:text-left text-textColor mr-3">
                 Leer más del post
               </p>
               <GlobalIconButton
                 iconName="right"
                 classes="bg-secondary"
-                class="text-yellow-600"
+                class="text-yellow-600 mx-auto lg:mx-0"
                 @click="redirectionToPostDetail"
               />
             </div>
