@@ -89,10 +89,6 @@ export default {
       type: Boolean,
       required: true,
     },
-    link: {
-      type: String,
-      required: true,
-    },
     price: {
       type: Number,
       required: true,

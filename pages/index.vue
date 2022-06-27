@@ -33,7 +33,7 @@
       :koreanText="getQuotes.popular.koreanText"
       :spanishText="getQuotes.popular.spanishText"
     />
-    <the-offers :offers="offers" class="max-w-screen-2xl mx-auto" />
+    <the-offers v-if="getDiscountProducts.length" :offers="getDiscountProducts" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
       v-if="areQuotes"
       :bgColor="getQuotes.simpleOffer.bgColor"
@@ -142,48 +142,6 @@ export default {
         rate: 3,
       },
     ],
-    offers: [
-      {
-        price: 25,
-        discount: 10,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Esto es un producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        price: 25,
-        discount: 10,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Esto es un producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        price: 25,
-        discount: 10,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Esto es un producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        price: 25,
-        discount: 10,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Esto es un producto",
-        state: true,
-        link: "hola",
-      },
-      {
-        price: 25,
-        discount: 10,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Esto es un producto",
-        state: true,
-        link: "hola",
-      },
-    ],
     newProducts: [
       {
         link: "hola",
@@ -221,6 +179,9 @@ export default {
     if (!this.getFlashProducts.length) {
       this.fetchFlashProducts();
     }
+    if (!this.getDiscountProducts.length) {
+      this.fetchDiscountProducts();
+    }
     if (!this.getBands.length) {
       this.fetchBands()
     }
@@ -240,7 +201,7 @@ export default {
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
     ...mapGetters("blog", ["getPosts"]),
-    ...mapGetters("cart", ["getFlashProducts"]),
+    ...mapGetters("cart", ["getFlashProducts", "getDiscountProducts"]),
     ...mapGetters("categories", ["getCategories"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -274,7 +235,7 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),
     ...mapActions("blog", ["fetchPosts"]),
-    ...mapActions("cart", ["fetchFlashProducts"]),
+    ...mapActions("cart", ["fetchFlashProducts", "fetchDiscountProducts"]),
     ...mapActions("categories", ["fetchCategories"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;

@@ -47,13 +47,12 @@
     <div class="flex justify-center md:justify-between mt-8 py-12 pl-6 items-center flex-wrap">
       <div v-for="(offerProduct, i) in offers" :key="i" class="flex justify-center items-center">
         <offer-card
-          :image="offerProduct.image"
-          :productName="offerProduct.productName"
+          :image="offerProduct.thumbnail"
+          :productName="offerProduct.name"
           :order="i"
-          :state="offerProduct.state"
-          :link="offerProduct.link"
+          :state="offerProduct.published"
           :price="offerProduct.price"
-          :discount="offerProduct.discount"
+          :discount="offerProduct.offer"
         />
       </div>
     </div>

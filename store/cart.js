@@ -5,6 +5,7 @@ export const state = () => ({
   show: false,
   selectedProducts: [],
   flashProducts: [],
+  discountProducts: [],
 });
 
 export const getters = {
@@ -17,6 +18,9 @@ export const getters = {
   getFlashProducts(state) {
     return state.flashProducts;
   },
+  getDiscountProducts(state) {
+    return state.discountProducts;
+  },
 };
 
 export const mutations = {
@@ -27,6 +31,10 @@ export const mutations = {
   },
   ADD_FLASH_PRODUCTS(state, flashProductsArray) {
     return (state.flashProducts = flashProductsArray);
+  },
+  ADD_DISCOUNT_PRODUCTS(state, discountProducts) {
+    console.log(discountProducts);
+    return (state.discountProducts = discountProducts);
   },
 };
 
@@ -46,8 +54,24 @@ export const actions = {
         const product = pr.data();
         flashProducts.push({ id, ...product });
       });
-      console.log(flashProducts);
       commit('ADD_FLASH_PRODUCTS', flashProducts);
+    } catch (err) {
+      console.error('CANNOT_GET_FLASH_PORDUCTS');
+    }
+  },
+  async fetchDiscountProducts({ commit }) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'products');
+      const discountQuery = query(ref, where('offered', '==', 'Descuento'));
+      const querySnapshot = await getDocs(discountQuery);
+      const discountProducts = [];
+      querySnapshot.forEach((pr) => {
+        const id = pr.id;
+        const product = pr.data();
+        discountProducts.push({ id, ...product });
+      });
+      commit('ADD_DISCOUNT_PRODUCTS', discountProducts);
     } catch (err) {
       console.error('CANNOT_GET_FLASH_PORDUCTS');
     }
