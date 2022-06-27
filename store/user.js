@@ -1,13 +1,14 @@
-import { fireAuth } from "../static/js/firebaseConfig";
-import { fireDataBase } from "../static/js/firebaseConfig";
-import { fireFunctions } from "../static/js/firebaseConfig";
+import { fireAuth } from '../static/js/firebaseConfig';
+import { fireDataBase } from '../static/js/firebaseConfig';
+import { fireFunctions } from '../static/js/firebaseConfig';
 import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from "firebase/auth";
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 
 import {
   doc,
@@ -16,9 +17,9 @@ import {
   getDocs,
   query,
   where,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
-import { httpsCallable } from "firebase/functions";
+import { httpsCallable } from 'firebase/functions';
 
 const state = () => ({
   isModalActive: false,
@@ -26,6 +27,7 @@ const state = () => ({
   isSignInActive: false,
   user: null,
   error: null,
+  recoveryEmailSent: false,
 });
 
 const getters = {
@@ -43,6 +45,9 @@ const getters = {
   },
   getError(state) {
     return state.error;
+  },
+  getRecoveryEmail(state) {
+    return state.recoveryEmailSent;
   },
 };
 
@@ -71,17 +76,20 @@ const mutations = {
   CLEAR_ERROR(state) {
     state.error = null;
   },
+  SENT_RECOVERY_EMAIL(state, boolean) {
+    state.recoveryEmailSent = boolean;
+  },
 };
 
 const actions = {
   showModal({ commit }, payload) {
-    commit("SHOW_MODAL", payload);
+    commit('SHOW_MODAL', payload);
   },
   activeSignIn({ commit }, payload) {
-    commit("SHOW_SIGNIN", payload);
+    commit('SHOW_SIGNIN', payload);
   },
   activeSignUp({ commit }, payload) {
-    commit("SHOW_SIGNUP", payload);
+    commit('SHOW_SIGNUP', payload);
   },
   // TODO: login with google
   // TODO: creating user in firebase
@@ -94,18 +102,18 @@ const actions = {
       const googleCredentials = GoogleAuthProvider.credentialFromResult(result);
       const googleToken = googleCredentials.accessToken;
       const userResult = result.user;
-      const userRef = collection(db, "users");
-      const userQuery = query(userRef, where("email", "==", userResult.email));
+      const userRef = collection(db, 'users');
+      const userQuery = query(userRef, where('email', '==', userResult.email));
       const userSnap = await getDocs(userQuery);
       let user;
       if (userSnap.docs.length !== 0) {
         userSnap.forEach((doc) => {
           user = doc.data();
         });
-        commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false);
-        commit("SHOW_SIGNUP", false);
-        commit("SHOW_MODAL", false);
+        commit('SET_USER', user);
+        commit('SHOW_SIGNIN', false);
+        commit('SHOW_SIGNUP', false);
+        commit('SHOW_MODAL', false);
       } else {
         user = {
           uid: userResult.uid,
@@ -115,17 +123,17 @@ const actions = {
         };
         const docRef = doc(userRef);
         await setDoc(docRef, { ...user });
-        commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false);
-        commit("SHOW_SIGNUP", false);
-        commit("SHOW_MODAL", false);
+        commit('SET_USER', user);
+        commit('SHOW_SIGNIN', false);
+        commit('SHOW_SIGNUP', false);
+        commit('SHOW_MODAL', false);
       }
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       const email = error.email;
       const credential = GoogleAuthProvider.credentialFromError(error);
-      console.error("Error: ", errorCode, errorMessage, email, credential);
+      console.error('Error: ', errorCode, errorMessage, email, credential);
     }
   },
   // TODO: params(*) name, email, password
@@ -143,13 +151,13 @@ const actions = {
         name: payload.name,
         email: payload.email,
         uid: credentialResults.user.uid,
-        image: "",
+        image: '',
       };
-      const userRef = doc(collection(db, "users"));
+      const userRef = doc(collection(db, 'users'));
       await setDoc(userRef, { ...user });
-      commit("SET_USER", user);
-      commit("SHOW_SIGNUP", false);
-      commit("SHOW_MODAL", false);
+      commit('SET_USER', user);
+      commit('SHOW_SIGNUP', false);
+      commit('SHOW_MODAL', false);
     } catch (error) {
       console.error(error);
     }
@@ -167,63 +175,63 @@ const actions = {
         payload.password
       );
 
-      const userId = await fireAuth.currentUser.getIdTokenResult()
+      const userId = await fireAuth.currentUser.getIdTokenResult();
 
-      if(userId.claims.admin) {
-        const adminRole = userId.claims.admin
-        let role = {adminRole}
+      if (userId.claims.admin) {
+        const adminRole = userId.claims.admin;
+        let role = { adminRole };
         const userUid = credentialResults.user.uid;
-        const docRef = collection(db, "team");
-        const userQuery = query(docRef, where("uid", "==", userUid));
+        const docRef = collection(db, 'team');
+        const userQuery = query(docRef, where('uid', '==', userUid));
         const userDocs = await getDocs(userQuery);
         userDocs.forEach((doc) => {
           user = {
             ...doc.data(),
-            role: role
+            role: role,
           };
         });
-        commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false);
-        commit("SHOW_MODAL", false);
-      } else if(userId.claims.costumer) {
-        const userRol = userId.claims.costumer
-        let role = { userRol }
+        commit('SET_USER', user);
+        commit('SHOW_SIGNIN', false);
+        commit('SHOW_MODAL', false);
+      } else if (userId.claims.costumer) {
+        const userRol = userId.claims.costumer;
+        let role = { userRol };
         const userUid = credentialResults.user.uid;
-        const docRef = collection(db, "users");
-        const userQuery = query(docRef, where("uid", "==", userUid));
+        const docRef = collection(db, 'users');
+        const userQuery = query(docRef, where('uid', '==', userUid));
         const userDocs = await getDocs(userQuery);
         userDocs.forEach((doc) => {
           user = {
             ...doc.data(),
-            role: role
-          }
+            role: role,
+          };
         });
-        console.log(user)
-        commit("SET_USER", user);
-        commit("SHOW_SIGNIN", false);
-        commit("SHOW_MODAL", false);
+        console.log(user);
+        commit('SET_USER', user);
+        commit('SHOW_SIGNIN', false);
+        commit('SHOW_MODAL', false);
       } else {
-        console.error("ROLE_NOT_FOUND")
+        console.error('ROLE_NOT_FOUND');
       }
     } catch (error) {
-      console.error("USER_NOT_AUTHENTICATED", error);
+      console.error('USER_NOT_AUTHENTICATED', error);
     }
   },
   async signUserOut({ commit }, payload) {
     const auth = fireAuth;
     try {
       const signOutMessage = await signOut(auth);
-      commit("SET_USER", null);
+      commit('SET_USER', null);
     } catch (error) {
       console.error(error);
     }
   },
   // TODO: updating user information
   changeUserImage({ commit }, payload) {
-    commit("SET_USER_IMAGE", payload);
+    commit('SET_USER_IMAGE', payload);
   },
   changeUserName({ commit }, payload) {
-    commit("SET_USER_NAME", payload);
+    commit('SET_USER_NAME', payload);
   },
   // TODO: params(*) name, email, password
   // sign admin up
@@ -238,16 +246,25 @@ const actions = {
       );
       const user = {
         email: payload.email,
-        image: "",
+        image: '',
         name: payload.name,
-        uid: credentialsResult.user.uid
-      }
-      const setAdmin = httpsCallable(fireFunctions, "setAdmin");
+        uid: credentialsResult.user.uid,
+      };
+      const setAdmin = httpsCallable(fireFunctions, 'setAdmin');
       await setAdmin({ uid: credentialsResult.user.uid });
-      const newTeamRef = doc(collection(db, "team"))
-      await setDoc(newTeamRef, user)
+      const newTeamRef = doc(collection(db, 'team'));
+      await setDoc(newTeamRef, user);
     } catch (err) {
-      console.error("SIGN_ADMIN_ERROR", err);
+      console.error('SIGN_ADMIN_ERROR', err);
+    }
+  },
+  async recoverPassword({ commit }, payload) {
+    try {
+      const auth = fireAuth;
+      sendPasswordResetEmail(auth, payload);
+      commit('SENT_RECOVERY_EMAIL', true);
+    } catch (e) {
+      console.error('CANNOT_RECOVER_PASSWORD');
     }
   },
 };

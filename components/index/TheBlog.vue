@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-16 px-4 py-6">
+  <div class="w-full mt-16 px-4 py-6 mb-10">
     <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
     <div
       class="w-full flex flex-col justify-center lg:justify-start items-start"

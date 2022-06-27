@@ -36,7 +36,8 @@ import {
   mdiVolumeOff,
   mdiWhatsapp,
   mdiFileDocumentEditOutline,
-} from "@mdi/js";
+  mdiEmail,
+} from '@mdi/js';
 
 export default {
   facebook: mdiFacebook,
@@ -75,5 +76,6 @@ export default {
   plus: mdiPlus,
   play: mdiPlay,
   pause: mdiPause,
-  delete: mdiTrashCanOutline
+  delete: mdiTrashCanOutline,
+  email: mdiEmail,
 };
