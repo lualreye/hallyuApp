@@ -38,19 +38,15 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/postscss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['vue2-editor/nuxt'],
+  modules: ['vue2-editor/nuxt', '@nuxtjs/tailwindcss'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    plugins: {
-      tailwind: {},
-      autoprefixer: {},
-    },
-  },
+  build: {},
+
+  devServerHandlers: [],
 
   router: {
     middleware: 'adminAuth',
