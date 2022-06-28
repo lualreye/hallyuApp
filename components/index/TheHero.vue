@@ -30,8 +30,7 @@
       <div
         class="
           w-full
-          lg:w-72
-          xl:w-96
+          lg:w-96
           mt-5
           flex flex-col
           items-center

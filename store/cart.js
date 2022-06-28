@@ -6,6 +6,7 @@ export const state = () => ({
   selectedProducts: [],
   flashProducts: [],
   discountProducts: [],
+  products: [],
 });
 
 export const getters = {
@@ -21,6 +22,9 @@ export const getters = {
   getDiscountProducts(state) {
     return state.discountProducts;
   },
+  getProducts(state) {
+    return state.products;
+  },
 };
 
 export const mutations = {
@@ -33,8 +37,10 @@ export const mutations = {
     return (state.flashProducts = flashProductsArray);
   },
   ADD_DISCOUNT_PRODUCTS(state, discountProducts) {
-    console.log(discountProducts);
     return (state.discountProducts = discountProducts);
+  },
+  ADD_PRODUCTS(state, products) {
+    return (state.products = products);
   },
 };
 
@@ -74,6 +80,22 @@ export const actions = {
       commit('ADD_DISCOUNT_PRODUCTS', discountProducts);
     } catch (err) {
       console.error('CANNOT_GET_FLASH_PORDUCTS');
+    }
+  },
+  async fetchProducts({ commit }) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'products');
+      const productQuery = await getDocs(ref);
+      const products = [];
+      productQuery.forEach((pr) => {
+        const id = pr.id;
+        const product = pr.data();
+        products.push({ id, ...product });
+      });
+      commit('ADD_PRODUCTS', products);
+    } catch (err) {
+      console.error('CANNOT_GET_PORDUCTS');
     }
   },
 };

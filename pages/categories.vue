@@ -23,17 +23,27 @@
         </ul>
       </nav>
     </div>
-    <div class="w-full py-4 px-2">
-      <product-card />
+    <div class="py-4 px-2 max-w-screen-xl mx-auto my-9">
+      <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
+        <stack-item v-for="(product, index) in getProducts" :key="index" class="flex justify-center">
+          <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
+        </stack-item>
+      </stack>
     </div>
   </div>
 </template>
 
 <script>
 import ProductCard from "../components/cards/ProductCard.vue";
+import { Stack, StackItem } from 'vue-stack-grid'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  components: { ProductCard },
+  components: {
+    ProductCard,
+    Stack,
+    StackItem
+  },
   data: () => ({
     categories: [
       { name: "moda" },
@@ -43,5 +53,16 @@ export default {
       { name: "peluches" },
     ],
   }),
+  computed: {
+    ...mapGetters("cart", ['getProducts'])
+  },
+  mounted() {
+    if(!this.getProducts.length) {
+      this.fetchProducts()
+    }
+  },
+  methods: {
+    ...mapActions('cart', ['fetchProducts'])
+  }
 };
 </script>

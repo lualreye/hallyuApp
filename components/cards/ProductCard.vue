@@ -1,64 +1,90 @@
 <template>
-  <div class=" w-56 h-96">
+  <div class="w-56">
     <div class="relative w-full h-full">
       <img
-        :src="productImage"
+        :src="image"
         alt="productName"
-        class="border-2 border-secondary rounded-3xl w-56 h-96"
+        class="border-2 border-primary object-cover object-center rounded-3xl w-full h-96"
       />
-      <div class="w-full h-full flex-flex-col justify-between items-center">
-        <div
-          class="
-            absolute
-            top-2
-            right-2
-            w-full
-            flex flex-col
-            justify-between
-          "
-        >
-          <div class="w-full flex justify-end items-center">
-            <button
-              class="
-                w-8
-                h-8
-                p-1
-                shadow-xl
-                rounded-full
-                bg-gray-100
-                flex
-                justify-center
-                items-center
-              "
-            >
-              <GlobalHIcon
-                name="like"
-                :class="{
-                  'text-gray-300': !isLiked,
-                  'text-secondary': isLiked,
-                }"
-              />
-            </button>
-          </div>
+      <div
+        class="
+          absolute
+          top-0
+          bottom-0
+          right-0
+          py-2
+          w-full
+          h-96
+          flex flex-col
+          justify-between
+        "
+      >
+        <div class="w-full flex justify-end items-center  px-4">
+          <button
+            class="
+              w-8
+              h-8
+              p-1
+              shadow-xl
+              rounded-full
+              bg-gray-100
+              flex
+              justify-center
+              items-center
+            "
+            @click="like"
+          >
+            <GlobalHIcon
+              name="like"
+              :class="{
+                'text-gray-300': !isLiked,
+                'text-secondary': isLiked,
+              }"
+            />
+          </button>
         </div>
-        <div class="flex justify-between items-center">
+        <div class="w-full flex justify-between items-center px-4">
           <p class="text-white font-junegull">
             $ {{ price }}
           </p>
-          <button class="w-8 h-8 flex justify-center items-center shadow-xl bg-primary rounded-full">
+          <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full">
             <GlobalHIcon name='cart' class="text-gray-100" />
           </button>
         </div>
       </div>
+    
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    image: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+  },
   data: () => ({
-    productImage: require("@/static/images/idols/han.jpg"),
+    isLiked: false
   }),
+  methods: {
+    like() {
+      if(this.isLiked) {
+        this.isliked = false;
+      } else {
+        this.isLiked = true
+      }
+    }
+  }
 };
 </script>
 
