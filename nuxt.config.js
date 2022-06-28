@@ -3,26 +3,26 @@ export default {
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "hallyu Store",
+    title: 'hallyu Store',
     htmlAttrs: {
-      lang: "es",
+      lang: 'es',
     },
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: "description",
-        name: "description",
-        content: "Tu ventana a Korea desde Ecuador",
+        hid: 'description',
+        name: 'description',
+        content: 'Tu ventana a Korea desde Ecuador',
       },
-      { name: "format-detection", content: "telephone=no" },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/images/logo/imagotipo.png" },
+      { rel: 'icon', type: 'image/x-icon', href: '/images/logo/imagotipo.png' },
     ],
   },
 
@@ -30,7 +30,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["~/plugins/timer.js", "~/plugins/rating.js", "~/plugins/editor.js"],
+  plugins: ['~/plugins/timer.js', '~/plugins/rating.js', '~/plugins/editor.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,16 +38,21 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss",
+    '@nuxtjs/postscss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["vue2-editor/nuxt"],
+  modules: ['vue2-editor/nuxt'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    plugins: {
+      tailwind: {},
+      autoprefixer: {},
+    },
+  },
 
   router: {
-    middleware: "adminAuth",
+    middleware: 'adminAuth',
   },
 };
