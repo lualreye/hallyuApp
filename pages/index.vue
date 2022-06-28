@@ -1,8 +1,8 @@
 <template>
   <div class="w-full mx-auto">
     <the-hero
-      v-if="heroImage.length"
-      :image="heroImage"
+      v-if="getHero.length"
+      :image="getHero"
       class="max-w-screen-2xl mx-auto my-4"
     />
     <the-line-decoration
@@ -196,7 +196,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("general", ["getHeroImages"]),
+    ...mapGetters("general", ["getHeroImages", "getHero"]),
     ...mapGetters("quotes", ["getQuotes"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
@@ -226,11 +226,12 @@ export default {
           this.getHeroImages[
             Math.floor(this.randomNumber(this.getHeroImages.length))
           ].image;
+        this.selectHero(this.heroImage)
       }
     },
   },
   methods: {
-    ...mapActions("general", ["fetchImages"]),
+    ...mapActions("general", ["fetchImages", "selectHero"]),
     ...mapActions("quotes", ["fetchQuotes"]),
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),
