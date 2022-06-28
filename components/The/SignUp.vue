@@ -102,9 +102,19 @@
               Contraseña incorrecta
             </span>
           </div>
+          <div class="w-full text-textColor text-sm my-3 flex flex-wrap">
+            Creando el perfil aceptas
+            <p @click="closeSignUp">
+              <Nuxt-link to="terms" class="underline text-sm text-blue-600">Términos y condiciones</Nuxt-link>
+            </p>
+            y
+            <p @click="closeSignUp">
+              <Nuxt-link to="privacy" class="underline text-sm text-blue-600" @click="closeSignUp">Políticas de privacidad</Nuxt-link>
+            </p>
+          </div>
           <!-- INICIA SESION -->
           <button
-            class="mt-6 px-3 py-2 rounded-xl text-lightPink border shadow-lg"
+            class="mt-2 px-3 py-2 rounded-xl text-lightPink border shadow-lg"
             :class="buttonReady"
             :disabled="!formIsValid"
             @click="signUserUp"
