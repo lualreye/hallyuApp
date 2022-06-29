@@ -37,6 +37,8 @@ import {
   mdiWhatsapp,
   mdiFileDocumentEditOutline,
   mdiEmail,
+  mdiSkipNext,
+  mdiSkipPrevious,
 } from '@mdi/js';
 
 export default {
@@ -78,4 +80,6 @@ export default {
   pause: mdiPause,
   delete: mdiTrashCanOutline,
   email: mdiEmail,
+  next: mdiSkipNext,
+  previous: mdiSkipPrevious,
 };

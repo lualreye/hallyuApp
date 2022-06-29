@@ -15,28 +15,28 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 const state = () => ({
   heroSongs: [],
   playlist: [],
-  isPlaying: [],
+  indexPlaylist: [],
 });
 
 const getters = {
   getHeroSongs(state) {
     return state.heroSongs;
   },
-  getPlaylist(state) {
-    return state.playlist;
-  },
   getIsPlaying(state) {
     return state.isPlaying;
+  },
+  getIndexPlaylist(state) {
+    return state.indexPlaylist;
   },
 };
 
 const mutations = {
   // HERO SONGS
-  SET_SONGS(state, songs) {
-    state.heroSongs = songs;
+  SET_SONGS(state, heroImages) {
+    state.heroSongs = heroImages;
   },
-  SET_PLAYLIST(state, songs) {
-    state.playlist = songs;
+  SET_PLAYLIST(state, playlist) {
+    state.indexPlaylist = playlist;
   },
   SET_SONG(state, heroImage) {
     state.heroSongs.push(heroImage);

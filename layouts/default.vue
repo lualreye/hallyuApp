@@ -9,6 +9,7 @@
     <TheSignUp />
     <Nuxt />
     <Player />
+    <Playlist />
     <TheFooter class="mt-auto" />
   </div>
 </template>
@@ -16,8 +17,9 @@
 <script>
 import { mapGetters } from "vuex";
 import Player from "../components/Global/Player.vue";
+import Playlist from "../components/Global/Playlist.vue";
 export default {
-    components: { Player },
+    components: { Player, Playlist },
     computed: {
         ...mapGetters("config_drawer", ["showMenu"]),
         ...mapGetters("cart", ["showCart"]),
