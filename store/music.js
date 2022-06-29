@@ -16,6 +16,7 @@ const state = () => ({
   heroSongs: [],
   playlist: [],
   indexPlaylist: [],
+  readyToPlay: false,
 });
 
 const getters = {
@@ -27,6 +28,9 @@ const getters = {
   },
   getIndexPlaylist(state) {
     return state.indexPlaylist;
+  },
+  isReady(state) {
+    return state.readyToPlay;
   },
 };
 
@@ -76,6 +80,9 @@ const mutations = {
     });
     state.playlist[0].audio.play();
     state.heroSongs[songId].isPlaying = true;
+  },
+  START_PLAYER(state, payload) {
+    state.readyToPlay = payload;
   },
 };
 
@@ -138,6 +145,9 @@ const actions = {
     } catch (err) {
       console.error('CANNOT_PLAY_SONG', err);
     }
+  },
+  activePlayer({ commit }, payload) {
+    commit('START_PLAYER', payload);
   },
 };
 

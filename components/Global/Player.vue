@@ -17,18 +17,22 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters('music', ['getIndexPlaylist']),
+    ...mapGetters('music', ['getIndexPlaylist', 'isReady']),
     isPlayer() {
-      return !this.getIndexPlaylist.length ? 'play' : 'pause';
+      return this.isReady ? 'volumeOn' : 'volumeOff';
     }
   },
   methods: {
-    ...mapActions('music', ['fetchSongs']),
+    ...mapActions('music', ['fetchSongs', 'activePlayer']),
     getMusic() {
       if(!this.getIndexPlaylist.length) {
         this.fetchSongs()
       }
-    }
+      if(this.isReady) {
+        this.activePlayer(false)
+      }
+      this.activePlayer(true)
+    },
   }
 }
 </script>
