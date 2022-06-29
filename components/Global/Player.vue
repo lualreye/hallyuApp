@@ -3,7 +3,7 @@
     <button class="w-7 h-7 flex justify-center items-center">
       <HIcon name="search" class="text-primary" />
     </button>
-    <button class="w-7 h-7 flex justify-center items-center my-3">
+    <button class="w-7 h-7 flex justify-center items-center my-3" @click="getMusic">
       <HIcon name="notification" class="text-secondary" />
       </button>
     <button class="w-7 h-7 flex justify-center items-center">
@@ -13,13 +13,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: {
     ...mapGetters('music', ['getIsPlaying']),
     isPlayer() {
       return !this.getIsPlaying.length ? 'play' : 'pause';
+    }
+  },
+  methods: {
+    ...mapActions('music', ['fetchSongs']),
+    getMusic() {
+      console.log('estamos en accion')
+      if(!this.getIsPlaying.length) {
+        this.fetchSongs()
+      }
     }
   }
 }

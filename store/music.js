@@ -32,8 +32,11 @@ const getters = {
 
 const mutations = {
   // HERO SONGS
-  SET_SONGS(state, heroImages) {
-    state.heroSongs = heroImages;
+  SET_SONGS(state, songs) {
+    state.heroSongs = songs;
+  },
+  SET_PLAYLIST(state, songs) {
+    state.playlist = songs;
   },
   SET_SONG(state, heroImage) {
     state.heroSongs.push(heroImage);
@@ -114,6 +117,7 @@ const actions = {
         songs.push(heroSong);
       });
       commit('SET_SONGS', songs);
+      commit('SET_PLAYLIST', songs);
     } catch (err) {
       console.error('CANNOT_GET_HERO_SONGS', err);
     }

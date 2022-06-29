@@ -157,7 +157,7 @@
                 <div v-if="!Object.keys(extraImage).length" class="w-auto">
                   <input
                     type="file"
-                    accept=".png"
+                    accept=".png, .jpg, jpeg, webp"
                     class="absolute w-full h-10 opacity-0 z-60"
                     @change="loadExtraImage"
                   />
