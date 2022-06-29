@@ -5,7 +5,7 @@
       w-10/12
       sm:w-3/4
       max-w-4xl
-      absolute
+      fixed
       top-20
       left-1/12
       sm:left-1/8

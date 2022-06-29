@@ -1,4 +1,4 @@
-import { fireStorage, fireDataBase } from "../static/js/firebaseConfig";
+import { fireStorage, fireDataBase } from '../static/js/firebaseConfig';
 import {
   getDoc,
   doc,
@@ -9,17 +9,21 @@ import {
   setDoc,
   getDocs,
   deleteDoc,
-} from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+} from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const state = () => ({
   heroSongs: [],
   playlist: [],
+  isPlaying: [],
 });
 
 const getters = {
   getHeroSongs(state) {
     return state.heroSongs;
+  },
+  getPlaylist(state) {
+    return state.playlist;
   },
   getIsPlaying(state) {
     return state.isPlaying;
@@ -39,7 +43,7 @@ const mutations = {
     state.heroSongs.splice(imageId, 1);
   },
   RESET_PLAYING_SONG(state) {
-    state.playedSong = "";
+    state.playedSong = '';
   },
   SET_PLAYING_SONG(state, id) {
     const songId = state.heroSongs.findIndex((song) => song.id === id);
@@ -83,22 +87,22 @@ const actions = {
       await uploadBytes(songRef, payload);
       const songUrl = await getDownloadURL(songRef);
       const database = fireDataBase;
-      const heroSongRef = doc(collection(database, "heroSongs"));
+      const heroSongRef = doc(collection(database, 'heroSongs'));
       const heroSong = {
-        name: payload.name.split(".").shift(),
+        name: payload.name.split('.').shift(),
         image: songUrl,
         id: heroSongRef.id,
       };
       await setDoc(heroSongRef, heroSong);
-      commit("SET_SONG", heroSong);
+      commit('SET_SONG', heroSong);
     } catch (err) {
-      console.error("CANNOT_UPLOAD_HERO_SONG", err);
+      console.error('CANNOT_UPLOAD_HERO_SONG', err);
     }
   },
   async fetchSongs({ commit }) {
     try {
       const db = fireDataBase;
-      const songsSnapshot = await getDocs(collection(db, "heroSongs"));
+      const songsSnapshot = await getDocs(collection(db, 'heroSongs'));
       let songs = [];
       let heroSong;
       songsSnapshot.forEach((song) => {
@@ -109,26 +113,26 @@ const actions = {
         };
         songs.push(heroSong);
       });
-      commit("SET_SONGS", songs);
+      commit('SET_SONGS', songs);
     } catch (err) {
-      console.error("CANNOT_GET_HERO_SONGS", err);
+      console.error('CANNOT_GET_HERO_SONGS', err);
     }
   },
   async deleteSong({ commit }, payload) {
     try {
       const db = fireDataBase;
-      await deleteDoc(doc(db, "heroSongs", payload));
-      commit("DELETE_SONG", payload);
+      await deleteDoc(doc(db, 'heroSongs', payload));
+      commit('DELETE_SONG', payload);
     } catch (err) {
-      console.error("CANNOT_DELETE_IMAGE", err);
+      console.error('CANNOT_DELETE_IMAGE', err);
     }
   },
   async playMusic({ commit }, payload) {
     try {
-      commit("RESET_PLAYING_SONG");
-      commit("SET_PLAYING_SONG", payload);
+      commit('RESET_PLAYING_SONG');
+      commit('SET_PLAYING_SONG', payload);
     } catch (err) {
-      console.error("CANNOT_PLAY_SONG", err);
+      console.error('CANNOT_PLAY_SONG', err);
     }
   },
 };
