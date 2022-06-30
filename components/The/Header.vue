@@ -8,11 +8,13 @@
         classes="bg-primary"
         @click="openMenu"
       />
-      <figure
-        class="w-28 sm:w-36 md:w-40 lg:w-52 flex justify-center items-center"
-      >
-        <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
-      </figure>
+      <nuxt-link to="/">
+        <figure
+          class="w-28 sm:w-36 md:w-40 lg:w-52 flex justify-center items-center"
+        >
+          <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
+        </figure>
+      </nuxt-link>
       <div class="w-auto lg:w-96 flex justify-end items-center">
         <div class="w-auto lg:w-1/3 flex justify-center items-center mr-2">
           <GlobalIconButton

@@ -74,10 +74,10 @@ export default {
         link: "offers",
         name: "Ofertas",
       },
-      {
-        link: "club",
-        name: "Club Hallyu",
-      },
+      // {
+      //   link: "club",
+      //   name: "Club Hallyu",
+      // },
       {
         link: "contacts",
         name: "Contáctanos",

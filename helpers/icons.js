@@ -39,6 +39,7 @@ import {
   mdiEmail,
   mdiSkipNext,
   mdiSkipPrevious,
+  mdiPhone,
 } from '@mdi/js';
 
 export default {
@@ -82,4 +83,5 @@ export default {
   email: mdiEmail,
   next: mdiSkipNext,
   previous: mdiSkipPrevious,
+  phone: mdiPhone
 };
