@@ -63,6 +63,10 @@ export default {
         name: "Inicio",
       },
       {
+        link: "offers",
+        name: "Ofertas",
+      },
+      {
         link: "categories",
         name: "Categorías",
       },
@@ -71,8 +75,8 @@ export default {
         name: "Productos",
       },
       {
-        link: "offers",
-        name: "Ofertas",
+        link: "bands",
+        name: "Bandas",
       },
       // {
       //   link: "club",
