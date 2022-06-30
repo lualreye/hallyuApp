@@ -110,7 +110,15 @@ const actions = {
         userSnap.forEach((doc) => {
           user = doc.data();
         });
-        commit('SET_USER', user);
+        const userId = await fireAuth.currentUser.getIdTokenResult();
+        let role = {}
+        if ('admin' in userId.claims) {
+          role = {admin: true} 
+        }
+        if ('costumer' in userId.claims) {
+          role = {costumer: true} 
+        }
+        commit('SET_USER', {...user, role});
         commit('SHOW_SIGNIN', false);
         commit('SHOW_SIGNUP', false);
         commit('SHOW_MODAL', false);
@@ -121,9 +129,18 @@ const actions = {
           email: userResult.email,
           image: userResult.photoURL,
         };
+        const userId = await fireAuth.currentUser.getIdTokenResult();
+        let role = {}
+        if ('admin' in userId.claims) {
+          role = {admin: true} 
+        }
+        if ('costumer' in userId.claims) {
+          role = {costumer: true} 
+        }
+        
         const docRef = doc(userRef);
         await setDoc(docRef, { ...user });
-        commit('SET_USER', user);
+        commit('SET_USER', { ...user, role});
         commit('SHOW_SIGNIN', false);
         commit('SHOW_SIGNUP', false);
         commit('SHOW_MODAL', false);
@@ -206,7 +223,6 @@ const actions = {
             role: role,
           };
         });
-        console.log(user);
         commit('SET_USER', user);
         commit('SHOW_SIGNIN', false);
         commit('SHOW_MODAL', false);

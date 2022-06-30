@@ -18,7 +18,7 @@
         <li @click="closeMenu">
           <nuxt-link
             :to="item.link"
-            class="font-open text-3xl text-textColor font-bol mb-4"
+            class="font-open text-2xl text-textColor font-bol mb-4"
           >
             {{ item.name }}
           </nuxt-link>
@@ -65,6 +65,10 @@ export default {
       {
         link: "categories",
         name: "Categorías",
+      },
+      {
+        link: "products",
+        name: "Productos",
       },
       {
         link: "offers",

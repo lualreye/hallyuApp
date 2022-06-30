@@ -41,10 +41,14 @@ export default {
             }
         },
         getUser(value) {
+            console.log(value)
             if (value === null || undefined) {
                 return;
             }
-            else if (value.role.adminRole) {
+            if (value.role.costumer) {
+                return;
+            }
+            if (value.role.adminRole) {
                 this.$router.push("/admin/dashboard");
             }
         },
