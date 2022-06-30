@@ -15,8 +15,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import HIcon from './HIcon.vue';
 
 export default {
+  components: {
+    HIcon
+  },
   data: () => ({
     selectedSong: {}
   }),

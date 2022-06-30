@@ -15,8 +15,8 @@
           <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
         </figure>
       </nuxt-link>
-      <div class="w-auto lg:w-96 flex justify-end items-center">
-        <div class="w-auto lg:w-1/3 flex justify-center items-center mr-2">
+      <div class="w-auto flex justify-end items-center">
+        <div class="w-auto flex justify-center items-center mr-2">
           <GlobalIconButton
             iconName="like"
             classes="bg-primary p-1"
@@ -50,21 +50,12 @@
             </div>
           </div>
         </div>
-        <div v-if="!getUser" class="w-2/3 flex jsutify-center items-center">
-          <div class="w-1/2 hidden lg:flex justify-center items-center mr-2">
-            <GlobalHButton
-              name="Inicia Sesión"
-              buttonColor="primary"
-              @click="toSignIn"
+        <div v-if="!getUser" class="flex jsutify-center items-center">
+          <GlobalIconButton
+            iconName="userAccount"
+            classes="bg-primary p-1"
+            @click="toSignUp"
             />
-          </div>
-          <div class="w-1/2 hidden lg:flex justify-center items-center">
-            <GlobalHButton
-              name="Regístrate"
-              buttonColor="secondary"
-              @click="toSignUp"
-            />
-          </div>
         </div>
       </div>
     </div>
