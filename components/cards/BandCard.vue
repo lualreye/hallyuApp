@@ -2,7 +2,7 @@
   <div class="w-full">
     <div class="flex flex-col justify-center items-center">
       <nuxt-link
-        :to="`bands/${bandName}`"
+        :to="`/bands/${bandName}`"
         class="
           flex
           w-48

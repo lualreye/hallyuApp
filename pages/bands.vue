@@ -13,7 +13,7 @@
             py-4
           "
         >
-          <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetCategory">
+          <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetBand">
             <nuxt-link to="/bands">
               Todas
             </nuxt-link>
@@ -22,7 +22,7 @@
             v-for="(band, i) in getBands"
             :key="i"
             class="flex-shrink-0 text-textColor font-junegull mr-6"
-            @click="selectCategory(band.name)"
+            @click="selectBand(band.name)"
           >
             <nuxt-link :to="`/bands/${band.name}`">
               {{ band.name }}
@@ -33,7 +33,7 @@
     </div>
     <div v-if="!getParams" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-        <stack-item v-for="(product, index) in getProducts" :key="index" class="flex justify-center">
+        <stack-item v-for="(product, index) in getProductsByBand" :key="index" class="flex justify-center">
           <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
         </stack-item>
       </stack>
@@ -56,14 +56,11 @@ export default {
     StackItem
   },
   data: () => ({
-    selectedCategory: ''
+    selectedBand: ''
   }),
   computed: {
-    ...mapGetters("cart", ['getProducts']),
-    ...mapGetters("categories", ["getCategories"]),
-    filteredByCategory() {
-      return this.getProducts.filter( pr => pr.category === this.selectedCategory)
-    },
+    ...mapGetters("cart", ['getProductsByBand']),
+    ...mapGetters("bands", ["getBands"]),
     getParams() {
       if(this.$route.params === undefined) {
         return false
@@ -73,21 +70,21 @@ export default {
     }
   },
   mounted() {
-    if(!this.getProducts.length) {
-      this.fetchProducts()
+    if(!this.getProductsByBand.length) {
+      this.fetchProductsByBand()
     }
-    if(!this.getCategories.length) {
-      this.fetchCategories()
+    if(!this.getBands.length) {
+      this.fetchBands()
     }
   },
   methods: {
-    ...mapActions('cart', ['fetchProducts']),
-    ...mapActions('categories', ["fetchCategories"]),
-    selectCategory(category) {
-      this.selectedCategory = category
+    ...mapActions('cart', ['fetchProductsByBand']),
+    ...mapActions('bands', ["fetchBands"]),
+    selectBand(band) {
+      this.selectedBand = band
     },
-    resetCategory() {
-      this.selectedCategory = ""
+    resetBand() {
+      this.selectedBand = ""
     }
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="py-4 px-2 max-w-screen-xl mx-auto my-9">
     <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-      <stack-item v-for="(product, index) in getProductsByCategory" :key="index" class="flex justify-center">
+      <stack-item v-for="(product, index) in getProductsByBand" :key="index" class="flex justify-center">
         <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
       </stack-item>
     </stack>
@@ -20,7 +20,7 @@ export default {
     ProductCard
   }, 
   computed: {
-    ...mapGetters('cart', ['getProductsByCategory']),
+    ...mapGetters('cart', ['getProductsByBand']),
     getParams() {
       return this.$route.params.id
     }
@@ -28,18 +28,18 @@ export default {
   watch: {
     getParams(newVal, oldVal) {
       if(newVal !== oldVal) {
-        this.clearProductsByCategory()
-        this.fetchProductsByCategory(this.$route.params.id)
+        this.clearProductsByBand()
+        this.fetchProductsByBand(this.$route.params.id)
       }
     }
   },
   mounted() {
-    if(!this.getProductsByCategory.length) {
-      this.fetchProductsByCategory(this.$route.params.id)
+    if(!this.getProductsByBand.length) {
+      this.fetchProductsByBand(this.$route.params.id)
     }
   },
   methods: {
-    ...mapActions('cart', ['fetchProductsByCategory', 'clearProductsByCategory'])
+    ...mapActions('cart', ['fetchProductsByBand', 'clearProductsByBand'])
   }
 }
 </script>
