@@ -30,7 +30,7 @@
     </div>
     <div class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-        <stack-item v-for="(product, index) in getProducts" :key="index" class="flex justify-center">
+        <stack-item v-for="(product, index) in productsFilteresByBand" :key="index" class="flex justify-center">
           <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
         </stack-item>
       </stack>
@@ -54,7 +54,11 @@ export default {
   }),
   computed: {
     ...mapGetters("cart", ['getProducts']),
-    ...mapGetters("bands", ['getBands'])
+    ...mapGetters("bands", ['getBands']),
+    productsFilteresByBand() {
+      const bandNames = this.getBands.map(band => band.name)
+      return this.getProducts.filter( product => bandNames.includes(product.band))
+    }
   },
   mounted() {
     if(!this.getProducts.length) {
