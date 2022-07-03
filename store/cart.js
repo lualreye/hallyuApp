@@ -7,8 +7,8 @@ export const state = () => ({
   flashProducts: [],
   discountProducts: [],
   products: [],
-  selectedCategory: '',
   productsByCategory: [],
+  productsByBand: [],
 });
 
 export const getters = {
@@ -29,6 +29,9 @@ export const getters = {
   },
   getProductsByCategory(state) {
     return state.productsByCategory;
+  },
+  getProductsByBands(state) {
+    return state.productsByBand;
   },
 };
 
@@ -52,6 +55,12 @@ export const mutations = {
   },
   CLEAR_PRODUCTS_BY_CATEGORY(state) {
     return (state.productsByCategory = []);
+  },
+  ADD_PRODUCTS_BY_BAND(state, products) {
+    return (state.productsByBand = products);
+  },
+  CLEAR_PRODUCTS_BY_BAND(state) {
+    return (state.productsByBand = []);
   },
 };
 
@@ -94,7 +103,27 @@ export const actions = {
     }
   },
   clearProductsByCategory({ commit }) {
-    commit('CLEAR_PRODUCTS_BY_CATEGORY');
+    commit('CLEAR_PRODUCTS_BY_BAND');
+  },
+  async fetchProductsByBand({ commit }, payload) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'products');
+      const productQuery = query(ref, where('band', '==', payload));
+      const querySnapshot = await getDocs(productQuery);
+      const productByBand = [];
+      querySnapshot.forEach((pr) => {
+        const id = pr.id;
+        const product = pr.data();
+        productByBand.push({ id, ...product });
+      });
+      commit('ADD_PRODUCTS_BY_BAND', productByBand);
+    } catch (err) {
+      console.error('CANNOT_GET_PORDUCTS_BY_BAND');
+    }
+  },
+  clearProductsByBand({ commit }) {
+    commit('CLEAR_PRODUCTS_BY_BAND');
   },
   async fetchDiscountProducts({ commit }) {
     const db = fireDataBase;

@@ -1,10 +1,7 @@
 <template>
   <div>
     <div class="w-full">
-      <figure class="w-full h-60 mx-auto">
-        <img :src="image" class="mask h-60 object-cover w-full object-top">
-      </figure>
-      <nav class="w-full max-w-xl mx-auto px-2 my-4">
+      <nav class="w-full max-w-4xl mx-auto px-2 my-4">
         <ul
           class="
             w-full
@@ -16,30 +13,39 @@
             py-4
           "
         >
+          <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetCategory">
+            <nuxt-link to="/bands">
+              Todas
+            </nuxt-link>
+          </li>
           <li
             v-for="(band, i) in getBands"
             :key="i"
-            class="flex-shrink-0 text-textColor font-junegull mx-2"
+            class="flex-shrink-0 text-textColor font-junegull mr-6"
+            @click="selectCategory(band.name)"
           >
-            <nuxt-link :to="`/bands/${band.name.replaceAll(' ', '')}`">
+            <nuxt-link :to="`/bands/${band.name}`">
               {{ band.name }}
             </nuxt-link>
           </li>
         </ul>
       </nav>
     </div>
-    <div class="py-4 px-2 max-w-screen-xl mx-auto my-9">
+    <div v-if="!getParams" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-        <stack-item v-for="(product, index) in productsFilteresByBand" :key="index" class="flex justify-center">
+        <stack-item v-for="(product, index) in getProducts" :key="index" class="flex justify-center">
           <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
         </stack-item>
       </stack>
+    </div>
+    <div v-else>
+      <nuxt />
     </div>
   </div>
 </template>
 
 <script>
-import ProductCard from "../components/cards/ProductCard.vue";
+import ProductCard from "@/components/cards/ProductCard.vue";
 import { Stack, StackItem } from 'vue-stack-grid'
 import { mapActions, mapGetters } from "vuex";
 
@@ -50,34 +56,39 @@ export default {
     StackItem
   },
   data: () => ({
-    image: require('../static/images/bandbts.png')
+    selectedCategory: ''
   }),
   computed: {
     ...mapGetters("cart", ['getProducts']),
-    ...mapGetters("bands", ['getBands']),
-    productsFilteresByBand() {
-      const bandNames = this.getBands.map(band => band.name)
-      return this.getProducts.filter( product => bandNames.includes(product.band))
+    ...mapGetters("categories", ["getCategories"]),
+    filteredByCategory() {
+      return this.getProducts.filter( pr => pr.category === this.selectedCategory)
+    },
+    getParams() {
+      if(this.$route.params === undefined) {
+        return false
+      } else {
+        return this.$route.params.id
+      }
     }
   },
   mounted() {
     if(!this.getProducts.length) {
       this.fetchProducts()
     }
-    if(!this.getBands.length) {
-      this.fetchBands()
+    if(!this.getCategories.length) {
+      this.fetchCategories()
     }
   },
   methods: {
     ...mapActions('cart', ['fetchProducts']),
-    ...mapActions('bands', ["fetchBands"])
+    ...mapActions('categories', ["fetchCategories"]),
+    selectCategory(category) {
+      this.selectedCategory = category
+    },
+    resetCategory() {
+      this.selectedCategory = ""
+    }
   }
 };
 </script>
-
-<style scoped>
-.mask {
-  mask-image: url('../static/images/backgrounds/Union.svg');
-  mask-position: bottom;
-}
-</style>
