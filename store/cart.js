@@ -116,30 +116,27 @@ export const actions = {
   async fetchProductsByBand({ commit }, payload) {
     const db = fireDataBase;
     try {
-      console.log(payload);
       const ref = collection(db, 'products');
+      const productByBand = [];
       if (payload === undefined) {
         const productQuery = query(ref, where('band', '!=', 'Sin banda'));
         const querySnapshot = await getDocs(productQuery);
-        const productByBand = [];
         querySnapshot.forEach((pr) => {
           const id = pr.id;
           const product = pr.data();
           productByBand.push({ id, ...product });
         });
-        commit('ADD_PRODUCTS_BY_BAND', productByBand);
-      }
-      if (payload !== undefined) {
+      } else if (payload !== undefined) {
         const productQuery = query(ref, where('band', '==', payload));
         const querySnapshot = await getDocs(productQuery);
-        const productByBand = [];
         querySnapshot.forEach((pr) => {
           const id = pr.id;
           const product = pr.data();
           productByBand.push({ id, ...product });
         });
-        commit('ADD_PRODUCTS_BY_BAND', productByBand);
       }
+      console.log(productByBand);
+      commit('ADD_PRODUCTS_BY_BAND', productByBand);
     } catch (err) {
       console.error('CANNOT_GET_PRODUCTS_BY_BAND');
     }

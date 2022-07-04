@@ -61,9 +61,6 @@ export default {
   computed: {
     ...mapGetters("cart", ['getProducts']),
     ...mapGetters("categories", ["getCategories"]),
-    filteredByCategory() {
-      return this.getProducts.filter( pr => pr.category === this.selectedCategory)
-    },
     getParams() {
       if(this.$route.params === undefined) {
         return false

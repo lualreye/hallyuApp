@@ -74,7 +74,8 @@ export default {
     }
   },
   mounted() {
-    if(!this.getProductsByBand.length) {
+    if(!this.getProductsByBand.length && this.$route.params === undefined) {
+      console.log('band.vue')
       this.fetchProductsByBand()
     }
     if(!this.getBands.length) {
