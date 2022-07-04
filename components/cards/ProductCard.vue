@@ -1,8 +1,8 @@
 <template>
-  <div class="w-56">
+  <nuxt-link :to="`/products/${product.id}`" class="w-56">
     <div class="relative w-full h-full">
       <img
-        :src="image"
+        :src="product.thumbnail"
         alt="productName"
         class="border-2 border-primary object-cover object-center rounded-3xl w-full h-96"
       />
@@ -45,33 +45,25 @@
         </div>
         <div class="w-full flex justify-between items-center px-4">
           <p class="text-primary text-2xl font-junegull">
-            $ {{ price }}
+            $ {{ product.price }}
           </p>
-          <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full">
+          <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full" @click="addToCart">
             <GlobalHIcon name='cart' class="text-gray-100" />
           </button>
         </div>
       </div>
     
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   props: {
-    image: {
-      type: String,
+    product: {
+      type: Object,
       required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: Number,
-      required: true
-    },
+    }
   },
   data: () => ({
     isLiked: false
@@ -83,6 +75,9 @@ export default {
       } else {
         this.isLiked = true
       }
+    },
+    addToCart() {
+      console.log('Estamos yendo al carrito')
     }
   }
 };

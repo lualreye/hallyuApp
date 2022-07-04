@@ -9,6 +9,7 @@ export const state = () => ({
   products: [],
   productsByCategory: [],
   productsByBand: [],
+  product: {},
 });
 
 export const getters = {
@@ -32,6 +33,9 @@ export const getters = {
   },
   getProductsByBand(state) {
     return state.productsByBand;
+  },
+  getProduct(state) {
+    return state.product;
   },
 };
 
@@ -61,6 +65,10 @@ export const mutations = {
   },
   CLEAR_PRODUCTS_BY_BAND(state) {
     return (state.productsByBand = []);
+  },
+  ADD_PRODUCT(state, product) {
+    state.product = {};
+    return (state.product = product);
   },
 };
 
@@ -170,6 +178,21 @@ export const actions = {
       commit('ADD_PRODUCTS', products);
     } catch (err) {
       console.error('CANNOT_GET_PORDUCTS');
+    }
+  },
+  async fetchProduct({ commit }, payload) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'products');
+      const productQuery = query(ref, where('id', '==', payload));
+      const querySnapshot = await getDocs(productQuery);
+      const product = {};
+      querySnapshot.forEach((pr) => {
+        product = pr.data();
+      });
+      commit('ADD_DISCOUNT_PRODUCTS', product);
+    } catch (err) {
+      console.error('CANNOT_GET_FLASH_PORDUCTS');
     }
   },
 };

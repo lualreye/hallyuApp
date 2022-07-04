@@ -2,7 +2,7 @@
   <div class="py-4 px-2 max-w-screen-xl mx-auto my-9">
     <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
       <stack-item v-for="(product, index) in getProductsByCategory" :key="index" class="flex justify-center">
-        <product-card :image="product.thumbnail" :price="product.price" :name="product.name" />
+        <product-card :product="product" />
       </stack-item>
     </stack>
   </div>
