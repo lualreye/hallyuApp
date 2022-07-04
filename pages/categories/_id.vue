@@ -34,9 +34,8 @@ export default {
     }
   },
   mounted() {
-    if(!this.getProductsByCategory.length) {
-      this.fetchProductsByCategory(this.$route.params.id)
-    }
+    this.clearProductsByCategory()
+    this.fetchProductsByCategory(this.$route.params.id)
   },
   methods: {
     ...mapActions('cart', ['fetchProductsByCategory', 'clearProductsByCategory'])

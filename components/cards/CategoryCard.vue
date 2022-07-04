@@ -6,7 +6,7 @@
       'rotated-2': !isEven,
     }"
   >
-    <div class="relative rounded-xl">
+    <nuxt-link :to="`/categories/${categoryName}`" class="relative rounded-xl">
       <div class="bg-secondary w-48 h-48 rounded-xl">
         <figure
           class="
@@ -49,7 +49,7 @@
           </div>
         </figure>
       </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 

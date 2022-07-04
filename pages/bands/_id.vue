@@ -34,9 +34,8 @@ export default {
     }
   },
   mounted() {
-    if(!this.getProductsByBand.length) {
-      this.fetchProductsByBand(this.$route.params.id)
-    }
+    this.clearProductsByBand()
+    this.fetchProductsByBand(this.$route.params.id)
   },
   methods: {
     ...mapActions('cart', ['fetchProductsByBand', 'clearProductsByBand'])
