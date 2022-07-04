@@ -1,6 +1,9 @@
 <template>
   <div>
     <div class="w-full">
+      <figure class="w-full h-60 mx-auto">
+        <img :src="image" class="mask h-60 object-cover w-full object-top">
+      </figure>
       <nav class="w-full max-w-4xl mx-auto px-2 my-4">
         <ul
           class="
@@ -56,6 +59,7 @@ export default {
     StackItem
   },
   data: () => ({
+    image: require('../static/images/bandbts.png'),
     selectedBand: ''
   }),
   computed: {
@@ -89,3 +93,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.mask {
+  mask-image: url('../static/images/backgrounds/Union.svg');
+  mask-position: bottom;
+}
+</style>
