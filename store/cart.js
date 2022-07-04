@@ -126,7 +126,8 @@ export const actions = {
           const product = pr.data();
           productByBand.push({ id, ...product });
         });
-      } else if (payload !== undefined) {
+      }
+      if (payload !== undefined) {
         const productQuery = query(ref, where('band', '==', payload));
         const querySnapshot = await getDocs(productQuery);
         querySnapshot.forEach((pr) => {
@@ -135,7 +136,6 @@ export const actions = {
           productByBand.push({ id, ...product });
         });
       }
-      console.log(productByBand);
       commit('ADD_PRODUCTS_BY_BAND', productByBand);
     } catch (err) {
       console.error('CANNOT_GET_PRODUCTS_BY_BAND');
@@ -185,7 +185,8 @@ export const actions = {
       const querySnapshot = await getDocs(productQuery);
       const product = {};
       querySnapshot.forEach((pr) => {
-        product = pr.data();
+        const id = pr.id;
+        product = { ...pr.data(), id };
       });
       commit('ADD_DISCOUNT_PRODUCTS', product);
     } catch (err) {
