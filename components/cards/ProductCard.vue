@@ -68,9 +68,9 @@ export default {
   data: () => ({
     isLiked: false
   }),
-  // mounted() {
-  //   console.log(this.product.id)
-  // },
+  mounted() {
+    console.log(this.product.id)
+  },
   methods: {
     like() {
       if(this.isLiked) {

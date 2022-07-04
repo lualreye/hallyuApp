@@ -182,15 +182,15 @@ export const actions = {
     try {
       const ref = collection(db, 'products');
       const productQuery = query(ref, where('id', '==', payload));
+      console.log(payload);
       const querySnapshot = await getDocs(productQuery);
-      const product = {};
+      let product = {};
       querySnapshot.forEach((pr) => {
-        const id = pr.id;
-        product = { ...pr.data(), id };
+        product = pr.data();
       });
-      commit('ADD_DISCOUNT_PRODUCTS', product);
+      commit('ADD_PRODUCT', product);
     } catch (err) {
-      console.error('CANNOT_GET_FLASH_PORDUCTS');
+      console.error('CANNOT_GET_PRODUCT');
     }
   },
 };
