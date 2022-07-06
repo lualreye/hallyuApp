@@ -10,6 +10,7 @@ export const state = () => ({
   productsByCategory: [],
   productsByBand: [],
   product: {},
+  suggestedProducts: [],
 });
 
 export const getters = {
@@ -37,6 +38,9 @@ export const getters = {
   getProduct(state) {
     return state.product;
   },
+  getSuggestedProducts(state) {
+    return state.suggestedProducts;
+  }
 };
 
 export const mutations = {
@@ -70,6 +74,10 @@ export const mutations = {
     state.product = {};
     return (state.product = product);
   },
+  ADD_SUGGESTED_PRODUCTS(state, products) {
+    state.suggestedProducts = [];
+    return (state.suggestedProducts = products);
+  }
 };
 
 export const actions = {
@@ -182,7 +190,6 @@ export const actions = {
     try {
       const ref = collection(db, 'products');
       const productQuery = query(ref, where('id', '==', payload));
-      console.log(payload);
       const querySnapshot = await getDocs(productQuery);
       let product = {};
       querySnapshot.forEach((pr) => {
@@ -191,6 +198,23 @@ export const actions = {
       commit('ADD_PRODUCT', product);
     } catch (err) {
       console.error('CANNOT_GET_PRODUCT');
+    }
+  },
+  async fetchSuggestedProducts({ commit }, payload) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'products');
+      const productQuery = query(ref, limit(6));
+      const querySnapshot = await getDocs(productQuery);
+      const products = [];
+      querySnapshot.forEach((pr) => {
+        let product = pr.data();
+        products.push(product)
+      });
+      console.log(products)
+      commit('ADD_SUGGESTED_PRODUCTS', products);
+    } catch (err) {
+      console.error('CANNOT_SUGGESTED_PRODUCTS');
     }
   },
 };
