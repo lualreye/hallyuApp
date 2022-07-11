@@ -1,8 +1,8 @@
 <template>
-  <div v-if="Object.keys(getProduct).length" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
+  <div v-if="Object.keys(getProduct).length" class="py-4 px-2 w-full max-w-screen-xl mx-auto my-9">
     <div class="w-full flex flex-wrap justify-evenly">
-      <div class="w-full md:w-2/5 flex flex-col-reverse md:flex-row justify-center items-center p-1">
-        <div class="w-full md:w-1/5 flex flex-row md:flex-col justify-center items-center md:mr-3">
+      <div class="w-full md:w-2/5 flex flex-col-reverse md:flex-row justify-evenly items-center">
+        <div class="w-full md:w-1/5 flex flex-row md:flex-col justify-center items-center mr-3">
           <figure
             class="w-16 h-16 m-2 flex justify-center items-center rounded-lg"
             @click="getImage(getProduct.thumbnail)">
@@ -16,10 +16,10 @@
           </figure>
         </div>
         <figure class="w-full min-w-full md:w-3/5 h-96 rounded-md flex justify-center items-center">
-          <img :src="selectedImage" :alt="getProduct.name" class="h-96 w-full border-2 border-primary object-cover object-center rounded-md">
+          <img :src="selectedImage" :alt="getProduct.name" class="h-96 w-full min-w-full border-2 border-primary object-cover object-center rounded-md">
         </figure>
       </div>
-      <div class="w-full md:w-2/5 px-2 flex flex-col justify-between items-start py-10">
+      <div class="w-full md:w-2/5 px-2 flex flex-col justify-between items-start py-2">
         <div>
           <p class="text-textColor text-lg font-open text-left">
             {{ getProduct.name }}
@@ -29,20 +29,30 @@
             $ {{ getProduct.price }}
           </p>
         </div>
-        <div v-if="getProduct.clothes.sizes.length" class="w-full flex flex-col">
-          <p class="text-textColor text-base font-open text-left">
+        <div class="w-full flex flex-col">
+          <p class="text-textColor text-base font-light font-open text-left">
             Tallas
           </p>
-          <p v-for="(size, index) in getProduct.clothes.sizes" :key="index" class="text-textColor text-base font-open text-left">
-            {{ size }}
+          <div v-if="getProduct.clothes.sizes.length">
+            <p v-for="(size, index) in getProduct.clothes.sizes" :key="index" class="text-textColor text-base font-open text-left">
+              {{ size }}
+            </p>
+          </div>
+          <p v-else class="text-textColor text-base font-open text-left">
+            No aplica
           </p>
         </div>
-        <div v-if="getProduct.clothes.colors.length" class="w-full flex flex-col">
-          <p class="text-textColor text-base font-open text-left">
+        <div class="w-full flex flex-col">
+          <p class="text-textColor text-base font-light font-open text-left">
             Color
           </p>
-          <p v-for="(item, index) in getProduct.clothes.colors" :key="index" class="text-textColor text-base font-open text-left">
-            {{ item.name }}
+          <div v-if="getProduct.clothes.colors.length">
+            <p v-for="(item, index) in getProduct.clothes.colors" :key="index" class="text-textColor text-base font-open text-left">
+              {{ item.name }}
+            </p>
+          </div>
+          <p v-else class="text-textColor text-base font-open text-left">
+            No aplica
           </p>
         </div>
         <div class="w-full lg:w-5/6 flex flex-col justify-center items-start">
@@ -58,6 +68,12 @@
         </p>
       </div>
     </div>
+    <div v-if="getSuggestedProducts" class="flex w-full overflow-x-auto justify-start items-center my-10 sm:pl-6 pl-1 py-5">
+      <nuxt-link v-for="(product, index) in getSuggestedProducts" :key="index" :to="`/products/${product.id}`" class="flex-none w-56 h-56 p-1 relative mr-5">
+        <img :src="product.thumbnail" :alt="product.name" class="w-56 h-56 object-cover object-center rounded-xl border border-primary">
+        <span class="absolute bottom-2 left-2 px-3 py-1 rounded-full bg-gray-200 text-textColor font-junegull text-xl">{{ product.price }}</span>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -71,7 +87,7 @@ export default {
     rate: 4
   }),
   computed: {
-    ...mapGetters('cart', ['getProduct']),
+    ...mapGetters('cart', ['getProduct', 'getSuggestedProducts']),
     getParams() {
       return this.$route.params.id
     },
@@ -86,10 +102,10 @@ export default {
   },
   mounted() {
     this.fetchProduct(this.$route.params.id)
-    this.getProduct.clothes
+    this.fetchSuggestedProducts()
   },
   methods: {
-    ...mapActions('cart', ['fetchProduct']),
+    ...mapActions('cart', ['fetchProduct', 'fetchSuggestedProducts']),
     getImage(image) {
       this.selectedImage = image
     }

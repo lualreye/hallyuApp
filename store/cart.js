@@ -1,5 +1,5 @@
 import { fireDataBase } from '../static/js/firebaseConfig';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, limit, where } from 'firebase/firestore';
 
 export const state = () => ({
   show: false,
@@ -40,7 +40,7 @@ export const getters = {
   },
   getSuggestedProducts(state) {
     return state.suggestedProducts;
-  }
+  },
 };
 
 export const mutations = {
@@ -76,8 +76,9 @@ export const mutations = {
   },
   ADD_SUGGESTED_PRODUCTS(state, products) {
     state.suggestedProducts = [];
+    console.log(products);
     return (state.suggestedProducts = products);
-  }
+  },
 };
 
 export const actions = {
@@ -188,6 +189,7 @@ export const actions = {
   async fetchProduct({ commit }, payload) {
     const db = fireDataBase;
     try {
+      console.log(payload);
       const ref = collection(db, 'products');
       const productQuery = query(ref, where('id', '==', payload));
       const querySnapshot = await getDocs(productQuery);
@@ -209,9 +211,8 @@ export const actions = {
       const products = [];
       querySnapshot.forEach((pr) => {
         let product = pr.data();
-        products.push(product)
+        products.push(product);
       });
-      console.log(products)
       commit('ADD_SUGGESTED_PRODUCTS', products);
     } catch (err) {
       console.error('CANNOT_SUGGESTED_PRODUCTS');
