@@ -100,13 +100,21 @@ export default {
     CartCard,
   },
   data: () => ({
-    totalBeforeDiscount: 56,
     discount: 5,
     totalToPay: 45
   }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("cart", ["getCart"]),
+    totalBeforeDiscount() {
+      if (!this.getCart.length) {
+        return 0
+      } else {
+        const allPrices = this.getCart.map(pr => pr.quantity * pr.price)
+        const sum = allPrices.reduce((a, b) => a + b, 0)
+        return sum
+      }
+    }
   },
   methods: {
     ...mapActions("cart", ["activeCart"]),
