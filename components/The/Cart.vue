@@ -100,7 +100,6 @@ export default {
     CartCard,
   },
   data: () => ({
-    discount: 5,
     totalToPay: 45
   }),
   computed: {
@@ -114,6 +113,13 @@ export default {
         const sum = allPrices.reduce((a, b) => a + b, 0)
         return sum
       }
+    },
+    discount() {
+      if (!this.getCart.length) {
+        return 0
+      }
+      const dis = this.getCart.map(pr => pr.offered !== false)
+      return dis
     }
   },
   methods: {
