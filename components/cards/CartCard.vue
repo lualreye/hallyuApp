@@ -15,12 +15,12 @@
             {{ product.name }}
           </p>
           <div class="w-full flex justify-start items-center">
-            <button class="w-4 h-4">
+            <button class="w-4 h-4" @click="substract">
               <HIcon name="minus" class="text-primary" />
             </button>
             <span class="mx-2 border text-textColor border-aquamarine rounded-lg">{{ product.quantity }}</span>
-            <button class="w-4 h-4">
-              <HIcon name="plus" class="text-primary" />
+            <button class="w-4 h-4" :disabled="product.quantity === product.stock" @click="add">
+              <HIcon name="plus" class="text-primary" :class="{'text-gray-400': product.quantity === product.stock}" />
             </button>
           </div>
           <p v-if="product.size" class="text-textColor text-sm w-full">
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import HIcon from '../Global/HIcon.vue';
 export default {
   components: { HIcon },
@@ -58,11 +59,12 @@ export default {
       }
   },
   methods: {
+    ...mapActions('cart', ['addOne', 'removeToCart']),
     add() {
-
+      this.addOne(this.product)
     },
     substract() {
-
+      this.removeToCart(this.product)
     },
   }
 };

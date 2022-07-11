@@ -79,14 +79,28 @@ export const mutations = {
     return (state.suggestedProducts = products);
   },
   ADD_PRODUCT_TO_CART(state, product) {
-    console.log(product);
     const id = state.cart.findIndex((pr) => pr.id === product.id);
-    console.log(id);
     if (id === -1) {
       state.cart.push(product);
     } else {
       state.cart[id].quantity += 1;
     }
+  },
+  REMOVE_PRODUCT_TO_CART(state, product) {
+    const id = state.cart.findIndex((pr) => pr.id === product.id);
+    if (state.cart[id].quantity >= 2) {
+      state.cart[id].quantity -= 1;
+    } else {
+      state.cart.splice(id, 1);
+    }
+  },
+  ADD_ONE(state, product) {
+    const id = state.cart.findIndex((pr) => pr.id === product.id);
+    state.cart[id].quantity += 1;
+  },
+  SUBSTRACT_ONE(state, product) {
+    const id = state.cart.findIndex((pr) => pr.id === product.id);
+    state.cart[id].quantity -= 1;
   },
 };
 
@@ -198,7 +212,6 @@ export const actions = {
   async fetchProduct({ commit }, payload) {
     const db = fireDataBase;
     try {
-      console.log(payload);
       const ref = collection(db, 'products');
       const productQuery = query(ref, where('id', '==', payload));
       const querySnapshot = await getDocs(productQuery);
@@ -206,7 +219,7 @@ export const actions = {
       querySnapshot.forEach((pr) => {
         product = pr.data();
       });
-      commit('ADD_PRODUCT', product);
+      commit('ADD_PRODUCT', { ...product, quantity: Number(0) });
     } catch (err) {
       console.error('CANNOT_GET_PRODUCT');
     }
@@ -230,5 +243,14 @@ export const actions = {
   addToCart({ commit }, payload) {
     const product = { ...payload, quantity: Number(1) };
     commit('ADD_PRODUCT_TO_CART', product);
+  },
+  removeToCart({ commit }, payload) {
+    commit('REMOVE_PRODUCT_TO_CART', payload);
+  },
+  addOne({ commit }, payload) {
+    commit('ADD_ONE', payload);
+  },
+  substractOne({ commit }, payload) {
+    commit('SUBSTRACT_ONE', payload);
   },
 };

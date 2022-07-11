@@ -56,8 +56,19 @@
           </p>
         </div>
         <div class="w-full lg:w-5/6 flex flex-col justify-center items-start">
-          <button class="mb-3 w-full p-2 rounded-full bg-secondary text-white" @click="addProductToCart">
-            Agregar al carrito
+          <button
+            class="mb-3 w-full p-2 rounded-full text-white"
+            :class="{
+              'bg-gray-400': isAdded,
+              'bg-secondary': !isAdded
+            }"
+            @click="addProductToCart">
+            <p v-if="!isAdded" class="text-white">
+              Agregar al carrito
+            </p>
+            <p v-else class="text-white">
+              Quitar del carrito
+            </p>
           </button>
           <button class="w-full p-2 rounded-full bg-white text-secondary border border-secondary">
             Agregar a favoritos
@@ -84,10 +95,11 @@ export default {
   data: () => ({
     selectedImage: "",
     read: true,
-    rate: 4
+    rate: 4,
+    isAdded: false
   }),
   computed: {
-    ...mapGetters('cart', ['getProduct', 'getSuggestedProducts']),
+    ...mapGetters('cart', ['getProduct', 'getSuggestedProducts', 'getCart']),
     getParams() {
       return this.$route.params.id
     },
@@ -98,20 +110,35 @@ export default {
       if(product) {
         this.selectedImage = value.thumbnail
       }
-    }
+    },
   },
   mounted() {
     this.fetchProduct(this.$route.params.id)
     this.fetchSuggestedProducts()
+    this.isProductOnCart()
   },
   methods: {
-    ...mapActions('cart', ['fetchProduct', 'fetchSuggestedProducts', 'addToCart']),
+    ...mapActions('cart', ['fetchProduct', 'fetchSuggestedProducts', 'addToCart', 'removeToCart']),
     getImage(image) {
       this.selectedImage = image
     },
     addProductToCart() {
-      const product = JSON.parse(JSON.stringify(this.getProduct))
-      this.addToCart(product)
+      const product = JSON.parse(JSON.stringify(this.getProduct))      
+      if(!this.isAdded) {
+        this.addToCart(product)
+        this.isAdded = true
+      } else {
+        this.removeToCart(product)
+        this.isAdded = false
+      }
+    },
+    isProductOnCart() {
+      const index = this.getCart.findIndex(pr => pr.id === this.getProduct)
+      if(index === -1) {
+        this.isAdded = false
+      } else {
+        this.isAdded= true
+      }
     }
   }
 }
