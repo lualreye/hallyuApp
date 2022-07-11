@@ -41,8 +41,8 @@
     </div>
     <nuxt-link
       :to="`/products/${product.id}`"
-      class="w-4/5 py-2 rounded-full mt-6 bg-primary text-white font-open shadow-md">
-      Agregar al carrito
+      class="w-4/5 py-2 rounded-full mt-6 bg-primary shadow-md">
+      <p class="text-white font-open w-full text-center">Ver producto</p>
     </nuxt-link>
   </div>
 </template>
