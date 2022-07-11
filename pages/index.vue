@@ -42,7 +42,8 @@
       :spanishText="getQuotes.simpleOffer.spanishText"
     />
     <the-new-products
-      :newProductsArray="newProducts"
+      v-if="getNewProducts.length"
+      :newProductsArray="getNewProducts"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -182,6 +183,9 @@ export default {
     if (!this.getDiscountProducts.length) {
       this.fetchDiscountProducts();
     }
+    if (!this.getNewProducts.length) {
+      this.fetchNewProducts();
+    }
     if (!this.getBands.length) {
       this.fetchBands()
     }
@@ -201,7 +205,7 @@ export default {
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
     ...mapGetters("blog", ["getPosts"]),
-    ...mapGetters("cart", ["getFlashProducts", "getDiscountProducts"]),
+    ...mapGetters("cart", ["getFlashProducts", "getDiscountProducts", "getNewProducts"]),
     ...mapGetters("categories", ["getCategories"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -236,7 +240,7 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),
     ...mapActions("blog", ["fetchPosts"]),
-    ...mapActions("cart", ["fetchFlashProducts", "fetchDiscountProducts"]),
+    ...mapActions("cart", ["fetchFlashProducts", "fetchDiscountProducts", "fetchNewProducts"]),
     ...mapActions("categories", ["fetchCategories"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;

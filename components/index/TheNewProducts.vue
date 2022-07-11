@@ -62,10 +62,7 @@
         class="flex justify-center items-center md:mr-6 m-6"
       >
         <new-product-card
-          :link="newProduct.link"
-          :image="newProduct.image"
-          :productName="newProduct.productName"
-          :price="newProduct.price"
+          :product="newProduct"
         />
       </div>
     </div>

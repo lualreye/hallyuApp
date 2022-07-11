@@ -14,7 +14,7 @@
           z-20
         "
       >
-        <p class="text-textColor font-junegull text-center">$ {{ price }}</p>
+        <p class="text-textColor font-junegull text-center">$ {{ product.price }}</p>
       </span>
       <div
         class="
@@ -36,42 +36,25 @@
       <figure
         class="w-56 flex justify-center item-center shadow-md rounded-lg z-10"
       >
-        <img :src="image" :alt="productName" class="w-full rounded-lg" />
+        <img :src="product.thumbnail" :alt="product.name" class="w-full rounded-lg" />
       </figure>
     </div>
-    <button
-      @click="getToTheCart(id)"
+    <nuxt-link
+      :to="`/products/${product.id}`"
       class="w-4/5 py-2 rounded-full mt-6 bg-primary text-white font-open shadow-md">
       Agregar al carrito
-    </button>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    link: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: Number,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    },
-    productName: {
-      type: String,
+    product: {
+      type: Object,
       required: true
     }
   },
-  methods: {
-    getToCart(id) {
-      console.log(id)
-    }
-  }
 };
 </script>
 
