@@ -49,6 +49,7 @@
         flex
         justify-center
         lg:justify-start
+        mx-auto
         mt-4
         py-12
         pl-1
@@ -59,7 +60,7 @@
       <div
         v-for="(newProduct, i) in newProductsArray"
         :key="i"
-        class="mx-auto flex justify-center items-center md:mr-6 m-6"
+        class="flex justify-center items-center md:mr-6 m-6"
       >
         <new-product-card
           :product="newProduct"
