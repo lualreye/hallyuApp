@@ -48,16 +48,15 @@
         justify-start
         overflow-y-auto
         p-4
+        flex-grow
       "
     >
-      <ul v-for="(item, i) in getSelectedProducts" :key="i" class="mb-6">
-        <cart-card
-          :productName="item.productName"
-          :description="item.description"
-          :price="item.price"
-          :image="item.image"
-          :discount="item.discount"
-        />
+      <ul class="w-full flex flex-col justify-start items-center">
+        <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
+          <cart-card
+            :product="item" 
+          />
+        </li>
       </ul>
     </nav>
     <div
@@ -107,7 +106,7 @@ export default {
   }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
-    ...mapGetters("cart", ["getSelectedProducts"]),
+    ...mapGetters("cart", ["getCart"]),
   },
   methods: {
     ...mapActions("cart", ["activeCart"]),

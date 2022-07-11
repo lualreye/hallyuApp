@@ -40,6 +40,7 @@ import {
   mdiSkipNext,
   mdiSkipPrevious,
   mdiPhone,
+  mdiMinus,
 } from '@mdi/js';
 
 export default {
@@ -77,11 +78,12 @@ export default {
   newProduct: mdiTagRemoveOutline,
   upload: mdiTrayArrowUp,
   plus: mdiPlus,
+  minus: mdiMinus,
   play: mdiPlay,
   pause: mdiPause,
   delete: mdiTrashCanOutline,
   email: mdiEmail,
   next: mdiSkipNext,
   previous: mdiSkipPrevious,
-  phone: mdiPhone
+  phone: mdiPhone,
 };

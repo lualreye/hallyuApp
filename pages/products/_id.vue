@@ -19,21 +19,21 @@
           <img :src="selectedImage" :alt="getProduct.name" class="h-96 w-full min-w-full border-2 border-primary object-cover object-center rounded-md">
         </figure>
       </div>
-      <div class="w-full md:w-2/5 px-2 flex flex-col justify-between items-start py-2">
+      <div class="w-full md:w-2/5 px-2 flex flex-col justify-between items-start py-2 my-4">
         <div>
           <p class="text-textColor text-lg font-open text-left">
             {{ getProduct.name }}
           </p>
           <GlobalHeartRate :read="read" :rating="rate" class="flex-start" />
-          <p class="text-textColor text-4xl font-junegull text-left mt-3">
+          <p class="text-textColor text-4xl font-junegull text-left mt-3 mb-4">
             $ {{ getProduct.price }}
           </p>
         </div>
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col mb-4">
           <p class="text-textColor text-base font-light font-open text-left">
             Tallas
           </p>
-          <div v-if="getProduct.clothes.sizes.length">
+          <div v-if="getProduct.clothes.sizes.length" class="mb-2">
             <p v-for="(size, index) in getProduct.clothes.sizes" :key="index" class="text-textColor text-base font-open text-left">
               {{ size }}
             </p>
@@ -42,7 +42,7 @@
             No aplica
           </p>
         </div>
-        <div class="w-full flex flex-col">
+        <div class="w-full flex flex-col mb-4">
           <p class="text-textColor text-base font-light font-open text-left">
             Color
           </p>
@@ -56,7 +56,7 @@
           </p>
         </div>
         <div class="w-full lg:w-5/6 flex flex-col justify-center items-start">
-          <button class="mb-3 w-full p-2 rounded-full bg-secondary text-white">
+          <button class="mb-3 w-full p-2 rounded-full bg-secondary text-white" @click="addProductToCart">
             Agregar al carrito
           </button>
           <button class="w-full p-2 rounded-full bg-white text-secondary border border-secondary">
@@ -105,9 +105,13 @@ export default {
     this.fetchSuggestedProducts()
   },
   methods: {
-    ...mapActions('cart', ['fetchProduct', 'fetchSuggestedProducts']),
+    ...mapActions('cart', ['fetchProduct', 'fetchSuggestedProducts', 'addToCart']),
     getImage(image) {
       this.selectedImage = image
+    },
+    addProductToCart() {
+      const product = JSON.parse(JSON.stringify(this.getProduct))
+      this.addToCart(product)
     }
   }
 }

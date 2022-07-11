@@ -3,7 +3,7 @@ import { collection, getDocs, query, limit, where } from 'firebase/firestore';
 
 export const state = () => ({
   show: false,
-  selectedProducts: [],
+  cart: [],
   flashProducts: [],
   discountProducts: [],
   products: [],
@@ -16,9 +16,6 @@ export const state = () => ({
 export const getters = {
   showCart(state) {
     return state.show;
-  },
-  getSelectedProducts(state) {
-    return state.selectedProducts;
   },
   getFlashProducts(state) {
     return state.flashProducts;
@@ -40,6 +37,9 @@ export const getters = {
   },
   getSuggestedProducts(state) {
     return state.suggestedProducts;
+  },
+  getCart(state) {
+    return state.cart;
   },
 };
 
@@ -76,8 +76,17 @@ export const mutations = {
   },
   ADD_SUGGESTED_PRODUCTS(state, products) {
     state.suggestedProducts = [];
-    console.log(products);
     return (state.suggestedProducts = products);
+  },
+  ADD_PRODUCT_TO_CART(state, product) {
+    console.log(product);
+    const id = state.cart.findIndex((pr) => pr.id === product.id);
+    console.log(id);
+    if (id === -1) {
+      state.cart.push(product);
+    } else {
+      state.cart[id].quantity += 1;
+    }
   },
 };
 
@@ -217,5 +226,9 @@ export const actions = {
     } catch (err) {
       console.error('CANNOT_SUGGESTED_PRODUCTS');
     }
+  },
+  addToCart({ commit }, payload) {
+    const product = { ...payload, quantity: Number(1) };
+    commit('ADD_PRODUCT_TO_CART', product);
   },
 };
