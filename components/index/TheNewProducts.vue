@@ -59,7 +59,7 @@
       <div
         v-for="(newProduct, i) in newProductsArray"
         :key="i"
-        class="flex justify-center items-center md:mr-6 m-6"
+        class="mx-auto flex justify-center items-center md:mr-6 m-6"
       >
         <new-product-card
           :product="newProduct"
