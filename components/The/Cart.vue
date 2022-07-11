@@ -114,12 +114,12 @@ export default {
         return sum
       }
     },
+    // Arreglar el discount
     discount() {
       if (!this.getCart.length) {
         return 0
-      }
-      const dis = this.getCart.map(pr => pr.offered !== false)
-      return dis
+      }      
+      return 0
     }
   },
   methods: {

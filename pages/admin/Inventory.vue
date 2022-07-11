@@ -7,9 +7,6 @@
       </div>
       <div class="w-full md:w-auto flex justify-center items-center flex-wrap">
         <div class="w-full md:w-auto mr-3 mt-1 md:mt-0">
-          <InventoryUploadInventory />
-        </div>
-        <div class="w-full md:w-auto mr-3 mt-1 md:mt-0">
           <InventoryUploadButton />
         </div>
       </div>
