@@ -62,10 +62,10 @@ export default {
         link: "/",
         name: "Inicio",
       },
-      {
-        link: "/offers",
-        name: "Ofertas",
-      },
+      // {
+      //   link: "/offers",
+      //   name: "Ofertas",
+      // },
       {
         link: "/categories",
         name: "Categorías",
