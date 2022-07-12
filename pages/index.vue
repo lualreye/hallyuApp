@@ -54,7 +54,7 @@
       :spanishText="getQuotes.community.spanishText"
     />
     <the-categories v-if="getCategories.length" :categories="getCategories" class="max-w-screen-2xl mx-auto" />
-    <the-cta class="mx-auto" />
+    <the-cta v-if="!user" class="mx-auto" />
     <the-blog v-if="arePosts" :posts="getPosts.slice(0, 3)" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
       v-if="areQuotes"
@@ -221,7 +221,13 @@ export default {
     },
     arePosts() {
       return this.getPosts.length;
-    }
+    },
+    user() {
+      if (this.getUser !== null || this.getUser === undefined) {
+        return false
+      }
+      return true
+    },
   },
   watch: {
     areThereHeroImages(value) {
@@ -232,6 +238,11 @@ export default {
           ].image;
         this.selectHero(this.heroImage)
       }
+    },
+    watch: {
+      getUser(value) {
+        return value === null || value === undefined ? false : true;
+      },
     },
   },
   methods: {
