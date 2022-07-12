@@ -44,7 +44,7 @@
             text-textColor
           "
         >
-          Categorías Hallyu
+          Categorías
         </h2>
         <div class="parenthesis-two w-11 h-11 relative">
           <seventh-type />

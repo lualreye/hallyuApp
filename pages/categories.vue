@@ -1,65 +1,84 @@
 <template>
-  <div>
-    <div class="w-full">
-      <nav class="w-full max-w-4xl mx-auto px-2 my-4">
-        <ul
+  <div class="w-full mt-16 px-4 py-6 relative">
+    <div
+      class="w-44 h-36 bg-lightPink rounded-full absolute top-0 right-0 z-0"
+    />
+    <div
+      class="
+        w-44
+        h-36
+        bg-lightPink
+        rounded-full
+        absolute
+        bottom-0
+        left-0
+        z-0
+      "
+    />
+    <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
+    <div
+      class="
+        w-full
+        flex flex-col
+        justify-center
+        lg:justify-start
+        items-start
+        z-10
+        relative
+      "
+    >
+      <div
+        class="w-full flex justify-center lg:justify-start items-center h-14"
+      >
+        <div class="parenthesis w-11 h-11 relative">
+          <sixth-type />
+        </div>
+        <h2
           class="
-            w-full
-            flex
-            justify-between
-            items-center
-            px-2
-            overflow-auto
-            py-4
+            text-xl
+            sm:text-4xl
+            text-center
+            sm:text-left
+            font-junegull
+            text-textColor
           "
         >
-          <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetCategory">
-            <nuxt-link to="/categories">
-              Todas
-            </nuxt-link>
-          </li>
-          <li
-            v-for="(category, i) in getCategories"
-            :key="i"
-            class="flex-shrink-0 text-textColor font-junegull mr-6"
-            @click="selectCategory(category.name)"
-          >
-            <nuxt-link :to="`/categories/${category.name}`">
-              {{ category.name }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </nav>
+          Categorías
+        </h2>
+        <div class="parenthesis-two w-11 h-11 relative">
+          <seventh-type />
+        </div>
+      </div>
     </div>
-    <div v-if="!getParams" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
-      <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-        <stack-item v-for="(product, index) in getProducts" :key="index" class="flex justify-center">
-          <product-card :product="product" />
-        </stack-item>
-      </stack>
-    </div>
-    <div v-else>
-      <nuxt />
+    <!-- RENDERIZADO DE TARJETAS DE LAS CATEOGORIAS -->
+    <div class="w-full flex flex-wrap justify-center items-center mt-16">
+      <div
+        class="flex justify-center items-center m-4 lg:m-0"
+        v-for="(category, i) in getCategories"
+        :key="i"
+      >
+        <category-card
+          :order="i"
+          :categoryName="category.name"
+          :image="category.image"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import ProductCard from "@/components/cards/ProductCard.vue";
-import { Stack, StackItem } from 'vue-stack-grid'
-import { mapActions, mapGetters } from "vuex";
-
+import { mapGetters, mapActions } from "vuex";
+import SixthType from "~/components/parenthesis/SixthType.vue";
+import SeventhType from "~/components/parenthesis/SeventhType.vue";
+import CategoryCard from "~/components/cards/CategoryCard.vue";
 export default {
   components: {
-    ProductCard,
-    Stack,
-    StackItem
+    SixthType,
+    SeventhType,
+    CategoryCard,
   },
-  data: () => ({
-    selectedCategory: ''
-  }),
   computed: {
-    ...mapGetters("cart", ['getProducts']),
     ...mapGetters("categories", ["getCategories"]),
     getParams() {
       if(this.$route.params === undefined) {
@@ -70,9 +89,9 @@ export default {
     }
   },
   mounted() {
-    if(!this.getProducts.length) {
-      this.fetchProducts()
-    }
+    // if(!this.getProducts.length) {
+    //   this.fetchProducts()
+    // }
     if(!this.getCategories.length) {
       this.fetchCategories()
     }
@@ -89,3 +108,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.rotated {
+  transform: rotate(46deg);
+}
+</style>
+
