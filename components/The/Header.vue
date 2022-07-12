@@ -22,11 +22,16 @@
             classes="bg-primary p-1"
             class="mx-1"
           />
-          <GlobalIconButton
-            iconName="cart"
-            classes="bg-primary p-1"
-            @click="getCart"
-          />
+          <div class="relative flex justify-center items-center">
+            <GlobalIconButton
+              iconName="cart"
+              classes="bg-primary p-1"
+              @click="getCart"
+            />
+            <div v-if="getCart.length" class="flex justify-center items-center text-white w-4 h-4 bg-pink-500 rounded-full absolute top-0 right-0">
+              {{ getCart.length }}
+            </div>
+          </div>
           <div v-if="getUser" class="flex justify-center items-center relative">
             <GlobalIconButton
               v-if="!user"
@@ -71,7 +76,7 @@ export default {
   }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
-    ...mapGetters("cart", ["showCart"]),
+    ...mapGetters("cart", ["showCart", "getCart"]),
     ...mapGetters("user", ["getUser"]),
     ...mapGetters("userData", ["getProfile"]),
     user() {

@@ -40,52 +40,59 @@
         <GlobalHIcon name="close" class="text-gray-400 w-full" />
       </button>
     </div>
-    <nav
-      class="
-        flex flex-col
-        justify-col
-        items-center
-        justify-start
-        overflow-y-auto
-        p-4
-        flex-grow
-      "
-    >
-      <ul class="w-full flex flex-col justify-start items-center">
-        <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
-          <cart-card
-            :product="item" 
-          />
-        </li>
-      </ul>
-    </nav>
-    <div
-      class="w-full h-56 p-4 rounded-bl-3xl bg-primary border-t border-blue-500"
-    >
-      <div class="w-full flex flex-col justify-center align-items-center px-2">
-        <div class="w-full flex justify-between items-center">
-          <p class="text-sm font-open text-textColor">Sub Total</p>
-          <p class="text-base text-textColor font-open">
-            $ {{ totalBeforeDiscount }}
-          </p>
-        </div>
-        <div class="w-full flex justify-between items-center mt-2">
-          <p class="text-sm font-open text-textColor">Descuento</p>
-          <p class="text-base font-open text-textColor">
-            % {{ discount }}
-          </p>
-        </div>
-        <div class="w-full h-px bg-blue-600 my-2" />
-        <div class="w-full flex justify-between items-center">
-          <p class="text-base font-open text-textColor">Total</p>
-          <p class="text-xl font-junegull font-bold text-textColor">
-            $ {{ totalToPay }}
-          </p>
-        </div>
-        <div class="w-1/2 flex justify-center items-center mx-auto mt-4">
-          <GlobalHButton name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
+    <div v-if="getCart.length" class="w-full">
+      <nav
+        class="
+          flex flex-col
+          justify-col
+          items-center
+          justify-start
+          overflow-y-auto
+          p-4
+          flex-grow
+        "
+      >
+        <ul class="w-full flex flex-col justify-start items-center">
+          <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
+            <cart-card
+              :product="item" 
+            />
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="w-full h-56 p-4 rounded-bl-3xl bg-primary border-t border-blue-500"
+      >
+        <div class="w-full flex flex-col justify-center align-items-center px-2">
+          <div class="w-full flex justify-between items-center">
+            <p class="text-sm font-open text-textColor">Sub Total</p>
+            <p class="text-base text-textColor font-open">
+              $ {{ totalBeforeDiscount }}
+            </p>
+          </div>
+          <div class="w-full flex justify-between items-center mt-2">
+            <p class="text-sm font-open text-textColor">Descuento</p>
+            <p class="text-base font-open text-textColor">
+              % {{ discount }}
+            </p>
+          </div>
+          <div class="w-full h-px bg-blue-600 my-2" />
+          <div class="w-full flex justify-between items-center">
+            <p class="text-base font-open text-textColor">Total</p>
+            <p class="text-xl font-junegull font-bold text-textColor">
+              $ {{ totalToPay }}
+            </p>
+          </div>
+          <div class="w-1/2 flex justify-center items-center mx-auto mt-4">
+            <GlobalHButton name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
+          </div>
         </div>
       </div>
+    </div>
+    <div class="w-full flex flex-grow justify-center items-center">
+      <p class="text-textColor font-junegull">
+        No tenemos productos en el carrito
+      </p>
     </div>
   </div>
 </template>
