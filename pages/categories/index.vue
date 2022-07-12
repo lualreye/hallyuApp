@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-16 px-4 py-6 relative">
+  <div class="w-full mt-8 px-4 py-6 relative">
     <div
       class="w-44 h-36 bg-lightPink rounded-full absolute top-0 right-0 z-0"
     />
@@ -80,31 +80,14 @@ export default {
   },
   computed: {
     ...mapGetters("categories", ["getCategories"]),
-    getParams() {
-      if(this.$route.params === undefined) {
-        return false
-      } else {
-        return this.$route.params.id
-      }
-    }
   },
   mounted() {
-    // if(!this.getProducts.length) {
-    //   this.fetchProducts()
-    // }
     if(!this.getCategories.length) {
       this.fetchCategories()
     }
   },
   methods: {
-    ...mapActions('cart', ['fetchProducts']),
     ...mapActions('categories', ["fetchCategories"]),
-    selectCategory(category) {
-      this.selectedCategory = category
-    },
-    resetCategory() {
-      this.selectedCategory = ""
-    }
   }
 };
 </script>
