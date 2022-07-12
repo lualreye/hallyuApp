@@ -70,7 +70,7 @@
               <GlobalHButton
                 name="Registrarse"
                 buttonColor="secondary"
-                @click="probando"
+                @click="toSignUp"
               />
             </div>
           </div>
@@ -95,13 +95,20 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Doodle.svg"),
   }),
+  computed: {
+    ...mapGetters('user', 'showModal')
+  },
   methods: {
-    probando() {
-      console.log("probando desde cta, estoy vivooooo");
+    ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
+    toSignUp() {
+      this.showModal(true);
+      this.activeSignUp(true);
     },
   },
 };

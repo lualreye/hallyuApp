@@ -63,19 +63,19 @@ export default {
         name: "Inicio",
       },
       {
-        link: "offers",
+        link: "/offers",
         name: "Ofertas",
       },
       {
-        link: "categories",
+        link: "/categories",
         name: "Categorías",
       },
       {
-        link: "products",
+        link: "/products",
         name: "Productos",
       },
       {
-        link: "bands",
+        link: "/bands",
         name: "Bandas",
       },
       // {
@@ -83,7 +83,7 @@ export default {
       //   name: "Club Hallyu",
       // },
       {
-        link: "contacts",
+        link: "/contacts",
         name: "Contáctanos",
       },
     ],

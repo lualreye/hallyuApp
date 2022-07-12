@@ -39,7 +39,7 @@
               required
               v-model="name"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
-              placeholder="Han"
+              placeholder="Ej: Alicia"
             />
             <span
               v-if="!isNameVerified"
@@ -56,7 +56,7 @@
               required
               v-model="email"
               class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
-              placeholder="junegull@gmail.com"
+              placeholder="tucorreo@ejemplo.com"
             />
             <span
               v-if="!checkMail"
@@ -104,11 +104,13 @@
           </div>
           <div class="w-full text-textColor text-sm my-3 flex flex-wrap">
             Creando el perfil aceptas
-            <p @click="closeSignUp">
+            <p class="ml-1" @click="closeSignUp">
               <Nuxt-link to="terms" class="underline text-sm text-blue-600">Términos y condiciones</Nuxt-link>
             </p>
-            y
-            <p @click="closeSignUp">
+            <p class="text-textColor font-open mx-1">
+              y
+            </p>
+            <p class="ml-1" @click="closeSignUp">
               <Nuxt-link to="privacy" class="underline text-sm text-blue-600" @click="closeSignUp">Políticas de privacidad</Nuxt-link>
             </p>
           </div>
