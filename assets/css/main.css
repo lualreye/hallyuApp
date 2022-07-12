@@ -1,5 +1,5 @@
 .page-enter-active, .page-leave-active {
-  transition: all 0.5s
+  transition: all 0.8s
 }
 
 .page-enter, .page-leave-active {

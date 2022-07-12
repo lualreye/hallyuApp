@@ -26,7 +26,7 @@
             <GlobalIconButton
               iconName="cart"
               classes="bg-primary p-1"
-              @click="getCart"
+              @click="openCart"
             />
             <div v-if="getCart.length" class="flex justify-center items-center text-white w-4 h-4 bg-pink-500 rounded-full absolute top-0 right-0">
               {{ getCart.length }}
@@ -109,7 +109,7 @@ export default {
         this.activeMenu(true);
       }
     },
-    getCart() {
+    openCart() {
       if (!this.showCart) {
         this.activeCart(true);
       } else {

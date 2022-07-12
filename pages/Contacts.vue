@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto w-full max-w-screen-xl flex flex-col">
-    <figure class="w-full lg:w-3/5 mx-auto flex justify-center items-center">
+    <figure class="w-full lg:w-2/5 mx-auto flex justify-center items-center">
       <img src="../static/images/map.png" alt="hallyu Map">
     </figure>
     <div class="w-full max-w-6xl mx-auto flex justify-center items-center flex-wrap my-4 p-9">
