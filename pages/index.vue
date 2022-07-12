@@ -6,7 +6,7 @@
       class="max-w-screen-2xl mx-auto my-4"
     />
     <the-line-decoration
-      v-if="areQuotes"
+      v-if="areQuotes && getFlashProducts.length"
       :bgColor="getQuotes.hero.bgColor"
       :letterColor="getQuotes.hero.textColor"
       :koreanText="getQuotes.hero.koreanText"
@@ -27,7 +27,7 @@
     />
     <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
     <the-line-decoration
-      v-if="areQuotes"
+      v-if="areQuotes && getDiscountProducts.length"
       :bgColor="getQuotes.popular.bgColor"
       :letterColor="getQuotes.popular.textColor"
       :koreanText="getQuotes.popular.koreanText"
