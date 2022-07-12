@@ -143,32 +143,6 @@ export default {
         rate: 3,
       },
     ],
-    newProducts: [
-      {
-        link: "hola",
-        price: 36,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Este es un nombre de producto",
-      },
-      {
-        link: "hola",
-        price: 36,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Este es un nombre de producto",
-      },
-      {
-        link: "hola",
-        price: 36,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Este es un nombre de producto",
-      },
-      {
-        link: "hola",
-        price: 36,
-        image: require("~/static/images/idols/han.jpg"),
-        productName: "Este es un nombre de producto",
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -207,6 +181,7 @@ export default {
     ...mapGetters("blog", ["getPosts"]),
     ...mapGetters("cart", ["getFlashProducts", "getDiscountProducts", "getNewProducts"]),
     ...mapGetters("categories", ["getCategories"]),
+    ...mapGetters("user", ["getUser"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
     },
@@ -239,11 +214,10 @@ export default {
         this.selectHero(this.heroImage)
       }
     },
-    watch: {
-      getUser(value) {
-        return value === null || value === undefined ? false : true;
-      },
+    user(value) {
+      return value === null || value === undefined ? false : true;
     },
+
   },
   methods: {
     ...mapActions("general", ["fetchImages", "selectHero"]),
