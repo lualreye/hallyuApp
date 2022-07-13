@@ -10,7 +10,7 @@
       />
       <nuxt-link to="/">
         <figure
-          class="w-28 sm:w-36 md:w-40 lg:w-52 flex justify-center items-center"
+          class="w-28 ml-10 sm:w-36 md:w-40 lg:w-52 flex justify-center items-center"
         >
           <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
         </figure>
@@ -55,13 +55,13 @@
             </div>
           </div>
         </div>
-        <div v-if="!getUser" class="flex jsutify-center items-center">
+        <!-- <div v-if="!getUser" class="flex jsutify-center items-center">
           <GlobalIconButton
             iconName="userAccount"
             classes="bg-primary p-1"
             @click="toSignUp"
             />
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
