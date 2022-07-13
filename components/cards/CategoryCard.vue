@@ -6,7 +6,7 @@
       'rotated-2': !isEven,
     }"
   >
-    <nuxt-link :to="`/categories/${categoryName}`" class="relative rounded-xl">
+    <nuxt-link :to="`/categories/${categoryName}`" class="relative rounded-xl flex justify-center items-center">
       <div class="bg-secondary w-48 h-48 rounded-xl">
         <figure
           class="
@@ -38,16 +38,16 @@
               flex
               justify-center
               items-center
-              bg-gray-700
+              bg-gray-900
               opacity-30
               rounded-xl
             "
           >
-            <p class="text-aquamarine text-xl font-open font-bold text-center">
-              {{ categoryName }}
-            </p>
           </div>
         </figure>
+        <p class="text-white text-xl font-open font-bold text-center shadow-xl relative top-12 z-20 mx-auto px-3">
+          {{ categoryName }}
+        </p>
       </div>
     </nuxt-link>
   </div>
