@@ -79,7 +79,10 @@
         </p>
       </div>
     </div>
-    <div v-if="getSuggestedProducts" class="flex w-full overflow-x-auto justify-start items-center my-10 sm:pl-6 pl-1 py-5">
+    <h3 class="text-textColor w-full font-junegull text-lg mt-10">
+      También puede interesarte
+    </h3>
+    <div v-if="getSuggestedProducts" class="flex w-full overflow-x-auto justify-start items-center mb-10 sm:pl-6 pl-1 py-5">
       <nuxt-link v-for="(product, index) in getSuggestedProducts" :key="index" :to="`/products/${product.id}`" class="flex-none w-56 h-56 p-1 relative mr-5">
         <img :src="product.thumbnail" :alt="product.name" class="w-56 h-56 object-cover object-center rounded-xl border border-primary">
         <span class="absolute bottom-2 left-2 px-3 py-1 rounded-full bg-gray-200 text-textColor font-junegull text-xl">{{ product.price }}</span>
