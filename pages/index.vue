@@ -75,7 +75,7 @@
       :koreanText="getQuotes.communityFavs.koreanText"
       :spanishText="getQuotes.communityFavs.spanishText"
     />
-    <the-bands v-if="areBands" :bands="getBands.slice(0, 9)" class="max-w-screen-2xl mx-auto" />
+    <the-bands v-if="areBands" :bands="getBands.slice(0, 10)" class="max-w-screen-2xl mx-auto" />
   </div>
 </template>
 

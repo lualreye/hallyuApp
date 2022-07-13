@@ -1,12 +1,12 @@
-import { fireStorage, fireDataBase } from "../static/js/firebaseConfig";
+import { fireStorage, fireDataBase } from '../static/js/firebaseConfig';
 import {
   getDocs,
   setDoc,
   doc,
   collection,
   deleteDoc,
-} from "firebase/firestore";
-import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
+} from 'firebase/firestore';
+import { getDownloadURL, uploadBytes, ref } from 'firebase/storage';
 
 const state = () => ({
   bands: [],
@@ -36,45 +36,53 @@ const actions = {
     try {
       const db = fireDataBase;
       const storage = fireStorage;
-      const filename = payload.img.name.split(".").shift();
+      const filename = payload.img.name.split('.').shift();
       const imageRef = ref(storage, `bands/${filename}`);
       await uploadBytes(imageRef, payload.img);
       const imageUrl = await getDownloadURL(imageRef);
-      const bandRef = doc(collection(db, "bands"));
+      const bandRef = doc(collection(db, 'bands'));
       const band = {
         name: payload.name.toLowerCase(),
         image: imageUrl,
         id: bandRef.id,
       };
       await setDoc(bandRef, band);
-      commit("SET_BAND", band);
+      commit('SET_BAND', band);
     } catch (err) {
-      console.error("CANNOT_UPLOAD_BAND", err);
+      console.error('CANNOT_UPLOAD_BAND', err);
     }
   },
   async fetchBands({ commit }) {
     try {
       const db = fireDataBase;
       let bands = [];
-      const queryBand = await getDocs(collection(db, "bands"));
+      const queryBand = await getDocs(collection(db, 'bands'));
       queryBand.forEach((bn) => {
         let band = {
           ...bn.data(),
         };
         bands.push(band);
       });
-      commit("SET_BANDS", bands);
+      const otros = bands.filter((band) => band.name === 'otros');
+      if (otros.length) {
+        const index = bands.findIndex((band) => band.name === 'otros');
+        bands.splice(index, 1);
+        bands.push(otros[0]);
+        commit('SET_BANDS', bands);
+        return;
+      }
+      commit('SET_BANDS', bands);
     } catch (err) {
-      console.error("CANNOT_GET_BANDS", err);
+      console.error('CANNOT_GET_BANDS', err);
     }
   },
   async deleteBand({ commit }, payload) {
     try {
       const db = fireDataBase;
-      await deleteDoc(doc(db, "bands", payload));
-      commit("DELETE_BAND", payload);
+      await deleteDoc(doc(db, 'bands', payload));
+      commit('DELETE_BAND', payload);
     } catch (err) {
-      console.error("CANNOT_DELETE_BAND");
+      console.error('CANNOT_DELETE_BAND');
     }
   },
 };
