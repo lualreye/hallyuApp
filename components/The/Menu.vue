@@ -18,9 +18,26 @@
         <li @click="closeMenu">
           <nuxt-link
             :to="item.link"
-            class="text-2xl text-textColor font-junegull mb-4"
+            class="text-2xl text-textColor font-junegull mb-4 relative"
           >
-            {{ item.name }}
+            <p class="text-font-junegull relative mb-4 text-textColor text-xl z-10">
+              {{ item.name }}
+            </p>
+            <span
+              class="
+                z-0
+                w-16
+                h-3
+                lg:h-4
+                xl:h-5
+                bg-yellow
+                absolute
+                rounded-lg
+                bottom-0
+                right-0
+              "
+              :class="{'opacity-0': !getLink(item.link), 'opacity-1': getLink(item.link)}"
+            ></span>
           </nuxt-link>
         </li>
       </ul>
@@ -95,6 +112,9 @@ export default {
       return this.getUser === null ? false : true;
     },
   },
+  mounted() {
+    console.log(this.$route.path)
+  },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal", "signUserOut"]),
@@ -103,6 +123,15 @@ export default {
         this.activeMenu(false);
       } else {
         this.activeMenu(true);
+      }
+    },
+    getLink(path) {
+      if (this.$route.path === path) {
+        return true
+      } else if (this.$route.path.replace('/', '').includes(path)) {
+        return true
+      } else {
+        return false
       }
     },
     closeMenu() {
@@ -127,3 +156,4 @@ export default {
   },
 };
 </script>
+
