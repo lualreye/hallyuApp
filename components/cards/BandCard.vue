@@ -29,7 +29,7 @@
           font-open
         "
       >
-        {{ bandName }}
+        {{ bandName.toUpperCase() }}
       </p>
     </div>
   </div>
