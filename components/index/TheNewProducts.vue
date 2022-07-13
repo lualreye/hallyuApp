@@ -54,7 +54,10 @@
         py-12
         pl-1
         sm:pl-6
-        items-center flex-wrap
+        items-center
+        flex-wrap
+        lg:flex-nowrap
+        lg:overflow-x-auto
       "
     >
       <div
