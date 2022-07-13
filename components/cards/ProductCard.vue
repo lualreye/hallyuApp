@@ -44,7 +44,7 @@
           </button>
         </div>
         <div class="w-full flex justify-between items-center px-4">
-          <p class="text-primary text-2xl font-junegull">
+          <p class="text-primary text-2xl font-junegull bg-gray-200 rounded-full py-1 px-2">
             $ {{ product.price }}
           </p>
           <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full" @click="addToCart">
