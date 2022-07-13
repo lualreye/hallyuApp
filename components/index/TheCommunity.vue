@@ -16,13 +16,12 @@
     <div
       class="
         flex
-        justify-start
+        justify-center
         mt-8
         py-12
         items-center
         flex-wrap
         w-full
-        md:w-3/4
         mx-auto
         relative
       "
@@ -49,7 +48,7 @@
       <div
         v-for="(profile, i) in instagramProfiles"
         :key="i"
-        class="flex justify-center items-center w-full sm:w-1/2 lg:w-1/3 p-6"
+        class="flex justify-center items-center p-6"
       >
         <instagram-profile-card
           :instagramUserName="profile.name"
