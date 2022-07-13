@@ -127,8 +127,6 @@ export default {
     },
     getLink(path) {
       if (this.$route.path === path) {
-        console.log(this.$route.path)
-        console.log(path)
         return true
       } else if (this.$route.path.split('/').join('').includes(path.replace('/', ''))) {
         if (path === '/') {
