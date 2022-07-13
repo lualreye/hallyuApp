@@ -9,7 +9,7 @@
     <div class="w-full flex justify-end items-center">
       <GlobalIconButton
         iconName="close"
-        classes="bg-transparent"
+        classes="bg-aquamarine"
         @click="getMenu"
       />
     </div>
@@ -18,7 +18,7 @@
         <li @click="closeMenu">
           <nuxt-link
             :to="item.link"
-            class="font-open text-2xl text-textColor font-bol mb-4"
+            class="text-2xl text-textColor font-junegull mb-4"
           >
             {{ item.name }}
           </nuxt-link>

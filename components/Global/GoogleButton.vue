@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-8 h-8 rounded-md border border-secondary flex justify-center items-center"
+    class="w-8 h-8 rounded-md border border-secondary flex justify-center items-center shadow-md"
     @click="loginWithGoogle"
   >
     <img :src="googleImage" class="w-6 h-6" />
