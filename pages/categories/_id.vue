@@ -23,6 +23,17 @@ export default {
   }, 
   computed: {
     ...mapGetters('cart', ['getProductsByCategory']),
+    getParams() {
+      return this.$route.params.id
+    }
+  },
+  watch: {
+    getParams(newVal, oldVal) {
+      if(newVal !== oldVal) {
+        this.clearProductsByCategory()
+        this.fetchProductsByCategory(this.$route.params.id)
+      }
+    }
   },
   mounted() {
     this.clearProductsByCategory()

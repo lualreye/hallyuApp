@@ -133,11 +133,6 @@ export default {
     getIndex() {
       return this.$route.params.id === undefined
     },
-    getAllProducts() {
-      if(this.$route.params.id === undefined) {
-        this.fetchProducts()
-      }
-    }
   }
 };
 </script>
