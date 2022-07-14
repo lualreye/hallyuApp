@@ -3,10 +3,13 @@
     <figure class="w-full lg:w-2/5 mx-auto flex justify-center items-center">
       <img src="../static/images/map.png" alt="hallyu Map">
     </figure>
-    <div class="w-full max-w-6xl mx-auto flex justify-center items-center flex-wrap my-4 p-9">
+    <h3 class="text-textColor font-junegull text-lg w-ful text-center mt-4">
+      ¡Ayúdanos a  mejorar, Déjanos tu mensaje!
+    </h3>
+    <div class="w-full max-w-6xl mx-auto flex justify-center items-center flex-wrap mb-4 p-3">
       <div class="w-full max-w-md p-8 flex flex-col justify-center items-center bg-white rounded-xl shadow-md">
         <label class="mb-1 w-full text-primary text-base">
-          Name
+          Nombre
         </label>
         <input type="text" class="w-full px-2 py-1 border border-primary rounded-md">
         <label class="mb-1 mt-2 w-full text-primary text-base">
@@ -55,11 +58,14 @@
           </div>
         </div>
         <div class="w-full flex justify-center items-center">
-          <a href="" class="w-8 h-8 mr-2">
-            <HIcon name="facebook" class="text-textColor" />
-          </a>
-          <a href="" class="w-8 h-8">
+          <a href="https://www.instagram.com/hallyustore/" target="_blank" class="w-8 h-8">
             <HIcon name="instagram" class="text-textColor" />
+          </a>
+          <a href="https://vm.tiktok.com/ZMN5otw6c/" target="_blank" class="w-8 h-8">
+            <HIcon name="instagram" class="text-textColor" />
+          </a>
+          <a href="https://www.facebook.com/hallyustoreecuador" target="_blank" class="w-8 h-8 mr-2">
+            <HIcon name="facebook" class="text-textColor" />
           </a>
         </div>
       </div>

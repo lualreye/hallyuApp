@@ -24,10 +24,10 @@
           <li
             v-for="(band, i) in getBands"
             :key="i"
-            class="flex-shrink-0 text-textColor font-junegull mr-6"
+            class="flex-shrink-0 text-textColor font-junegull mr-6 relative"
             @click="selectBand(band.name)"
           >
-            <nuxt-link :to="`/bands/${band.name}`">
+            <nuxt-link :to="`/bands/${band.name}`" class="bg-lightPink px-1 rounded-full">
               {{ band.name }}
             </nuxt-link>
           </li>
@@ -90,7 +90,19 @@ export default {
     },
     resetBand() {
       this.selectedBand = ""
-    }
+    },
+    // getLink(path) {
+    //   if (this.$route.path === path) {
+    //     return true
+    //   } else if (this.$route.path.split('/').join('').includes(path.replace('/', ''))) {
+    //     if (path === '/') {
+    //       return false
+    //     }
+    //     return true
+    //   } else {
+    //     return false
+    //   }
+    // },
   }
 };
 </script>
@@ -99,5 +111,8 @@ export default {
 .mask {
   mask-image: url('../static/images/backgrounds/Union.svg');
   mask-position: bottom;
+}
+.nuxt-exact-link {
+  background-color: #ffc5fe;
 }
 </style>
