@@ -1,6 +1,6 @@
 <template>
-  <button class="w-full py-4 rounded-2xl" :class="color" @click="$emit('click', $event)">
-    <p class="text-lg font-open text-white text-center">
+  <button class="w-full py-4 rounded-2xl shadow-md" :class="color" @click="$emit('click', $event)">
+    <p class="text-lg font-junegull text-white text-center">
       {{ name }}
     </p>
   </button>
