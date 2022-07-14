@@ -115,11 +115,6 @@ export default {
       return (this.newPrice = this.price - this.price * (this.discount / 100));
     },
   },
-  methods: {
-    getToTheCart(id) {
-      console.log(id)
-    }
-  }
 };
 </script>
 
@@ -128,12 +123,12 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 24px 0px rgba(135, 199, 201, 1);
+  box-shadow: 0px 0px 16px 0px rgba(135, 199, 201, 1);
 }
 .product-image-2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 24px 0px rgba(255, 152, 201, 1);
+  box-shadow: 0px 0px 16px 0px rgba(255, 152, 201, 1);
 }
 </style>
