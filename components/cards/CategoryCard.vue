@@ -45,8 +45,8 @@
           >
           </div>
         </figure>
-        <p class="text-white text-xl font-open font-bold text-center shadow-xl relative top-12 z-20 mx-auto px-3">
-          {{ categoryName }}
+        <p class="text-white bg-aquamarine rounded-full py-1 text-xl font-open font-bold text-center shadow-xl relative -bottom-40 z-20 mx-auto px-3">
+          {{ categoryName.split(' ').shift() }}
         </p>
       </div>
     </nuxt-link>
