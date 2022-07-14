@@ -204,6 +204,7 @@ export const actions = {
   async fetchProducts({ commit }) {
     const db = fireDataBase;
     try {
+      console.log('estamos trayendo productos');
       const ref = collection(db, 'products');
       const productQuery = await getDocs(ref);
       const products = [];

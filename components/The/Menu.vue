@@ -85,10 +85,6 @@ export default {
       // },
       {
         link: "/categories",
-        name: "Categorías",
-      },
-      {
-        link: "/products",
         name: "Productos",
       },
       {
