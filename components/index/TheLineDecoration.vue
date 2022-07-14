@@ -8,13 +8,13 @@
         class="text-background font-open text-xs mr-3"
         :style="{ color: letterColor }"
       >
-        {{ spanishText }}
+        {{ koreanText }}
       </p>
       <p
         class="text-background font-open text-xs"
         :style="{ color: letterColor }"
       >
-        {{ koreanText }}
+        {{ spanishText }}
       </p>
     </div>
   </div>

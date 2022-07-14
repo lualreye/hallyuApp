@@ -47,17 +47,15 @@
     <div
       class="
         flex
-        justify-center
-        lg:justify-start
+        justify-start
         mx-auto
         mt-4
         py-12
         pl-1
         sm:pl-6
         items-center
-        flex-wrap
-        lg:flex-nowrap
-        lg:overflow-x-auto
+        overflow-x-auto
+        container
       "
     >
       <div
@@ -91,3 +89,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+</style>

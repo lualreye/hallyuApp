@@ -35,7 +35,6 @@ export default {
   },
   mounted() {
     this.clearProductsByBand()
-    console.log('_id')
     this.fetchProductsByBand(this.$route.params.id)
   },
   methods: {

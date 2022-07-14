@@ -4,7 +4,7 @@
       <div
         class="
           w-16
-          h-16
+          h-10
           flex
           mx-2
           justify-center
@@ -51,6 +51,8 @@
             w-full
             text-center text-textColor
             font-open
+            font-semibold
+            italic
             text-base
             line-through
           "
@@ -60,11 +62,11 @@
         <p class="w-full text-center text-textColor font-junegull text-xl mt-1">
           $ {{ priceWithDiscount }}
         </p>
-        <button
-          @click="getToTheCart(id)"
-          class="w-full py-2 rounded-full mt-6 bg-primary text-white font-open shadow-md">
+        <nuxt-link
+          :to="`/products/${id}`"
+          class="w-full absolute -bottom-8 left-0 right-0 py-2 rounded-full text-center mt-6 bg-primary text-white font-open shadow-md">
           Agregar al carrito
-        </button>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -126,12 +128,12 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 33px 0px rgba(135, 199, 201, 1);
+  box-shadow: 0px 0px 24px 0px rgba(135, 199, 201, 1);
 }
 .product-image-2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 33px 0px rgba(255, 152, 201, 1);
+  box-shadow: 0px 0px 24px 0px rgba(255, 152, 201, 1);
 }
 </style>
