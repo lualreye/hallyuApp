@@ -17,8 +17,25 @@
           "
         >
           <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetBand">
-            <nuxt-link to="/bands">
-              Todas
+            <nuxt-link to="/bands" class="relative">
+              <p class="text-textColor font-junegull relative z-10">
+                Todas
+              </p>
+              <span
+                class="
+                  z-0
+                  w-full
+                  h-2
+                  lg:h-4
+                  xl:h-5
+                  bg-pink-300
+                  absolute
+                  rounded-lg
+                  bottom-0
+                  right-0
+                "
+                :class="{'opacity-0': !getIndex(), 'opacity-1': getIndex()}"
+              ></span>
             </nuxt-link>
           </li>
           <li
@@ -27,8 +44,25 @@
             class="flex-shrink-0 text-textColor font-junegull mr-6 relative"
             @click="selectBand(band.name)"
           >
-            <nuxt-link :to="`/bands/${band.name}`" class="bg-lightPink px-1 rounded-full">
-              {{ band.name }}
+            <nuxt-link :to="`/bands/${band.name}`" class="relative">
+              <p class="text-textColor font-junegull relative z-10">
+                {{ band.name }}
+              </p>
+              <span
+                class="
+                  z-0
+                  w-full
+                  h-2
+                  lg:h-4
+                  xl:h-5
+                  bg-pink-300
+                  absolute
+                  rounded-lg
+                  bottom-0
+                  right-0
+                "
+                :class="{'opacity-0': !getUrl(band.name), 'opacity-1': getUrl(band.name)}"
+              ></span>
             </nuxt-link>
           </li>
         </ul>
@@ -90,18 +124,12 @@ export default {
     resetBand() {
       this.selectedBand = ""
     },
-    // getLink(path) {
-    //   if (this.$route.path === path) {
-    //     return true
-    //   } else if (this.$route.path.split('/').join('').includes(path.replace('/', ''))) {
-    //     if (path === '/') {
-    //       return false
-    //     }
-    //     return true
-    //   } else {
-    //     return false
-    //   }
-    // },
+    getUrl(route) {
+      return this.$route.params.id === route
+    },
+    getIndex() {
+      return this.$route.params.id === undefined
+    },
   }
 };
 </script>
