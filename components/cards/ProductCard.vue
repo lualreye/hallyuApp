@@ -44,7 +44,7 @@
           </button>
         </div>
         <div class="w-full flex justify-between items-center px-4">
-          <p class="text-primary text-2xl font-junegull bg-aquamarine shadow-md rounded-full py-1 px-2">
+          <p class="text-primary text-2xl font-junegull bg-background price-shadow rounded-full py-1 px-2">
             $ {{ product.price }}
           </p>
           <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full" @click="addToCart">
@@ -88,5 +88,9 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.price-shadow {
+  -webkit-box-shadow: 0px 0px 10px -2px #C4C4C4; 
+  box-shadow: 0px 0px 10px -2px #C4C4C4;
 }
 </style>
