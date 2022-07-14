@@ -26,7 +26,7 @@
             <span
               class="
                 z-0
-                w-16
+                w-full
                 h-3
                 lg:h-4
                 xl:h-5

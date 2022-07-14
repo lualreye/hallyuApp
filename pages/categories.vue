@@ -17,8 +17,25 @@
           "
         >
           <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetBand">
-            <nuxt-link to="/categories">
-              Todas
+            <nuxt-link to="/categories" class="relative">
+              <p class="text-textColor font-junegull relative z-10">
+                Todas
+              </p>
+              <span
+                class="
+                  z-0
+                  w-full
+                  h-2
+                  lg:h-4
+                  xl:h-5
+                  bg-pink-300
+                  absolute
+                  rounded-lg
+                  bottom-0
+                  right-0
+                "
+                :class="{'opacity-0': !getIndex(), 'opacity-1': getIndex()}"
+              ></span>
             </nuxt-link>
           </li>
           <li
@@ -27,8 +44,25 @@
             class="flex-shrink-0 text-textColor font-junegull mr-6 relative"
             @click="selectBand(category.name)"
           >
-            <nuxt-link :to="`/categories/${category.name}`" class="bg-lightPink px-1 rounded-full">
-              {{ category.name }}
+            <nuxt-link :to="`/categories/${category.name}`" class="relative">
+              <p class="text-textColor font-junegull relative z-10">
+                {{ category.name }}
+              </p>
+              <span
+                class="
+                  z-0
+                  w-full
+                  h-2
+                  lg:h-4
+                  xl:h-5
+                  bg-pink-300
+                  absolute
+                  rounded-lg
+                  bottom-0
+                  right-0
+                "
+                :class="{'opacity-0': !getUrl(category.name), 'opacity-1': getUrl(category.name)}"
+              ></span>
             </nuxt-link>
           </li>
         </ul>
@@ -93,6 +127,17 @@ export default {
     resetBand() {
       this.selectedBand = ""
     },
+    getUrl(route) {
+      return this.$route.params.id === route
+    },
+    getIndex() {
+      return this.$route.params.id === undefined
+    },
+    getAllProducts() {
+      if(this.$route.params.id === undefined) {
+        this.fetchProducts()
+      }
+    }
   }
 };
 </script>
