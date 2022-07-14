@@ -12,6 +12,7 @@ export const state = () => ({
   product: {},
   suggestedProducts: [],
   newProducts: [],
+  productsWithBand: [],
 });
 
 export const getters = {
@@ -29,6 +30,9 @@ export const getters = {
   },
   getProductsByCategory(state) {
     return state.productsByCategory;
+  },
+  getProductsWithBand(state) {
+    return state.productsByBand;
   },
   getProductsByBand(state) {
     return state.productsByBand;
@@ -67,6 +71,9 @@ export const mutations = {
   },
   CLEAR_PRODUCTS_BY_CATEGORY(state) {
     return (state.productsByCategory = []);
+  },
+  ADD_PRODUCTS_WITH_BAND(state, products) {
+    return (state.productsWithBand = products);
   },
   ADD_PRODUCTS_BY_BAND(state, products) {
     return (state.productsByBand = products);
@@ -153,6 +160,22 @@ export const actions = {
   clearProductsByCategory({ commit }) {
     commit('CLEAR_PRODUCTS_BY_BAND');
   },
+  async fetchProductsWithBand({ commit }) {
+    try {
+      const ref = collection(db, 'products');
+      const productByBand = [];
+      const productQuery = query(ref, where('band', '!=', 'Sin banda'));
+      const querySnapshot = await getDocs(productQuery);
+      querySnapshot.forEach((pr) => {
+        const id = pr.id;
+        const product = pr.data();
+        productByBand.push({ id, ...product });
+      });
+      commit('ADD_PRODUCTS_WITH_BAND', productByBand);
+    } catch (err) {
+      console.error('CANNOT_GET_PRODUCTS_WITH_BAND', err);
+    }
+  },
   async fetchProductsByBand({ commit }, payload) {
     const db = fireDataBase;
     try {
@@ -204,7 +227,6 @@ export const actions = {
   async fetchProducts({ commit }) {
     const db = fireDataBase;
     try {
-      console.log('estamos trayendo productos');
       const ref = collection(db, 'products');
       const productQuery = await getDocs(ref);
       const products = [];
