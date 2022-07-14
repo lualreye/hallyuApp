@@ -1,5 +1,5 @@
 <template>
-  <div v-if="state" class="w-52 p-2">
+  <div v-if="state" class="w-52 p-2 mr-3">
     <div class="relative">
       <div
         class="

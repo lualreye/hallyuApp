@@ -55,7 +55,7 @@
         sm:pl-6
         items-center
         overflow-x-auto
-        container
+        product-container
       "
     >
       <div
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.container::-webkit-scrollbar { 
+.product-container::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 </style>

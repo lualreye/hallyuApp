@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- SECCION DE RENDERIZADO DE LAS TARJETAS -->
-    <div class="flex justify-center md:justify-between mt-8 py-12 pl-6 items-center flex-wrap">
+    <div class="flex justify-center mt-8 py-12 pl-12 items-center overflow-x-auto product-container">
       <div v-for="(offerProduct, i) in offers" :key="i" class="flex justify-center items-center">
         <offer-card
           :image="offerProduct.thumbnail"
@@ -79,5 +79,8 @@ export default {
 <style scoped>
 .parenthesis-two {
   transform: scaleX(-1);
+}
+.product-container::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 </style>
