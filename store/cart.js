@@ -32,7 +32,7 @@ export const getters = {
     return state.productsByCategory;
   },
   getProductsWithBand(state) {
-    return state.productsByBand;
+    return state.productsWithBand;
   },
   getProductsByBand(state) {
     return state.productsByBand;
@@ -162,6 +162,7 @@ export const actions = {
   },
   async fetchProductsWithBand({ commit }) {
     try {
+      const db = fireDataBase;
       const ref = collection(db, 'products');
       const productByBand = [];
       const productQuery = query(ref, where('band', '!=', 'Sin banda'));
@@ -171,6 +172,7 @@ export const actions = {
         const product = pr.data();
         productByBand.push({ id, ...product });
       });
+      console.log(productByBand)
       commit('ADD_PRODUCTS_WITH_BAND', productByBand);
     } catch (err) {
       console.error('CANNOT_GET_PRODUCTS_WITH_BAND', err);

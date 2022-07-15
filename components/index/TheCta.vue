@@ -29,7 +29,20 @@
               z-0
             "
           />
-          <div class="bg-white rounded-3xl w-3/4 md:w-7/12 py-8 px-4 shadow-lg relative z-10 mx-auto">
+          <div
+            class="
+              bg-white
+              rounded-3xl
+              w-3/4
+              md:w-7/12
+              py-8
+              px-4
+              shadow-lg
+              relative
+              z-10
+              mx-auto
+            "
+          >
             <p
               class="
                 mb-3
@@ -95,14 +108,14 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Doodle.svg"),
   }),
   computed: {
-    ...mapGetters('user', 'showModal')
+    ...mapGetters("user", ["showModal"]),
   },
   methods: {
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
