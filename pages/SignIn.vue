@@ -36,9 +36,9 @@
           Ingresa con
         </p>
         <!-- GOOGLE BUTTON -->
-        <div class="my-4 w-full flex justify-center items-center py-2">
+        <!-- <div class="my-4 w-full flex justify-center items-center py-2">
           <GlobalGoogleButton />
-        </div>
+        </div> -->
         <!-- EMAIL LOGIN -->
         <div class="w-full flex flex-col justify-start items-center">
           <div class="w-full flex h-6 justify-between items-center mb-4">
