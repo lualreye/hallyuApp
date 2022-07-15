@@ -1,6 +1,18 @@
 <template>
   <header
-    class="w-full bg-background shadow-sm py-4 px-2 sticky top-0 left-0 right-0 border-b border-gray-300 z-30"
+    class="
+      w-full
+      bg-background
+      shadow-sm
+      py-4
+      px-2
+      sticky
+      top-0
+      left-0
+      right-0
+      border-b border-gray-300
+      z-30
+    "
   >
     <div class="mx-auto max-w-screen-2xl flex justify-between items-center">
       <GlobalIconButton
@@ -10,7 +22,16 @@
       />
       <nuxt-link to="/">
         <figure
-          class="w-28 ml-10 sm:w-36 md:w-40 lg:w-52 flex justify-center items-center"
+          class="
+            w-28
+            ml-10
+            sm:w-36
+            md:w-40
+            lg:w-52
+            flex
+            justify-center
+            items-center
+          "
         >
           <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
         </figure>
@@ -28,7 +49,22 @@
               classes="bg-primary p-1"
               @click="openCart"
             />
-            <div v-if="getCart.length" class="flex justify-center items-center text-white w-4 h-4 bg-pink-500 rounded-full absolute top-0 right-0">
+            <div
+              v-if="getCart.length"
+              class="
+                flex
+                justify-center
+                items-center
+                text-white
+                w-4
+                h-4
+                bg-pink-500
+                rounded-full
+                absolute
+                top-0
+                right-0
+              "
+            >
               {{ getCart.length }}
             </div>
           </div>
@@ -47,6 +83,7 @@
               <img
                 :src="getUser.image"
                 :alt="getUser.name"
+                referrerpolicy="no-referrer"
                 class="rounded-full w-10 h-10 object-cover"
               />
             </button>
