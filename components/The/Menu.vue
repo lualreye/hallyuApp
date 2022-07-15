@@ -71,7 +71,7 @@
     </nav>
     <div class="w-full px-2">
       <div v-if="!user" class="w-full">
-        <div class="w-full1 flex justify-center mb-3">
+        <div class="w-full1 flex justify-center mb-3" @click="closeMenu">
           <nuxt-link
             to="/SignIn"
             class="
@@ -89,7 +89,7 @@
             Inicia Sesión
           </nuxt-link>
         </div>
-        <div class="w-full flex justify-center">
+        <div class="w-full flex justify-center" @click="closeMenu">
           <nuxt-link
             to="/SignUp"
             class="
