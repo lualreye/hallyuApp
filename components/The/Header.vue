@@ -87,8 +87,8 @@
                 class="rounded-full w-10 h-10 object-cover"
               />
             </button>
-            <div class="absolute top-full right-1/4 z-50">
-              <TheUserProfile />
+            <div class="absolute top-full right-1/4">
+              <TheUserProfile class="relative z-80" />
             </div>
           </div>
         </div>

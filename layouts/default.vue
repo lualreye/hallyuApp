@@ -22,6 +22,7 @@ export default {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("user", ["getModal", "getUser"]),
+    ...mapGetters("userData", ["getProfile"]),
     stopScrolling() {
       return this.showMenu || this.showCart || this.getModal;
     },

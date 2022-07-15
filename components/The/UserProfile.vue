@@ -7,7 +7,16 @@
           <div class="w-full py-3 px-3">
             <div class="w-full">
               <figure
-                class="w-20 h-20 mb-6 flex justify-center items-center rounded-full mx-auto"
+                class="
+                  w-20
+                  h-20
+                  mb-6
+                  flex
+                  justify-center
+                  items-center
+                  rounded-full
+                  mx-auto
+                "
               >
                 <img
                   v-if="isUserImage"
@@ -38,7 +47,11 @@
               </p>
             </button>
             <div class="w-full flex justify-center items-center mt-8">
-              <GlobalHButton name="Cerrar Sesión" buttonColor="primary" @click="closeSession" />
+              <GlobalHButton
+                name="Cerrar Sesión"
+                buttonColor="primary"
+                @click="closeSession"
+              />
             </div>
           </div>
         </div>
@@ -49,7 +62,15 @@
           <div class="w-full py-3 px-3">
             <div class="w-full flex justify-end items-center">
               <button
-                class="border border-secondary rounded-full w-5 h-5 flex justify-center items-center"
+                class="
+                  border border-secondary
+                  rounded-full
+                  w-5
+                  h-5
+                  flex
+                  justify-center
+                  items-center
+                "
                 @click="editProfile"
               >
                 <GlobalHIcon name="close" class="text-secondary" />
@@ -60,7 +81,16 @@
                 Foto de perfil
               </p>
               <figure
-                class="w-32 h-32 mb-6 flex justify-center items-center rounded-full mx-auto"
+                class="
+                  w-32
+                  h-32
+                  mb-6
+                  flex
+                  justify-center
+                  items-center
+                  rounded-full
+                  mx-auto
+                "
               >
                 <img
                   v-if="isUserImage"
@@ -76,7 +106,18 @@
                 </p>
               </figure>
               <label
-                class="text-sm font-extralight text-textColor border border-secondary flex justify-center items-center rounded-full w-full py-1"
+                class="
+                  text-sm
+                  font-extralight
+                  text-textColor
+                  border border-secondary
+                  flex
+                  justify-center
+                  items-center
+                  rounded-full
+                  w-full
+                  py-1
+                "
               >
                 Cambiar Foto
                 <input type="file" style="display: none" @change="onChange" />
@@ -90,11 +131,27 @@
                 v-model="userName"
                 type="text"
                 :placeholder="getUser.name"
-                class="w-full placeholder-textColor border border-textColor rounded-full py-1 px-4 outline-none focus:outline-none bg-aquamarine focus:bg-white mt-2"
+                class="
+                  w-full
+                  placeholder-textColor
+                  border border-textColor
+                  rounded-full
+                  py-1
+                  px-4
+                  outline-none
+                  focus:outline-none
+                  bg-aquamarine
+                  focus:bg-white
+                  mt-2
+                "
               />
             </div>
             <div class="w-full flex justify-center items-center mt-8">
-              <GlobalHButton name="Guardar" buttonColor="secondary" @click="updateUserData" />
+              <GlobalHButton
+                name="Guardar"
+                buttonColor="secondary"
+                @click="updateUserData"
+              />
             </div>
           </div>
         </div>
@@ -119,19 +176,19 @@ export default {
     ...mapGetters("user", ["getUser", "getModal"]),
     ...mapGetters("userData", ["getProfile"]),
     isUserImage() {
-      this.image.imageUrl = this.getUser.image
-      if(!this.image.imageUrl.length) {
-        return false
+      this.image.imageUrl = this.getUser.image;
+      if (!this.image.imageUrl.length) {
+        return false;
       } else {
-        return true
+        return true;
       }
     },
     isUserName() {
-      return this.getUser.name
+      return this.getUser.name;
     },
     getUserName() {
-      this.editUserName(this.userName)
-    }
+      this.editUserName(this.userName);
+    },
   },
   methods: {
     ...mapActions("user", ["activeMenu", "changeUserImage", "changeUserName"]),
@@ -140,8 +197,8 @@ export default {
       const file = event.target.files[0];
       this.image.imageObject = file;
       this.image.imageUrl = URL.createObjectURL(file);
-      let image = this.image.imageUrl
-      this.changeUserImage(image)
+      let image = this.image.imageUrl;
+      this.changeUserImage(image);
     },
     editProfile() {
       if (this.editing) {
@@ -151,22 +208,22 @@ export default {
       }
     },
     editUserName(name) {
-      this.changeUserName(name)
+      this.changeUserName(name);
     },
     updateUserData() {
-      let name
-      if(this.userName === "") {
-        name = this.isUserName
+      let name;
+      if (this.userName === "") {
+        name = this.isUserName;
       } else {
-        name = this.userName
+        name = this.userName;
       }
 
       let image;
-      if(this.image.imageUrl === "") {
-        image = ""
-        this.changeUserImage = ""
+      if (this.image.imageUrl === "") {
+        image = "";
+        this.changeUserImage = "";
       } else {
-        image = this.image
+        image = this.image;
       }
       const userData = {
         name: name,
@@ -183,8 +240,8 @@ export default {
       }
     },
     closeSession() {
-      this.closeModal()
-    }
+      this.closeModal();
+    },
   },
 };
 </script>

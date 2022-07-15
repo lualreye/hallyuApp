@@ -122,6 +122,7 @@ const actions = {
         commit('SHOW_SIGNIN', false);
         commit('SHOW_SIGNUP', false);
         commit('SHOW_MODAL', false);
+        this.$router.push('/')
       } else {
         user = {
           uid: userResult.uid,
@@ -137,13 +138,13 @@ const actions = {
         if ('costumer' in userId.claims) {
           role = {costumer: true} 
         }
-        
         const docRef = doc(userRef);
         await setDoc(docRef, { ...user });
         commit('SET_USER', { ...user, role});
         commit('SHOW_SIGNIN', false);
         commit('SHOW_SIGNUP', false);
         commit('SHOW_MODAL', false);
+        this.$router.push('/')
       }
     } catch (error) {
       const errorCode = error.code;
