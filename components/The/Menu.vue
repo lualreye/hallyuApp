@@ -157,9 +157,6 @@ export default {
       return this.getUser === null ? false : true;
     },
   },
-  mounted() {
-    console.log(this.$route.path);
-  },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
     ...mapActions("user", [
