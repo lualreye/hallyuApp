@@ -44,8 +44,23 @@
       </div>
     </div>
     <!-- SECCION DE RENDERIZADO DE LAS TARJETAS -->
-    <div class="flex justify-center mt-8 py-12 pl-12 items-center overflow-x-auto product-container">
-      <div v-for="(offerProduct, i) in offers" :key="i" class="flex justify-center items-center">
+    <div
+      class="
+        flex
+        justify-center
+        mt-8
+        py-12
+        pl-12
+        items-center
+        overflow-x-auto
+        product-container
+      "
+    >
+      <div
+        v-for="(offerProduct, i) in offers"
+        :key="i"
+        class="flex justify-center items-center"
+      >
         <offer-card
           :image="offerProduct.thumbnail"
           :productName="offerProduct.name"
@@ -53,6 +68,7 @@
           :state="offerProduct.published"
           :price="offerProduct.price"
           :discount="offerProduct.offer"
+          :id="offerProduct.id"
         />
       </div>
     </div>
@@ -61,18 +77,18 @@
 
 <script>
 import ThirdType from "~/components/parenthesis/ThirdType.vue";
-import OfferCard from "~/components/cards/OfferCard"
+import OfferCard from "~/components/cards/OfferCard";
 export default {
   components: {
     ThirdType,
-    OfferCard
+    OfferCard,
   },
   props: {
     offers: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 
@@ -80,7 +96,7 @@ export default {
 .parenthesis-two {
   transform: scaleX(-1);
 }
-.product-container::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+.product-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 </style>

@@ -37,10 +37,27 @@
           'product-image-2': !isEven,
         }"
       >
-        <img :src="image" :alt="productName" class="w-full h-60 object-cover object-center rounded-t-full rounded-b-lg">
+        <img
+          :src="image"
+          :alt="productName"
+          class="
+            w-full
+            h-60
+            object-cover object-center
+            rounded-t-full rounded-b-lg
+          "
+        />
       </figure>
       <div
-        class="flex-col justify-center items-center rounded-2xl w-full py-2 mt-5"
+        class="
+          flex-col
+          justify-center
+          items-center
+          rounded-2xl
+          w-full
+          py-2
+          mt-5
+        "
         :class="{
           'bg-aquamarine': isEven,
           'bg-lightPink': !isEven,
@@ -50,8 +67,7 @@
           class="
             w-full
             text-center text-textColor
-            font-open
-            font-semibold
+            font-open font-semibold
             italic
             text-base
             line-through
@@ -64,7 +80,22 @@
         </p>
         <nuxt-link
           :to="`/products/${id}`"
-          class="w-full absolute -bottom-8 left-0 right-0 py-2 rounded-full text-center mt-6 bg-primary text-white font-open shadow-md">
+          class="
+            w-full
+            absolute
+            -bottom-8
+            left-0
+            right-0
+            py-2
+            rounded-full
+            text-center
+            mt-6
+            bg-primary
+            text-white
+            font-open
+            shadow-md
+          "
+        >
           Agregar al carrito
         </nuxt-link>
       </div>
@@ -97,6 +128,10 @@ export default {
     },
     discount: {
       type: Number,
+      required: true,
+    },
+    id: {
+      type: String,
       required: true,
     },
   },
