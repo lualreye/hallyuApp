@@ -40,7 +40,10 @@
         <GlobalHIcon name="close" class="text-gray-400 w-full" />
       </button>
     </div>
-    <div v-if="getCart.length" class="w-full">
+    <div
+      v-if="getCart.length"
+      class="w-full flex justify-between flex-col flex-grow"
+    >
       <nav
         class="
           flex flex-col
@@ -54,16 +57,23 @@
       >
         <ul class="w-full flex flex-col justify-start items-center">
           <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
-            <cart-card
-              :product="item" 
-            />
+            <cart-card :product="item" />
           </li>
         </ul>
       </nav>
       <div
-        class="w-full h-56 p-4 rounded-bl-3xl bg-primary border-t border-blue-500"
+        class="
+          w-full
+          h-56
+          p-4
+          rounded-bl-3xl
+          bg-primary
+          border-t border-blue-500
+        "
       >
-        <div class="w-full flex flex-col justify-center align-items-center px-2">
+        <div
+          class="w-full flex flex-col justify-center align-items-center px-2"
+        >
           <div class="w-full flex justify-between items-center">
             <p class="text-sm font-open text-textColor">Sub Total</p>
             <p class="text-base text-textColor font-open">
@@ -72,9 +82,7 @@
           </div>
           <div class="w-full flex justify-between items-center mt-2">
             <p class="text-sm font-open text-textColor">Descuento</p>
-            <p class="text-base font-open text-textColor">
-              % {{ discount }}
-            </p>
+            <p class="text-base font-open text-textColor">% {{ discount }}</p>
           </div>
           <div class="w-full h-px bg-blue-600 my-2" />
           <div class="w-full flex justify-between items-center">
@@ -84,12 +92,16 @@
             </p>
           </div>
           <div class="w-1/2 flex justify-center items-center mx-auto mt-4">
-            <GlobalHButton name="Comprar" buttonColor="secondary" @click="redirectionToPayment" />
+            <GlobalHButton
+              name="Comprar"
+              buttonColor="secondary"
+              @click="redirectionToPayment"
+            />
           </div>
         </div>
       </div>
     </div>
-    <div class="w-full flex flex-grow justify-center items-center">
+    <div v-else class="w-full flex flex-grow justify-center items-center">
       <p class="text-textColor font-junegull">
         No tenemos productos en el carrito
       </p>
@@ -107,27 +119,27 @@ export default {
     CartCard,
   },
   data: () => ({
-    totalToPay: 45
+    totalToPay: 45,
   }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("cart", ["getCart"]),
     totalBeforeDiscount() {
       if (!this.getCart.length) {
-        return 0
+        return 0;
       } else {
-        const allPrices = this.getCart.map(pr => pr.quantity * pr.price)
-        const sum = allPrices.reduce((a, b) => a + b, 0)
-        return sum
+        const allPrices = this.getCart.map((pr) => pr.quantity * pr.price);
+        const sum = allPrices.reduce((a, b) => a + b, 0);
+        return sum;
       }
     },
     // Arreglar el discount
     discount() {
       if (!this.getCart.length) {
-        return 0
-      }      
-      return 0
-    }
+        return 0;
+      }
+      return 0;
+    },
   },
   methods: {
     ...mapActions("cart", ["activeCart"]),
@@ -142,8 +154,8 @@ export default {
       console.log("pondremos la elimacion del objeto");
     },
     redirectionToPayment() {
-      this.$router.push('payment')
-    }
+      this.$router.push("payment");
+    },
   },
 };
 </script>
