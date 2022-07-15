@@ -1,23 +1,30 @@
 <template>
-  <div
-    v-if="getSignUp"
-    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-0 fixed z-50 bg-lightPink p-1 rounded-md max-h-screen"
-  >
+  <div class="w-full max-w-screen-2xl mx-auto">
     <div
-      class="w-full h-full rounded-3xl py-1 px-3 flex flex-col justify-between items-start border border-secondary"
+      class="
+        w-full
+        h-full
+        rounded-3xl
+        py-1
+        px-3
+        flex flex-col
+        justify-between
+        items-start
+      "
     >
-      <!-- CLOSE BUTTON -->
-      <div class="w-full flex justify-end items-start px-2 py-1">
-        <button
-          class="w-5 h-5 rounded-full border border-secondary flex justify-center items-center"
-          @click="closeSignUp"
-        >
-          <GlobalHIcon name="close" />
-        </button>
-      </div>
       <!-- CONTENT CONTAINER -->
-      <div class="w-full flex flex-col jutify-center items-center my-4">
-        <p class="w-full text-left text-textColor font-medium font-open">
+      <div
+        class="
+          w-full
+          max-w-xl
+          mx-auto
+          flex flex-col
+          jutify-center
+          items-center
+          my-4
+        "
+      >
+        <p class="w-full text-center font-semibold text-textColor font-open">
           Ingresa con
         </p>
         <!-- GOOGLE BUTTON -->
@@ -38,12 +45,40 @@
               type="name"
               required
               v-model="name"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-lightPink
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-white
+                outline-none
+                focus:outline-none
+                text-secondary
+                focus:text-secondary
+              "
               placeholder="Ej: Alicia"
             />
             <span
               v-if="!isNameVerified"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Hallyu quiere saber tu nombre
             </span>
@@ -55,12 +90,40 @@
               type="email"
               required
               v-model="email"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-lightPink
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-white
+                outline-none
+                focus:outline-none
+                text-secondary
+                focus:text-secondary
+              "
               placeholder="tucorreo@ejemplo.com"
             />
             <span
               v-if="!checkMail"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Por favor ingresa un correo valido
             </span>
@@ -72,12 +135,40 @@
               type="password"
               required
               v-model="password"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-lightPink
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-white
+                outline-none
+                focus:outline-none
+                text-secondary
+                focus:text-secondary
+              "
               placeholder="********"
             />
             <span
               v-if="!checkPassword"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Tu contraseña debe tener al menos 8 caracteres, un número, una
               minúscula y una mayúscula
@@ -92,12 +183,40 @@
               type="password"
               required
               v-model="passwordRepeated"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-lightPink rounded-lg border border-secondary placeholder-textColor text-base focus:secondary outline-none focus:outline-none text-secondary focus:text-secondary"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-lightPink
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:secondary
+                outline-none
+                focus:outline-none
+                text-secondary
+                focus:text-secondary
+              "
               placeholder="********"
             />
             <span
               v-if="!isPasswordVerified"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Contraseña incorrecta
             </span>
@@ -105,13 +224,18 @@
           <div class="w-full text-textColor text-sm my-3 flex flex-wrap">
             Creando el perfil aceptas
             <p class="ml-1" @click="closeSignUp">
-              <Nuxt-link to="terms" class="underline text-sm text-blue-600">Términos y condiciones</Nuxt-link>
+              <Nuxt-link to="terms" class="underline text-sm text-blue-600"
+                >Términos y condiciones</Nuxt-link
+              >
             </p>
-            <p class="text-textColor font-open mx-1">
-              y
-            </p>
+            <p class="text-textColor font-open mx-1">y</p>
             <p class="ml-1" @click="closeSignUp">
-              <Nuxt-link to="privacy" class="underline text-sm text-blue-600" @click="closeSignUp">Políticas de privacidad</Nuxt-link>
+              <Nuxt-link
+                to="privacy"
+                class="underline text-sm text-blue-600"
+                @click="closeSignUp"
+                >Políticas de privacidad</Nuxt-link
+              >
             </p>
           </div>
           <!-- INICIA SESION -->
@@ -198,9 +322,9 @@ export default {
       const user = {
         name: this.name,
         email: this.email,
-        password: this.password
-      }
-      this.signUpWithEmail(user)
+        password: this.password,
+      };
+      this.signUpWithEmail(user);
     },
   },
 };

@@ -1,6 +1,22 @@
 <template>
   <div
-    class="bg-lightPink fixed top-0 bottom-0 h-screen w-2/3 md:w-1/3 rounded-r-3xl shadow-md z-50 py-4 px-2 flex flex-col justify-between transition-all"
+    class="
+      bg-lightPink
+      fixed
+      top-0
+      bottom-0
+      h-screen
+      w-2/3
+      md:w-1/3
+      rounded-r-3xl
+      shadow-md
+      z-50
+      py-4
+      px-2
+      flex flex-col
+      justify-between
+      transition-all
+    "
     :class="{
       'left-0': showMenu,
       '-left-2/3': !showMenu,
@@ -20,7 +36,15 @@
             :to="item.link"
             class="text-2xl text-textColor font-junegull mb-4 relative"
           >
-            <p class="text-font-junegull relative mb-4 text-textColor text-xl z-10">
+            <p
+              class="
+                text-font-junegull
+                relative
+                mb-4
+                text-textColor text-xl
+                z-10
+              "
+            >
               {{ item.name }}
             </p>
             <span
@@ -36,7 +60,10 @@
                 bottom-0
                 right-0
               "
-              :class="{'opacity-0': !getLink(item.link), 'opacity-1': getLink(item.link)}"
+              :class="{
+                'opacity-0': !getLink(item.link),
+                'opacity-1': getLink(item.link),
+              }"
             ></span>
           </nuxt-link>
         </li>
@@ -44,19 +71,41 @@
     </nav>
     <div class="w-full px-2">
       <div v-if="!user" class="w-full">
-        <div class="w-full mb-3">
-          <GlobalHButton
-            name="Inicia Sesión"
-            buttonColor="primary"
-            @click="toSignIn"
-          />
+        <div class="w-full1 flex justify-center mb-3">
+          <nuxt-link
+            to="/SignIn"
+            class="
+              w-full
+              py-4
+              shadow-md
+              rounded-md
+              bg-primary
+              font-junegull
+              text-textColor
+              flex
+              justify-center
+            "
+          >
+            Inicia Sesión
+          </nuxt-link>
         </div>
-        <div class="w-full">
-          <GlobalHButton
-            name="Regístrate"
-            buttonColor="secondary"
-            @click="toSignUp"
-          />
+        <div class="w-full flex justify-center">
+          <nuxt-link
+            to="/SignUp"
+            class="
+              w-full
+              py-4
+              shadow-md
+              rounded-md
+              bg-secondary
+              font-junegull
+              text-textColor
+              flex
+              justify-center
+            "
+          >
+            Registrarme
+          </nuxt-link>
         </div>
       </div>
       <div v-else class="w-full">
@@ -109,11 +158,16 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$route.path)
+    console.log(this.$route.path);
   },
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
-    ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal", "signUserOut"]),
+    ...mapActions("user", [
+      "activeSignIn",
+      "activeSignUp",
+      "showModal",
+      "signUserOut",
+    ]),
     getMenu() {
       if (this.showMenu) {
         this.activeMenu(false);
@@ -123,14 +177,16 @@ export default {
     },
     getLink(path) {
       if (this.$route.path === path) {
-        return true
-      } else if (this.$route.path.split('/').join('').includes(path.replace('/', ''))) {
-        if (path === '/') {
-          return false
+        return true;
+      } else if (
+        this.$route.path.split("/").join("").includes(path.replace("/", ""))
+      ) {
+        if (path === "/") {
+          return false;
         }
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     },
     closeMenu() {
@@ -138,19 +194,9 @@ export default {
         this.activeMenu(false);
       }
     },
-    toSignIn() {
-      this.closeMenu();
-      this.showModal(true);
-      this.activeSignIn(true);
-    },
-    toSignUp() {
-      this.closeMenu();
-      this.showModal(true);
-      this.activeSignUp(true);
-    },
     logout() {
-      this.signUserOut()
-      this.activeMenu(false)
+      this.signUserOut();
+      this.activeMenu(false);
     },
   },
 };

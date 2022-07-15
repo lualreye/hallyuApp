@@ -1,23 +1,38 @@
 <template>
-  <div
-    v-if="getSignIn"
-    class="w-2/3 md:w-4/12 left-1/6 md:left-1/3 top-24 fixed z-50 bg-aquamarine p-1 rounded-md opacity-100"
-  >
+  <div class="w-full max-w-screen-2xl mx-auto py-4">
     <div
-      class="w-full h-full rounded-3xl py-2 px-3 flex flex-col justify-between items-start border border-secondary"
+      class="
+        w-full
+        h-full
+        rounded-3xl
+        py-2
+        px-3
+        flex flex-col
+        justify-between
+        items-start
+      "
     >
-      <!-- CLOSE BUTTON -->
-      <div class="w-full flex justify-end items-start px-2 py-1">
-        <button
-          class="w-5 h-5 rounded-full border border-secondary flex justify-center items-center"
-          @click="closeSingIn"
-        >
-          <GlobalHIcon name="close" />
-        </button>
-      </div>
       <!-- CONTENT CONTAINER -->
-      <div class="w-full flex flex-col jutify-center items-center my-4">
-        <p class="w-full text-left text-textColor font-medium font-open">
+      <div
+        class="
+          w-full
+          max-w-xl
+          mx-auto
+          flex flex-col
+          jutify-center
+          items-center
+          my-4
+        "
+      >
+        <p
+          class="
+            w-full
+            text-center text-lg
+            font-semibold
+            text-textColor
+            font-open
+          "
+        >
           Ingresa con
         </p>
         <!-- GOOGLE BUTTON -->
@@ -37,12 +52,39 @@
             <input
               type="email"
               v-model="email"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-aquamarine text-textColor rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-aquamarine
+                text-textColor
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-white
+                outline-none
+                focus:outline-none
+              "
               placeholder="junegull@gmail.com"
             />
             <span
               v-if="!checkMail"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Por favor ingresa un correo valido
             </span>
@@ -53,12 +95,38 @@
             <input
               type="password"
               v-model="password"
-              class="mt-2 flex justify-center items-center w-full px-3 py-2 bg-aquamarine rounded-lg border border-secondary placeholder-textColor text-base focus:bg-white outline-none focus:outline-none"
+              class="
+                mt-2
+                flex
+                justify-center
+                items-center
+                w-full
+                px-3
+                py-2
+                bg-aquamarine
+                rounded-lg
+                border border-secondary
+                placeholder-textColor
+                text-base
+                focus:bg-white
+                outline-none
+                focus:outline-none
+              "
               placeholder="********"
             />
             <span
               v-if="!checkPassword"
-              class="w-full rounded-sm mt-1 py-2 px-3 bg-red-300 text-xs font-medium text-red-600"
+              class="
+                w-full
+                rounded-sm
+                mt-1
+                py-2
+                px-3
+                bg-red-300
+                text-xs
+                font-medium
+                text-red-600
+              "
             >
               Tu contraseña debe tener al menos 8 caracteres, un número, una
               minúscula y una mayúscula
@@ -111,7 +179,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions("user", ["showModal", "activeSignIn", "signInWithGoogle", "signInWithEmail"]),
+    ...mapActions("user", [
+      "showModal",
+      "activeSignIn",
+      "signInWithGoogle",
+      "signInWithEmail",
+    ]),
     closeSingIn() {
       if (this.getModal) {
         this.showModal(false);
@@ -132,7 +205,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      this.signInWithEmail(user)
+      this.signInWithEmail(user);
     },
   },
 };

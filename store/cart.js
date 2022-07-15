@@ -172,7 +172,6 @@ export const actions = {
         const product = pr.data();
         productByBand.push({ id, ...product });
       });
-      console.log(productByBand)
       commit('ADD_PRODUCTS_WITH_BAND', productByBand);
     } catch (err) {
       console.error('CANNOT_GET_PRODUCTS_WITH_BAND', err);
