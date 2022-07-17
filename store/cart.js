@@ -13,6 +13,7 @@ export const state = () => ({
   suggestedProducts: [],
   newProducts: [],
   productsWithBand: [],
+  payment: 0
 });
 
 export const getters = {
@@ -49,6 +50,9 @@ export const getters = {
   getCart(state) {
     return state.cart;
   },
+  getPayment(state) {
+    return state.payment
+  }
 };
 
 export const mutations = {
@@ -117,11 +121,17 @@ export const mutations = {
     const id = state.cart.findIndex((pr) => pr.id === product.id);
     state.cart[id].quantity -= 1;
   },
+  GET_PAYMENT(state, payment) {
+    state.payment = payment
+  }
 };
 
 export const actions = {
   activeCart({ commit }, bool) {
     commit('ACTIVE_CART', bool);
+  },
+  toPay({ commit }, payload) {
+    commit('GET_PAYMENT', payload)
   },
   async fetchFlashProducts({ commit }) {
     const db = fireDataBase;

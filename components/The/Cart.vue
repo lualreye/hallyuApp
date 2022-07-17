@@ -119,8 +119,8 @@ export default {
     CartCard,
   },
   computed: {
-    ...mapGetters("cart", ["showCart"]),
-    ...mapGetters("cart", ["getCart"]),
+    ...mapGetters("cart", ["showCart", "getCart"]),
+    ...mapGetters("user", ["getUser"]),
     totalBeforeDiscount() {
       if (!this.getCart.length) {
         return 0;
@@ -148,7 +148,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("cart", ["activeCart"]),
+    ...mapActions("cart", ["activeCart", "toPay"]),
     closeCart() {
       if (this.showCart) {
         this.activeCart(false);
@@ -156,11 +156,13 @@ export default {
         return;
       }
     },
-    newFunction() {
-      console.log("pondremos la elimacion del objeto");
-    },
     redirectionToPayment() {
-      this.$router.push("payment");
+      if (this.getUser === null || this.getUser === undefined) {
+        this.$router.push("/SignIn");
+      } else {
+        this.toPay(Number(this.totalToPay));
+        this.$router.push("payment");
+      }
     },
   },
 };
