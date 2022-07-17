@@ -120,8 +120,7 @@ export default {
   methods: {
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
     toSignUp() {
-      this.showModal(true);
-      this.activeSignUp(true);
+      this.$router.push("/SignUp");
     },
   },
 };

@@ -33,7 +33,11 @@
       :koreanText="getQuotes.popular.koreanText"
       :spanishText="getQuotes.popular.spanishText"
     />
-    <the-offers v-if="getDiscountProducts.length" :offers="getDiscountProducts" class="max-w-screen-2xl mx-auto" />
+    <the-offers
+      v-if="getDiscountProducts.length"
+      :offers="getDiscountProducts"
+      class="max-w-screen-2xl mx-auto"
+    />
     <the-line-decoration
       v-if="areQuotes"
       :bgColor="getQuotes.simpleOffer.bgColor"
@@ -53,9 +57,17 @@
       :koreanText="getQuotes.community.koreanText"
       :spanishText="getQuotes.community.spanishText"
     />
-    <the-categories v-if="getCategories.length" :categories="getCategories" class="max-w-screen-2xl mx-auto" />
-    <the-cta v-if="!user" class="mx-auto" />
-    <the-blog v-if="arePosts" :posts="getPosts.slice(0, 3)" class="max-w-screen-2xl mx-auto" />
+    <the-categories
+      v-if="getCategories.length"
+      :categories="getCategories"
+      class="max-w-screen-2xl mx-auto"
+    />
+    <the-cta v-if="user" class="mx-auto" />
+    <the-blog
+      v-if="arePosts"
+      :posts="getPosts.slice(0, 3)"
+      class="max-w-screen-2xl mx-auto"
+    />
     <the-line-decoration
       v-if="areQuotes"
       :bgColor="getQuotes.blog.bgColor"
@@ -75,7 +87,11 @@
       :koreanText="getQuotes.communityFavs.koreanText"
       :spanishText="getQuotes.communityFavs.spanishText"
     />
-    <the-bands v-if="areBands" :bands="getBands.slice(0, 10)" class="max-w-screen-2xl mx-auto" />
+    <the-bands
+      v-if="areBands"
+      :bands="getBands.slice(0, 10)"
+      class="max-w-screen-2xl mx-auto"
+    />
   </div>
 </template>
 
@@ -161,16 +177,16 @@ export default {
       this.fetchNewProducts();
     }
     if (!this.getBands.length) {
-      this.fetchBands()
+      this.fetchBands();
     }
     if (!this.getFans.length) {
-      this.fetchFans()
+      this.fetchFans();
     }
     if (!this.getPosts.length) {
-      this.fetchPosts()
+      this.fetchPosts();
     }
     if (!this.getPosts.length) {
-      this.fetchCategories()
+      this.fetchCategories();
     }
   },
   computed: {
@@ -179,7 +195,11 @@ export default {
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
     ...mapGetters("blog", ["getPosts"]),
-    ...mapGetters("cart", ["getFlashProducts", "getDiscountProducts", "getNewProducts"]),
+    ...mapGetters("cart", [
+      "getFlashProducts",
+      "getDiscountProducts",
+      "getNewProducts",
+    ]),
     ...mapGetters("categories", ["getCategories"]),
     ...mapGetters("user", ["getUser"]),
     areThereHeroImages() {
@@ -199,9 +219,9 @@ export default {
     },
     user() {
       if (this.getUser !== null || this.getUser === undefined) {
-        return false
+        return false;
       }
-      return true
+      return true;
     },
   },
   watch: {
@@ -211,13 +231,12 @@ export default {
           this.getHeroImages[
             Math.floor(this.randomNumber(this.getHeroImages.length))
           ].image;
-        this.selectHero(this.heroImage)
+        this.selectHero(this.heroImage);
       }
     },
     user(value) {
       return value === null || value === undefined ? false : true;
     },
-
   },
   methods: {
     ...mapActions("general", ["fetchImages", "selectHero"]),
@@ -225,7 +244,11 @@ export default {
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),
     ...mapActions("blog", ["fetchPosts"]),
-    ...mapActions("cart", ["fetchFlashProducts", "fetchDiscountProducts", "fetchNewProducts"]),
+    ...mapActions("cart", [
+      "fetchFlashProducts",
+      "fetchDiscountProducts",
+      "fetchNewProducts",
+    ]),
     ...mapActions("categories", ["fetchCategories"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
