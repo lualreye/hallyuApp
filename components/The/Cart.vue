@@ -158,9 +158,11 @@ export default {
     },
     redirectionToPayment() {
       if (this.getUser === null || this.getUser === undefined) {
+        this.closeCart();
         this.$router.push("/SignIn");
       } else {
         this.toPay(Number(this.totalToPay));
+        this.closeCart();
         this.$router.push("payment");
       }
     },
