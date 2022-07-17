@@ -170,12 +170,15 @@ const actions = {
         email: payload.email,
         uid: credentialResults.user.uid,
         image: '',
+        cart: [],
+        sales: [],
+        liked: []
       };
       const userRef = doc(collection(db, 'users'));
       await setDoc(userRef, { ...user });
-      commit('SET_USER', user);
-      commit('SHOW_SIGNUP', false);
-      commit('SHOW_MODAL', false);
+      
+
+      this.$router.push('/SignIn')
     } catch (error) {
       console.error(error);
     }

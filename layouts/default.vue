@@ -39,12 +39,11 @@ export default {
       }
     },
     getUser(value) {
-      console.log(value);
       if (value === null || undefined) {
         return;
       }
       if (value.role.costumer) {
-        return;
+        this.$router.push("/");
       }
       if (value.role.adminRole) {
         this.$router.push("/admin/dashboard");
