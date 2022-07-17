@@ -27,7 +27,6 @@ const actions = {
       quoteSnap.forEach((quote) => {
         quotes = quote.data();
       });
-      console.log(quotes);
       commit('SET_QUOTES', quotes);
     } catch (e) {
       console.error('CANNOT_GET_QUOTES', e);
