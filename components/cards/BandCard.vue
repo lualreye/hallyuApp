@@ -5,8 +5,9 @@
         :to="`/bands/${bandName}`"
         class="
           flex
-          w-48
-          h-40
+          w-32
+          h-36
+          sm:w-48 sm:h-40
           p-2
           rounded-xl
           justify-center
@@ -15,8 +16,19 @@
           shadow-xl
         "
       >
-        <figure class="w-36 h-36 mx-auto my-auto flex justify-center items-center">
-          <img :src="bandImage" :alt="bandName" class="w-full h-36" />
+        <figure
+          class="
+            w-36
+            h-28
+            sm:h-36
+            mx-auto
+            my-auto
+            flex
+            justify-center
+            items-center
+          "
+        >
+          <img :src="bandImage" :alt="bandName" class="w-full h-28 sm:h-36" />
         </figure>
       </nuxt-link>
       <p

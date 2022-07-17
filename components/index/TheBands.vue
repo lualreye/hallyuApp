@@ -71,16 +71,7 @@
       <div
         v-for="(band, i) in bands"
         :key="i"
-        class="
-          flex
-          justify-center
-          items-center
-          w-full
-          sm:w-1/2
-          md:w-1/3
-          lg:w-1/4
-          mb-8
-        "
+        class="flex justify-center items-center w-1/2 md:w-1/3 lg:w-1/4 mb-8"
       >
         <band-card :bandImage="band.image" :bandName="band.name" />
       </div>
