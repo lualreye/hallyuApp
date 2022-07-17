@@ -138,7 +138,15 @@ export default {
       if (!this.getCart.length) {
         return 0;
       }
-      return 0;
+      const allDiscount = this.getCart.map((pr) => {
+        if (pr.offered === "Descuento") {
+          return pr.quantity * pr.price * (pr.offer / 100);
+        }
+        return 0;
+      });
+      console.log(allDiscount);
+      const sum = allDiscount.reduce((a, b) => a + b, 0);
+      return sum;
     },
   },
   methods: {
