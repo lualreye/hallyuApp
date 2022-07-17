@@ -5,14 +5,14 @@
       fixed
       top-0
       bottom-0
-      h-screen
+      max-h-screen
+      h-full
       w-2/3
       md:w-1/3
       rounded-l-3xl
       shadow-md
       z-50
       flex flex-col
-      justify-between
       transition-all
     "
     :class="{
@@ -20,7 +20,7 @@
       '-right-2/3': !showCart,
     }"
   >
-    <div class="w-full px-4 flex justify-end items-center py-4 relative">
+    <div class="w-full px-4 flex justify-end items-center py-3 relative">
       <div class="w-full absolute top-0 left-0 right-0 bottom-0 z-60">
         <wave-one />
       </div>
@@ -42,7 +42,7 @@
     </div>
     <div
       v-if="getCart.length"
-      class="w-full h-full flex justify-between flex-col"
+      class="w-full flex flex-col justify-between flex-grow h-full pt-4 pb-10"
     >
       <nav
         class="
@@ -51,8 +51,8 @@
           items-center
           justify-start
           overflow-y-auto
-          p-4
-          flex-grow
+          px-4
+          py-2
         "
       >
         <ul class="w-full flex flex-col justify-start items-center">
@@ -82,7 +82,7 @@
           </div>
           <div class="w-full flex justify-between items-center mt-2">
             <p class="text-sm font-open text-textColor">Descuento</p>
-            <p class="text-base font-open text-textColor">% {{ discount }}</p>
+            <p class="text-base font-open text-textColor">$ {{ discount }}</p>
           </div>
           <div class="w-full h-px bg-blue-600 my-2" />
           <div class="w-full flex justify-between items-center">
@@ -118,9 +118,6 @@ export default {
     WaveOne,
     CartCard,
   },
-  data: () => ({
-    totalToPay: 45,
-  }),
   computed: {
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("cart", ["getCart"]),
@@ -133,7 +130,6 @@ export default {
         return sum;
       }
     },
-    // Arreglar el discount
     discount() {
       if (!this.getCart.length) {
         return 0;
@@ -144,9 +140,11 @@ export default {
         }
         return 0;
       });
-      console.log(allDiscount);
       const sum = allDiscount.reduce((a, b) => a + b, 0);
       return sum;
+    },
+    totalToPay() {
+      return this.totalBeforeDiscount - this.discount;
     },
   },
   methods: {
