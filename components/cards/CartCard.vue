@@ -3,11 +3,23 @@
     <div class="w-full flex justify-between items-start">
       <!-- LEFT SECTION OF THE CARD -->
       <div class="flex justify-start items-start w-3/4">
-        <figure class="w-1/4 h-20 rounded-3xl mr-2 flex justify-center items-center">
+        <figure
+          class="w-1/4 h-20 rounded-3xl mr-2 flex justify-center items-center"
+        >
           <img
             :src="product.thumbnail"
             :alt="product.name"
-            class="rounded-xl w-full h-20 object-cover border border-secondary object-center flex justify-center items-center"
+            class="
+              rounded-xl
+              w-full
+              h-20
+              object-cover
+              border border-secondary
+              object-center
+              flex
+              justify-center
+              items-center
+            "
           />
         </figure>
         <div class="w-3/4 flex flex-col py-1 justify-between items-start">
@@ -18,19 +30,34 @@
             <button class="w-4 h-4" @click="substract">
               <HIcon name="minus" class="text-primary" />
             </button>
-            <span class="mx-2 border text-textColor border-aquamarine rounded-lg">{{ product.quantity }}</span>
-            <button class="w-4 h-4" :disabled="product.quantity === product.stock" @click="add">
-              <HIcon name="plus" class="text-primary" :class="{'text-gray-400': product.quantity === product.stock}" />
+            <span
+              class="mx-2 border text-textColor border-aquamarine rounded-lg"
+              >{{ product.quantity }}</span
+            >
+            <button
+              class="w-4 h-4"
+              :disabled="product.quantity === product.stock"
+              @click="add"
+            >
+              <HIcon
+                name="plus"
+                class="text-primary"
+                :class="{ 'text-gray-400': product.quantity === product.stock }"
+              />
             </button>
           </div>
           <p v-if="product.size" class="text-textColor text-sm w-full">
-            Talla: {{product.size }}
+            Talla: {{ product.size }}
           </p>
-          <div v-if="product.color"   class="flex w-full justify-start items-center">
-            <p class="text-textColor text-sm mr-1">
-              Color: 
-            </p>
-            <div class="rounded-full w-3 h-3 border border-primary" :style="{backgroundColor: red}"></div>
+          <div
+            v-if="product.color"
+            class="flex w-full justify-start items-center"
+          >
+            <p class="text-textColor text-sm mr-1">Color:</p>
+            <div
+              class="rounded-full w-3 h-3 border border-primary"
+              :style="{ backgroundColor: red }"
+            ></div>
           </div>
         </div>
       </div>
@@ -40,7 +67,7 @@
           $ {{ product.price }}
         </p>
         <p v-if="product.offered" class="text-secondary font-bold">
-          - {{ product.discount }} %
+          - {{ product.offer }} %
         </p>
       </div>
     </div>
@@ -48,24 +75,24 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import HIcon from '../Global/HIcon.vue';
+import { mapActions } from "vuex";
+import HIcon from "../Global/HIcon.vue";
 export default {
   components: { HIcon },
   props: {
-      product: {
-          type: Object,
-          required: true
-      }
+    product: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
-    ...mapActions('cart', ['addOne', 'removeToCart']),
+    ...mapActions("cart", ["addOne", "removeToCart"]),
     add() {
-      this.addOne(this.product)
+      this.addOne(this.product);
     },
     substract() {
-      this.removeToCart(this.product)
+      this.removeToCart(this.product);
     },
-  }
+  },
 };
 </script>

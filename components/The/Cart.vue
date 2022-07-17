@@ -42,7 +42,7 @@
     </div>
     <div
       v-if="getCart.length"
-      class="w-full flex justify-between flex-col flex-grow"
+      class="w-full h-full flex justify-between flex-col"
     >
       <nav
         class="
