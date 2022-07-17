@@ -147,13 +147,15 @@
           <button
             class="mb-3 w-full p-2 rounded-full text-white"
             :class="{
-              'bg-gray-400': isAdded,
-              'bg-secondary': !isAdded,
+              'bg-gray-400': !isProductAvailable,
+              'bg-secondary': isProductAvailable,
             }"
             @click="addProductToCart"
           >
-            <p v-if="!isAdded" class="text-white">Agregar al carrito</p>
-            <p v-else class="text-white">Quitar del carrito</p>
+            <p v-if="isProductAvailable" class="text-white">
+              Agregar al carrito
+            </p>
+            <p v-else class="text-white">No hay más producto disponible</p>
           </button>
           <button
             class="
@@ -231,19 +233,28 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   data: () => ({
     selectedImage: "",
     read: true,
     rate: 4,
-    isAdded: false,
   }),
   computed: {
+    ...mapState("cart", ["cart"]),
     ...mapGetters("cart", ["getProduct", "getSuggestedProducts", "getCart"]),
     getParams() {
       return this.$route.params.id;
+    },
+    isProductAvailable() {
+      const idx = this.getCart.findIndex(
+        (pr) => pr.id === this.$route.params.id
+      );
+      if (idx === -1) {
+        return true;
+      }
+      return this.getCart[idx].quantity < this.getCart[idx].stock;
     },
   },
   watch: {
@@ -257,7 +268,6 @@ export default {
   mounted() {
     this.fetchProduct(this.$route.params.id);
     this.fetchSuggestedProducts();
-    this.isProductOnCart();
   },
   methods: {
     ...mapActions("cart", [
@@ -271,20 +281,8 @@ export default {
     },
     addProductToCart() {
       const product = JSON.parse(JSON.stringify(this.getProduct));
-      if (!this.isAdded) {
+      if (this.isProductAvailable) {
         this.addToCart(product);
-        this.isAdded = true;
-      } else {
-        this.removeToCart(product);
-        this.isAdded = false;
-      }
-    },
-    isProductOnCart() {
-      const index = this.getCart.findIndex((pr) => pr.id === this.getProduct);
-      if (index === -1) {
-        this.isAdded = false;
-      } else {
-        this.isAdded = true;
       }
     },
   },
