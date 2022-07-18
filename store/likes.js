@@ -73,10 +73,9 @@ export const actions = {
   async removeFromWishList({ commit , rootGetters}, payload) {
     try {
       const db = fireDataBase
-      console.log(payload)
       const productRef = doc(collection(db, 'products'), payload.id)
       await updateDoc(productRef, {
-        likes: decrement(1)
+        likes: increment(-1)
       })
       const id = rootGetters['user/getUser'].uid
       const usersRef = collection(db, 'users')
