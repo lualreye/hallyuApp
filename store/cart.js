@@ -13,7 +13,8 @@ export const state = () => ({
   suggestedProducts: [],
   newProducts: [],
   productsWithBand: [],
-  payment: 0
+  payment: 0,
+  searchedProducts: []
 });
 
 export const getters = {
@@ -52,6 +53,9 @@ export const getters = {
   },
   getPayment(state) {
     return state.payment
+  },
+  getSearchedProducts(state) {
+    return state.searchedProducts;
   }
 };
 
@@ -123,6 +127,11 @@ export const mutations = {
   },
   GET_PAYMENT(state, payment) {
     state.payment = payment
+  },
+  ADD_SEARCHED_PRODUCTS(state, products) {
+    state.searchedProducts = []
+    state.searchedProducts = products
+    console.log(state.searchedProducts)
   }
 };
 
@@ -310,5 +319,23 @@ export const actions = {
   },
   substractOne({ commit }, payload) {
     commit('SUBSTRACT_ONE', payload);
+  },
+  async fetchSearchedProducts({ commit }, payload) {
+    try {
+      const db = fireDataBase;
+      console.log(payload)
+      const ref = collection(db, 'products');
+      const productByBand = [];
+      const productQuery = query(ref, where('name', '<=', payload));
+      const querySnapshot = await getDocs(productQuery);
+      querySnapshot.forEach((pr) => {
+        const id = pr.id;
+        const product = pr.data();
+        productByBand.push({ id, ...product });
+      });
+      commit('ADD_SEARCHED_PRODUCTS', productByBand);
+    } catch (err) {
+      console.error('CANNOT_SEARCHED_PRODUCTS', err);
+    }
   },
 };
