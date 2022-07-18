@@ -1,10 +1,16 @@
 <template>
-  <nuxt-link :to="`/products/${product.id}`" class="w-56">
+  <div class="w-56">
     <div class="relative w-full h-full">
       <img
         :src="product.thumbnail"
         alt="productName"
-        class="border-2 border-primary object-cover object-center rounded-3xl w-full h-96"
+        class="
+          border-2 border-primary
+          object-cover object-center
+          rounded-3xl
+          w-full
+          h-96
+        "
       />
       <div
         class="
@@ -19,7 +25,7 @@
           justify-between
         "
       >
-        <div class="w-full flex justify-end items-center  px-4">
+        <div class="w-full flex justify-end items-center px-4 relative z-30">
           <button
             class="
               w-8
@@ -43,18 +49,41 @@
             />
           </button>
         </div>
+        <nuxt-link :to="`/products/${product.id}`" class="flex-grow" />
         <div class="w-full flex justify-between items-center px-4">
-          <p class="text-primary text-2xl font-junegull bg-background price-shadow rounded-full py-1 px-2">
+          <p
+            class="
+              text-primary text-2xl
+              font-junegull
+              bg-background
+              price-shadow
+              rounded-full
+              py-1
+              px-2
+            "
+          >
             $ {{ product.price }}
           </p>
-          <button class="w-8 h-8 p-1 flex justify-center items-center shadow-xl bg-primary rounded-full" @click="addToCart">
-            <GlobalHIcon name='cart' class="text-gray-100" />
+          <button
+            class="
+              w-8
+              h-8
+              p-1
+              flex
+              justify-center
+              items-center
+              shadow-xl
+              bg-primary
+              rounded-full
+            "
+            @click="addToCart"
+          >
+            <GlobalHIcon name="cart" class="text-gray-100" />
           </button>
         </div>
       </div>
-    
     </div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -62,24 +91,24 @@ export default {
   props: {
     product: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
-    isLiked: false
+    isLiked: false,
   }),
   methods: {
     like() {
-      if(this.isLiked) {
+      if (this.isLiked) {
         this.isliked = false;
       } else {
-        this.isLiked = true
+        this.isLiked = true;
       }
     },
     addToCart() {
-      console.log('Estamos yendo al carrito')
-    }
-  }
+      console.log("Estamos yendo al carrito");
+    },
+  },
 };
 </script>
 
@@ -90,7 +119,7 @@ export default {
   background-size: cover;
 }
 .price-shadow {
-  -webkit-box-shadow: 0px 0px 10px -2px #C4C4C4; 
-  box-shadow: 0px 0px 10px -2px #C4C4C4;
+  -webkit-box-shadow: 0px 0px 10px -2px #c4c4c4;
+  box-shadow: 0px 0px 10px -2px #c4c4c4;
 }
 </style>
