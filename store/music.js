@@ -100,34 +100,43 @@ const mutations = {
     }
     if(Object.keys(state.playing).length) {
       if (state.playing.play.paused) {
+        state.indexPlaylist[0].isPlaying = true
         state.playing.play.play()
       } else {
+        state.indexPlaylist[0].isPlaying = false
         state.playing.play.pause()
       }
     }
   },
   NEXT_SONG(state) {
-    const idx = state.indexPlaylist.findIndex(song => song.isPlaying === true)
-    const next = idx + 1
+    const idx = state.indexPlaylist.findIndex(song => song.name === state.playing.name)
+    state.playing.play.pause()
+    state.playing = {}
+    console.log(idx)
+    const next = Number(idx + 1)
     console.log(next)
     state.indexPlaylist.forEach(song => song.isPlaying = false)
     if (next >= state.indexPlaylist.length) {
       state.indexPlaylist[0].isPlaying = true
-        state.playing = {
-          name: state.indexPlaylist[0].name,
-          play: new Audio(state.indexPlaylist[0].image)
-        }
-        state.playing.play.play()
-    }
-    state.playing = {
-      name: state.indexPlaylist[state.indexPlaylist.length - 1].name,
-      play: new Audio(state.indexPlaylist[next].image)
+      state.playing = {
+        name: state.indexPlaylist[0].name,
+        play: new Audio(state.indexPlaylist[0].image)
+      }
+    } else {
+      console.log('estamos en siguiente', next)
+      state.playing = {
+        name: state.indexPlaylist[next].name,
+        play: new Audio(state.indexPlaylist[next].image)
+      }
     }
     state.playing.play.play()
   },
   PREVIOUS_SONG(state) {
-    const idx = state.indexPlaylist.findIndex(song => song.isPlaying === true)
+    const idx = state.indexPlaylist.findIndex(song => song.name === state.playing.name)
+    state.playing.play.pause()
+    state.playing = {}
     const next = idx + 1
+    console.log(next)
     state.indexPlaylist.forEach(song => song.isPlaying = false)
     if (next <= 0) {
       state.indexPlaylist[state.indexPlaylist.length - 1].isPlaying = true
@@ -212,7 +221,6 @@ const actions = {
     commit('PLAY_MUSIC')
   },
   nextSong({ commit }) {
-    console.log('Estamos avanzaando')
     commit('NEXT_SONG')
   },
   previousSong({ commit }) {

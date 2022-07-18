@@ -55,17 +55,11 @@ export default {
     play() {
       this.playSong();
     },
-    nextSong() {
-      // const index = this.getIndexPlaylist.findIndex(
-      //   (song) => song.id === this.selectedSong.id
-      // );
-      // this.selectedSong = this.getIndexPlaylist[index + 1];
+    next() {
+      this.nextSong();
     },
-    previousSong() {
-      // const index = this.getIndexPlaylist.findIndex(
-      //   (song) => song.id === this.selectedSong.id
-      // );
-      // this.selectedSong = this.getIndexPlaylist[index - 1];
+    previous() {
+      this.previousSong();
     },
   },
 };
