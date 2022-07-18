@@ -39,9 +39,11 @@
       <div class="w-auto flex justify-end items-center">
         <div class="w-auto flex justify-center items-center mr-2">
           <GlobalIconButton
+            v-if="getUser"
             iconName="like"
             classes="bg-primary p-1"
             class="mx-1"
+            @click="openFavourites"
           />
           <div class="relative flex justify-center items-center">
             <GlobalIconButton
@@ -141,6 +143,7 @@ export default {
     ...mapActions("cart", ["activeCart"]),
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
     ...mapActions("userData", ["showProfile"]),
+    ...mapActions("likes", ["showLikedProducts"]),
     openMenu() {
       if (!this.showMenu) {
         this.activeMenu(true);
@@ -166,6 +169,13 @@ export default {
         this.showProfile(false);
       } else {
         this.showProfile(true);
+      }
+    },
+    openFavourites() {
+      if (this.getLiked) {
+        this.showLikedProducts(false);
+      } else {
+        this.showLikedProducts(true);
       }
     },
   },

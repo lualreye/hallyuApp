@@ -70,7 +70,7 @@
                 outline-none
                 focus:outline-none
               "
-              placeholder="junegull@gmail.com"
+              placeholder="Ej: correo@ejemplo.com"
             />
             <span
               v-if="!checkMail"

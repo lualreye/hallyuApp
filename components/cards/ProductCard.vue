@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   props: {
     product: {
@@ -97,12 +99,18 @@ export default {
   data: () => ({
     isLiked: false,
   }),
+  computed: {
+    ...mapGetters("user", ["getUser"]),
+  },
   methods: {
+    ...mapActions("likes", ["addToWishList"]),
     like() {
-      if (this.isLiked) {
-        this.isliked = false;
+      console.log(this.getUser);
+      if (this.getUser === null || this.getUser === undefined) {
+        this.$router.push("/SignIn");
       } else {
-        this.isLiked = true;
+        const product = JSON.parse(JSON.stringify(this.product));
+        this.addToWishList(product);
       }
     },
     addToCart() {

@@ -23,8 +23,9 @@ export default {
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
+    ...mapGetters("likes", ["getLiked"]),
     getOverlay() {
-      return this.showMenu || this.showCart;
+      return this.showMenu || this.showCart || this.getLiked;
     },
   },
   methods: {

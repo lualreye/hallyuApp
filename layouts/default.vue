@@ -3,6 +3,7 @@
     <TheHeader />
     <TheMenu />
     <TheCart />
+    <TheLiked />
     <GlobalHOverlay />
     <GlobalWOverlay />
     <Nuxt />
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import Player from "../components/Global/Player.vue";
 import Playlist from "../components/Global/Playlist.vue";
 export default {
@@ -51,6 +52,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions("likes", ["fetchLikedProducts"]),
     stopBodyScrolling(value) {
       if (value) {
         document.documentElement.style.overflow = "hidden";
