@@ -17,6 +17,8 @@ const state = () => ({
   playlist: [],
   indexPlaylist: [],
   readyToPlay: false,
+  isPlaying: false,
+  playing: {}
 });
 
 const getters = {
@@ -32,6 +34,9 @@ const getters = {
   isReady(state) {
     return state.readyToPlay;
   },
+  getSong(state) {
+    return state.playing;
+  }
 };
 
 const mutations = {
@@ -40,7 +45,7 @@ const mutations = {
     state.heroSongs = heroImages;
   },
   SET_PLAYLIST(state, playlist) {
-    state.indexPlaylist = playlist;
+    state.indexPlaylist = [...playlist];
   },
   SET_SONG(state, heroImage) {
     state.heroSongs.push(heroImage);
@@ -84,6 +89,24 @@ const mutations = {
   START_PLAYER(state, payload) {
     state.readyToPlay = payload;
   },
+  async PLAY_MUSIC(state) {
+    const idx = state.indexPlaylist.findIndex(song => song.isPlaying === true)
+    if(idx === -1 && !Object.keys(state.playing).length) {
+      state.indexPlaylist[0].isPlaying = true
+      state.playing = {
+        name: state.indexPlaylist[0].name,
+        play: new Audio(state.indexPlaylist[0].image)
+      }
+      state.playing.play.play()
+    }
+    if(Object.keys(state.playing).length) {
+      if (state.playing.play.paused) {
+        state.playing.play.play()
+      } else {
+        state.playing.play.pause()
+      }
+    }
+  }
 };
 
 const actions = {
@@ -149,6 +172,9 @@ const actions = {
   activePlayer({ commit }, payload) {
     commit('START_PLAYER', payload);
   },
+  playSong({ commit }) {
+    commit('PLAY_MUSIC')
+  }
 };
 
 export { state, getters, mutations, actions };

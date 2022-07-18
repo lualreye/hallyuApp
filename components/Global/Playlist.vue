@@ -1,57 +1,68 @@
 <template>
-  <div v-if="isReady" class="fixed centered bottom-6 z-20 h-9 p-1 rounded-full flex justify-center items-center bg-gray-800">
+  <div
+    v-if="isReady"
+    class="
+      fixed
+      centered
+      bottom-6
+      z-20
+      h-9
+      p-1
+      rounded-full
+      flex
+      justify-center
+      items-center
+      bg-gray-800
+    "
+  >
     <button class="w-7 h-7 flex justify-center items-center">
       <HIcon name="previous" class="text-primary" />
     </button>
-    <button class="w-7 h-7 flex justify-center items-center mx-3">
+    <button class="w-7 h-7 flex justify-center items-center mx-3" @click="play">
       <HIcon :name="isPlayer" class="text-secondary" />
-      </button>
-    <button class="w-7 h-7 flex justify-center items-center" @click="getSong">
-      <HIcon name="next" class="text-primary"  />
     </button>
-    <audio :src="selectedSong.image" onended="nextSong" />
+    <button class="w-7 h-7 flex justify-center items-center">
+      <HIcon name="next" class="text-primary" />
+    </button>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import HIcon from './HIcon.vue';
+import { mapActions, mapGetters } from "vuex";
+import HIcon from "./HIcon.vue";
 
 export default {
   components: {
-    HIcon
+    HIcon,
   },
   data: () => ({
-    selectedSong: {}
+    selectedSong: {},
   }),
   computed: {
-    ...mapGetters('music', ['getIndexPlaylist', 'isReady']),
+    ...mapGetters("music", ["getIndexPlaylist", "isPlaying", "isReady"]),
     isPlayer() {
-      return Object.keys(this.selectedSong).length ? 'play' : 'pause';
-    }
+      return Object.keys(this.selectedSong).length ? "play" : "pause";
+    },
   },
   methods: {
-    ...mapActions('music', ['fetchSongs', 'activePlayer']),
-    getSong() {
-      if(!Object.keys.length) {
-        this.selectedSong=this.getIndexPlaylist[0]
-        this.activePlayer(true)
-      }
-      else {
-        this.selectedSong={}
-        this.activePlayer(false)
-      }
+    ...mapActions("music", ["fetchSongs", "activePlayer", "playSong"]),
+    play() {
+      this.playSong();
     },
     nextSong() {
-      const index = this.getIndexPlaylist.findIndex((song) => song.id === this.selectedSong.id)
-      this.selectedSong = this.getIndexPlaylist[index + 1]
+      // const index = this.getIndexPlaylist.findIndex(
+      //   (song) => song.id === this.selectedSong.id
+      // );
+      // this.selectedSong = this.getIndexPlaylist[index + 1];
     },
     previousSong() {
-      const index = this.getIndexPlaylist.findIndex((song) => song.id === this.selectedSong.id)
-      this.selectedSong = this.getIndexPlaylist[index - 1]
-    }
-  }
-}
+      // const index = this.getIndexPlaylist.findIndex(
+      //   (song) => song.id === this.selectedSong.id
+      // );
+      // this.selectedSong = this.getIndexPlaylist[index - 1];
+    },
+  },
+};
 </script>
 
 
