@@ -152,22 +152,21 @@
             }"
             @click="addProductToCart"
           >
-            <p v-if="isProductAvailable" class="text-white">
+            <p v-if="isProductAvailable" class="text-white font-junegull">
               Agregar al carrito
             </p>
             <p v-else class="text-white">No hay más producto disponible</p>
           </button>
           <button
-            class="
-              w-full
-              p-2
-              rounded-full
-              bg-white
-              text-secondary
-              border border-secondary
-            "
+            class="w-full p-2 rounded-full bg-white border"
+            :class="{
+              'text-secondary border-secondary': isLiked,
+              'text-gray-400 border-gray-400': !isLiked,
+            }"
+            @click="like"
           >
-            Agregar a favoritos
+            <p v-if="isLiked" class="font-junegull">Agregar a mis Favoritos</p>
+            <p v-else class="font-junegull">Quitar de mis Favoritos</p>
           </button>
         </div>
         <p
@@ -244,6 +243,8 @@ export default {
   computed: {
     ...mapState("cart", ["cart"]),
     ...mapGetters("cart", ["getProduct", "getSuggestedProducts", "getCart"]),
+    ...mapGetters("likes", ["getWishList"]),
+    ...mapGetters("user", ["getUser"]),
     getParams() {
       return this.$route.params.id;
     },
@@ -255,6 +256,12 @@ export default {
         return true;
       }
       return this.getCart[idx].quantity < this.getCart[idx].stock;
+    },
+    isLiked() {
+      const id = this.getWishList.findIndex(
+        (pr) => pr.id === this.getProduct.id
+      );
+      return id === -1;
     },
   },
   watch: {
@@ -276,6 +283,7 @@ export default {
       "addToCart",
       "removeToCart",
     ]),
+    ...mapActions("likes", ["addToWishList", "removeFromWishList"]),
     getImage(image) {
       this.selectedImage = image;
     },
@@ -283,6 +291,19 @@ export default {
       const product = JSON.parse(JSON.stringify(this.getProduct));
       if (this.isProductAvailable) {
         this.addToCart(product);
+      }
+    },
+    like() {
+      if (this.getUser === null || this.getUser === undefined) {
+        this.$router.push("/SignIn");
+      } else {
+        if (this.isLiked) {
+          const product = JSON.parse(JSON.stringify(this.getProduct));
+          this.addToWishList(product);
+        } else {
+          const product = JSON.parse(JSON.stringify(this.getProduct));
+          this.removeFromWishList(product);
+        }
       }
     },
   },
