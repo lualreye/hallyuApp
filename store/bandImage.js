@@ -14,12 +14,16 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const state = () => ({
   bandImages: [],
+  bandImage: ""
 });
 
 const getters = {
   getBandImages(state) {
     return state.bandImages;
   },
+  getBandImage(state) {
+    return state.bandImage;
+  } 
 };
 
 const mutations = {
@@ -34,6 +38,11 @@ const mutations = {
     const imageId = state.bandImages.findIndex((image) => image.id === id);
     state.bandImages.splice(imageId, 1);
   },
+  SET_IMAGE(state) {
+    const random = Math.floor(Math.random() * state.bandImages.length);
+    console.log(state.bandImages[random].image)
+    state.bandImage = state.bandImages[random].image;
+  }
 };
 
 const actions = {
@@ -72,6 +81,7 @@ const actions = {
         images.push(bandImage);
       });
       commit("SET_BAND_IMAGES", images);
+      commit('SET_IMAGE')
     } catch (err) {
       console.error("CANNOT_GET_BAND_IMAGES", err);
     }

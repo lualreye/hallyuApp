@@ -2,7 +2,11 @@
   <div>
     <div class="w-full">
       <figure class="w-full h-60 mx-auto">
-        <img :src="image" class="mask h-60 object-cover w-full object-top">
+        <img
+          v-if="getBandImage.length"
+          :src="getBandImage"
+          class="mask h-60 object-cover w-full object-top"
+        />
       </figure>
       <nav class="w-full max-w-4xl mx-auto px-2 my-4">
         <ul
@@ -16,11 +20,12 @@
             py-4
           "
         >
-          <li class="flex-shrink-0 text-textColor font-junegull mr-6" @click="resetBand">
+          <li
+            class="flex-shrink-0 text-textColor font-junegull mr-6"
+            @click="resetBand"
+          >
             <nuxt-link to="/bands" class="relative">
-              <p class="text-textColor font-junegull relative z-10">
-                Todas
-              </p>
+              <p class="text-textColor font-junegull relative z-10">Todas</p>
               <span
                 class="
                   z-0
@@ -34,7 +39,7 @@
                   bottom-0
                   right-0
                 "
-                :class="{'opacity-0': !getIndex(), 'opacity-1': getIndex()}"
+                :class="{ 'opacity-0': !getIndex(), 'opacity-1': getIndex() }"
               ></span>
             </nuxt-link>
           </li>
@@ -61,7 +66,10 @@
                   bottom-0
                   right-0
                 "
-                :class="{'opacity-0': !getUrl(band.name), 'opacity-1': getUrl(band.name)}"
+                :class="{
+                  'opacity-0': !getUrl(band.name),
+                  'opacity-1': getUrl(band.name),
+                }"
               ></span>
             </nuxt-link>
           </li>
@@ -69,8 +77,17 @@
       </nav>
     </div>
     <div v-if="!getParams" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
-      <stack :column-min-width="228" :gutter-width="8" :gutter-height="24" monitor-images-loaded>
-        <stack-item v-for="(product, index) in getProductsWithBand" :key="index" class="flex justify-center">
+      <stack
+        :column-min-width="228"
+        :gutter-width="8"
+        :gutter-height="24"
+        monitor-images-loaded
+      >
+        <stack-item
+          v-for="(product, index) in getProductsWithBand"
+          :key="index"
+          class="flex justify-center"
+        >
           <product-card :product="product" />
         </stack-item>
       </stack>
@@ -83,64 +100,71 @@
 
 <script>
 import ProductCard from "@/components/cards/ProductCard.vue";
-import { Stack, StackItem } from 'vue-stack-grid'
+import { Stack, StackItem } from "vue-stack-grid";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
     ProductCard,
     Stack,
-    StackItem
+    StackItem,
   },
   data: () => ({
-    image: require('../static/images/bandbts.png'),
-    selectedBand: ''
+    image: require("../static/images/bandbts.png"),
+    selectedBand: "",
   }),
   computed: {
-    ...mapGetters("cart", ['getProductsByBand', 'getProductsWithBand']),
+    ...mapGetters("cart", ["getProductsByBand", "getProductsWithBand"]),
     ...mapGetters("bands", ["getBands"]),
+    ...mapGetters("bandImage", ["getBandImages", "getBandImage"]),
     getParams() {
-      if(this.$route.params === undefined) {
-        return false
+      if (this.$route.params === undefined) {
+        return false;
       } else {
-        return this.$route.params.id
+        return this.$route.params.id;
       }
-    }
+    },
   },
   mounted() {
-    if(this.$route.params.id === undefined) {
-      this.fetchProductsWithBand()
+    if (this.$route.params.id === undefined) {
+      this.fetchProductsWithBand();
     }
-    if(!this.getProductsByBand.length && this.$route.params === undefined) {
-      this.fetchProductsByBand()
+    if (!this.getProductsByBand.length && this.$route.params === undefined) {
+      this.fetchProductsByBand();
     }
-    if(!this.getBands.length) {
-      this.fetchBands()
+    if (!this.getBands.length) {
+      this.fetchBands();
+    }
+    if (!this.getBandImages.length) {
+      this.fetchBandImages();
     }
   },
   methods: {
-    ...mapActions('cart', ['fetchProductsByBand', 'fetchProductsWithBand']),
-    ...mapActions('bands', ["fetchBands"]),
+    ...mapActions("cart", ["fetchProductsByBand", "fetchProductsWithBand"]),
+    ...mapActions("bands", ["fetchBands"]),
+    ...mapActions("bandImage", ["fetchBandImages"]),
     selectBand(band) {
-      this.selectedBand = band
+      this.selectedBand = band;
     },
     resetBand() {
-      this.selectedBand = ""
+      this.selectedBand = "";
     },
     getUrl(route) {
-      return this.$route.params.id === route
+      return this.$route.params.id === route;
     },
     getIndex() {
-      return this.$route.params.id === undefined
+      return this.$route.params.id === undefined;
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
 .mask {
-  mask-image: url('../static/images/backgrounds/Union.svg');
+  mask-image: url("../static/images/backgrounds/Union.svg");
   mask-position: bottom;
+  mask-repeat: no-repeat;
+  mask-size: 100%;
 }
 .nuxt-exact-link {
   background-color: #ffc5fe;
