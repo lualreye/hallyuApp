@@ -105,13 +105,18 @@ export default {
     },
   },
   methods: {
-    ...mapActions("likes", ["addToWishList"]),
+    ...mapActions("likes", ["addToWishList", "removeFromWishList"]),
     like() {
       if (this.getUser === null || this.getUser === undefined) {
         this.$router.push("/SignIn");
       } else {
-        const product = JSON.parse(JSON.stringify(this.product));
-        this.addToWishList(product);
+        if (this.isLiked) {
+          const product = JSON.parse(JSON.stringify(this.product));
+          this.addToWishList(product);
+        } else {
+          const product = JSON.parse(JSON.stringify(this.product));
+          this.removeFromWishList(product);
+        }
       }
     },
     addToCart() {

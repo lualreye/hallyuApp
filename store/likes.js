@@ -18,7 +18,7 @@ export const getters = {
 export const mutations = {
   //generamos el cambio de estado en la visibilidad del carrito de compras
   ADD(state, product) {
-    state.product = product
+    state.wishList.push(product)
   },
   REMOVE(state, product) {
     const idx = state.wishList.findIndex(pr => pr.id === product.id)
@@ -51,16 +51,50 @@ export const actions = {
       snap.forEach(doc => uid = doc.id)
       const userRef = doc(db, 'users', uid)
       await updateDoc(userRef, {
-        liked: arrayUnion(payload)
+        liked: arrayUnion({
+          id: payload.id,
+          name: payload.name,
+          images: payload.images,
+          price: payload.price,
+          thumbnail: payload.thumbnail
+        })
       })
-      commit('ADD', payload)
+      commit('ADD', {
+        id: payload.id,
+        name: payload.name,
+        images: payload.images,
+        price: payload.price,
+        thumbnail: payload.thumbnail
+      })
     } catch(err) {
       console.error("CANNOT_ADD_TO_WISHLIST", err)
     }
   },
-  async removeFromWishList({ commit , payload}) {
+  async removeFromWishList({ commit , rootGetters}, payload) {
     try {
-      
+      const db = fireDataBase
+      console.log(payload)
+      const productRef = doc(collection(db, 'products'), payload.id)
+      await updateDoc(productRef, {
+        likes: decrement(1)
+      })
+      const id = rootGetters['user/getUser'].uid
+      const usersRef = collection(db, 'users')
+      const q = await query(usersRef, where("uid", "==", id))
+      const snap = await getDocs(q)
+      let uid
+      snap.forEach(doc => uid = doc.id)
+      const userRef = doc(db, 'users', uid)
+      await updateDoc(userRef, {
+        liked: arrayRemove({
+          id: payload.id,
+          name: payload.name,
+          images: payload.images,
+          price: payload.price,
+          thumbnail: payload.thumbnail
+        })
+      })
+      commit('REMOVE', payload)
     } catch(err) {
       console.error('CANNOT_REMOVE_FROM_WISHLIST', err)
     }
