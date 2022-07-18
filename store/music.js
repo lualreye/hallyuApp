@@ -87,6 +87,10 @@ const mutations = {
     state.heroSongs[songId].isPlaying = true;
   },
   START_PLAYER(state, payload) {
+    if(Object.keys(state.playing).length) {
+      state.playing.play.pause()
+      state.playing = {}
+    }
     state.readyToPlay = payload;
   },
   async PLAY_MUSIC(state) {
