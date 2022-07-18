@@ -110,8 +110,9 @@ export default {
       }
       if (this.isReady) {
         this.activePlayer(false);
+      } else {
+        this.activePlayer(true);
       }
-      this.activePlayer(true);
     },
     goToSearch() {
       this.$router.push("/products");
