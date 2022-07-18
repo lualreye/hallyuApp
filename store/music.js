@@ -36,7 +36,7 @@ const getters = {
   },
   getSong(state) {
     return state.playing;
-  }
+  },
 };
 
 const mutations = {

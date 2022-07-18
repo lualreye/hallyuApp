@@ -36,13 +36,15 @@ export default {
     HIcon,
   },
   data: () => ({
-    selectedSong: {},
+    isPlayer: "play",
   }),
   computed: {
-    ...mapGetters("music", ["getIndexPlaylist", "isPlaying", "isReady"]),
-    isPlayer() {
-      return Object.keys(this.selectedSong).length ? "play" : "pause";
-    },
+    ...mapGetters("music", [
+      "getIndexPlaylist",
+      "isPlaying",
+      "isReady",
+      "getSong",
+    ]),
   },
   methods: {
     ...mapActions("music", [
@@ -54,12 +56,28 @@ export default {
     ]),
     play() {
       this.playSong();
+      this.songIsPlaying();
     },
     next() {
-      this.nextSong();
+      if (!Object.keys(this.getSong).length) {
+        this.play();
+      } else {
+        this.nextSong();
+      }
     },
     previous() {
-      this.previousSong();
+      if (!Object.keys(this.getSong).length) {
+        this.play();
+      } else {
+        this.previousSong();
+      }
+    },
+    songIsPlaying() {
+      if (this.isPlayer === "play") {
+        this.isPlayer = "pause";
+      } else {
+        this.isPlayer = "play";
+      }
     },
   },
 };
