@@ -123,7 +123,6 @@ const mutations = {
         play: new Audio(state.indexPlaylist[0].image)
       }
     } else {
-      console.log('estamos en siguiente', next)
       state.playing = {
         name: state.indexPlaylist[next].name,
         play: new Audio(state.indexPlaylist[next].image)
@@ -145,10 +144,11 @@ const mutations = {
         play: new Audio(state.indexPlaylist[state.indexPlaylist.length - 1].image)
       }
       state.playing.play.play()
-    }
-    state.playing = {
-      name: state.indexPlaylist[state.indexPlaylist.length - 1].name,
-      play: new Audio(state.indexPlaylist[next].image)
+    } else {
+      state.playing = {
+        name: state.indexPlaylist[next].name,
+        play: new Audio(state.indexPlaylist[next].image)
+      }
     }
     state.playing.play.play()
   }
@@ -224,7 +224,6 @@ const actions = {
     commit('NEXT_SONG')
   },
   previousSong({ commit }) {
-    console.log('Estamos retrocediendo')
     commit('PREVIOUS_SONG')
   }
 };

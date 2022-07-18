@@ -15,13 +15,13 @@
       bg-gray-800
     "
   >
-    <button class="w-7 h-7 flex justify-center items-center">
+    <button class="w-7 h-7 flex justify-center items-center" @click="previous">
       <HIcon name="previous" class="text-primary" />
     </button>
     <button class="w-7 h-7 flex justify-center items-center mx-3" @click="play">
       <HIcon :name="isPlayer" class="text-secondary" />
     </button>
-    <button class="w-7 h-7 flex justify-center items-center" @click="nextSong">
+    <button class="w-7 h-7 flex justify-center items-center" @click="next">
       <HIcon name="next" class="text-primary" />
     </button>
   </div>
