@@ -21,7 +21,7 @@
     <button class="w-7 h-7 flex justify-center items-center mx-3" @click="play">
       <HIcon :name="isPlayer" class="text-secondary" />
     </button>
-    <button class="w-7 h-7 flex justify-center items-center">
+    <button class="w-7 h-7 flex justify-center items-center" @click="nextSong">
       <HIcon name="next" class="text-primary" />
     </button>
   </div>
@@ -45,7 +45,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions("music", ["fetchSongs", "activePlayer", "playSong"]),
+    ...mapActions("music", [
+      "fetchSongs",
+      "activePlayer",
+      "playSong",
+      "nextSong",
+      "previousSong",
+    ]),
     play() {
       this.playSong();
     },

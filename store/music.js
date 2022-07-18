@@ -97,7 +97,6 @@ const mutations = {
         name: state.indexPlaylist[0].name,
         play: new Audio(state.indexPlaylist[0].image)
       }
-      state.playing.play.play()
     }
     if(Object.keys(state.playing).length) {
       if (state.playing.play.paused) {
@@ -106,6 +105,43 @@ const mutations = {
         state.playing.play.pause()
       }
     }
+  },
+  NEXT_SONG(state) {
+    const idx = state.indexPlaylist.findIndex(song => song.isPlaying === true)
+    const next = idx + 1
+    console.log(next)
+    state.indexPlaylist.forEach(song => song.isPlaying = false)
+    if (next >= state.indexPlaylist.length) {
+      state.indexPlaylist[0].isPlaying = true
+        state.playing = {
+          name: state.indexPlaylist[0].name,
+          play: new Audio(state.indexPlaylist[0].image)
+        }
+        state.playing.play.play()
+    }
+    state.playing = {
+      name: state.indexPlaylist[state.indexPlaylist.length - 1].name,
+      play: new Audio(state.indexPlaylist[next].image)
+    }
+    state.playing.play.play()
+  },
+  PREVIOUS_SONG(state) {
+    const idx = state.indexPlaylist.findIndex(song => song.isPlaying === true)
+    const next = idx + 1
+    state.indexPlaylist.forEach(song => song.isPlaying = false)
+    if (next <= 0) {
+      state.indexPlaylist[state.indexPlaylist.length - 1].isPlaying = true
+      state.playing = {
+        name: state.indexPlaylist[state.indexPlaylist.length - 1].name,
+        play: new Audio(state.indexPlaylist[state.indexPlaylist.length - 1].image)
+      }
+      state.playing.play.play()
+    }
+    state.playing = {
+      name: state.indexPlaylist[state.indexPlaylist.length - 1].name,
+      play: new Audio(state.indexPlaylist[next].image)
+    }
+    state.playing.play.play()
   }
 };
 
@@ -174,6 +210,14 @@ const actions = {
   },
   playSong({ commit }) {
     commit('PLAY_MUSIC')
+  },
+  nextSong({ commit }) {
+    console.log('Estamos avanzaando')
+    commit('NEXT_SONG')
+  },
+  previousSong({ commit }) {
+    console.log('Estamos retrocediendo')
+    commit('PREVIOUS_SONG')
   }
 };
 
