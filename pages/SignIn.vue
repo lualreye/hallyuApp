@@ -139,6 +139,12 @@
           >
             ¿Olvidaste tu contraseña?
           </nuxt-link>
+          <nuxt-link
+            to="/SignUp"
+            class="text-xs text-blue-600 underline font-md w-full mt-2"
+          >
+            ¿Aún no tienes cuenta?
+          </nuxt-link>
           <!-- INICIA SESION -->
           <button
             class="mt-6 px-3 py-2 rounded-xl shadow-lg border"

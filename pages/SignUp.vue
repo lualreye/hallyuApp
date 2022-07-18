@@ -238,6 +238,12 @@
               >
             </p>
           </div>
+          <nuxt-link
+            to="/SignIn"
+            class="text-xs text-blue-600 underline font-md w-full"
+          >
+            ¿Tienes cuenta?
+          </nuxt-link>
           <!-- INICIA SESION -->
           <button
             class="mt-2 px-3 py-2 rounded-xl text-lightPink border shadow-lg"
