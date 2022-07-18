@@ -40,7 +40,6 @@ const mutations = {
   },
   SET_IMAGE(state) {
     const random = Math.floor(Math.random() * state.bandImages.length);
-    console.log(state.bandImages[random].image)
     state.bandImage = state.bandImages[random].image;
   }
 };
@@ -89,7 +88,6 @@ const actions = {
   async deleteBandImage({ commit }, payload) {
     try {
       const db = fireDataBase;
-      console.log(payload)
       await deleteDoc(doc(db, "bandImages", payload));
       commit("DELETE_BAND_IMAGE", payload);
     } catch (err) {

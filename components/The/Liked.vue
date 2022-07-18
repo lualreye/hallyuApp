@@ -57,7 +57,7 @@
           py-2
         "
       >
-        <ul class="w-full flex flex-col justify-start items-center">
+        <ul class="w-full flex flex-col justify-start items-center pb-12">
           <li v-for="(item, i) in getWishList" :key="i" class="w-full">
             <liked-product :product="item" />
           </li>

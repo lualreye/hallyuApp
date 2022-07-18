@@ -18,7 +18,10 @@ export const getters = {
 export const mutations = {
   //generamos el cambio de estado en la visibilidad del carrito de compras
   ADD(state, product) {
-    state.wishList.push(product)
+    const idx = state.wishList.findIndex(pr => pr.id === product.id)
+    if (idx === -1) {
+      state.wishList.push(product)
+    }
   },
   REMOVE(state, product) {
     const idx = state.wishList.findIndex(pr => pr.id === product.id)

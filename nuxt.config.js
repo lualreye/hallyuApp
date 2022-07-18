@@ -61,15 +61,4 @@ export default {
   router: {
     middleware: 'adminAuth',
   },
-
-  generate: {
-    routes() {
-      return axios.get('https://hallyustore.ec/products').then(res => {
-        return res.data.map(product => {
-          console.log(product)
-          return '/products/' + product.id
-        })
-      })
-    }
-  }
 };

@@ -55,7 +55,7 @@ export default {
   methods: {
     ...mapActions("likes", ["removeFromWishList"]),
     removeLikedProduct() {
-      console.log(this.product.id);
+      this.removeFromWishList(this.product);
     },
   },
 };
