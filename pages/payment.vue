@@ -264,7 +264,11 @@
                 "
               >
                 <ul class="w-full flex flex-col justify-start items-center">
-                  <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
+                  <li
+                    v-for="(item, i) in getCart"
+                    :key="i"
+                    class="w-full mb-6 mt-12"
+                  >
                     <cart-card :product="item" />
                   </li>
                 </ul>
@@ -347,6 +351,36 @@ export default {
   },
   computed: {
     ...mapGetters("cart", ["getCart"]),
+    totalBeforeDiscount() {
+      if (!this.getCart.length) {
+        return 0;
+      } else {
+        const allPrices = this.getCart.map((pr) => pr.quantity * pr.price);
+        const sum = allPrices.reduce((a, b) => a + b, 0);
+        return sum;
+      }
+    },
+    discount() {
+      if (!this.getCart.length) {
+        return 0;
+      }
+      const allDiscount = this.getCart.map((pr) => {
+        if (pr.offered === "Descuento") {
+          return pr.quantity * pr.price * (pr.offer / 100);
+        }
+        return 0;
+      });
+      const sum = allDiscount.reduce((a, b) => a + b, 0);
+      return sum;
+    },
+    totalToPay() {
+      return this.totalBeforeDiscount - this.discount;
+    },
+  },
+  mounted() {
+    if (!Object.keys(this.getCart).length) {
+      this.$router.push("/");
+    }
   },
 };
 </script>
