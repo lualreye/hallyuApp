@@ -43,8 +43,8 @@
             <GlobalHIcon
               name="like"
               :class="{
-                'text-gray-300': !isLiked,
-                'text-secondary': isLiked,
+                'text-gray-300': isLiked,
+                'text-secondary': !isLiked,
               }"
             />
           </button>
@@ -96,16 +96,17 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    isLiked: false,
-  }),
   computed: {
     ...mapGetters("user", ["getUser"]),
+    ...mapGetters("likes", ["getWishList"]),
+    isLiked() {
+      const id = this.getWishList.findIndex((pr) => pr.id === this.product.id);
+      return id === -1;
+    },
   },
   methods: {
     ...mapActions("likes", ["addToWishList"]),
     like() {
-      console.log(this.getUser);
       if (this.getUser === null || this.getUser === undefined) {
         this.$router.push("/SignIn");
       } else {
