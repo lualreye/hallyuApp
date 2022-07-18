@@ -326,7 +326,7 @@ export const actions = {
       console.log(payload)
       const ref = collection(db, 'products');
       const productByBand = [];
-      const productQuery = query(ref, where('name', '<=', payload));
+      const productQuery = query(ref, where('name', '<=', payload + '\uf8ff'));
       const querySnapshot = await getDocs(productQuery);
       querySnapshot.forEach((pr) => {
         const id = pr.id;
