@@ -163,7 +163,7 @@ export default {
       } else {
         this.toPay(Number(this.totalToPay));
         this.closeCart();
-        this.$router.push("payment");
+        this.$router.push("/payment");
       }
     },
   },
