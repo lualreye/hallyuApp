@@ -43,7 +43,7 @@ export default {
       if (value === null || undefined) {
         return;
       }
-      if (value.role.costumer) {
+      if (value.role.userRol) {
         this.$router.push("/");
       }
       if (value.role.adminRole) {
