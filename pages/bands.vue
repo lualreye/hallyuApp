@@ -36,7 +36,7 @@
                   bg-pink-300
                   absolute
                   rounded-lg
-                  bottom-0
+                  bottom-1
                   right-0
                 "
                 :class="{ 'opacity-0': !getIndex(), 'opacity-1': getIndex() }"
@@ -63,7 +63,7 @@
                   bg-pink-300
                   absolute
                   rounded-lg
-                  bottom-0
+                  bottom-1
                   right-0
                 "
                 :class="{
