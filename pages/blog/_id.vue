@@ -1,6 +1,8 @@
 <template>
   <div class="mx-auto w-full max-w-screen-2xl py-4 px-5">
-    <div class="w-full flex justify-center lg:justify-start items-center h-14">
+    <div
+      class="w-full flex justify-center lg:justify-start items-center h-14 mb-6"
+    >
       <h2
         class="
           px-4
@@ -37,7 +39,9 @@
               </p>
             </div>
           </div>
-          <figure class="w-full h-80 max-w-xl flex justify-center items-center">
+          <figure
+            class="w-full h-80 max-w-xl flex justify-center items-center -mt-8"
+          >
             <img
               :src="getPost.image"
               :alt="getPost.title"
