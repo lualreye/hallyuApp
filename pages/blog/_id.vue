@@ -24,7 +24,7 @@
       v-if="Object.keys(getPost).length"
       class="flex flex-wrap justify-start items-center w-full"
     >
-      <div class="bg-lightPink px-3 py-6 w-full lg:w-3/5 rounded-3xl">
+      <div class="bg-lightPink px-3 py-6 w-full lg:w-3/5 rounded-3xl relative">
         <div class="w-full flex justify-start items-center">
           <div class="flex w-12 rotate-[270deg] justify-center items-center">
             <p class="text-xs font-open mr-2 text-hBlack">
@@ -50,6 +50,23 @@
           </figure>
         </div>
         <div class="w-full relative z-10">
+          <div class="absolute z-0 top-16 -right-16">
+            <svg
+              width="306"
+              height="306"
+              viewBox="0 0 306 306"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="153"
+                cy="153"
+                r="153"
+                transform="rotate(90 153 153)"
+                fill="#D4F1F0"
+              />
+            </svg>
+          </div>
           <div class="w-full flex justify-end">
             <div class="w-5 h-5 flex justify-center items-center">
               <svg
@@ -77,6 +94,7 @@
               text-center
               my-6
               text-textColor text-2xl
+              relative
             "
           >
             {{ getPost.title }}
@@ -101,9 +119,9 @@
               </svg>
             </div>
           </div>
-          <div v-html="getPost.body" class="text-textColor"></div>
+          <div v-html="getPost.body" class="text-textColor relative"></div>
           <div class="w-full">
-            <div class="w-full flex justify-start items-center">
+            <div class="w-full flex justify-start items-center mb-3">
               <p class="mr-2 font-junegull text-textColor">
                 {{ getPost.comments.length }}
               </p>
