@@ -57,13 +57,9 @@
       <div
         v-for="(post, i) in posts"
         :key="i"
-        class="flex relative justify-center items-center w-full"
+        class="flex justify-center items-center w-full mx-auto"
       >
-        <div
-          class="w-full absolute left-0 top-0 bottom-0 h-72 z-0 post-background"
-          :style="{ backgroundImage: 'url(' + bgImage + ')' }"
-        ></div>
-        <post-preview :post="post" class="relativce z-10" />
+        <post-preview :post="post" :idx="i + 1" class="relativce z-10" />
       </div>
     </div>
   </div>
