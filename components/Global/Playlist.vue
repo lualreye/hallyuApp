@@ -86,6 +86,6 @@ export default {
 
 <style>
 .centered {
-  right: calc(50% - 36px);
+  right: calc(50% - 54px);
 }
 </style>

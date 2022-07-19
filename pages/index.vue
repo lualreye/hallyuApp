@@ -66,7 +66,7 @@
     <the-blog
       v-if="arePosts"
       :posts="getPosts.slice(0, 3)"
-      class="max-w-screen-2xl mx-auto"
+      class="w-full mx-auto"
     />
     <the-line-decoration
       v-if="areQuotes"

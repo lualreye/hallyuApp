@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mt-16 px-4 py-6 mb-10">
+  <div class="w-full mt-16 py-6 mb-10">
     <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
     <div
       class="w-full flex flex-col justify-center lg:justify-start items-start"
@@ -9,6 +9,7 @@
       >
         <h2
           class="
+            px-4
             text-xl
             sm:text-4xl
             text-center
@@ -44,11 +45,11 @@
     <div
       class="
         flex
+        w-full
         justify-center
         mt-4
         py-6
-        lg:mt-8
-        lg:py-12
+        lg:mt-8 lg:py-12
         items-center
         flex-wrap
       "
@@ -56,17 +57,13 @@
       <div
         v-for="(post, i) in posts"
         :key="i"
-        class="flex justify-center items-center w-full"
+        class="flex relative justify-center items-center w-full"
       >
-        <post-preview
-          :title="post.title"
-          :abstract="post.description"
-          :authorName="post.userName"
-          :authorImage="post.userImage"
-          :thumbnail="post.image"
-          :id="post.id"
-          :date="post.date"
-        />
+        <div
+          class="w-full absolute left-0 top-0 bottom-0 h-72 z-0 post-background"
+          :style="{ backgroundImage: 'url(' + bgImage + ')' }"
+        ></div>
+        <post-preview :post="post" class="relativce z-10" />
       </div>
     </div>
   </div>
@@ -86,11 +83,19 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    bgImage: require("~/static/images/backgrounds/Union.svg"),
+  }),
 };
 </script>
 
 <style scoped>
 .parenthesis-two {
   transform: scaleX(-1);
+}
+.post-background {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 </style>
