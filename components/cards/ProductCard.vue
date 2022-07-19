@@ -9,7 +9,7 @@
           object-cover object-center
           rounded-3xl
           w-full
-          h-96
+          h-56
         "
       />
       <div
@@ -20,7 +20,7 @@
           right-0
           py-2
           w-full
-          h-96
+          h-56
           flex flex-col
           justify-between
         "
