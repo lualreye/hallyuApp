@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-background">
+  <div class="flex flex-col min-h-screen bg-background overflow-x-hidden">
     <TheHeader />
     <TheMenu />
     <TheCart />
