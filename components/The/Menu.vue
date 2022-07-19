@@ -8,6 +8,7 @@
       h-screen
       w-2/3
       md:w-1/3
+      max-w-md
       rounded-r-3xl
       shadow-md
       z-50
@@ -140,10 +141,10 @@ export default {
         link: "/bands",
         name: "Bandas",
       },
-      // {
-      //   link: "club",
-      //   name: "Club Hallyu",
-      // },
+      {
+        link: "/blog",
+        name: "Blog",
+      },
       {
         link: "/contacts",
         name: "Contáctanos",
