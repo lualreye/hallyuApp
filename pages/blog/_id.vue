@@ -1,7 +1,16 @@
 <template>
-  <div class="mx-auto w-full max-w-screen-2xl py-4 px-5">
+  <div class="mx-auto w-full max-w-screen-2xl py-4">
     <div
-      class="w-full flex justify-center lg:justify-start items-center h-14 mb-6"
+      class="
+        w-full
+        flex
+        justify-center
+        lg:justify-start
+        items-center
+        h-14
+        mb-6
+        px-5
+      "
     >
       <h2
         class="
@@ -22,9 +31,21 @@
     </div>
     <div
       v-if="Object.keys(getPost).length"
-      class="flex flex-wrap justify-start items-center w-full"
+      class="flex flex-wrap justify-start items-start w-full px-5"
     >
-      <div class="bg-lightPink px-3 py-6 w-full lg:w-3/5 rounded-3xl relative">
+      <div
+        class="
+          bg-lightPink
+          px-3
+          py-6
+          w-full
+          lg:w-3/5
+          mx-auto
+          max-w-3xl
+          rounded-3xl
+          relative
+        "
+      >
         <div class="w-full flex justify-start items-center">
           <div class="flex w-12 rotate-[270deg] justify-center items-center">
             <p class="text-xs font-open mr-2 text-hBlack">
@@ -40,7 +61,16 @@
             </div>
           </div>
           <figure
-            class="w-full h-80 max-w-xl flex justify-center items-center -mt-8"
+            class="
+              w-full
+              h-80
+              max-w-xl
+              flex
+              justify-center
+              items-center
+              -mt-8
+              mb-10
+            "
           >
             <img
               :src="getPost.image"
@@ -49,7 +79,7 @@
             />
           </figure>
         </div>
-        <div class="w-full relative z-10">
+        <div class="w-full relative max-w-xl mx-auto z-10">
           <div class="absolute z-0 top-16 -right-16">
             <svg
               width="306"
@@ -237,7 +267,133 @@
           </div>
         </div>
       </div>
-      <div class="w-full lg:w-2/5"></div>
+      <div
+        v-if="getPosts.length"
+        class="w-full lg:w-2/5 px-10 py-3 mt-10 relative"
+      >
+        <p class="text-textColor font-junegull text-lg">
+          También te puede interesar
+        </p>
+        <div class="absolute -bottom-10 left-0 z-0">
+          <svg
+            width="83"
+            height="83"
+            viewBox="0 0 165 165"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="82.5"
+              cy="82.5"
+              r="82.5"
+              transform="rotate(90 82.5 82.5)"
+              fill="#FF98C9"
+            />
+          </svg>
+        </div>
+        <div class="absolute top-0 right-0 z-0">
+          <svg
+            width="104"
+            height="203"
+            viewBox="0 0 208 407"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="203.5" cy="203.5" r="203.5" fill="#87C7C9" />
+          </svg>
+        </div>
+        <div
+          class="
+            w-full
+            sm:w-1/2
+            lg:w-full
+            flex
+            justify-start
+            md:justify-center
+            lg:justify-start
+            mt-6
+            mx-auto
+          "
+        >
+          <nuxt-link
+            :to="`/blog/${firstPost.id}`"
+            class="bg-secondary rounded-3xl w-60 h-80 relative"
+          >
+            <figure
+              class="w-60 h-80 flex justify-center items-center -mt-3 -mr-3"
+            >
+              <img
+                :src="firstPost.image"
+                :alt="firstPost.title"
+                class="w-60 h-80 rounded-3xl object-cover"
+              />
+            </figure>
+            <p
+              class="
+                absolute
+                bottom-4
+                -left-3
+                text-text-textColor
+                font-open
+                text-white text-xs
+                rounded-lg
+                font-medium
+                px-1
+                py-1
+                bg-primary
+              "
+            >
+              {{ firstPost.title.toUpperCase() }}
+            </p>
+          </nuxt-link>
+        </div>
+        <div
+          class="
+            w-full
+            sm:w-1/2
+            lg:w-full
+            flex
+            justify-end
+            m
+            md:justify-center
+            lg:justify-end
+            mt-6
+            mx-auto
+          "
+        >
+          <nuxt-link
+            :to="`/blog/${secondPost.id}`"
+            class="bg-secondary rounded-3xl w-60 h-80 relative"
+          >
+            <figure
+              class="w-60 h-80 flex justify-center items-center -mt-3 -mr-3"
+            >
+              <img
+                :src="secondPost.image"
+                :alt="secondPost.title"
+                class="w-60 h-80 rounded-3xl object-cover"
+              />
+            </figure>
+            <p
+              class="
+                absolute
+                bottom-4
+                -left-3
+                text-text-textColor
+                font-open
+                text-white text-xs
+                rounded-lg
+                font-medium
+                px-1
+                py-1
+                bg-primary
+              "
+            >
+              {{ secondPost.title.toUpperCase() }}
+            </p>
+          </nuxt-link>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -256,7 +412,7 @@ export default {
     comentario: "",
   }),
   computed: {
-    ...mapGetters("blog", ["getPost"]),
+    ...mapGetters("blog", ["getPost", "getPosts"]),
     ...mapGetters("user", ["getUser"]),
     getParams() {
       return this.$route.params.id;
@@ -275,13 +431,25 @@ export default {
         return;
       }
     },
+    firstPost() {
+      const random = Math.floor(Math.random() * this.getPosts.length);
+      console.log(random);
+      return this.getPosts[random];
+    },
+    secondPost() {
+      const random = Math.floor(Math.random() * this.getPosts.length);
+      return this.getPosts[random];
+    },
   },
   mounted() {
     this.fetchPost(this.$route.params.id);
+    if (!this.getPosts.length) {
+      this.fetchPosts();
+    }
     // this.fetchSuggestedProducts();
   },
   methods: {
-    ...mapActions("blog", ["fetchPost", "addComment"]),
+    ...mapActions("blog", ["fetchPosts", "fetchPost", "addComment"]),
     toAuthenticate() {
       this.$router.push("/signIn");
     },
