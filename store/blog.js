@@ -7,7 +7,8 @@ import {
   deleteDoc,
   updateDoc,
   where,
-  query
+  query,
+  arrayUnion
 } from "firebase/firestore";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 
@@ -60,6 +61,10 @@ const mutations = {
   },
   ADD_POST(state, post) {
     state.post = post
+  },
+  ADD_COMMENT(state, comment) {
+    console.log(comment)
+    state.post.comments.push({...comment})
   }
 };
 
@@ -171,6 +176,20 @@ const actions = {
       commit('ADD_POST', post);
     } catch (err) {
       console.error('CANNOT_GET_POST', err);
+    }
+  },
+  async addComment({ commit, getters }, payload) {
+    try {
+      const db = fireDataBase
+      console.log({...payload})
+      const postId = getters.getPost.id
+      const postRef = doc(db, 'posts', postId)
+      await updateDoc(postRef, {
+        comments: arrayUnion({...payload})
+      })
+      commit('ADD_COMMENT', {...payload})
+    } catch (err) {
+      console.error('CANNOT_ADD_COMMENT', err)
     }
   }
 };

@@ -18,8 +18,11 @@
         <eight-type />
       </div>
     </div>
-    <div class="flex flex-wrap justify-start items-center w-full">
-      <div class="bg-lightPink p-3 w-full lg:w-3/5 rounded-3xl">
+    <div
+      v-if="Object.keys(getPost).length"
+      class="flex flex-wrap justify-start items-center w-full"
+    >
+      <div class="bg-lightPink px-3 py-6 w-full lg:w-3/5 rounded-3xl">
         <div class="w-full flex justify-start items-center">
           <div class="flex w-12 rotate-[270deg] justify-center items-center">
             <p class="text-xs font-open mr-2 text-hBlack">
@@ -95,6 +98,121 @@
             </div>
           </div>
           <div v-html="getPost.body" class="text-textColor"></div>
+          <div class="w-full">
+            <div class="w-full flex justify-start items-center">
+              <p class="mr-2 font-junegull text-textColor">
+                {{ getPost.comments.length }}
+              </p>
+              <p class="text-textColor font-junegull">Comentarios</p>
+            </div>
+            <div class="w-full flex justify-center items-center mb-3">
+              <button
+                v-if="getUser === null || getUser === undefined"
+                class="
+                  h-9
+                  w-full
+                  border border-primary
+                  text-textColor
+                  font-open
+                  text-left
+                  px-2
+                  py-1
+                  rounded-3xl
+                  flex
+                  justify-start
+                  items-center
+                "
+                @click="toAuthenticate"
+              >
+                <div
+                  class="
+                    w-6
+                    h-6
+                    bg-primary
+                    rounded-full
+                    flex
+                    justify-center
+                    items-center
+                    mr-2
+                  "
+                >
+                  <GlobalHIcon name="userAccount" class="text-white" />
+                </div>
+                <p class="text-textColor text-xs">
+                  Escríbenos lo que piensas...
+                </p>
+              </button>
+              <div v-else class="w-full flex flex-col items-start">
+                <div
+                  class="
+                    w-full
+                    flex
+                    justify-start
+                    items-center
+                    border border-aquamarine
+                    rounded-3xl
+                    bg-transparent
+                  "
+                >
+                  <div class="w-10 mr-3">
+                    <GlobalIconButton
+                      v-if="!user"
+                      iconName="userAccount"
+                      class="bg-primary p-1 ml-1"
+                    />
+                    <button
+                      v-else
+                      class="w-10 h-10 rounded-full bg-primary ml-1"
+                      @click="activeProfile"
+                    >
+                      <img
+                        :src="getUser.image"
+                        :alt="getUser.name"
+                        referrerpolicy="no-referrer"
+                        class="rounded-full w-10 h-10 object-cover"
+                      />
+                    </button>
+                  </div>
+                  <textarea
+                    v-model="comment"
+                    class="
+                      w-full
+                      outline-none
+                      textarea
+                      border border-b-primary
+                      bg-lightPink
+                    "
+                  ></textarea>
+                </div>
+                <button
+                  class="
+                    rounded-lg
+                    shadow-md
+                    text-center
+                    font-junegull
+                    bg-primary
+                    text-textColor text-sm
+                    py-1
+                    px-2
+                    mt-3
+                  "
+                  @click="sendComment"
+                >
+                  Comentar
+                </button>
+              </div>
+            </div>
+            <div
+              v-if="getPost.comments.length"
+              class="w-full flex flex-col justify-center items-center"
+            >
+              <comment
+                v-for="(item, i) in getPost.comments"
+                :key="i"
+                :comment="item"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div class="w-full lg:w-2/5"></div>
@@ -105,15 +223,35 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import EightType from "~/components/parenthesis/EightType.vue";
+import Comment from "../../components/cards/Comment.vue";
 
 export default {
   components: {
     EightType,
+    Comment,
   },
+  data: () => ({
+    comentario: "",
+  }),
   computed: {
     ...mapGetters("blog", ["getPost"]),
+    ...mapGetters("user", ["getUser"]),
     getParams() {
       return this.$route.params.id;
+    },
+    user() {
+      if (this.getUser !== null) {
+        if (this.getUser.image !== "") {
+          this.userName = this.getUser.name;
+          this.userImage = this.getUser.image;
+          return true;
+        } else {
+          this.userName = this.getUser.name;
+          return false;
+        }
+      } else {
+        return;
+      }
     },
   },
   mounted() {
@@ -121,7 +259,22 @@ export default {
     // this.fetchSuggestedProducts();
   },
   methods: {
-    ...mapActions("blog", ["fetchPost"]),
+    ...mapActions("blog", ["fetchPost", "addComment"]),
+    toAuthenticate() {
+      this.$router.push("/signIn");
+    },
+    sendComment() {
+      const user = JSON.parse(JSON.stringify(this.getUser));
+      const comment = {
+        user: {
+          image: user.image,
+          name: user.name,
+        },
+        comment: this.comment,
+      };
+      this.addComment(comment);
+      this.comentario = "";
+    },
   },
 };
 </script>
@@ -132,6 +285,12 @@ export default {
 }
 .parenthesis-two {
   transform: scaleX(-1);
+}
+.textarea {
+  padding: 8px;
+  resize: none;
+  overflow: hidden;
+  font-size: 16px;
 }
 /* .shaking {
   background-color: rgb(236, 72, 153);
