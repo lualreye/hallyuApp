@@ -8,7 +8,7 @@
         justify-center
         lg:justify-start
         items-start
-        ml-4
+        pl-4
       "
     >
       <div
