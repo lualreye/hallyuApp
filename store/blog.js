@@ -5,7 +5,9 @@ import {
   doc,
   collection,
   deleteDoc,
-  updateDoc
+  updateDoc,
+  where,
+  query
 } from "firebase/firestore";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 
@@ -13,6 +15,7 @@ const state = () => ({
   posts: [],
   editingPost: {},
   isEditing: false,
+  post: {}
 });
 
 const getters = {
@@ -25,6 +28,9 @@ const getters = {
   getIsEditing(state) {
     return state.isEditing;
   },
+  getPost(state) {
+    return state.post
+  }
 };
 
 const mutations = {
@@ -52,6 +58,9 @@ const mutations = {
   SET_EDITING(state, boolean) {
     state.isEditing = boolean;
   },
+  ADD_POST(state, post) {
+    state.post = post
+  }
 };
 
 const actions = {
@@ -149,6 +158,21 @@ const actions = {
   showEditing({ commit }, payload) {
     commit("SET_EDITING", payload);
   },
+  async fetchPost({ commit }, payload) {
+    const db = fireDataBase;
+    try {
+      const ref = collection(db, 'posts');
+      const postQuery = query(ref, where('id', '==', payload));
+      const postSnapshot = await getDocs(postQuery);
+      let post = {};
+      postSnapshot.forEach((pr) => {
+        post = pr.data();
+      });
+      commit('ADD_POST', post);
+    } catch (err) {
+      console.error('CANNOT_GET_POST', err);
+    }
+  }
 };
 
 export { state, getters, mutations, actions };

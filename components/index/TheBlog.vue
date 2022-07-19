@@ -57,7 +57,7 @@
       <div
         v-for="(post, i) in posts"
         :key="i"
-        class="flex justify-center items-center w-full mx-auto"
+        class="flex flex-wrap justify-center items-center w-full mx-auto"
       >
         <post-preview :post="post" :idx="i + 1" class="relativce z-10" />
       </div>
@@ -88,10 +88,5 @@ export default {
 <style scoped>
 .parenthesis-two {
   transform: scaleX(-1);
-}
-.post-background {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 </style>

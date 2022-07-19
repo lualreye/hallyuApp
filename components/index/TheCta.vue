@@ -114,9 +114,6 @@ export default {
   data: () => ({
     bgImage: require("~/static/images/backgrounds/Doodle.svg"),
   }),
-  computed: {
-    ...mapGetters("user", ["showModal"]),
-  },
   methods: {
     ...mapActions("user", ["activeSignIn", "activeSignUp", "showModal"]),
     toSignUp() {
