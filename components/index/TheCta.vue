@@ -77,7 +77,7 @@
                 font-open
               "
             >
-              Obtén beneficios en tu primera compar
+              Obtén beneficios en tu primera compra
             </p>
             <div class="mx-auto w-44 justify-center items-center">
               <GlobalHButton

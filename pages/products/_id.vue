@@ -149,6 +149,7 @@
             :class="{
               'bg-gray-400': !isProductAvailable,
               'bg-secondary': isProductAvailable,
+              shaking: productAdded,
             }"
             @click="addProductToCart"
           >
@@ -162,6 +163,7 @@
             :class="{
               'text-secondary border-secondary': isLiked,
               'text-gray-400 border-gray-400': !isLiked,
+              shaking: productLiked,
             }"
             @click="like"
           >
@@ -239,6 +241,8 @@ export default {
     selectedImage: "",
     read: true,
     rate: 4,
+    productAdded: false,
+    productLiked: false,
   }),
   computed: {
     ...mapState("cart", ["cart"]),
@@ -288,12 +292,14 @@ export default {
       this.selectedImage = image;
     },
     addProductToCart() {
+      this.buttonInteraction();
       const product = JSON.parse(JSON.stringify(this.getProduct));
       if (this.isProductAvailable) {
         this.addToCart(product);
       }
     },
     like() {
+      this.secondButtonInteraction();
       if (this.getUser === null || this.getUser === undefined) {
         this.$router.push("/SignIn");
       } else {
@@ -306,6 +312,38 @@ export default {
         }
       }
     },
+    buttonInteraction() {
+      this.productAdded = true;
+      setTimeout(() => {
+        this.productAdded = false;
+      }, 300);
+    },
+    secondButtonInteraction() {
+      this.productLiked = true;
+      setTimeout(() => {
+        this.productLiked = false;
+      }, 300);
+    },
   },
 };
 </script>
+
+<style scoped>
+.shaking {
+  background-color: rgb(236, 72, 153);
+  color: white;
+  animation: shake 300ms ease-in-out infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
+}
+</style>

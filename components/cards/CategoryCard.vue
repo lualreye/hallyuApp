@@ -6,7 +6,10 @@
       'rotated-2': !isEven,
     }"
   >
-    <nuxt-link :to="`/categories/${categoryName}`" class="relative rounded-xl flex justify-center items-center">
+    <nuxt-link
+      :to="`/categories/${categoryName}`"
+      class="relative rounded-xl flex justify-center items-center"
+    >
       <div class="bg-secondary w-48 h-48 rounded-xl">
         <figure
           class="
@@ -23,7 +26,11 @@
             items-center
           "
         >
-          <img :src="image" :alt="categoryName" class="rounded-xl w-full h-48 object-cover object-center" />
+          <img
+            :src="image"
+            :alt="categoryName"
+            class="rounded-xl w-full h-48 object-cover object-center"
+          />
           <div
             id="image-hover"
             class="
@@ -42,11 +49,26 @@
               opacity-30
               rounded-xl
             "
-          >
-          </div>
+          ></div>
         </figure>
-        <p class="text-white bg-aquamarine rounded-full py-1 text-xl font-open font-bold text-center shadow-xl relative -bottom-40 z-20 mx-auto px-3">
-          {{ categoryName.split(' ').shift() }}
+        <p
+          class="
+            text-white
+            bg-aquamarine
+            rounded-full
+            py-1
+            text-xl
+            font-open font-bold
+            text-center
+            shadow-xl
+            relative
+            -bottom-40
+            z-20
+            mx-auto
+            px-3
+          "
+        >
+          {{ categoryName.split(" ").shift().toUpperCase() }}
         </p>
       </div>
     </nuxt-link>
