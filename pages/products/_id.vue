@@ -104,7 +104,14 @@
           <p class="text-textColor text-lg font-open text-left">
             {{ getProduct.name }}
           </p>
-          <GlobalHeartRate :read="read" :rating="rate" class="flex-start" />
+          <div class="flex justify-start items-center">
+            <div class="w-5 h-5 flex justify-center items-center">
+              <GlobalHIcon name="like" class="text-secondary" />
+            </div>
+            <p class="text-textColor font-open font-semibold">
+              {{ getProduct.likes }}
+            </p>
+          </div>
           <p class="text-textColor text-4xl font-junegull text-left mt-3 mb-4">
             $ {{ getProduct.price }}
           </p>
@@ -240,7 +247,7 @@ export default {
   data: () => ({
     selectedImage: "",
     read: true,
-    rate: 4,
+    rate: 1,
     productAdded: false,
     productLiked: false,
   }),
