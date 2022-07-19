@@ -2,7 +2,14 @@
   <div class="w-full mt-16 py-6 mb-10">
     <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
     <div
-      class="w-full flex flex-col justify-center lg:justify-start items-start"
+      class="
+        w-full
+        flex flex-col
+        justify-center
+        lg:justify-start
+        items-start
+        ml-4
+      "
     >
       <div
         class="w-full flex justify-center lg:justify-start items-center h-14"
