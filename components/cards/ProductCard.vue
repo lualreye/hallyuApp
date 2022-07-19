@@ -37,6 +37,7 @@
               flex
               justify-center
               items-center
+              relative
             "
             @click="like"
           >
@@ -47,6 +48,24 @@
                 'text-secondary': !isLiked,
               }"
             />
+            <div
+              class="
+                w-8
+                h-8
+                absolute
+                top-0
+                left-0
+                bottom-0
+                right-0
+                flex
+                justify-center
+                items-center
+              "
+              v-show="productLiked"
+              :class="{ grow: productLiked }"
+            >
+              <GlobalHIcon name="like" class="text-secondary" />
+            </div>
           </button>
         </div>
         <nuxt-link :to="`/products/${product.id}`" class="flex-grow" />
@@ -96,6 +115,9 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    productLiked: false,
+  }),
   computed: {
     ...mapGetters("user", ["getUser"]),
     ...mapGetters("likes", ["getWishList"]),
@@ -107,6 +129,7 @@ export default {
   methods: {
     ...mapActions("likes", ["addToWishList", "removeFromWishList"]),
     like() {
+      this.liking();
       if (this.getUser === null || this.getUser === undefined) {
         this.$router.push("/SignIn");
       } else {
@@ -122,6 +145,12 @@ export default {
     addToCart() {
       console.log("Estamos yendo al carrito");
     },
+    liking() {
+      this.productLiked = true;
+      setTimeout(() => {
+        this.productLiked = false;
+      }, 700);
+    },
   },
 };
 </script>
@@ -135,5 +164,24 @@ export default {
 .price-shadow {
   -webkit-box-shadow: 0px 0px 10px -2px #c4c4c4;
   box-shadow: 0px 0px 10px -2px #c4c4c4;
+}
+.grow {
+  color: white;
+  animation: growing 700ms ease-in infinite;
+}
+
+@keyframes growing {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(200%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
 }
 </style>
