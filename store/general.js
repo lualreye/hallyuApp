@@ -16,6 +16,8 @@ const state = () => ({
   heroImages: [],
   heroSongs: [],
   selectedHero: '',
+  greetings: '',
+  communityGreeting: ''
 });
 
 const getters = {
@@ -28,6 +30,12 @@ const getters = {
   getHero(state) {
     return state.selectedHero;
   },
+  getGreetings(state) {
+    return state.greetings;
+  },
+  getCommunityGreeting(state) {
+    return state.communityGreeting;
+  }
 };
 
 const mutations = {
@@ -56,6 +64,13 @@ const mutations = {
   SET_SELECTED_HERO(state, payload) {
     state.selectedHero = payload;
   },
+  SET_GREETING(state, greetings) {
+    state.greetings = ""
+    state.greetings = greeting
+  },
+  SET_COMMUNITY_GREETING(state, greetings) {
+    state.communityGreeting = greetings
+  }
 };
 
 const actions = {
@@ -159,6 +174,30 @@ const actions = {
   selectHero({ commit }, payload) {
     commit('SET_SELECTED_HERO', payload);
   },
+  async uploadGreetings({ commit }, payload) {
+    try {
+      const db = fireDataBase
+      const ref = doc(db, 'greetings', 'mIuR9T3Lz1xLpH9eeTGP')
+      await updateDoc(ref, {
+        "greetings": payload 
+      })
+      commit('SET_GREETING', payload)
+    } catch(err) {
+      console.error('CANNOT_ADD_GREETINGS', err)
+    }
+  },
+  async uploadCommunityQuote({ commit }, payload) {
+    try {
+      const db = fireDataBase
+      const ref = doc(db, 'communityQuote', '23YedEECc5AiupFpWwEn')
+      await updateDoc(ref, {
+        "greetings": payload 
+      })
+      commit('SET_COMMUNITY_GREETING', payload)
+    } catch(err) {
+      console.error('CANNOT_ADD_GREETINGS', err)
+    }
+  }
 };
 
 export { state, getters, mutations, actions };

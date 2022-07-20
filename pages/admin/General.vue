@@ -8,6 +8,8 @@
     <GeneralHallyuFans />
     <GeneralIndexQuotes />
     <GeneralBands />
+    <GeneralHeroQuote />
+    <GeneralCommunityQuote />
   </div>
 </template>
 
