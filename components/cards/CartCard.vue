@@ -31,7 +31,7 @@
               <HIcon name="minus" class="text-primary" />
             </button>
             <span
-              class="mx-2 border text-textColor border-aquamarine rounded-lg"
+              class="mx-2 border text-textColor border-primary px-2 rounded-xl"
               >{{ product.quantity }}</span
             >
             <button

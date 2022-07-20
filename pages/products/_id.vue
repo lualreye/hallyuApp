@@ -151,6 +151,12 @@
           </p>
         </div>
         <div class="w-full lg:w-5/6 flex flex-col justify-center items-start">
+          <div class="flex justify-center items-center mb-2">
+            <p class="mr-2 text-textColor font-medium">Cantidad:</p>
+            <span class="border-2 border-primary rounded-3xl px-3"
+              >{{ getQuantity }}
+            </span>
+          </div>
           <button
             class="mb-3 w-full p-2 rounded-full text-white"
             :class="{
@@ -267,6 +273,15 @@ export default {
         return true;
       }
       return this.getCart[idx].quantity < this.getCart[idx].stock;
+    },
+    getQuantity() {
+      const idx = this.getCart.findIndex(
+        (pr) => pr.id === this.$route.params.id
+      );
+      if (idx === -1) {
+        return 0;
+      }
+      return this.getCart[idx].quantity;
     },
     isLiked() {
       const id = this.getWishList.findIndex(

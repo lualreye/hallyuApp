@@ -143,7 +143,7 @@ export default {
       }
     },
     addToCart() {
-      console.log("Estamos yendo al carrito");
+      this.$router.push(`/products/${this.product.id}`);
     },
     liking() {
       this.productLiked = true;
