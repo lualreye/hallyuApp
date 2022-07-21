@@ -131,6 +131,24 @@
       v-if="Object.keys(getClub).length"
       class="w-full flex flex-col items-start mt-4"
     >
+      <div class="flex justify-center items-center mt-3">
+        <p class="text-textColor font-medium mr-3">Opcion 1:</p>
+        <span class="px-2 py-1 bg-primary rounded-md">{{
+          getClub.option
+        }}</span>
+      </div>
+      <div class="flex justify-center items-center mt-3">
+        <p class="text-textColor font-medium mr-3">Opcion 2:</p>
+        <span class="px-2 py-1 bg-primary rounded-md">{{
+          getClub.option1
+        }}</span>
+      </div>
+      <div class="flex justify-center items-center mt-3 mb-4">
+        <p class="text-textColor font-medium mr-3">Opcion 3:</p>
+        <span class="px-2 py-1 bg-primary rounded-md">{{
+          getClub.option2
+        }}</span>
+      </div>
       <div
         v-for="(video, index) in getClub.videos"
         :key="index"
@@ -159,8 +177,11 @@
     </div>
     <button
       class="w-40 flex justify-center items-center rounded-lg py-2 mt-2"
-      :class="{ 'bg-primary': !isThereVideo, 'bg-gray-400': isThereVideo }"
-      :disabled="isThereVideo"
+      :class="{
+        'bg-primary': !isThereVideo || pointChanged,
+        'bg-gray-400': isThereVideo && !pointChanged,
+      }"
+      :disabled="isThereVideo && !pointChanged"
       @click="uploadVideo"
     >
       <p class="text-textColor font-open">Guardar y Publicar</p>
@@ -195,22 +216,19 @@ export default {
     isThereVideo() {
       return this.heroVideo.object === null ? true : false;
     },
+    pointChanged() {
+      return (
+        (Number(this.optionA) !== this.getClub.option &&
+          Number(this.optionA) !== 0) ||
+        (Number(this.optionB) !== this.getClub.option1 &&
+          Number(this.optionB) !== 0) ||
+        (Number(this.optionC) !== this.getClub.option2 &&
+          Number(this.optionC) !== 0)
+      );
+    },
     getMusicIcon() {
       return this.state === true ? "pause" : "play";
     },
-  },
-  watch: {
-    getClub(value) {
-      if (Object.keys(value).length) {
-        const club = JSON.parse(JSON.stringify(value));
-        this.optionA = club.option;
-        this.optionB = club.option1;
-        this.optionC = club.option2;
-        this.heroVideos = club.videos;
-      }
-    },
-    deep: true,
-    immediate: true,
   },
   mounted() {
     if (!Object.keys(this.getClub).length) {
@@ -230,17 +248,28 @@ export default {
       const optionA = Number(this.optionA);
       const optionB = Number(this.optionB);
       const optionC = Number(this.optionC);
-      const video = this.heroVideo.object;
-      const name = this.heroVideo.videoName;
-      this.uploadClub({
-        option: optionA,
-        option1: optionB,
-        option2: optionC,
-        video: {
-          name: name,
-          image: video,
-        },
-      });
+      let video;
+      let name;
+      if (this.heroVideo.object !== null && this.heroVideo.videoName.length) {
+        video = this.heroVideo.object;
+        name = this.heroVideo.videoName;
+        this.uploadClub({
+          option: optionA,
+          option1: optionB,
+          option2: optionC,
+          video: {
+            name: name,
+            image: video,
+          },
+        });
+      } else {
+        this.uploadClub({
+          option: optionA,
+          option1: optionB,
+          option2: optionC,
+          video: {},
+        });
+      }
       this.resetVideo();
     },
     resetVideo() {

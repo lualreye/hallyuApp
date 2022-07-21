@@ -42,7 +42,7 @@ const mutations = {
 const actions = {
   // TODO: CRUD SONGS
   // TODO: params(*) mp3 file
-  async uploadClub({ commit }, payload) {
+  async uploadClub({ commit, getters }, payload) {
     try {
       const storage = fireStorage;
       let videoUrl = ''
@@ -54,27 +54,50 @@ const actions = {
       }
       const database = fireDataBase;
       const heroVideoRef = doc(database, 'club', 'ae8stDTjGj7Cga3OvhEd');
-      if(!videoUrl.length) {
+
+      let option = 0;
+      let option1 = 0;
+      let option2 = 0;
+
+      if (payload.option !== getters.getClub.option) {
+        option = payload.option
+      } else {
+        option = getters.getClub.option
+      }
+      if (payload.option1 !== getters.getClub.option1) {
+        option1 = payload.option1
+      } else {
+        option1 = getters.getClub.option1
+      }
+      if (payload.option2 !== getters.getClub.option2) {
+        option2 = payload.option2
+      } else {
+        option2 = getters.getClub.option2
+      }
+
+
+
+
+
+      if(!videoUrl.length && !Object.keys(payload.video).length) {
         await updateDoc(heroVideoRef, {
-          option: payload.option,
-          option1: payload.option1,
-          option2: payload.option2,
+          option: option,
+          option1: option1,
+          option2: option2,
         });
       } else {
         const heroVideo = {
           name: payload.video.name,
           image: videoUrl,
         };
-        console.log({...heroVideo})
         await updateDoc(heroVideoRef, {
-          option: payload.option,
-          option1: payload.option1,
-          option2: payload.option2,
+          option: option,
+          option1: option1,
+          option2: option2,
           videos: arrayUnion({...heroVideo})
         });
         commit('ADD_VIDEO', {...heroVideo})
       }
-      // commit('SET_SONG', heroSong);
     } catch (err) {
       console.error('CANNOT_UPLOAD_CLUB_VIDEO', err);
     }
