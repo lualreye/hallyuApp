@@ -6,7 +6,8 @@
       z-20
       right-0
       w-9
-      p-1
+      px-2
+      py-3
       rounded-full
       flex flex-col
       justify-center
@@ -42,7 +43,7 @@
         flex
         justify-center
         items-center
-        my-3
+        my-6
         relative
         player-button
       "
