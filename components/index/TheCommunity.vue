@@ -41,10 +41,38 @@
           shadow-lg
         "
       >
-        <p class="font-open font-light text-textColor">No Olvides etiquetarnos</p>
+        <p
+          v-if="getCommunityGreeting.length"
+          class="font-open font-light text-textColor"
+        >
+          {{ getCommunityGreeting }}
+        </p>
       </div>
-      <div class="absolute bubble-1 hidden lg:block bg-lightPink -top-10 lg:right-1/3 rounded-full" />
-      <div class="absolute w-8 h-8 hidden lg:block bg-lightPink -top-16 right-1/2 rounded-full" />
+      <div
+        class="
+          absolute
+          bubble-1
+          hidden
+          lg:block
+          bg-lightPink
+          -top-10
+          lg:right-1/3
+          rounded-full
+        "
+      />
+      <div
+        class="
+          absolute
+          w-8
+          h-8
+          hidden
+          lg:block
+          bg-lightPink
+          -top-16
+          right-1/2
+          rounded-full
+        "
+      />
       <div
         v-for="(profile, i) in instagramProfiles"
         :key="i"
@@ -60,6 +88,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import NinthType from "~/components/parenthesis/NinthType.vue";
 import InstagramProfileCard from "~/components/cards/InstagramProfileCard.vue";
 export default {
@@ -72,6 +101,9 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters("general", ["getCommunityGreeting"]),
   },
 };
 </script>

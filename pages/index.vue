@@ -187,9 +187,17 @@ export default {
     if (!this.getGreetings.length) {
       this.fetchGreetings();
     }
+    if (!this.getCommunityGreeting.length) {
+      this.fetchCommunityGreetings();
+    }
   },
   computed: {
-    ...mapGetters("general", ["getHeroImages", "getHero", "getGreetings"]),
+    ...mapGetters("general", [
+      "getHeroImages",
+      "getHero",
+      "getGreetings",
+      "getCommunityGreeting",
+    ]),
     ...mapGetters("quotes", ["getQuotes"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
@@ -238,7 +246,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions("general", ["fetchImages", "selectHero", "fetchGreetings"]),
+    ...mapActions("general", [
+      "fetchImages",
+      "selectHero",
+      "fetchGreetings",
+      "fetchCommunityGreetings",
+    ]),
     ...mapActions("quotes", ["fetchQuotes"]),
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),

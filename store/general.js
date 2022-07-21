@@ -69,7 +69,8 @@ const mutations = {
     state.greetings = greetings.greetings
   },
   SET_COMMUNITY_GREETING(state, greetings) {
-    state.communityGreeting = greetings
+    state.communityGreeting = ""
+    state.communityGreeting = greetings.greetings
   },
 };
 
@@ -217,6 +218,17 @@ const actions = {
       const snap = await getDoc(ref)
       const greeting = snap.data()
       commit('SET_GREETING', greeting)
+    } catch (err) {
+      console.error('CANNOT_GET_GREETINGS', err)
+    }
+  },
+  async fetchCommunityGreetings({commit}) {
+    try {
+      const db = fireDataBase
+      const ref = doc(db, 'communityQuote', '23YedEECc5AiupFpWwEn')
+      const snap = await getDoc(ref)
+      const greeting = snap.data()
+      commit('SET_COMMUNITY_GREETING', greeting)
     } catch (err) {
       console.error('CANNOT_GET_GREETINGS', err)
     }
