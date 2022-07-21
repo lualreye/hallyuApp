@@ -25,7 +25,23 @@
           justify-between
         "
       >
-        <div class="w-full flex justify-end items-center px-4 relative z-30">
+        <div
+          class="w-full flex justify-between items-center px-4 relative z-30"
+        >
+          <p
+            v-if="product.name.includes('/')"
+            class="
+              text-white
+              bg-secondary
+              font-junegull
+              rounded-md
+              px-2
+              py-1
+              shadow
+            "
+          >
+            {{ product.name.split("/").shift() }}
+          </p>
           <button
             class="
               w-8
