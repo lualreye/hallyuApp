@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-col justify-center items-start mt-3 max-w-5xl">
+  <div
+    class="w-full flex flex-col justify-center items-start mt-3 max-w-5xl px-16"
+  >
     <div class="w-full flex flex-col justify-between items-start">
       <p class="text-hBlack font-open">Subamos episodios</p>
       <!-- FAKE SONG  -->
@@ -125,6 +127,36 @@
         <p class="text-hBlack text-sm">puntos</p>
       </div>
     </div>
+    <div
+      v-if="Object.keys(getClub).length"
+      class="w-full flex flex-col items-start mt-4"
+    >
+      <div
+        v-for="(video, index) in getClub.videos"
+        :key="index"
+        class="flex justify-end items-center mb-3"
+      >
+        <video :src="video.image" class="w-24"></video>
+        <p class="text-textColor font-open mx-3">
+          {{ video.name }}
+        </p>
+        <button
+          class="
+            w-8
+            h-8
+            mr-3
+            bg-aquamarine
+            flex
+            justify-center
+            items-center
+            rounded-lg
+          "
+          @click="deleteVideo(video)"
+        >
+          <GlobalHIcon name="delete" class="text-textColor" />
+        </button>
+      </div>
+    </div>
     <button
       class="w-40 flex justify-center items-center rounded-lg py-2 mt-2"
       :class="{ 'bg-primary': !isThereVideo, 'bg-gray-400': isThereVideo }"
@@ -137,7 +169,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   layout: "app",
@@ -171,13 +203,14 @@ export default {
     getClub(value) {
       if (Object.keys(value).length) {
         const club = JSON.parse(JSON.stringify(value));
-        console.log("aqui");
         this.optionA = club.option;
         this.optionB = club.option1;
         this.optionC = club.option2;
         this.heroVideos = club.videos;
       }
     },
+    deep: true,
+    immediate: true,
   },
   mounted() {
     if (!Object.keys(this.getClub).length) {
@@ -185,7 +218,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("club", ["uploadClub", "fetchClub"]),
+    ...mapActions("club", ["uploadClub", "fetchClub", "deleteVideo"]),
     onVideoChange(e) {
       const file = e.target.files[0];
       const videoObject = file;
@@ -217,6 +250,9 @@ export default {
         videoImage: "",
         id: "123",
       };
+    },
+    removeVideo(video) {
+      this.deleteVideo(video);
     },
     // fetchHeroVideos() {
     //   if (!this.getHeroSongs.length) {

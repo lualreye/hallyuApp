@@ -9,7 +9,8 @@ import {
   setDoc,
   getDocs,
   deleteDoc,
-  arrayUnion
+  arrayUnion,
+  arrayRemove
 } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
@@ -28,6 +29,14 @@ const mutations = {
   SET_CLUB(state, club) {
     state.club = club;
   },
+  REMOVE_VIDEO(state, video) {
+    const idx = state.club.videos.findIndex(vid => vid.image === video.image)
+    state.club.videos.splice(idx, 1)
+  },
+  ADD_VIDEO(state, video) {
+    console.log('estamos en add', video)
+    state.club.videos.push(video)
+  }
 };
 
 const actions = {
@@ -63,7 +72,7 @@ const actions = {
           option2: payload.option2,
           videos: arrayUnion({...heroVideo})
         });
-        console.log('esta subido el video')
+        commit('ADD_VIDEO', {...heroVideo})
       }
       // commit('SET_SONG', heroSong);
     } catch (err) {
@@ -83,6 +92,18 @@ const actions = {
       console.error('CANNOT_GET_HERO_SONGS', err);
     }
   },
+  async deleteVideo({ commit }, payload) {
+    try {
+      const db = fireDataBase
+      const clubRef = doc(db, 'club', 'ae8stDTjGj7Cga3OvhEd')
+      await updateDoc(clubRef, {
+        videos: arrayRemove(payload)
+      })
+      commit('REMOVE_VIDEO', payload)
+    } catch(err) {
+      console.error('CANNOT_DELETE_VIDEO', err)
+    }
+  }
 };
 
 export { state, getters, mutations, actions };
