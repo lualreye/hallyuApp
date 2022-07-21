@@ -184,9 +184,12 @@ export default {
     if (!this.getPosts.length) {
       this.fetchCategories();
     }
+    if (!this.getGreetings.length) {
+      this.fetchGreetings();
+    }
   },
   computed: {
-    ...mapGetters("general", ["getHeroImages", "getHero"]),
+    ...mapGetters("general", ["getHeroImages", "getHero", "getGreetings"]),
     ...mapGetters("quotes", ["getQuotes"]),
     ...mapGetters("bands", ["getBands"]),
     ...mapGetters("fans", ["getFans"]),
@@ -235,7 +238,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("general", ["fetchImages", "selectHero"]),
+    ...mapActions("general", ["fetchImages", "selectHero", "fetchGreetings"]),
     ...mapActions("quotes", ["fetchQuotes"]),
     ...mapActions("bands", ["fetchBands"]),
     ...mapActions("fans", ["fetchFans"]),

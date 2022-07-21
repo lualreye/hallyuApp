@@ -125,6 +125,7 @@
         "
       >
         <div
+          v-if="getGreetings.length"
           class="
             py-3
             px-4
@@ -135,11 +136,11 @@
             justify-center
             items-center
             absolute
-            -left-3
+            -left-24
             top-3
           "
         >
-          <p class="text-xl text-primary font-bold">Hola :)</p>
+          <p class="text-xl text-primary font-bold">{{ getGreetings }}</p>
         </div>
         <img
           :src="image"
@@ -160,12 +161,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     image: {
       type: String,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters("general", ["getGreetings"]),
   },
 };
 </script>
