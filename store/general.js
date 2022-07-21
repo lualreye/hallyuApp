@@ -70,7 +70,7 @@ const mutations = {
   },
   SET_COMMUNITY_GREETING(state, greetings) {
     state.communityGreeting = greetings
-  }
+  },
 };
 
 const actions = {
@@ -194,6 +194,18 @@ const actions = {
         "greetings": payload 
       })
       commit('SET_COMMUNITY_GREETING', payload)
+    } catch(err) {
+      console.error('CANNOT_ADD_GREETINGS', err)
+    }
+  },
+  async uploadDiscountCode({ commit }, payload) {
+    try {
+      const db = fireDataBase
+      const ref = doc(db, 'discountCode', 'DsE46KoDYceJSaj2W0Ae')
+      await updateDoc(ref, {
+        "code": payload.code,
+        "codeDiscount": payload.codeDiscount 
+      })
     } catch(err) {
       console.error('CANNOT_ADD_GREETINGS', err)
     }

@@ -39,10 +39,10 @@
       <button
         class="w-40 flex justify-center items-center rounded-lg py-2 mt-2"
         :class="{
-          'bg-primary': isString,
-          'bg-gray-400': !isString,
+          'bg-primary': isCodeValid,
+          'bg-gray-400': !isCodeValid,
         }"
-        :disabled="!isString"
+        :disabled="!isCodeValid"
         @click="upload"
       >
         <p class="text-textColor font-open">Guardar y Publicar</p>
@@ -65,12 +65,18 @@ export default {
     getIcon() {
       return this.isOpen === true ? "arrowUp" : "arrowDown";
     },
-    isString() {
-      return this.greetings.length > 0 && this.codeDiscount > 0;
+    isCodeValid() {
+      if (!this.code.length && !this.codeDiscount) {
+        return true;
+      }
+      if (this.code.length && this.codeDiscount > 0) {
+        return true;
+      }
+      return false;
     },
   },
   methods: {
-    ...mapActions("general", ["uploadCommunityQuote"]),
+    ...mapActions("general", ["uploadDiscountCode"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
@@ -82,7 +88,7 @@ export default {
     upload() {
       const code = this.code;
       const codeDiscount = this.codeDiscount;
-      this.uploadCommunityQuote({ code, codeDiscount });
+      this.uploadDiscountCode({ code, codeDiscount });
       this.code = "";
       this.codeDiscount = 0;
     },

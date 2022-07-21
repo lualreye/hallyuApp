@@ -10,6 +10,7 @@
     <GeneralBands />
     <GeneralHeroQuote />
     <GeneralCommunityQuote />
+    <GeneralDiscountString />
   </div>
 </template>
 
