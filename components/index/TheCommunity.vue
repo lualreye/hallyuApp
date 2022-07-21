@@ -30,8 +30,10 @@
         class="
           absolute
           -top-4
-          right-0
-          w-60
+          right-28
+          md:right-48
+          px-4
+          py-3
           h-16
           flex
           justify-center
@@ -43,7 +45,7 @@
       >
         <p
           v-if="getCommunityGreeting.length"
-          class="font-open font-light text-textColor"
+          class="font-junegull text-textColor"
         >
           {{ getCommunityGreeting }}
         </p>
