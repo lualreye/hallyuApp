@@ -239,7 +239,7 @@
             font-junegull
             text-xl
           "
-          >{{ product.price }}</span
+          >$ {{ product.price }}</span
         >
       </nuxt-link>
     </div>

@@ -48,7 +48,7 @@
     <the-new-products
       v-if="getNewProducts.length"
       :newProductsArray="getNewProducts"
-      class="max-w-screen-2xl mx-auto"
+      class="mx-auto"
     />
     <the-line-decoration
       v-if="areQuotes"
@@ -87,11 +87,7 @@
       :koreanText="getQuotes.communityFavs.koreanText"
       :spanishText="getQuotes.communityFavs.spanishText"
     />
-    <the-bands
-      v-if="areBands"
-      :bands="getBands.slice(0, 10)"
-      class="max-w-screen-2xl mx-auto"
-    />
+    <the-bands v-if="areBands" :bands="getBands.slice(0, 10)" class="mx-auto" />
   </div>
 </template>
 

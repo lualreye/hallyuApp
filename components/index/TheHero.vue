@@ -10,6 +10,7 @@
       px-4
       py-4
       my-2
+      super-screen
     "
   >
     <!-- LEFT CONTAINER, AQUI CONTAMOS CON EL COPYRIGHT DEL HERO -->
@@ -28,14 +29,7 @@
         Hallyu Store
       </h1>
       <div
-        class="
-          w-full
-          lg:w-96
-          mt-5
-          flex flex-col
-          items-center
-          lg:items-start
-        "
+        class="w-full lg:w-96 mt-5 flex flex-col items-center lg:items-start"
       >
         <div class="flex justify-center items-center">
           <p
@@ -187,5 +181,10 @@ export default {
   left: 2.5%;
   background: #ffe0e8;
   border-radius: 100% 100% 8px 8px;
+}
+@media screen and (min-width: 1025px) {
+  .super-screen {
+    height: 70vh;
+  }
 }
 </style>

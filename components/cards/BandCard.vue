@@ -13,6 +13,7 @@
           justify-center
           items-center
           border border-secondary
+          bg-white
           shadow-xl
         "
       >
