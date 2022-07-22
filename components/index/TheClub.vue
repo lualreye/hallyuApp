@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="Object.keys(getClub).length"
-    class="w-full relative py-16"
+    class="w-full relative py-16 club-fondo"
     :style="{ backgroundImage: 'url(' + bgImage + ')' }"
   >
     <div class="absolute w-full -top-6 left-0">
@@ -339,8 +339,30 @@
         </div>
         <!-- COMENTARIOS -->
         <div
-          class="w-full md:w-1/3 flex flex-col justify-center items-center"
-        ></div>
+          class="w-full md:w-1/3 flex flex-col justify-center items-center px-3"
+        >
+          <div
+            class="
+              w-full
+              flex flex-col
+              justify-center
+              items-center
+              P-6
+              rounded-md
+              fondo-pregunta
+            "
+          >
+            <p class="text-orange-500 font-junegull text-center">Te leemos</p>
+            <p class="my-3 text-orange-500 text-center font-junegull">
+              ¿Tienes algún invitado que quisieras ver, algún juego, alguna idea
+              súper increíble?
+            </p>
+            <textarea
+              class="w-full h-28 rounded-lg"
+              placeholder="Escribe aquí"
+            ></textarea>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -368,5 +390,11 @@ export default {
 <style scoped>
 .parenthesis-two {
   transform: scaleX(-1);
+}
+.fondo-pregunta {
+  background: #fbf9ec;
+}
+.club-fondo {
+  background-position: center;
 }
 </style>
