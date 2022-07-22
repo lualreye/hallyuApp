@@ -90,6 +90,9 @@ export default {
 .parenthesis-two {
   transform: scaleX(-1);
 }
+.blog-title {
+  letter-spacing: 2rem;
+}
 @media screen and (min-width: 768px) {
   .blog-title {
     font-size: 12rem;
