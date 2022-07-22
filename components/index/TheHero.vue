@@ -107,6 +107,11 @@
           </div>
         </div>
       </div>
+      <div class="w-full my-6">
+        <p class="text-3xl text-primary font-junegull">
+          K-POP | K-FOOD | K-FASHION
+        </p>
+      </div>
     </div>
     <!-- RIGHT CONTAINER, AQUI OBTENEMOS LA IMAGEN DE LA BASE DE DATOS -->
     <div class="w-full lg:w-1/2 mt-4 lg:mt-0">
@@ -131,7 +136,7 @@
             px-4
             z-20
             rounded-full
-            bg-lightPink
+            bg-primary
             flex
             justify-center
             items-center
@@ -139,7 +144,9 @@
             -bottom-8
           "
         >
-          <p class="text-xl text-primary font-bold">{{ getGreetings }}</p>
+          <p class="text-xl text-white font-junegull font-bold">
+            {{ getGreetings }}
+          </p>
         </div>
         <img
           :src="image"
@@ -184,7 +191,7 @@ export default {
   position: absolute;
   top: 2.5%;
   left: 2.5%;
-  background: #ffe0e8;
+  background: #091212;
   border-radius: 100% 100% 8px 8px;
 }
 @media screen and (min-width: 1025px) {
