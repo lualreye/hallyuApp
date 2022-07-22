@@ -17,7 +17,9 @@ const state = () => ({
   heroSongs: [],
   selectedHero: '',
   greetings: '',
-  communityGreeting: ''
+  communityGreeting: '',
+  discount: {},
+  displayTicket: false
 });
 
 const getters = {
@@ -35,6 +37,12 @@ const getters = {
   },
   getCommunityGreeting(state) {
     return state.communityGreeting;
+  },
+  getDiscount(state) {
+    return state.discount;
+  },
+  getDisplayTicket(state) {
+    return state.displayTicket;
   }
 };
 
@@ -72,6 +80,12 @@ const mutations = {
     state.communityGreeting = ""
     state.communityGreeting = greetings.greetings
   },
+  SET_DISCOUNT_CODE(state, discount) {
+    state.discount = discount
+  },
+  DISPLAY_TICKET(state, boolean) {
+    state.displayTicket = boolean
+  }
 };
 
 const actions = {
@@ -232,6 +246,20 @@ const actions = {
     } catch (err) {
       console.error('CANNOT_GET_GREETINGS', err)
     }
+  },
+  async fetchDiscountCode({commit}) {
+    try {
+      const db = fireDataBase
+      const ref = doc(db, 'discountCode', 'DsE46KoDYceJSaj2W0Ae')
+      const snap = await getDoc(ref)
+      const discount = snap.data()
+      commit('SET_DISCOUNT_CODE', discount)
+    } catch (err) {
+      console.error('CANNOT_GET_GREETINGS', err)
+    }
+  },
+  showTicket({ commit, getters }) {
+    commit('DISPLAY_TICKET', !getters.getDisplayTicket)
   }
 };
 

@@ -61,6 +61,7 @@
           -top-3
           text-white
         "
+        @click="showDiscount"
         >Notificaciones</span
       >
       <HIcon name="notification" class="text-secondary" />
@@ -99,12 +100,14 @@ export default {
   },
   computed: {
     ...mapGetters("music", ["getIndexPlaylist", "isReady"]),
+    ...mapGetters("general", ["getDiscount"]),
     isPlayer() {
       return this.isReady ? "volumeOn" : "volumeOff";
     },
   },
   methods: {
     ...mapActions("music", ["fetchSongs", "activePlayer"]),
+    ...mapActions("general", ["showTicket"]),
     getMusic() {
       if (!this.getIndexPlaylist.length) {
         this.fetchSongs();
@@ -117,6 +120,9 @@ export default {
     },
     goToSearch() {
       this.$router.push("/products");
+    },
+    showDiscount() {
+      this.showTicket();
     },
   },
 };

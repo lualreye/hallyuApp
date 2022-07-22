@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-background">
+  <div class="flex flex-col min-h-screen bg-background relative">
     <TheHeader />
     <TheMenu />
     <TheCart />
@@ -9,6 +9,7 @@
     <Nuxt />
     <Player />
     <Playlist />
+    <Ticket />
     <TheFooter class="mt-auto" />
   </div>
 </template>
@@ -17,8 +18,9 @@
 import { mapGetters, mapActions } from "vuex";
 import Player from "../components/Global/Player.vue";
 import Playlist from "../components/Global/Playlist.vue";
+import Ticket from "../components/Global/Ticket.vue";
 export default {
-  components: { Player, Playlist },
+  components: { Player, Playlist, Ticket },
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
@@ -51,8 +53,12 @@ export default {
       }
     },
   },
+  mounted() {
+    this.fetchDiscountCode();
+  },
   methods: {
     ...mapActions("likes", ["fetchLikedProducts"]),
+    ...mapActions("general", ["fetchDiscountCode"]),
     stopBodyScrolling(value) {
       if (value) {
         document.documentElement.style.overflow = "hidden";

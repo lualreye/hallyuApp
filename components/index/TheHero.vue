@@ -136,7 +136,8 @@
             justify-center
             items-center
             absolute
-            -left-24
+            left-12
+            md:-left-24
             top-3
           "
         >
