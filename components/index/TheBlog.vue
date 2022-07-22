@@ -2,44 +2,24 @@
   <div class="w-full py-6">
     <div class="mx-auto max-w-screen-2xl">
       <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
-      <div
-        class="
-          w-full
-          flex flex-col
-          justify-center
-          lg:justify-start
-          items-start
-          pl-4
-        "
-      >
-        <div
+      <div class="w-full flex justify-center items-center relative">
+        <h2
           class="
+            px-4
             w-full
-            flex
-            justify-center
-            lg:justify-start
-            items-center
-            h-14
-            relative
+            text-8xl
+            blog-title
+            text-center
+            font-junegull
+            text-primary
+            absolute
+            top-0
+            sm:top-6
+            lg:top-0
           "
         >
-          <h2
-            class="
-              px-4
-              w-full
-              text-8xl
-              blog-title
-              text-center
-              font-junegull
-              text-primary
-              absolute
-              top-6
-              lg:top-0
-            "
-          >
-            Blog
-          </h2>
-        </div>
+          Blog
+        </h2>
       </div>
       <!-- SECCION DE RENDERIZADO DE LAS TARJETAS -->
       <div
@@ -92,6 +72,11 @@ export default {
 }
 .blog-title {
   letter-spacing: 2rem;
+}
+@media screen and (max-width: 420px) {
+  .blog-title {
+    letter-spacing: 1rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .blog-title {

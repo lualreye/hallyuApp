@@ -327,7 +327,17 @@
           </div>
         </div>
         <!-- VIDEO -->
-        <div class="w-full md:w-1/3 flex flex-col justify-center items-center">
+        <div
+          class="
+            w-full
+            md:w-1/3
+            flex flex-col
+            justify-center
+            items-center
+            my-8
+            md:my-2
+          "
+        >
           <video
             preload="auto"
             controls
