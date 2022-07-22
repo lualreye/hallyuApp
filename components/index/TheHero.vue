@@ -9,7 +9,7 @@
       flex-wrap
       px-4
       py-4
-      my-2
+      my-8
       super-screen
     "
   >
@@ -136,9 +136,7 @@
             justify-center
             items-center
             absolute
-            left-12
-            md:-left-24
-            top-3
+            -bottom-8
           "
         >
           <p class="text-xl text-primary font-bold">{{ getGreetings }}</p>
