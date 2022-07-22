@@ -15,25 +15,19 @@
   >
     <!-- LEFT CONTAINER, AQUI CONTAMOS CON EL COPYRIGHT DEL HERO -->
     <div class="w-full lg:w-1/2 lg:pl-5">
-      <h1
-        class="
-          text-4xl
-          md:text-5xl
-          lg:text-6xl
-          xl:text-7xl
-          font-junegull
-          text-secondary text-center
-          lg:text-left
-        "
-      >
-        Hallyu Store
-      </h1>
       <div
-        class="w-full lg:w-96 mt-5 flex flex-col items-center lg:items-start"
+        class="w-full lg:w-full mt-5 flex flex-col items-center lg:items-start"
       >
         <div class="flex justify-center items-center">
           <p
-            class="text-textColor text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
+            class="
+              text-textColor
+              font-junegull
+              text-2xl
+              md:text-3xl
+              lg:text-5xl
+              xl:text-7xl
+            "
           >
             Tu puerta a
           </p>
@@ -42,8 +36,9 @@
               class="
                 text-textColor text-2xl
                 md:text-3xl
-                lg:text-4xl
-                xl:text-5xl
+                lg:text-5xl
+                xl:text-7xl
+                font-junegull
                 relative
                 z-10
               "
@@ -53,12 +48,9 @@
             <span
               class="
                 z-0
-                w-14
-                lg:w-20
-                xl:w-28
+                w-full
                 h-3
-                lg:h-4
-                xl:h-5
+                lg:h-8
                 bg-yellow
                 absolute
                 rounded-lg
@@ -70,7 +62,14 @@
         </div>
         <div class="flex justify-center items-center">
           <p
-            class="text-textColor text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
+            class="
+              text-textColor
+              font-junegull
+              text-2xl
+              md:text-3xl
+              lg:text-5xl
+              xl:text-7xl
+            "
           >
             desde
           </p>
@@ -79,8 +78,9 @@
               class="
                 text-textColor text-2xl
                 md:text-3xl
-                lg:text-4xl
-                xl:text-5xl
+                lg:text-5xl
+                xl:text-7xl
+                font-junegull
                 relative
                 z-10
               "
@@ -90,14 +90,10 @@
             <span
               class="
                 z-0
-                w-16
-                md:w-24
-                lg:w-28
-                xl:w-40
+                w-full
                 h-3
-                lg:h-4
-                xl:h-5
-                bg-yellow
+                lg:h-8
+                bg-lightPink
                 absolute
                 rounded-lg
                 bottom-0
@@ -108,7 +104,9 @@
         </div>
       </div>
       <div class="w-full my-6">
-        <p class="text-3xl text-primary font-junegull">
+        <p
+          class="sm:text-xl text-primary text-center lg:text-left font-junegull"
+        >
           K-POP | K-FOOD | K-FASHION
         </p>
       </div>
@@ -184,15 +182,15 @@ export default {
 
 <style scoped>
 .imageBg {
-  width: 100%;
+  width: 91%;
   height: 100%;
   content: "";
   z-index: 0;
   position: absolute;
-  top: 2.5%;
-  left: 2.5%;
+  top: 10px;
+  left: 50px;
   background: #091212;
-  border-radius: 100% 100% 8px 8px;
+  border-radius: 50% 50% 8px 8px;
 }
 @media screen and (min-width: 1025px) {
   .super-screen {

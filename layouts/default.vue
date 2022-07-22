@@ -1,5 +1,9 @@
 <template>
   <div class="flex flex-col min-h-screen bg-background relative">
+    <div class="positioned blue first-bg"></div>
+    <div class="positioned purple second-bg"></div>
+    <div class="positioned pink third-bg"></div>
+    <div class="positioned green fourth-bg"></div>
     <TheHeader />
     <TheMenu />
     <TheCart />
@@ -69,3 +73,49 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.positioned {
+  z-index: 1;
+  position: fixed;
+}
+
+.first-bg {
+  background: radial-gradient(
+    circle,
+    rgba(235, 249, 254, 1) 0%,
+    transparent 100%
+  );
+}
+.blue {
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+}
+.second-bg {
+  background: rgb(234, 236, 255);
+  background: radial-gradient(
+    circle,
+    rgba(234, 236, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.third-bg {
+  background: rgb(253, 240, 243);
+  background: radial-gradient(
+    circle,
+    rgba(253, 240, 243, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+.fourth-bg {
+  background: rgb(221, 248, 246);
+  background: radial-gradient(
+    circle,
+    rgba(221, 248, 246, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+</style>

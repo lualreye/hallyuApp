@@ -9,6 +9,7 @@
       h-full
       w-2/3
       md:w-1/3
+      max-w-md
       rounded-l-3xl
       shadow-md
       z-50
