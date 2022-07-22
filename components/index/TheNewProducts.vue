@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="w-full px-4 py-6 bg-image"
-    :style="{ backgroundImage: 'url(' + bgImage + ')' }"
-  >
+  <div class="w-full px-4 py-6 bg-image">
     <div class="max-w-screen-2xl mx-auto">
       <!-- TITULO DE LOS PRODUCTOS QUE ESTAN CON OFERTA -->
       <div
