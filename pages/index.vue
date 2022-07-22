@@ -63,6 +63,7 @@
       class="max-w-screen-2xl mx-auto"
     />
     <the-cta v-if="user" class="mx-auto" />
+    <the-club />
     <the-blog
       v-if="arePosts"
       :posts="getPosts.slice(0, 3)"
@@ -103,6 +104,7 @@ import TheBlog from "../components/index/TheBlog.vue";
 import TheCommunity from "../components/index/TheCommunity.vue";
 import TheBands from "~/components/index/TheBands.vue";
 import TheLineDecoration from "../components/index/TheLineDecoration.vue";
+import TheClub from "../components/index/TheClub.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
@@ -117,6 +119,7 @@ export default {
     TheCommunity,
     TheBands,
     TheLineDecoration,
+    TheClub,
   },
   data: () => ({
     heroImage: "",
@@ -190,6 +193,9 @@ export default {
     if (!this.getCommunityGreeting.length) {
       this.fetchCommunityGreetings();
     }
+    if (!Object.keys(this.getClub).length) {
+      this.fetchClub();
+    }
   },
   computed: {
     ...mapGetters("general", [
@@ -209,6 +215,7 @@ export default {
     ]),
     ...mapGetters("categories", ["getCategories"]),
     ...mapGetters("user", ["getUser"]),
+    ...mapGetters("club", ["getClub"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
     },
@@ -262,6 +269,7 @@ export default {
       "fetchNewProducts",
     ]),
     ...mapActions("categories", ["fetchCategories"]),
+    ...mapActions("club", ["fetchClub"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
     },
