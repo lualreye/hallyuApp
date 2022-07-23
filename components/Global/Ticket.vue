@@ -4,8 +4,6 @@
     class="
       ticket
       fixed
-      bottom-16
-      right-1/8
       z-30
       shadow-xl
       bg-white
@@ -77,5 +75,7 @@ export default {
 <style scoped>
 .ticket {
   width: 80%;
+  bottom: 10%;
+  left: 10%;
 }
 </style>

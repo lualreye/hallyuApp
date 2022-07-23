@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-background">
+  <div class="flex flex-col min-h-screen bg-background bg-image"
+    :style="{ backgroundImage: 'url(' + bgImage + ')' }">
     <Nuxt />
   </div>
 </template>
@@ -54,3 +55,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.bg-image {
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>

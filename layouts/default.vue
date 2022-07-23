@@ -1,9 +1,8 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-background relative">
-    <div class="positioned blue first-bg"></div>
-    <div class="positioned purple second-bg"></div>
-    <div class="positioned pink third-bg"></div>
-    <div class="positioned green fourth-bg"></div>
+  <div
+    class="flex flex-col min-h-screen bg-image"
+    :style="{ backgroundImage: 'url(' + bgImage + ')' }"
+  >
     <TheHeader />
     <TheMenu />
     <TheCart />
@@ -25,6 +24,9 @@ import Playlist from "../components/Global/Playlist.vue";
 import Ticket from "../components/Global/Ticket.vue";
 export default {
   components: { Player, Playlist, Ticket },
+  data: () => ({
+    bgImage: require("../static/images/backgrounds/banner-fondo2.png"),
+  }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
@@ -75,47 +77,9 @@ export default {
 </script>
 
 <style scoped>
-.positioned {
-  z-index: 1;
-  position: fixed;
-}
-
-.first-bg {
-  background: radial-gradient(
-    circle,
-    rgba(235, 249, 254, 1) 0%,
-    transparent 100%
-  );
-}
-.blue {
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
-  border-radius: 100%;
-}
-.second-bg {
-  background: rgb(234, 236, 255);
-  background: radial-gradient(
-    circle,
-    rgba(234, 236, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-.third-bg {
-  background: rgb(253, 240, 243);
-  background: radial-gradient(
-    circle,
-    rgba(253, 240, 243, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-.fourth-bg {
-  background: rgb(221, 248, 246);
-  background: radial-gradient(
-    circle,
-    rgba(221, 248, 246, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+.bg-image {
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>

@@ -26,7 +26,7 @@
               text-2xl
               md:text-3xl
               lg:text-5xl
-              xl:text-7xl
+              xl:text-6xl
             "
           >
             Tu puerta a
@@ -37,7 +37,7 @@
                 text-textColor text-2xl
                 md:text-3xl
                 lg:text-5xl
-                xl:text-7xl
+                xl:text-6xl
                 font-junegull
                 relative
                 z-10
@@ -68,7 +68,7 @@
               text-2xl
               md:text-3xl
               lg:text-5xl
-              xl:text-7xl
+              xl:text-6xl
             "
           >
             desde
@@ -79,7 +79,7 @@
                 text-textColor text-2xl
                 md:text-3xl
                 lg:text-5xl
-                xl:text-7xl
+                xl:text-6xl
                 font-junegull
                 relative
                 z-10
@@ -156,6 +156,7 @@
             z-10
             h-96
             object-cover object-center
+            hero-image
           "
         />
         <div class="imageBg" />
@@ -182,19 +183,22 @@ export default {
 
 <style scoped>
 .imageBg {
-  width: 91%;
+  width: 100%;
   height: 100%;
   content: "";
   z-index: 0;
   position: absolute;
-  top: 10px;
-  left: 50px;
+  top: 5px;
+  left: 10px;
   background: #091212;
   border-radius: 50% 50% 8px 8px;
 }
 @media screen and (min-width: 1025px) {
   .super-screen {
     height: 70vh;
+  }
+  .hero-image {
+    height: 500px;
   }
 }
 </style>
