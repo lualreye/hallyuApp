@@ -1,5 +1,5 @@
 import { fireDataBase } from '../static/js/firebaseConfig';
-import { collection, getDocs, query, limit, where } from 'firebase/firestore';
+import { collection, getDocs, query, limit, where, doc } from 'firebase/firestore';
 
 export const state = () => ({
   show: false,
@@ -132,6 +132,10 @@ export const mutations = {
     state.searchedProducts = []
     state.searchedProducts = products
     console.log(state.searchedProducts)
+  },
+  REMOVE_OFFERED_ITEM(state, id) {
+    const idx = state.flashProducts.findIndex(pr => pr.id === id)
+    state.flashProducts.splice(idx, 1)
   }
 };
 
@@ -317,9 +321,6 @@ export const actions = {
   addOne({ commit }, payload) {
     commit('ADD_ONE', payload);
   },
-  substractOne({ commit }, payload) {
-    commit('SUBSTRACT_ONE', payload);
-  },
   async fetchSearchedProducts({ commit }, payload) {
     try {
       const db = fireDataBase;
@@ -338,4 +339,17 @@ export const actions = {
       console.error('CANNOT_SEARCHED_PRODUCTS', err);
     }
   },
+  async removeTimeOffer({ commit }, payload) {
+    try {
+      const db = fireDataBase
+      const productRef = doc(db, 'products', payload.id)
+      await updateDoc(productRef, {
+        offered: false,
+        offer: {}
+      })
+      commit('REMOVE_OFFERED_ITEM', payload.id) 
+    } catch (err) {
+      console.error('CANNOT_REMOVE_TIME_OFFER', err)
+    }
+  }
 };

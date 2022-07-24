@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     product: {
@@ -98,14 +100,11 @@ export default {
   },
   computed: {
     getTime() {
-      console.log(this.calcTime())
       return this.calcTime().getTime()
     }
   },
-  mounted() {
-    console.log(this.product)
-  },
   methods: {
+    ...mapActions('cart', ['removeTimeOffer']),
     calcTime() {
       const dateString = this.product.offer.time.replaceAll('-', '')
       console.log(dateString)
@@ -113,10 +112,14 @@ export default {
       const month = dateString.substring(4, 6)
       const day = dateString.substring(6, 8)
       const date = new Date(year, month - 1, day)
+      const today = new Date()
+      if (date.getTime() <= today.getTime()) {
+        this.removeTimeOffer(this.product)
+      }
       return date
     },
     getToTheCart(id) {
-      console.log(id)
+      this.$router.push(`/products/${id}`)
     }
   }
 };
