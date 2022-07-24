@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col w-48">
-    <nuxt-link :to="link" v-if="state" class="w-full h-48 p-2">
+    <nuxt-link :to="product.id" class="w-full h-48 p-2">
       <div class="relative">
         <figure class="w-full h-48 object-cover object-center rounded-lg flex justify-center items-center">
-          <img :src="image" alt="productName" class="rounded-lg" />
+          <img :src="product.thumbnail" alt="product.name" class="rounded-lg" />
         </figure>
         <div
           class="
@@ -34,7 +34,7 @@
             "
           >
             <p class="text-textColor text-lg">
-              {{ stock }}
+              {{ product.stock }}
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@
       </div>
     </nuxt-link>
     <button
-      @click="getToTheCart(id)"
+      @click="getToTheCart(product.id)"
       class="w-full py-2 rounded-full mt-4 bg-primary text-white font-open shadow-md">
       Agregar al carrito
     </button>
@@ -91,50 +91,29 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String,
-      required: true,
-    },
-    productName: {
-      type: String,
-      required: true,
-    },
-    stock: {
-      type: Number,
-      required: true,
-    },
-    timesLeft: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: Boolean,
-      required: true,
-    },
-    link: {
-      type: String,
-      required: true,
-    },
-    id: {
-      type: String,
+    product: {
+      type: Object,
       required: true
     }
   },
   computed: {
     getTime() {
-      return this.calcTime()
+      console.log(this.calcTime())
+      return this.calcTime().getTime()
     }
+  },
+  mounted() {
+    console.log(this.product)
   },
   methods: {
     calcTime() {
-      const productTime = new Date(this.timesLeft).getTime()
-      const date = new Date().getTime()
-      const difference = date - productTime
-      if (productTime < date) {
-        console.log('el producto esta fuera de tiempo')
-        return
-      }
-      return difference
+      const dateString = this.product.offer.time.replaceAll('-', '')
+      console.log(dateString)
+      const year = dateString.substring(0, 4)
+      const month = dateString.substring(4, 6)
+      const day = dateString.substring(6, 8)
+      const date = new Date(year, month - 1, day)
+      return date
     },
     getToTheCart(id) {
       console.log(id)

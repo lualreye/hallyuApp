@@ -11,6 +11,9 @@ import Player from "../components/Global/Player.vue";
 import Playlist from "../components/Global/Playlist.vue";
 export default {
   components: { Player, Playlist },
+  data: () => ({
+    bgImage: require("../static/images/backgrounds/banner-fondo2.png"),
+  }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
     ...mapGetters("cart", ["showCart"]),
