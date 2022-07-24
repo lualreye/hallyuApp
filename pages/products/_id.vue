@@ -117,10 +117,10 @@
           </p>
         </div>
         <div class="w-full flex flex-col mb-4">
-          <p class="text-textColor text-base font-light font-open text-left">
-            Tallas
-          </p>
           <div v-if="getProduct.clothes.sizes.length" class="mb-2">
+            <p class="text-textColor text-base font-light font-open text-left">
+              Tallas
+            </p>
             <p
               v-for="(size, index) in getProduct.clothes.sizes"
               :key="index"
@@ -129,15 +129,12 @@
               {{ size }}
             </p>
           </div>
-          <p v-else class="text-textColor text-base font-open text-left">
-            No aplica
-          </p>
         </div>
         <div class="w-full flex flex-col mb-4">
-          <p class="text-textColor text-base font-light font-open text-left">
-            Color
-          </p>
           <div v-if="getProduct.clothes.colors.length">
+            <p class="text-textColor text-base font-light font-open text-left">
+              Color
+            </p>
             <p
               v-for="(item, index) in getProduct.clothes.colors"
               :key="index"
@@ -146,9 +143,6 @@
               {{ item.name }}
             </p>
           </div>
-          <p v-else class="text-textColor text-base font-open text-left">
-            No aplica
-          </p>
         </div>
         <div class="w-full lg:w-5/6 flex flex-col justify-center items-start">
           <div class="flex justify-center items-center mb-2">
