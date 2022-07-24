@@ -66,8 +66,8 @@
         <p class="text-xl text-textColor font-open font-bold">
           $ {{ product.price }}
         </p>
-        <p v-if="product.offered" class="text-secondary font-bold">
-          - {{ product.offer }} %
+        <p v-if="getDiscounts" class="text-secondary font-bold">
+          - {{ getDiscounts }} %
         </p>
       </div>
     </div>
@@ -84,6 +84,19 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    getDiscounts() {
+      if (!this.product?.offered) {
+        return 0
+      }
+      if (this.product?.offered === 'Descuento') {
+        return this.product?.offer
+      }
+      if (this.product?.offered === 'Tiempo') {
+        return this.product?.offer.discount
+      }
+    }
   },
   methods: {
     ...mapActions("cart", ["addOne", "removeToCart"]),
