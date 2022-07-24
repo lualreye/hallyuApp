@@ -6,7 +6,7 @@
       top-0
       bottom-0
       max-h-screen
-      h-full
+      h-screen
       w-2/3
       md:w-1/3
       max-w-md
@@ -14,6 +14,7 @@
       shadow-md
       z-50
       flex flex-col
+      justify-between
       transition-all
     "
     :class="{
@@ -21,7 +22,7 @@
       '-right-2/3': !showCart,
     }"
   >
-    <div class="w-full px-4 flex justify-end items-center py-3 relative">
+    <div class="w-full px-4 flex justify-end items-center py-3 relative close-container">
       <div class="w-full absolute top-0 left-0 right-0 bottom-0 z-60">
         <wave-one />
       </div>
@@ -43,7 +44,7 @@
     </div>
     <div
       v-if="getCart.length"
-      class="w-full flex flex-col justify-between flex-grow h-full pt-4 pb-10"
+      class="w-full flex flex-col justify-between pt-4 cart-wrapper"
     >
       <nav
         class="
@@ -51,9 +52,9 @@
           justify-col
           items-center
           justify-start
-          overflow-y-auto
           px-4
           py-2
+          cart-list
         "
       >
         <ul class="w-full flex flex-col justify-start items-center">
@@ -103,7 +104,7 @@
       </div>
     </div>
     <div v-else class="w-full flex flex-grow justify-center items-center">
-      <p class="text-textColor font-junegull">
+      <p class="text-textColor font-junegull text-center px-2">
         No tenemos productos en el carrito
       </p>
     </div>
@@ -170,3 +171,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.cart-wrapper {
+  height: 90%;
+}
+.cart-list {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+</style>
