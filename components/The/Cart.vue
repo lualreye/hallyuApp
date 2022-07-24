@@ -140,6 +140,9 @@ export default {
         if (pr.offered === "Descuento") {
           return pr.quantity * pr.price * (pr.offer / 100);
         }
+        if (pr.offered === 'Tiempo') {
+          return pr.quantity * pr.price * (pr.offer.discount / 100)
+        }
         return 0;
       });
       const sum = allDiscount.reduce((a, b) => a + b, 0);
