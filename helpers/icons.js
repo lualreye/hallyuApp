@@ -41,6 +41,7 @@ import {
   mdiSkipPrevious,
   mdiPhone,
   mdiMinus,
+  mdiComment
 } from '@mdi/js';
 
 export default {
@@ -86,4 +87,5 @@ export default {
   next: mdiSkipNext,
   previous: mdiSkipPrevious,
   phone: mdiPhone,
+  comment: mdiComment
 };

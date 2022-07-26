@@ -1,5 +1,5 @@
 import { fireDataBase } from '../static/js/firebaseConfig';
-import { collection, getDocs, query, limit, where, doc } from 'firebase/firestore';
+import { collection, getDocs, query, limit, where, doc, updateDoc } from 'firebase/firestore';
 
 export const state = () => ({
   show: false,

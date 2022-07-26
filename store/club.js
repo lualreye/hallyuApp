@@ -34,7 +34,6 @@ const mutations = {
     state.club.videos.splice(idx, 1)
   },
   ADD_VIDEO(state, video) {
-    console.log('estamos en add', video)
     state.club.videos.push(video)
   }
 };

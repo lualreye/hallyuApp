@@ -1,12 +1,46 @@
 <template>
   <header
-    class="px-1 sm:px-2 md:px-4 flex flex-col w-full justify-center items-center mb-1 sticky top-0 left-0 right-0 bg-background"
+    class="
+      px-1
+      sm:px-2
+      md:px-4
+      flex flex-col
+      w-full
+      justify-center
+      items-center
+      mb-1
+      sticky
+      top-0
+      left-0
+      right-0
+      bg-background
+    "
   >
     <!-- HEADER CONTENT -->
     <div class="w-full">
-      <div class="w-full flex justify-center items-center pb-3 py-5 max-w-screen-2xl">
+      <div
+        class="
+          w-full
+          flex
+          justify-center
+          items-center
+          pb-3
+          py-5
+          max-w-screen-2xl
+        "
+      >
         <p
-          class="w-full flex justify-between items-center font-medium text-base sm:text-lg text-hBlack font-open"
+          class="
+            w-full
+            flex
+            justify-between
+            items-center
+            font-medium
+            text-base
+            sm:text-lg
+            text-hBlack
+            font-open
+          "
         >
           {{ getHeaderTitle }}
         </p>
@@ -83,8 +117,7 @@ export default {
       } else if (path[2] === "inventory") {
         menu = [
           { name: "Inventario de productos", link: "total" },
-          { name: "Productos publicados", link: "published" },
-          { name: "Productos en oferta", link: "offering" },
+          { name: "Productos comentados", link: "commented" },
         ];
         return menu;
       } else if (path[2] === "club") {

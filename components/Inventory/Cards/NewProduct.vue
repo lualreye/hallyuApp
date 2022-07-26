@@ -13,6 +13,7 @@
       bg-background
       rounded-lg
       shadow-md
+      overflow-y-auto
     "
   >
     <div class="w-full flex flex-col justify-center items-center p-2">
@@ -67,7 +68,7 @@
           >
             <input
               type="file"
-              accept=".png, .jpg, jpeg, webp"
+              accept=".png, .jpg, jpeg, .webp"
               class="absolute w-full h-32 opacity-0 z-60"
               @change="getThumbnail"
             />
@@ -157,7 +158,7 @@
                 <div v-if="!Object.keys(extraImage).length" class="w-auto">
                   <input
                     type="file"
-                    accept=".png, .jpg, jpeg, webp"
+                    accept=".png, .jpg, jpeg, .webp"
                     class="absolute w-full h-10 opacity-0 z-60"
                     @change="loadExtraImage"
                   />
