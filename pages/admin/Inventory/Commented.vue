@@ -22,7 +22,18 @@
         </div>
         <button
           @click="removeComment(comment.commentId)"
-          class="w-6 h-6 flex justify-center items-center ml-3"
+          class="
+            w-6
+            h-6
+            flex
+            shadow-md
+            justify-center
+            items-center
+            bg-secondary
+            rounded-full
+            p-1
+            ml-3
+          "
         >
           <h-icon name="delete" class="text-textColor" />
         </button>
