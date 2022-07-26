@@ -34,6 +34,8 @@
     </div>
     <div class="flex flex-wrap justify-center items-center mt-10">
       <button
+        v-for="filter in filters"
+        :key="filter"
         class="
           py-1
           px-2
@@ -42,10 +44,11 @@
           font-junegull
           rounded-md
           shadow-md
+          m-1
         "
-        @click="selectFilter"
+        @click="selectFilter(filter)"
       >
-        menor a $20
+        {{ filter }}
       </button>
     </div>
     <div
@@ -129,6 +132,7 @@ export default {
   },
   data: () => ({
     searchString: "",
+    filters: ["menor a $20", "Ofertas"],
     filterSelected: "",
   }),
   computed: {
@@ -172,9 +176,9 @@ export default {
     deleteString() {
       this.searchString = "";
     },
-    selectFilter() {
+    selectFilter(filter) {
       this.deleteString();
-      this.filterSelected = "menor a $20";
+      this.filterSelected = filter;
       this.filterByName();
     },
     filterByName() {
@@ -182,6 +186,11 @@ export default {
       if (this.filterSelected === "menor a $20") {
         results = this.getProducts.filter((product) => {
           return product.price < 20;
+        });
+      }
+      if (this.filterSelected === "Ofertas") {
+        results = this.getProducts.filter((product) => {
+          return product.offered !== false;
         });
       }
       if (this.searchString.length) {
