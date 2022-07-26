@@ -32,6 +32,22 @@
         </button>
       </div>
     </div>
+    <div class="flex flex-wrap justify-center items-center mt-10">
+      <button
+        class="
+          py-1
+          px-2
+          bg-primary
+          text-textColor
+          font-junegull
+          rounded-md
+          shadow-md
+        "
+        @click="selectFilter"
+      >
+        menor a $20
+      </button>
+    </div>
     <div
       v-if="searchString.length"
       class="py-4 px-2 max-w-screen-xl mx-auto my-9"
@@ -60,6 +76,27 @@
         </div>
       </template>
     </div>
+
+    <div
+      v-else-if="filterSelected.length"
+      class="py-4 px-2 max-w-screen-xl mx-auto my-9"
+    >
+      <stack
+        :column-min-width="228"
+        :gutter-width="8"
+        :gutter-height="24"
+        monitor-images-loaded
+      >
+        <stack-item
+          v-for="(product, index) in getSearch"
+          :key="index"
+          class="flex justify-center"
+        >
+          <product-card :product="product" />
+        </stack-item>
+      </stack>
+    </div>
+
     <div v-else class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack
         :column-min-width="228"
@@ -92,6 +129,7 @@ export default {
   },
   data: () => ({
     searchString: "",
+    filterSelected: "",
   }),
   computed: {
     ...mapGetters("cart", ["getProducts", "getSearchedProducts"]),
@@ -112,6 +150,13 @@ export default {
       this.fetchProducts();
     }
   },
+  watch: {
+    searchString(value) {
+      if (value > 0) {
+        this.filterSelected = "";
+      }
+    },
+  },
   methods: {
     ...mapActions("cart", ["fetchProducts", "fetchSearchedProducts"]),
     ...mapActions("categories", ["fetchCategories"]),
@@ -127,12 +172,25 @@ export default {
     deleteString() {
       this.searchString = "";
     },
+    selectFilter() {
+      this.deleteString();
+      this.filterSelected = "menor a $20";
+      this.filterByName();
+    },
     filterByName() {
-      const results = this.getProducts.filter((product) => {
-        return product.name
-          .toLowerCase()
-          .includes(this.searchString.toLowerCase());
-      });
+      let results;
+      if (this.filterSelected === "menor a $20") {
+        results = this.getProducts.filter((product) => {
+          return product.price < 20;
+        });
+      }
+      if (this.searchString.length) {
+        results = this.getProducts.filter((product) => {
+          return product.name
+            .toLowerCase()
+            .includes(this.searchString.toLowerCase());
+        });
+      }
       console.log(results);
       return results;
     },
