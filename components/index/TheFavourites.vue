@@ -46,23 +46,24 @@
 
     <!-- RENDERIZADO DE TARJETAS DE LOS COMENTARIOS DE LOS USUARIOS -->
     <div
-      class="flex justify-start mt-4 py-12 pl-1 sm:pl-6 items-center overflow-x-scroll favourites-container"
+      class="
+        flex
+        justify-start
+        mt-4
+        py-12
+        pl-1
+        sm:pl-6
+        items-center
+        overflow-x-scroll
+        favourites-container
+      "
     >
       <div
-        v-for="(userComment, i) in comments"
+        v-for="(comment, i) in comments"
         :key="i"
         class="flex justify-center items-center md:mr-6 m-4"
       >
-        <recommendation-card
-          :comment="userComment.comment"
-          :profileImage="userComment.profileImage"
-          :userName="userComment.userName"
-          :productImage="userComment.productImage"
-          :productName="userComment.productName"
-          :rate="userComment.rate"
-          :read="userComment.read"
-          :order="i"
-        />
+        <recommendation-card :comment="comment" :order="i" />
       </div>
     </div>
   </div>
@@ -74,13 +75,13 @@ import RecommendationCard from "~/components/cards/RecommendationCard";
 export default {
   components: {
     SecondType,
-    RecommendationCard
+    RecommendationCard,
   },
   props: {
     comments: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
 };
 </script>
@@ -90,10 +91,10 @@ export default {
   transform: rotate(180deg);
 }
 .favourites-container {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
-.favourites-container::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+.favourites-container::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 </style>

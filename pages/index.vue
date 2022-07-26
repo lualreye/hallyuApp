@@ -25,7 +25,11 @@
       :koreanText="getQuotes.flash.koreanText"
       :spanishText="getQuotes.flash.spanishText"
     />
-    <the-favourites :comments="comments" class="max-w-screen-2xl mx-auto" />
+    <the-favourites
+      v-if="getProductsCommented.length"
+      :comments="getProductsCommented"
+      class="max-w-screen-2xl mx-auto"
+    />
     <the-line-decoration
       v-if="areQuotes && getDiscountProducts.length"
       :bgColor="getQuotes.popular.bgColor"
@@ -123,41 +127,6 @@ export default {
   },
   data: () => ({
     heroImage: "",
-    comments: [
-      {
-        comment:
-          "Este es un comentario de prueba en el que vamos a trabajar mucho",
-
-        userName: "Luis Reyes",
-        profileImage: require("~/static/images/idols/han.jpg"),
-        productImage: require("~/static/images/idols/han.jpg"),
-        productName: "Este es el nombre",
-        read: false,
-        rate: 3,
-      },
-      {
-        comment:
-          "Este es un comentario de prueba en el que vamos a trabajar mucho",
-
-        userName: "Luis Reyes",
-        profileImage: require("~/static/images/idols/han.jpg"),
-        productImage: require("~/static/images/idols/han.jpg"),
-        productName: "Este es el nombre",
-        read: false,
-        rate: 3,
-      },
-      {
-        comment:
-          "Este es un comentario de prueba en el que vamos a trabajar mucho",
-
-        userName: "Luis Reyes",
-        profileImage: require("~/static/images/idols/han.jpg"),
-        productImage: require("~/static/images/idols/han.jpg"),
-        productName: "Este es el nombre",
-        read: false,
-        rate: 3,
-      },
-    ],
   }),
   mounted() {
     if (!this.getHeroImages.length) {
@@ -196,6 +165,9 @@ export default {
     if (!Object.keys(this.getClub).length) {
       this.fetchClub();
     }
+    if (!this.getProductsCommented.length) {
+      this.fetchCommentedProducts();
+    }
   },
   computed: {
     ...mapGetters("general", [
@@ -216,6 +188,7 @@ export default {
     ...mapGetters("categories", ["getCategories"]),
     ...mapGetters("user", ["getUser"]),
     ...mapGetters("club", ["getClub"]),
+    ...mapGetters("comments", ["getProductsCommented"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
     },
@@ -270,6 +243,7 @@ export default {
     ]),
     ...mapActions("categories", ["fetchCategories"]),
     ...mapActions("club", ["fetchClub"]),
+    ...mapActions("comments", ["fetchCommentedProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;
     },
