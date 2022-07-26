@@ -2,7 +2,17 @@
   <div class="flex flex-col w-48">
     <nuxt-link :to="product.id" class="w-full h-48 p-2">
       <div class="relative">
-        <figure class="w-full h-48 object-cover object-center rounded-lg flex justify-center items-center">
+        <figure
+          class="
+            w-full
+            h-48
+            object-cover object-center
+            rounded-lg
+            flex
+            justify-center
+            items-center
+          "
+        >
           <img :src="product.thumbnail" alt="product.name" class="rounded-lg" />
         </figure>
         <div
@@ -17,7 +27,13 @@
           "
         >
           <div
-            class="px-2 bg-aquamarine flex-justify-center items-center rounded-lg"
+            class="
+              px-2
+              bg-aquamarine
+              flex-justify-center
+              items-center
+              rounded-lg
+            "
           >
             <p class="text-textColor bg-aquamarine px-2">Quedan</p>
           </div>
@@ -82,46 +98,55 @@
     </nuxt-link>
     <button
       @click="getToTheCart(product.id)"
-      class="w-full py-2 rounded-full mt-4 bg-primary text-white font-open shadow-md">
+      class="
+        w-full
+        py-2
+        rounded-full
+        mt-4
+        bg-primary
+        text-white
+        font-open
+        shadow-md
+      "
+    >
       Agregar al carrito
     </button>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   props: {
     product: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     getTime() {
-      return this.calcTime().getTime()
-    }
+      return this.calcTime().getTime();
+    },
   },
   methods: {
-    ...mapActions('cart', ['removeTimeOffer']),
+    ...mapActions("cart", ["removeTimeOffer"]),
     calcTime() {
-      const dateString = this.product.offer.time.replaceAll('-', '')
-      console.log(dateString)
-      const year = dateString.substring(0, 4)
-      const month = dateString.substring(4, 6)
-      const day = dateString.substring(6, 8)
-      const date = new Date(year, month - 1, day)
-      const today = new Date()
+      const dateString = this.product.offer.time.replaceAll("-", "");
+      const year = dateString.substring(0, 4);
+      const month = dateString.substring(4, 6);
+      const day = dateString.substring(6, 8);
+      const date = new Date(year, month - 1, day);
+      const today = new Date();
       if (date.getTime() <= today.getTime()) {
-        this.removeTimeOffer(this.product)
+        this.removeTimeOffer(this.product);
       }
-      return date
+      return date;
     },
     getToTheCart(id) {
-      this.$router.push(`/products/${id}`)
-    }
-  }
+      this.$router.push(`/products/${id}`);
+    },
+  },
 };
 </script>
 

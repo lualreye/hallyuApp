@@ -12,14 +12,14 @@
         rounded-full
       "
     >
-      <div class="flex justify-center items-center px-2 flex-grow">
+      <div class="flex justify-center items-center px-2 flex-grow py-2">
         <div class="w-6 h-6 flex justify-center items-center">
           <HIcon name="search" class="text-primary" />
         </div>
         <input
           type="text"
           v-model="searchString"
-          class="focus:outline-none px-1 w-full flex-grow"
+          class="focus:outline-none px-1 w-full flex-grow bg-transparent"
         />
       </div>
       <div class="flex justify-center items-center divide-x divide-gray-400">
@@ -30,24 +30,10 @@
         >
           <HIcon name="close" class="text-white items-center" />
         </button>
-        <button
-          class="
-            font-junegull
-            py-1
-            px-2
-            text-white
-            bg-primary
-            rounded-full
-            shadow-md
-          "
-          @click="search"
-        >
-          Buscar
-        </button>
       </div>
     </div>
     <div
-      v-if="getSearchedProducts.length"
+      v-if="searchString.length"
       class="py-4 px-2 max-w-screen-xl mx-auto my-9"
     >
       <stack
@@ -57,7 +43,7 @@
         monitor-images-loaded
       >
         <stack-item
-          v-for="(product, index) in getSearchedProducts"
+          v-for="(product, index) in getSearch"
           :key="index"
           class="flex justify-center"
         >
@@ -65,7 +51,29 @@
         </stack-item>
       </stack>
     </div>
-    <div v-else class="mx-auto w-full max-w-lg">
+    <div
+      v-else-if="getProducts.length"
+      class="py-4 px-2 max-w-screen-xl mx-auto my-9"
+    >
+      <stack
+        :column-min-width="228"
+        :gutter-width="8"
+        :gutter-height="24"
+        monitor-images-loaded
+      >
+        <stack-item
+          v-for="(product, index) in getProducts"
+          :key="index"
+          class="flex justify-center"
+        >
+          <product-card :product="product" />
+        </stack-item>
+      </stack>
+    </div>
+    <div
+      v-else-if="getSearch === undefined"
+      class="mx-auto w-full max-w-lg mt-10"
+    >
       <p class="text-textColor font-junegull text-xl">
         No Encontramos ese producto :( {{ searchString }}
       </p>
@@ -97,13 +105,13 @@ export default {
         return this.$route.params.id;
       }
     },
+    getSearch() {
+      return this.filterByName();
+    },
   },
   mounted() {
     if (!this.getProducts.length) {
       this.fetchProducts();
-    }
-    if (!this.getCategories.length) {
-      this.fetchCategories();
     }
   },
   methods: {
@@ -116,10 +124,18 @@ export default {
       this.selectedCategory = "";
     },
     search() {
-      this.fetchSearchedProducts(this.searchString.trim());
+      this.filterByName();
     },
     deleteString() {
       this.searchString = "";
+    },
+    filterByName() {
+      const results = this.getProducts.filter((product) => {
+        return product.name
+          .toLowerCase()
+          .includes(this.searchString.toLowerCase());
+      });
+      return results;
     },
   },
 };
