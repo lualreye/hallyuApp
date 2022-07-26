@@ -1,35 +1,37 @@
 <template>
   <div class="my-4">
-    <div
-      class="
-        flex
-        justify-between
-        items-center
-        border-primary border
-        w-full
-        max-w-lg
-        mx-auto
-        rounded-full
-      "
-    >
-      <div class="flex justify-center items-center px-2 flex-grow py-2">
-        <div class="w-6 h-6 flex justify-center items-center">
-          <HIcon name="search" class="text-primary" />
+    <div class="px-2">
+      <div
+        class="
+          flex
+          justify-between
+          items-center
+          border-primary border
+          w-full
+          max-w-lg
+          mx-auto
+          rounded-full
+        "
+      >
+        <div class="flex justify-center items-center px-2 flex-grow py-2">
+          <div class="w-6 h-6 flex justify-center items-center">
+            <HIcon name="search" class="text-primary" />
+          </div>
+          <input
+            type="text"
+            v-model="searchString"
+            class="focus:outline-none px-1 w-full flex-grow bg-transparent"
+          />
         </div>
-        <input
-          type="text"
-          v-model="searchString"
-          class="focus:outline-none px-1 w-full flex-grow bg-transparent"
-        />
-      </div>
-      <div class="flex justify-center items-center divide-x divide-gray-400">
-        <button
-          v-if="searchString.length"
-          class="w-5 h-5 flex bg-gray-300 mr-3 rounded-full justify-center"
-          @click="deleteString"
-        >
-          <HIcon name="close" class="text-white items-center" />
-        </button>
+        <div class="flex justify-center items-center divide-x divide-gray-400">
+          <button
+            v-if="searchString.length"
+            class="w-5 h-5 flex bg-gray-300 mr-3 rounded-full justify-center"
+            @click="deleteString"
+          >
+            <HIcon name="close" class="text-white items-center" />
+          </button>
+        </div>
       </div>
     </div>
     <div class="flex flex-wrap justify-center items-center mt-10">
