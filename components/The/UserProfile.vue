@@ -241,6 +241,7 @@ export default {
       }
     },
     closeSession() {
+      location.reload();
       this.closeModal();
     },
   },

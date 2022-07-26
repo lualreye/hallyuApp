@@ -193,7 +193,7 @@ export default {
       }
     },
     logout() {
-      this.signUserOut();
+      location.reload();
       this.activeMenu(false);
     },
   },
