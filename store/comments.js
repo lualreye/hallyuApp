@@ -62,11 +62,8 @@ const actions = {
       }
 
       const products = rootGetters['inventoryTotal/getTotalProducts']
-      console.log(products)
       const idx = products.findIndex(pr => pr.id === payload.productId )
-      console.log(idx)
       const pr = products[idx]
-      console.log(pr)
       await setDoc(commentRef, { ...comment })
 
       commit('ADD_COMMENT', {...comment, likes: pr.likes, thumbnail: pr.thumbnail, commentId: commentRef.id })
@@ -79,28 +76,22 @@ const actions = {
       const db = fireDataBase;
       const q = query(collection(db, 'productCommented'))
       const snap = await getDocs(q)
-      const comments = []
+      const productComments = []
       snap.forEach( async (com) => {
-        try {
-          const commentId = com.id;
-          const comment = com.data();
-          const productRef = doc(db, 'products', comment.productId)
-          const productSnap = await getDoc(productRef)
-          const product = productSnap.data()
-          comments.push({
-            commentId: commentId,
-            thumbnail: product.thumbnail,
-            likes: product.likes,
-            userName: comment.userName,
-            userImage: comment.userImage,
-            comment: comment.comment
-          })
-        } catch (err) {
-          console.error('NOT_GETTING COMMENTS')
+        productComments.push({commentId: com.id, ...com.data()})
+      })
+      const commentsWithProduct = productComments.map(async (com) => {
+        const productRef = doc(db, 'products', com.productId);
+        const productSnap = await getDoc(productRef);
+        const product = productSnap.data();
+        return {
+          ...com,
+          likes: product.likes,
+          thumbnail: product.thumbnail
         }
       })
-      console.log(comments)
-      commit('SET_PRODUCTS_COMMENTED', comments)
+      
+      commit('SET_PRODUCTS_COMMENTED', await Promise.all(commentsWithProduct))
     } catch (err) {
       console.error('CANNOT_GET_COMMENTS', err);
     }
