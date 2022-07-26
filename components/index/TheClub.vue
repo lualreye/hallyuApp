@@ -338,11 +338,18 @@
             md:my-2
           "
         >
+          <div class="w-3/4 border border-white rounded-t-md flex justify-center">
+            <select name="" id="" class="text-white bg-transparent">
+              <option v-for="(episode, index) in getClub.videos" :key="index" value="" class="text-base bg-transparent text-white">
+                {{ episode.name }}
+              </option>
+            </select>
+          </div>
           <video
             preload="auto"
             controls
             loop
-            class="w-1/2 mx-auto border border-white rounded-lg"
+            class="w-3/4 mx-auto border border-white rounded-lg"
           >
             <source :src="getClub.videos[0].image" />
           </video>
@@ -409,13 +416,24 @@
               />
             </svg>
           </div>
+          <div class="flex flex-col justify-center items-center mb-3">
+            <p class="w-full text-center text-white font-junegull">
+              Q&A:
+            </p>
+            <button class="my-2 py-2 px-3 font-junegull bg-slate-100 rounded-full text-blue-300">
+              ¿Cómo participar?
+            </button>
+            <button class="py-2 px-3 font-junegull bg-slate-100 rounded-full text-blue-300">
+              ¿Qué puedo ganar?
+            </button>
+          </div>
           <div
             class="
               w-full
               flex flex-col
               justify-center
               items-center
-              P-6
+              p-6
               rounded-md
               fondo-pregunta
             "
@@ -427,9 +445,12 @@
             </p>
             <textarea
               v-model="clubComment"
-              class="w-full h-28 rounded-lg"
+              class="w-full h-16 rounded-lg tex-center"
               placeholder="Escribe aquí"
             ></textarea>
+            <button class="py-2 px-3 rounded-md text-white bg-orange-500">
+              Enviar
+            </button>
           </div>
         </div>
       </div>
