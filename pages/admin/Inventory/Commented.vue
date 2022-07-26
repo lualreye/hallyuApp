@@ -92,6 +92,7 @@ export default {
   }),
   computed: {
     ...mapGetters("inventoryTotal", ["getTotalProducts"]),
+    ...mapGetters("comments", ["getProductsCommented"]),
     isSelected() {
       return this.selectedProduct;
     },
@@ -100,9 +101,13 @@ export default {
     if (!this.getTotalProducts.length) {
       this.fetchProducts();
     }
+    if (!this.getProductsCommented.length) {
+      this.fetchCommentedProducts();
+    }
   },
   methods: {
     ...mapActions("inventoryTotal", ["fetchProducts"]),
+    ...mapActions("comments", ["fetchCommentedProducts"]),
     select(id) {
       this.selectedProduct = id;
     },

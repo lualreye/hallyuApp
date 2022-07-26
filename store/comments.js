@@ -19,7 +19,7 @@ const state = () => ({
 });
 
 const getters = {
-  productsCommented(state) {
+  getProductsCommented(state) {
     return state.productsCommented;
   },
 };
@@ -68,17 +68,32 @@ const actions = {
       console.error('CANNOT_UPLOAD_COMMENT', err);
     }
   },
-  async fetchClub({ commit }) {
+  async fetchCommentedProducts({ commit }) {
     try {
       const db = fireDataBase;
-      const videoSnapshot = await getDoc(doc(db, 'club', 'ae8stDTjGj7Cga3OvhEd'));
-      let club = {}
-      if (videoSnapshot.exists()) {
-        club = videoSnapshot.data()
-      }
-      commit('SET_CLUB', club)
+      const q = query(collection(db, 'productCommented'))
+      const snap = await getDocs(q)
+      const comments = []
+      snap.forEach( async (com) => {
+        const commentId = com.id;
+        const comment = com.data();
+        console.log(comment)
+        const productRef = doc(db, 'products', comment.productId)
+        const productSnap = await getDoc(productRef)
+        const product = productSnap.data()
+        console.log(product)
+        comments.push({
+          commentId: commentId,
+          thumbnail: product.thumbnail,
+          likes: product.likes,
+          userName: comment.userName,
+          userImage: comment.userImage,
+          comment: comment.comment
+        })
+      })
+      commit('SET_PRODUCTS_COMMENTED', comments)
     } catch (err) {
-      console.error('CANNOT_GET_HERO_SONGS', err);
+      console.error('CANNOT_GET_COMMENTS', err);
     }
   },
   async deleteVideo({ commit }, payload) {
