@@ -41,7 +41,7 @@ const mutations = {
 const actions = {
   // TODO: CRUD SONGS
   // TODO: params(*) mp3 file
-  async uploadComment({ commit }, payload) {
+  async uploadComment({ commit, rootGetters }, payload) {
     try {
       const storage = fireStorage;
       const fileName = payload.userImage.name.split('.').shift();
@@ -61,9 +61,15 @@ const actions = {
         comment: payload.comment
       }
 
+      const products = rootGetters['inventoryTotal/getTotalProducts']
+      console.log(products)
+      const idx = products.findIndex(pr => pr.id === payload.productId )
+      console.log(idx)
+      const pr = products[idx]
+      console.log(pr)
       await setDoc(commentRef, { ...comment })
 
-      commit('ADD_COMMENT', {...comment})
+      commit('ADD_COMMENT', {...comment, likes: pr.likes, thumbnail: pr.thumbnail, commentId: commentRef.id })
     } catch (err) {
       console.error('CANNOT_UPLOAD_COMMENT', err);
     }
@@ -75,37 +81,38 @@ const actions = {
       const snap = await getDocs(q)
       const comments = []
       snap.forEach( async (com) => {
-        const commentId = com.id;
-        const comment = com.data();
-        console.log(comment)
-        const productRef = doc(db, 'products', comment.productId)
-        const productSnap = await getDoc(productRef)
-        const product = productSnap.data()
-        console.log(product)
-        comments.push({
-          commentId: commentId,
-          thumbnail: product.thumbnail,
-          likes: product.likes,
-          userName: comment.userName,
-          userImage: comment.userImage,
-          comment: comment.comment
-        })
+        try {
+          const commentId = com.id;
+          const comment = com.data();
+          const productRef = doc(db, 'products', comment.productId)
+          const productSnap = await getDoc(productRef)
+          const product = productSnap.data()
+          comments.push({
+            commentId: commentId,
+            thumbnail: product.thumbnail,
+            likes: product.likes,
+            userName: comment.userName,
+            userImage: comment.userImage,
+            comment: comment.comment
+          })
+        } catch (err) {
+          console.error('NOT_GETTING COMMENTS')
+        }
       })
+      console.log(comments)
       commit('SET_PRODUCTS_COMMENTED', comments)
     } catch (err) {
       console.error('CANNOT_GET_COMMENTS', err);
     }
   },
-  async deleteVideo({ commit }, payload) {
+  async deleteComment({ commit }, payload) {
     try {
       const db = fireDataBase
-      const clubRef = doc(db, 'club', 'ae8stDTjGj7Cga3OvhEd')
-      await updateDoc(clubRef, {
-        videos: arrayRemove(payload)
-      })
-      commit('REMOVE_VIDEO', payload)
+      const prRef = doc(db, 'productCommented', payload)
+      await deleteDoc(prRef)
+      commit('REMOVE_PRODUCT_COMMENTED', payload)
     } catch(err) {
-      console.error('CANNOT_DELETE_VIDEO', err)
+      console.error('REMOVE_PRODUCT_COMMENTED', err)
     }
   }
 };
