@@ -8,9 +8,9 @@
       }"
     >
       <!-- COMENTARIO DE LA TARJETA DE RECOMENDACION -->
-      <div class="bg-aquamarine py-4 px-2 rounded-lg shadow-lg">
+      <div class="py-4 px-2 rounded-lg">
         <p class="text-textColor font-semibold text-sm mb-2 leading-5">
-          {{ comment.comment.slice(0, 50) }}...
+          {{ comment.comment.slice(0, 100) }}...
         </p>
         <div class="w-full flex justify-start items-center my-2">
           <figure
@@ -26,8 +26,11 @@
             {{ comment.userName }}
           </p>
         </div>
-        <div class="w-5 h-5 flex justify-center items-center">
-          <GlobalHIcon name="like" class="text-secondary" />
+        <div class="flex items-center">
+          <div class="w-5 h-5 flex justify-center items-center">
+            <GlobalHIcon name="like" class="text-secondary" />
+          </div>
+          <p class="text-xs text-textColor ml-2">{{ comment.likes }}</p>
         </div>
       </div>
       <!-- IMAGEN DEL PRODUCTO DE LA REOCOMENDACION -->
