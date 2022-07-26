@@ -36,25 +36,31 @@
       v-if="searchString.length"
       class="py-4 px-2 max-w-screen-xl mx-auto my-9"
     >
-      <stack
-        :column-min-width="228"
-        :gutter-width="8"
-        :gutter-height="24"
-        monitor-images-loaded
-      >
-        <stack-item
-          v-for="(product, index) in getSearch"
-          :key="index"
-          class="flex justify-center"
+      <template v-if="getSearch !== false">
+        <stack
+          :column-min-width="228"
+          :gutter-width="8"
+          :gutter-height="24"
+          monitor-images-loaded
         >
-          <product-card :product="product" />
-        </stack-item>
-      </stack>
+          <stack-item
+            v-for="(product, index) in getSearch"
+            :key="index"
+            class="flex justify-center"
+          >
+            <product-card :product="product" />
+          </stack-item>
+        </stack>
+      </template>
+      <template v-else>
+        <div class="mx-auto w-full max-w-lg mt-10">
+          <p class="text-textColor font-junegull text-xl">
+            No Encontramos ese producto :( {{ searchString }}
+          </p>
+        </div>
+      </template>
     </div>
-    <div
-      v-else-if="getProducts.length"
-      class="py-4 px-2 max-w-screen-xl mx-auto my-9"
-    >
+    <div v-else class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack
         :column-min-width="228"
         :gutter-width="8"
@@ -69,14 +75,6 @@
           <product-card :product="product" />
         </stack-item>
       </stack>
-    </div>
-    <div
-      v-else-if="getSearch === undefined"
-      class="mx-auto w-full max-w-lg mt-10"
-    >
-      <p class="text-textColor font-junegull text-xl">
-        No Encontramos ese producto :( {{ searchString }}
-      </p>
     </div>
   </div>
 </template>
@@ -106,7 +104,7 @@ export default {
       }
     },
     getSearch() {
-      return this.filterByName();
+      return this.filterByName().length ? this.filterByName() : false;
     },
   },
   mounted() {
@@ -135,6 +133,7 @@ export default {
           .toLowerCase()
           .includes(this.searchString.toLowerCase());
       });
+      console.log(results);
       return results;
     },
   },
