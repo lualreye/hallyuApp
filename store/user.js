@@ -172,7 +172,8 @@ const actions = {
         image: '',
         cart: [],
         sales: [],
-        liked: []
+        liked: [],
+        points: 100,
       };
       const userRef = doc(collection(db, 'users'));
       await setDoc(userRef, { ...user });
