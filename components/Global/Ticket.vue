@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="getDisplayTicket"
+    v-if="show"
     class="
       ticket
       fixed
@@ -51,7 +51,7 @@
           v-if="getDiscount.code.length"
           class="text-xs font-medium w-full font-open text-purple-500"
         >
-          Obtén un en tu siquiente {{ getDiscount.codeDiscount }} compra
+          Obtén un descuento en tu siquiente {{ getDiscount.codeDiscount }} compra
         </p>
       </div>
     </div>
@@ -62,13 +62,19 @@
 import { mapGetters } from "vuex";
 
 export default {
+  props: {
+    show: {
+      type: Boolean,
+      required: true,
+    }
+  },
   data: () => ({
     logo: require("../../static/images/logo/imagotipo.png"),
     width: null,
   }),
   computed: {
-    ...mapGetters("general", ["getDiscount", "getDisplayTicket"]),
-  },
+    ...mapGetters("general", ["getDiscount"]),
+  }
 };
 </script>
 

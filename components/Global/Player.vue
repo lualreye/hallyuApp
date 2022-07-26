@@ -47,6 +47,7 @@
         relative
         player-button
       "
+      @click="showDiscount"
     >
       <span
         class="
@@ -61,7 +62,6 @@
           -top-3
           text-white
         "
-        @click="showDiscount"
         >Notificaciones</span
       >
       <HIcon name="notification" class="text-secondary" />
@@ -122,6 +122,7 @@ export default {
       this.$router.push("/products");
     },
     showDiscount() {
+      console.log('Estamos ejecutando')
       this.showTicket();
     },
   },

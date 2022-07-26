@@ -12,7 +12,7 @@
     <Nuxt />
     <Player />
     <Playlist />
-    <Ticket />
+    <ticket :show="getDisplayTicket" />
     <TheFooter class="mt-auto" />
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
     ...mapGetters("cart", ["showCart"]),
     ...mapGetters("user", ["getModal", "getUser"]),
     ...mapGetters("userData", ["getProfile"]),
+    ...mapGetters("general", ["getDisplayTicket"]),
     stopScrolling() {
       return this.showMenu || this.showCart || this.getModal;
     },
