@@ -49,7 +49,7 @@
               class="rounded-full w-10 h-10 flex justify-center items-center"
               @click="openCart"
             >
-              <img :src="cartImage" alt="Hallyu" class="w-3/4" />
+              <img :src="cartImage" alt="Hallyu" class="w-3/5" />
             </button>
             <div
               v-if="getCart.length"
@@ -173,7 +173,7 @@ export default {
       }
     },
     openFavourites() {
-      if (getUser) {
+      if (this.getUser) {
         if (this.getLiked) {
           this.showLikedProducts(false);
         } else {
