@@ -38,12 +38,29 @@
       </nuxt-link>
       <div class="w-auto flex justify-end items-center">
         <div class="w-auto flex justify-center items-center mr-2">
-          <GlobalIconButton
-            iconName="like"
-            classes="bg-primary p-1"
-            class="mx-1"
-            @click="openFavourites"
-          />
+          <div class="relative flex justify-center items-center">
+            <GlobalIconButton
+              iconName="like"
+              classes="bg-primary p-1"
+              class="mx-1"
+              @click="openFavourites"
+            />
+            <div
+              v-if="getWishList.length"
+              class="
+                flex
+                justify-center
+                items-center
+                w-2
+                h-2
+                bg-pink-500
+                rounded-full
+                absolute
+                top-1
+                right-1
+              "
+            />
+          </div>
           <div class="relative flex justify-center items-center">
             <button
               class="rounded-full w-10 h-10 flex justify-center items-center"
@@ -101,13 +118,6 @@
             />
           </div>
         </div>
-        <!-- <div v-if="!getUser" class="flex jsutify-center items-center">
-          <GlobalIconButton
-            iconName="userAccount"
-            classes="bg-primary p-1"
-            @click="toSignUp"
-            />
-        </div> -->
       </div>
     </div>
   </header>
@@ -126,6 +136,7 @@ export default {
     ...mapGetters("cart", ["showCart", "getCart"]),
     ...mapGetters("user", ["getUser"]),
     ...mapGetters("userData", ["getProfile"]),
+    ...mapGetters("likes", ["getWishList"]),
     user() {
       if (this.getUser !== null) {
         if (this.getUser.image !== "") {
