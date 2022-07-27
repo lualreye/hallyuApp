@@ -43,7 +43,7 @@
                 <GlobalHIcon name="edit" class="text-textColor" />
               </div>
               <p class="text-xs text-textColor font-extralight">
-                Cambiar perfil
+                Editar perfil
               </p>
             </button>
             <div class="w-full flex justify-center items-center mt-8">
