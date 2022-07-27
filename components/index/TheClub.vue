@@ -355,6 +355,7 @@
           <video
             preload="auto"
             controls
+            controlsList="nodownload"
             loop
             class="w-3/4 mx-auto border-2 border-white rounded-b-lg"
           >
@@ -521,7 +522,10 @@ export default {
   watch: {
     episode(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.getClub.videos.findIndex((video) => video.name === this.episode);
+        const idx = this.getClub.videos.findIndex(
+          (video) => video.name === this.episode
+        );
+        this.video = this.getClub.videos[idx].image;
       }
     },
     getClub(value) {
