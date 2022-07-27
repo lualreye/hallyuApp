@@ -93,6 +93,13 @@
               <TheUserProfile class="relative z-80" />
             </div>
           </div>
+          <div v-else class="flex justify-center items-center relative">
+            <GlobalIconButton
+              iconName="userAccount"
+              class="bg-primary p-1 ml-1"
+              @click="goToSignIn"
+            />
+          </div>
         </div>
         <!-- <div v-if="!getUser" class="flex jsutify-center items-center">
           <GlobalIconButton
@@ -182,6 +189,9 @@ export default {
       } else {
         this.$router.push("/SignIn");
       }
+    },
+    goToSignIn() {
+      this.$router.push("/SignIn");
     },
   },
 };
