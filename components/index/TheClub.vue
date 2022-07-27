@@ -338,9 +338,16 @@
             md:my-2
           "
         >
-          <div class="w-3/4 border border-white rounded-t-md flex justify-center">
+          <div
+            class="w-3/4 border border-white rounded-t-md flex justify-center"
+          >
             <select v-model="video" class="text-white bg-transparent">
-              <option v-for="(episode, index) in getClub.videos" :key="index" value="" class="text-base bg-transparent text-white">
+              <option
+                v-for="(episode, index) in getClub.videos"
+                :key="index"
+                value=""
+                class="text-base bg-transparent text-white"
+              >
                 {{ episode.name }}
               </option>
             </select>
@@ -417,13 +424,30 @@
             </svg>
           </div>
           <div class="flex flex-col justify-center items-center mb-3">
-            <p class="w-full text-center text-white font-junegull">
-              Q&A:
-            </p>
-            <button class="my-2 py-2 px-3 font-junegull bg-slate-100 rounded-full text-blue-300">
+            <p class="w-full text-center text-white font-junegull">Q&A:</p>
+            <button
+              class="
+                my-2
+                py-2
+                px-3
+                font-junegull
+                bg-slate-100
+                rounded-full
+                text-blue-300
+              "
+            >
               ¿Cómo participar?
             </button>
-            <button class="py-2 px-3 font-junegull bg-slate-100 rounded-full text-blue-300">
+            <button
+              class="
+                py-2
+                px-3
+                font-junegull
+                bg-slate-100
+                rounded-full
+                text-blue-300
+              "
+            >
               ¿Qué puedo ganar?
             </button>
           </div>
@@ -471,16 +495,16 @@ export default {
     clubComment: "",
     bgImage: require("../../static/images/backgrounds/fondo6.png"),
     paper: require("../../static/images/papel-rasgado1.png"),
-    video: ""
+    video: "",
   }),
   computed: {
     ...mapGetters("club", ["getClub"]),
   },
   mounted() {
     if (Object.keys(this.getClub).length) {
-      this.video = this.getClub.videos[0]
+      this.video = this.getClub.videos[0];
     }
-  }
+  },
 };
 </script>
 
@@ -493,5 +517,6 @@ export default {
 }
 .club-fondo {
   background-position: center;
+  background-size: cover;
 }
 </style>

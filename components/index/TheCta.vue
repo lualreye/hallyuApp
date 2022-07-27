@@ -66,7 +66,7 @@
                 text-center text-textColor
               "
             >
-              Recibe notifiaciones de ofertas especiales
+              Recibe notificaciones de ofertas especiales
             </p>
             <p
               class="
