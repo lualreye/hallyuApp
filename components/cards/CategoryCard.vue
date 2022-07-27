@@ -66,6 +66,7 @@
             z-20
             mx-auto
             px-3
+            category-name
           "
         >
           {{ categoryName.split(" ").shift().toUpperCase() }}
@@ -113,6 +114,9 @@ export default {
   }
   .card-hover:hover #image-hover {
     display: none;
+  }
+  .card-hover:hover .category-name {
+    background: #87c7c9;
   }
 }
 </style>

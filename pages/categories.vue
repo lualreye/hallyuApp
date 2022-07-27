@@ -29,7 +29,7 @@
                   h-2
                   lg:h-4
                   xl:h-5
-                  bg-pink-300
+                  bg-lightPink
                   absolute
                   rounded-lg
                   bottom-1
@@ -56,7 +56,7 @@
                   h-2
                   lg:h-4
                   xl:h-5
-                  bg-pink-300
+                  bg-lightPink
                   absolute
                   rounded-lg
                   bottom-1
@@ -157,6 +157,8 @@ export default {
 .mask {
   mask-image: url("../static/images/backgrounds/Union.svg");
   mask-position: bottom;
+  mask-repeat: no-repeat;
+  mask-size: 100%;
 }
 .nuxt-exact-link {
   background-color: #ffc5fe;

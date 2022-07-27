@@ -26,7 +26,11 @@
         "
       >
         <div
-          class="w-full flex justify-between items-center px-4 relative z-30"
+          class="w-full flex items-center px-4 relative z-30"
+          :class="{
+            'justify-end': !product.name.includes('/'),
+            'justify-between': product.name.includes('/'),
+          }"
         >
           <p
             v-if="product.name.includes('/')"
