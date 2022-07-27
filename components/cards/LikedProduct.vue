@@ -3,25 +3,27 @@
     <div class="w-full flex justify-between items-start">
       <!-- LEFT SECTION OF THE CARD -->
       <div class="flex justify-start items-start w-3/4">
-        <figure
-          class="w-1/4 h-20 rounded-3xl mr-2 flex justify-center items-center"
-        >
-          <img
-            :src="product.thumbnail"
-            :alt="product.name"
-            class="
-              rounded-xl
-              w-full
-              h-20
-              object-cover
-              border border-secondary
-              object-center
-              flex
-              justify-center
-              items-center
-            "
-          />
-        </figure>
+        <nuxt-link :to="`/products/${product.id}`">
+          <figure
+            class="w-1/4 h-20 rounded-3xl mr-2 flex justify-center items-center"
+          >
+            <img
+              :src="product.thumbnail"
+              :alt="product.name"
+              class="
+                rounded-xl
+                w-full
+                h-20
+                object-cover
+                border border-secondary
+                object-center
+                flex
+                justify-center
+                items-center
+              "
+            />
+          </figure>
+        </nuxt-link>
         <div class="w-3/4 flex flex-col py-1 justify-between items-start">
           <p class="w-full text-textColor text-sm mb-1 font-bold font-open">
             {{ product.name }}

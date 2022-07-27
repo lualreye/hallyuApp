@@ -26,7 +26,7 @@
         <div class="flex justify-center items-center divide-x divide-gray-400">
           <button
             v-if="searchString.length"
-            class="w-5 h-5 flex bg-gray-300 mr-3 rounded-full justify-center"
+            class="w-5 h-5 flex bg-gray-400 mr-3 rounded-full justify-center"
             @click="deleteString"
           >
             <HIcon name="close" class="text-white items-center" />
@@ -38,16 +38,11 @@
       <button
         v-for="filter in filters"
         :key="filter"
-        class="
-          py-1
-          px-2
-          bg-primary
-          text-textColor
-          font-junegull
-          rounded-md
-          shadow-md
-          m-1
-        "
+        class="py-1 px-2 text-textColor font-junegull rounded-md shadow-md m-1"
+        :class="{
+          'bg-secondary': isThisFilter(filter),
+          'bg-primary': !isThisFilter(filter),
+        }"
         @click="selectFilter(filter)"
       >
         {{ filter }}
@@ -134,7 +129,7 @@ export default {
   },
   data: () => ({
     searchString: "",
-    filters: ["menor a $20", "Ofertas"],
+    filters: ["menor a $20", "Ofertas", "Todos"],
     filterSelected: "",
   }),
   computed: {
@@ -183,6 +178,9 @@ export default {
       this.filterSelected = filter;
       this.filterByName();
     },
+    isThisFilter(filter) {
+      return this.filterSelected === filter;
+    },
     filterByName() {
       let results;
       if (this.filterSelected === "menor a $20") {
@@ -202,7 +200,10 @@ export default {
             .includes(this.searchString.toLowerCase());
         });
       }
-      console.log(results);
+      if (this.filterSelected === "Todos") {
+        results = [];
+        this.filterSelected = "";
+      }
       return results;
     },
   },
