@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-48">
-    <nuxt-link :to="product.id" class="w-full h-48 p-2">
+    <div class="w-full h-48 p-2">
       <div class="relative">
         <figure
           class="
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-    </nuxt-link>
+    </div>
     <button
       @click="getToTheCart(product.id)"
       class="

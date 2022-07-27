@@ -344,12 +344,14 @@ import WaveOne from "@/components/waves/WaveOne.vue";
 import CartCard from "@/components/cards/CartCard.vue";
 
 export default {
+  layout: "pay",
   components: {
     WaveOne,
     CartCard,
   },
   computed: {
-    ...mapGetters("cart", ["getCart"]),
+    ...mapGetters("cart", ["showCart", "getCart"]),
+    ...mapGetters("user", ["getUser"]),
     totalBeforeDiscount() {
       if (!this.getCart.length) {
         return 0;
@@ -366,6 +368,9 @@ export default {
       const allDiscount = this.getCart.map((pr) => {
         if (pr.offered === "Descuento") {
           return pr.quantity * pr.price * (pr.offer / 100);
+        }
+        if (pr.offered === "Tiempo") {
+          return pr.quantity * pr.price * (pr.offer.discount / 100);
         }
         return 0;
       });
