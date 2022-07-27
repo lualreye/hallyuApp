@@ -344,7 +344,6 @@ import WaveOne from "@/components/waves/WaveOne.vue";
 import CartCard from "@/components/cards/CartCard.vue";
 
 export default {
-  layout: "pay",
   components: {
     WaveOne,
     CartCard,
