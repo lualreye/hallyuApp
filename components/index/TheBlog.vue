@@ -37,7 +37,14 @@
         <div
           v-for="(post, i) in posts"
           :key="i"
-          class="flex flex-wrap justify-center items-center w-full mx-auto"
+          class="
+            flex flex-wrap
+            justify-center
+            items-center
+            w-full
+            mx-auto
+            mt-10
+          "
         >
           <post-preview :post="post" :idx="i + 1" class="relative z-10" />
         </div>

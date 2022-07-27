@@ -1,16 +1,5 @@
 <template>
-  <div
-    v-if="show"
-    class="
-      ticket
-      fixed
-      z-30
-      shadow-xl
-      bg-white
-      p-2
-      rounded-lg
-    "
-  >
+  <div v-if="show" class="ticket fixed z-30 shadow-xl bg-white p-2 rounded-lg">
     <div
       class="
         w-full
@@ -21,6 +10,7 @@
         rounded-xl
         bg-white
         py-2
+        flex-wrap
       "
     >
       <div
@@ -28,30 +18,56 @@
           flex
           justify-center
           items-center
-          w-2/5
+          w-full
+          sm:w-2/5
           border-r border-dashed border-secondary
         "
       >
         <img :src="logo" alt="hallyu" class="w-1/4" />
       </div>
-      <div class="flex flex-col justify-center items-center w-3/5 px-10">
-        <p class="text-primary font-medium text-lg w-full font-open">
+      <div class="flex flex-col justify-center items-center sm:w-3/5 px-10">
+        <p
+          class="
+            text-primary
+            font-medium
+            text-center
+            sm:text-left
+            text-lg
+            w-full
+            font-open
+          "
+        >
           Código de descuento
         </p>
         <p
           v-if="getDiscount.code.length"
-          class="text-xl text-secondary font-junegull w-full my-4"
+          class="
+            text-xl text-secondary
+            font-junegull
+            w-full
+            my-4
+            text-center
+            sm:text-left
+          "
         >
           {{ getDiscount.code }}
         </p>
-        <p v-else class="text-xl font-junegull w-full">
+        <p v-else class="text-xl font-junegull w-full text-center sm:text-left">
           No tenemos código disponible
         </p>
         <p
           v-if="getDiscount.code.length"
-          class="text-xs font-medium w-full font-open text-purple-500"
+          class="
+            text-xs
+            font-medium
+            w-full
+            font-open
+            text-purple-500 text-center
+            sm:text-left
+          "
         >
-          Obtén un descuento en tu siquiente {{ getDiscount.codeDiscount }} compra
+          Obtén un descuento del {{ getDiscount.codeDiscount }}% en tu siguiente
+          compra
         </p>
       </div>
     </div>
@@ -66,7 +82,7 @@ export default {
     show: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   data: () => ({
     logo: require("../../static/images/logo/imagotipo.png"),
@@ -74,7 +90,7 @@ export default {
   }),
   computed: {
     ...mapGetters("general", ["getDiscount"]),
-  }
+  },
 };
 </script>
 
@@ -83,5 +99,17 @@ export default {
   width: 80%;
   bottom: 10%;
   left: 10%;
+}
+@media screen and (min-width: 769px) {
+  .ticket {
+    width: 50%;
+    left: 25%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .ticket {
+    width: 40%;
+    left: 30%;
+  }
 }
 </style>
