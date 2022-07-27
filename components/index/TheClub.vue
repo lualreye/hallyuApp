@@ -339,7 +339,7 @@
           "
         >
           <div class="w-3/4 border border-white rounded-t-md flex justify-center">
-            <select name="" id="" class="text-white bg-transparent">
+            <select v-model="video" class="text-white bg-transparent">
               <option v-for="(episode, index) in getClub.videos" :key="index" value="" class="text-base bg-transparent text-white">
                 {{ episode.name }}
               </option>
@@ -351,7 +351,7 @@
             loop
             class="w-3/4 mx-auto border border-white rounded-lg"
           >
-            <source :src="getClub.videos[0].image" />
+            <source :src="video.image" />
           </video>
         </div>
         <!-- COMENTARIOS -->
@@ -471,10 +471,16 @@ export default {
     clubComment: "",
     bgImage: require("../../static/images/backgrounds/fondo6.png"),
     paper: require("../../static/images/papel-rasgado1.png"),
+    video: ""
   }),
   computed: {
     ...mapGetters("club", ["getClub"]),
   },
+  mounted() {
+    if (Object.keys(this.getClub).length) {
+      this.video = this.getClub.videos[0]
+    }
+  }
 };
 </script>
 

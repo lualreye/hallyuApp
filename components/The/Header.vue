@@ -39,18 +39,18 @@
       <div class="w-auto flex justify-end items-center">
         <div class="w-auto flex justify-center items-center mr-2">
           <GlobalIconButton
-            v-if="getUser"
             iconName="like"
             classes="bg-primary p-1"
             class="mx-1"
             @click="openFavourites"
           />
           <div class="relative flex justify-center items-center">
-            <GlobalIconButton
-              iconName="cart"
-              classes="bg-primary p-1"
+            <button
+              class="rounded-full w-10 h-10 flex justify-center items-center"
               @click="openCart"
-            />
+            >
+              <img :src="cartImage" alt="Hallyu" class="w-3/4" />
+            </button>
             <div
               v-if="getCart.length"
               class="
@@ -112,6 +112,7 @@ export default {
   data: () => ({
     userImage: "",
     userName: "",
+    cartImage: require("../../static/images/logo/shop.jpeg"),
   }),
   computed: {
     ...mapGetters("config_drawer", ["showMenu"]),
@@ -172,10 +173,14 @@ export default {
       }
     },
     openFavourites() {
-      if (this.getLiked) {
-        this.showLikedProducts(false);
+      if (getUser) {
+        if (this.getLiked) {
+          this.showLikedProducts(false);
+        } else {
+          this.showLikedProducts(true);
+        }
       } else {
-        this.showLikedProducts(true);
+        this.$router.push("/SignIn");
       }
     },
   },

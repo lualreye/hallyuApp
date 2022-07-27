@@ -9,7 +9,9 @@
       flex-wrap
       px-4
       py-4
-      my-8
+      mt-8
+      mb-20
+      lg:mb-24
       super-screen
     "
   >
@@ -132,7 +134,7 @@
           class="
             py-3
             px-4
-            z-20
+            z-10
             rounded-full
             bg-primary
             flex
@@ -152,14 +154,12 @@
           class="
             w-full
             rounded-t-full rounded-b-lg
-            relative
-            z-10
             h-96
             object-cover object-center
-            hero-image
+            hero-image hero-border
           "
         />
-        <div class="imageBg" />
+        <!-- <div class="imageBg" /> -->
       </figure>
     </div>
   </div>
@@ -183,15 +183,21 @@ export default {
 
 <style scoped>
 .imageBg {
-  width: 100%;
+  width: 104%;
   height: 100%;
   content: "";
   z-index: 0;
   position: absolute;
   top: 5px;
-  left: 10px;
-  background: #091212;
+  left: -3px;
+  background: #343434;
   border-radius: 50% 50% 8px 8px;
+}
+.hero-border {
+  border-top: 5px solid #556e70;
+  border-left: 5px solid #556e70;
+  border-bottom: 8px solid #556e70;
+  border-right: 10px solid #556e70;
 }
 @media screen and (min-width: 1025px) {
   .super-screen {
