@@ -339,14 +339,14 @@
           "
         >
           <div
-            class="w-3/4 border border-white rounded-t-md flex justify-center"
+            class="w-3/4 border-2 border-white rounded-t-md flex justify-center"
           >
-            <select v-model="video" class="text-white bg-transparent">
+            <select v-model="episode" class="text-white bg-transparent">
               <option
                 v-for="(episode, index) in getClub.videos"
                 :key="index"
                 value=""
-                class="text-base bg-transparent text-white"
+                class="text-base bg-transparent text-white font-junegull"
               >
                 {{ episode.name }}
               </option>
@@ -356,9 +356,9 @@
             preload="auto"
             controls
             loop
-            class="w-3/4 mx-auto border border-white rounded-lg"
+            class="w-3/4 mx-auto border-2 border-white rounded-b-lg"
           >
-            <source :src="video.image" />
+            <source :src="video" />
           </video>
         </div>
         <!-- COMENTARIOS -->
@@ -510,17 +510,25 @@ export default {
     clubComment: "",
     bgImage: require("../../static/images/backgrounds/fondo6.png"),
     paper: require("../../static/images/papel-rasgado1.png"),
-    video: "",
+    episode: "",
+    video: null,
     participation: false,
     prize: false,
   }),
   computed: {
     ...mapGetters("club", ["getClub"]),
   },
-  mounted() {
-    if (Object.keys(this.getClub).length) {
-      this.video = this.getClub.videos[0];
-    }
+  watch: {
+    episode(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.getClub.videos.findIndex((video) => video.name === this.episode);
+      }
+    },
+    getClub(value) {
+      if (Object.keys(value).length) {
+        this.video = this.getClub.videos[0].image;
+      }
+    },
   },
   methods: {
     getParticipation() {
