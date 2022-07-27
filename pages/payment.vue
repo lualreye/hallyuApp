@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mx-auto w-full max-w-screen-2xl">
-      <div class="py-6">
+      <div class="py-6 flex justify-between mx-auto">
         <figure
           class="
             w-28
@@ -17,6 +17,12 @@
         >
           <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
         </figure>
+        <nuxt-link
+          to="/products"
+          class="underline text-textColor mr-3 font-open"
+        >
+          Seguir Comprando
+        </nuxt-link>
       </div>
     </div>
     <div
@@ -191,7 +197,7 @@
         </div>
         <div class="w-full flex flex-col my-10">
           <p class="font-junegull text-textColor text-2xl mb-4">
-            Información de envio
+            Productos en lista
           </p>
           <div
             class="
@@ -204,7 +210,23 @@
               rounded-3xl
             "
           >
-            Boton de pago
+            <nav
+              class="
+                flex
+                items-center
+                justify-start
+                px-4
+                py-2
+                cart-list
+                overflow-x-auto
+              "
+            >
+              <ul class="w-full flex flex-col justify-start items-center">
+                <li v-for="(item, i) in getCart" :key="i" class="w-full mb-6">
+                  <cart-card :product="item" />
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
@@ -217,72 +239,15 @@
               rounded-3xl
               shadow-md
               z-20
-              h-96
               flex flex-col
               transition-all
             "
           >
             <div
-              class="w-full px-4 flex justify-end items-center py-3 relative"
-            >
-              <div
-                class="
-                  w-full
-                  absolute
-                  top-0
-                  left-0
-                  right-0
-                  bottom-0
-                  z-60
-                  rounded-3xl
-                "
-              >
-                <wave-one class="rounded-3xl" />
-              </div>
-            </div>
-            <div
               v-if="getCart.length"
-              class="
-                w-full
-                flex flex-col
-                justify-between
-                flex-grow
-                h-full
-                pt-4
-                pb-10
-              "
+              class="w-full flex flex-col justify-between flex-grow h-full"
             >
-              <nav
-                class="
-                  flex flex-col
-                  justify-col
-                  items-center
-                  justify-start
-                  overflow-y-auto
-                  px-4
-                  py-2
-                "
-              >
-                <ul class="w-full flex flex-col justify-start items-center">
-                  <li
-                    v-for="(item, i) in getCart"
-                    :key="i"
-                    class="w-full mb-6 mt-12"
-                  >
-                    <cart-card :product="item" />
-                  </li>
-                </ul>
-              </nav>
-              <div
-                class="
-                  w-full
-                  h-56
-                  p-4
-                  rounded-bl-3xl
-                  bg-primary
-                  border-t border-blue-500
-                "
-              >
+              <div class="w-full h-56 p-4 rounded-3xl bg-aquamarine">
                 <div
                   class="
                     w-full
@@ -304,7 +269,7 @@
                       $ {{ discount }}
                     </p>
                   </div>
-                  <div class="w-full h-px bg-blue-600 my-2" />
+                  <div class="w-full h-px bg-textColor my-2" />
                   <div class="w-full flex justify-between items-center">
                     <p class="text-base font-open text-textColor">Total</p>
                     <p class="text-xl font-junegull font-bold text-textColor">
@@ -315,21 +280,13 @@
                     class="w-1/2 flex justify-center items-center mx-auto mt-4"
                   >
                     <GlobalHButton
-                      name="Comprar"
+                      name="Pagar"
                       buttonColor="secondary"
                       @click="redirectionToPayment"
                     />
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              v-else
-              class="w-full flex flex-grow justify-center items-center"
-            >
-              <p class="text-textColor font-junegull">
-                No tenemos productos en el carrito
-              </p>
             </div>
           </div>
         </div>
