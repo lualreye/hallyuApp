@@ -435,6 +435,7 @@
                 rounded-full
                 text-blue-300
               "
+              @click="getParticipation"
             >
               ¿Cómo participar?
             </button>
@@ -447,9 +448,22 @@
                 rounded-full
                 text-blue-300
               "
+              @click="getPrize"
             >
               ¿Qué puedo ganar?
             </button>
+          </div>
+          <div v-if="participation" class="p-6 rounded-lg club-yellow">
+            <p class="font-open font-italic text-white">
+              En todas tus comparas superiores a $25 en el local obtienes un
+              cupón para llenar tus datos y participar en Club Hallyu :)
+            </p>
+          </div>
+          <div v-if="prize" class="p-6 rounded-lg club-yellow">
+            <p class="font-open font-italic text-white">
+              Puedes generar combos de comida, moda, productos exclusivos o
+              incluso ¡álbumes k-pop!
+            </p>
           </div>
           <div
             class="
@@ -457,13 +471,14 @@
               flex flex-col
               justify-center
               items-center
+              mt-3
               p-6
               rounded-md
               fondo-pregunta
             "
           >
-            <p class="text-orange-500 font-junegull text-center">Te leemos</p>
-            <p class="my-3 text-orange-500 text-center font-junegull">
+            <p class="club-text-orange font-junegull text-center">Te leemos</p>
+            <p class="my-3 club-text-orange text-center font-junegull">
               ¿Tienes algún invitado que quisieras ver, algún juego, alguna idea
               súper increíble?
             </p>
@@ -472,7 +487,7 @@
               class="w-full h-16 rounded-lg tex-center"
               placeholder="Escribe aquí"
             ></textarea>
-            <button class="py-2 px-3 rounded-md text-white bg-orange-500">
+            <button class="py-2 px-3 rounded-md text-white club-orange">
               Enviar
             </button>
           </div>
@@ -496,6 +511,8 @@ export default {
     bgImage: require("../../static/images/backgrounds/fondo6.png"),
     paper: require("../../static/images/papel-rasgado1.png"),
     video: "",
+    participation: false,
+    prize: false,
   }),
   computed: {
     ...mapGetters("club", ["getClub"]),
@@ -504,6 +521,18 @@ export default {
     if (Object.keys(this.getClub).length) {
       this.video = this.getClub.videos[0];
     }
+  },
+  methods: {
+    getParticipation() {
+      console.log("Estamos en participacion");
+      this.prize = false;
+      this.participation = !this.participation;
+    },
+    getPrize() {
+      console.log("Estamos en premio");
+      this.participation = false;
+      this.prize = !this.prize;
+    },
   },
 };
 </script>
@@ -518,5 +547,14 @@ export default {
 .club-fondo {
   background-position: center;
   background-size: cover;
+}
+.club-yellow {
+  background: #f6b243;
+}
+.club-text-orange {
+  color: #e36b51;
+}
+.club-orange {
+  background: #e36b51;
 }
 </style>
