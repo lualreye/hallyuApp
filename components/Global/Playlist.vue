@@ -6,24 +6,48 @@
       centered
       bottom-6
       z-20
-      h-9
-      p-1
+      p-3
       rounded-full
-      flex
+      flex flex-col
       justify-center
       items-center
       bg-gray-800
     "
   >
-    <button class="w-7 h-7 flex justify-center items-center" @click="previous">
-      <HIcon name="previous" class="text-primary" />
-    </button>
-    <button class="w-7 h-7 flex justify-center items-center mx-3" @click="play">
-      <HIcon :name="isPlayer" class="text-secondary" />
-    </button>
-    <button class="w-7 h-7 flex justify-center items-center" @click="next">
-      <HIcon name="next" class="text-primary" />
-    </button>
+    <div class="flex">
+      <button
+        class="w-7 h-7 flex justify-center items-center"
+        @click="previous"
+      >
+        <HIcon name="previous" class="text-primary" />
+      </button>
+      <button
+        class="w-7 h-7 flex justify-center items-center mx-3"
+        @click="play"
+      >
+        <HIcon :name="isPlayer" class="text-secondary" />
+      </button>
+      <button class="w-7 h-7 flex justify-center items-center" @click="next">
+        <HIcon name="next" class="text-primary" />
+      </button>
+    </div>
+    <p
+      v-if="Object.keys(getSong).length"
+      class="
+        text-gray-800 text-sm text-center
+        fixed
+        bottom-0
+        flex
+        justify-center
+        w-auto
+        left-0
+        right-0
+        p-1
+        rounded-full
+      "
+    >
+      {{ getSong.name }}
+    </p>
   </div>
 </template>
 
