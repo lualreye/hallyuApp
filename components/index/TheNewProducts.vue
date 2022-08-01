@@ -63,6 +63,7 @@
         class="
           flex
           justify-start
+          lg:justify-center
           mx-auto
           mt-4
           py-12
@@ -70,6 +71,8 @@
           sm:pl-6
           items-center
           overflow-x-auto
+          flex-wrap
+          lg:overflow-x-hidden
           product-container
         "
       >

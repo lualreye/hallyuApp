@@ -30,7 +30,7 @@
             text-center text-lg
             font-semibold
             text-textColor
-            font-open
+            font-junegull
           "
         >
           Ingresa con
@@ -48,7 +48,9 @@
           </div>
           <!-- EMAIL INPUT -->
           <div class="w-full flex flex-col justify-center items-start">
-            <label for="" class="text-lg text-textColor"> Email </label>
+            <label for="" class="text-lg text-textColor font-junegull">
+              Email
+            </label>
             <input
               type="email"
               v-model="email"
@@ -60,10 +62,10 @@
                 w-full
                 px-3
                 py-2
-                bg-aquamarine
+                bg-gray-200
                 text-textColor
                 rounded-lg
-                border border-secondary
+                border border-textColor
                 placeholder-textColor
                 text-base
                 focus:bg-white
@@ -80,10 +82,12 @@
                 mt-1
                 py-2
                 px-3
-                bg-red-300
+                bg-lightPink
                 text-xs
                 font-medium
                 text-red-600
+                font-open
+                italic
               "
             >
               Por favor ingresa un correo valido
@@ -91,7 +95,9 @@
           </div>
           <!-- PASSWORD INPUT -->
           <div class="w-full flex flex-col justify-center items-start mt-4">
-            <label for="" class="text-lg text-textColor"> Contraseña </label>
+            <label for="" class="text-lg text-textColor font-junegull">
+              Contraseña
+            </label>
             <input
               type="password"
               v-model="password"
@@ -103,9 +109,9 @@
                 w-full
                 px-3
                 py-2
-                bg-aquamarine
+                bg-gray-300
                 rounded-lg
-                border border-secondary
+                border border-textColor
                 placeholder-textColor
                 text-base
                 focus:bg-white
@@ -122,10 +128,12 @@
                 mt-1
                 py-2
                 px-3
-                bg-red-300
+                bg-lightPink
                 text-xs
                 font-medium
                 text-red-600
+                font-open
+                italic
               "
             >
               Tu contraseña debe tener al menos 8 caracteres, un número, una

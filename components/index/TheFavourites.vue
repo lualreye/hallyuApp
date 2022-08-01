@@ -59,13 +59,16 @@
     <div
       class="
         flex
+        flex-wrap
         justify-start
+        lg:justify-center
         mt-4
         py-12
         pl-1
         sm:pl-6
         items-center
         overflow-x-scroll
+        lg:overflow-x-hidden
         favourites-container
       "
     >

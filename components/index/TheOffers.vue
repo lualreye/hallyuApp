@@ -47,12 +47,15 @@
     <div
       class="
         flex
-        justify-center
+        flex-wrap
+        justify-start
+        lg:justify-center
         mt-8
         py-12
         pl-12
         items-center
         overflow-x-auto
+        lg:overflow-hidden
         product-container
       "
     >
