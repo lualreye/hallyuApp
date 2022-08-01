@@ -15,7 +15,7 @@
     />
     <the-limited-products
       v-if="getFlashProducts.length"
-      :urgentProducts="getFlashProducts"
+      :urgentProducts="getFlashProducts.slice(0, 4)"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -27,7 +27,7 @@
     />
     <the-favourites
       v-if="getProductsCommented.length"
-      :comments="getProductsCommented"
+      :comments="getProductsCommented.slice(0, 4)"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -39,7 +39,7 @@
     />
     <the-offers
       v-if="getDiscountProducts.length"
-      :offers="getDiscountProducts"
+      :offers="getDiscountProducts.slice(0, 4)"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration
@@ -51,7 +51,7 @@
     />
     <the-new-products
       v-if="getNewProducts.length"
-      :newProductsArray="getNewProducts"
+      :newProductsArray="getNewProducts.slice(0, 4)"
       class="mx-auto"
     />
     <the-line-decoration
@@ -82,7 +82,7 @@
     />
     <the-community
       v-if="areFans"
-      :instagramProfiles="getFans.slice(0, 7)"
+      :instagramProfiles="getFans.slice(0, 4)"
       class="max-w-screen-2xl mx-auto"
     />
     <the-line-decoration

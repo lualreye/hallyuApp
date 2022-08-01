@@ -29,14 +29,16 @@
           justify-center
           mt-4
           py-6
-          lg:mt-8 lg:py-12
+          sm:mt-12
+          md:mt-16
+          lg:mt-12
+          xl:mt-32
+          lg:py-12
           items-center
           flex-wrap
         "
       >
         <div
-          v-for="(post, i) in posts"
-          :key="i"
           class="
             flex flex-wrap
             justify-center
@@ -46,7 +48,13 @@
             mt-10
           "
         >
-          <post-preview :post="post" :idx="i + 1" class="relative z-10" />
+          <post-preview
+            v-for="(post, i) in posts"
+            :key="i"
+            :post="post"
+            :idx="i + 1"
+            class="relative z-10"
+          />
         </div>
       </div>
     </div>

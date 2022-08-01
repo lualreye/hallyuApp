@@ -62,6 +62,7 @@
       <div
         class="
           flex
+          lg:flex-wrap
           justify-start
           lg:justify-center
           mx-auto
@@ -71,7 +72,6 @@
           sm:pl-6
           items-center
           overflow-x-auto
-          flex-wrap
           lg:overflow-x-hidden
           product-container
         "

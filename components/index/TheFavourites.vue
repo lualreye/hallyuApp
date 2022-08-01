@@ -59,7 +59,7 @@
     <div
       class="
         flex
-        flex-wrap
+        lg:flex-wrap
         justify-start
         lg:justify-center
         mt-4
