@@ -6,7 +6,7 @@
         <ninth-type />
       </div>
       <h2 class="text-xl sm:text-4xl font-junegull text-textColor">
-        Comunidad Hallyu
+        Hallyu Fans
       </h2>
       <div class="ml-4 parenthesis-two w-11 h-11 relative mt-2">
         <ninth-type />
@@ -28,10 +28,12 @@
     >
       <div
         class="
+          w-auto
           absolute
           -top-4
           right-28
           md:right-48
+          lg:right-1/3
           px-4
           py-3
           h-16
@@ -50,31 +52,6 @@
           {{ getCommunityGreeting }}
         </p>
       </div>
-      <div
-        class="
-          absolute
-          bubble-1
-          hidden
-          lg:block
-          bg-lightPink
-          -top-10
-          lg:right-1/3
-          rounded-full
-        "
-      />
-      <div
-        class="
-          absolute
-          w-8
-          h-8
-          hidden
-          lg:block
-          bg-lightPink
-          -top-16
-          right-1/2
-          rounded-full
-        "
-      />
       <div
         v-for="(profile, i) in instagramProfiles"
         :key="i"
