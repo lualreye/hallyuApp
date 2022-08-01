@@ -30,8 +30,7 @@
                 class="
                   z-0
                   w-full
-                  h-2
-                  lg:h-4
+                  h-4
                   xl:h-5
                   bg-pink-300
                   absolute
@@ -57,8 +56,7 @@
                 class="
                   z-0
                   w-full
-                  h-2
-                  lg:h-4
+                  h-4
                   xl:h-5
                   bg-pink-300
                   absolute

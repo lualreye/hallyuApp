@@ -54,7 +54,7 @@
     >
       <template v-if="getSearch !== false">
         <stack
-          :column-min-width="228"
+          :column-min-width="144"
           :gutter-width="8"
           :gutter-height="24"
           monitor-images-loaded

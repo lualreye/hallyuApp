@@ -26,8 +26,7 @@
                 class="
                   z-0
                   w-full
-                  h-2
-                  lg:h-4
+                  h-4
                   xl:h-5
                   bg-lightPink
                   absolute
@@ -53,8 +52,7 @@
                 class="
                   z-0
                   w-full
-                  h-2
-                  lg:h-4
+                  h-4
                   xl:h-5
                   bg-lightPink
                   absolute
@@ -74,7 +72,7 @@
     </div>
     <div v-if="!getParams" class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack
-        :column-min-width="228"
+        :column-min-width="getCardWidth"
         :gutter-width="8"
         :gutter-height="24"
         monitor-images-loaded
@@ -99,6 +97,8 @@ import ProductCard from "@/components/cards/ProductCard.vue";
 import { Stack, StackItem } from "vue-stack-grid";
 import { mapActions, mapGetters } from "vuex";
 
+const mobileMediaQuery = window.matchMedia('screen and (max-width: 600px)')
+
 export default {
   components: {
     ProductCard,
@@ -108,6 +108,7 @@ export default {
   data: () => ({
     image: require("../static/images/bandbts.png"),
     selectedBand: "",
+    isMobile: mobileMediaQuery.matches
   }),
   computed: {
     ...mapGetters("cart", ["getProductsByCategory", "getProducts"]),
@@ -119,6 +120,9 @@ export default {
         return this.$route.params.id;
       }
     },
+    getCardWidth () {
+      return this.isMobile ? 144 : 228;
+    }
   },
   mounted() {
     if (this.$route.params.id === undefined) {
@@ -137,6 +141,9 @@ export default {
   methods: {
     ...mapActions("cart", ["fetchProductsByCategory", "fetchProducts"]),
     ...mapActions("categories", ["fetchCategories"]),
+     updateIsMobile(event) {
+      this.isMobile = event.matches
+    },
     selectBand(band) {
       this.selectedBand = band;
     },

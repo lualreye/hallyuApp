@@ -1,5 +1,5 @@
 <template>
-  <div class="w-56">
+  <div class="w-36 h-36 sm:w-56 sm:h-56">
     <div class="relative w-full h-full">
       <img
         :src="product.thumbnail"
@@ -8,8 +8,10 @@
           border-2 border-primary
           object-cover object-center
           rounded-3xl
-          w-full
-          h-56
+          w-36 h-36
+          sm:w-full
+          sm:h-56
+          producto-image
         "
       />
       <div
@@ -19,8 +21,10 @@
           bottom-0
           right-0
           py-2
-          w-full
-          h-56
+          w-36 h-36
+          sm:w-full
+          sm:h-56
+          producto-content
           flex flex-col
           justify-between
         "
@@ -36,6 +40,8 @@
             v-if="product.name.includes('/')"
             class="
               text-white
+              text-sm
+              sm:text-base
               bg-secondary
               font-junegull
               rounded-md
