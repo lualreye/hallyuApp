@@ -31,11 +31,14 @@ export default {
   methods: {
     ...mapActions("config_drawer", ["activeMenu"]),
     ...mapActions("cart", ["activeCart"]),
+    ...mapActions("likes", ["showLikedProducts"]),
     closeMenu() {
       if (this.showMenu) {
         this.activeMenu(false);
       } else if (this.showCart) {
         this.activeCart(false);
+      } else if (this.getLiked) {
+        this.showLikedProducts(false);
       } else {
         return;
       }

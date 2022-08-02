@@ -231,6 +231,7 @@ export default {
         email: this.getUser.email,
       };
       this.updateProfile(userData);
+      this.editing = false;
       this.closeModal();
     },
     closeModal() {
