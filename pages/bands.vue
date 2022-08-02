@@ -32,7 +32,7 @@
                   w-full
                   h-4
                   xl:h-5
-                  bg-pink-300
+                  bg-lightPink
                   absolute
                   rounded-lg
                   bottom-1
@@ -58,7 +58,7 @@
                   w-full
                   h-4
                   xl:h-5
-                  bg-pink-300
+                  bg-lightPink
                   absolute
                   rounded-lg
                   bottom-1
