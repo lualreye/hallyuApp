@@ -122,7 +122,6 @@ export default {
       this.$router.push("/products");
     },
     showDiscount() {
-      console.log('Estamos ejecutando')
       this.showTicket();
     },
   },

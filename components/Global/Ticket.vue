@@ -11,8 +11,26 @@
         bg-white
         py-2
         flex-wrap
+        relative
       "
     >
+      <button
+        class="
+          absolute
+          -top-2
+          -right-2
+          w-5
+          h-5
+          flex
+          justify-center
+          items-center
+          rounded-full
+          bg-pink-700
+        "
+        @click="showDiscount"
+      >
+        <h-icon name="close" class="text-white" />
+      </button>
       <div
         class="
           flex
@@ -75,9 +93,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+import HIcon from "./HIcon.vue";
 
 export default {
+  components: { HIcon },
   props: {
     show: {
       type: Boolean,
@@ -90,6 +110,12 @@ export default {
   }),
   computed: {
     ...mapGetters("general", ["getDiscount"]),
+  },
+  methods: {
+    ...mapActions("general", ["showTicket"]),
+    showDiscount() {
+      this.showTicket();
+    },
   },
 };
 </script>

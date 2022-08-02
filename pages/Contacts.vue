@@ -3,7 +3,18 @@
     <figure class="w-full lg:w-2/5 mx-auto flex justify-center items-center">
       <img src="../static/images/map.png" alt="hallyu Map" />
     </figure>
-    <h3 class="text-textColor font-junegull text-lg w-ful text-center mt-4">
+    <h3
+      class="
+        text-textColor
+        font-junegull
+        text-lg
+        sm:text-xl
+        lg:text-2xl
+        w-ful
+        text-center
+        mt-4
+      "
+    >
       ¡Ayúdanos a mejorar, Déjanos tu mensaje!
     </h3>
     <div
@@ -74,7 +85,9 @@
           shadow-md
         "
       >
-        <p class="text-hBlack font-open font-semibold">Nuestras Sucursales</p>
+        <p class="text-textColor font-junegull font-semibold">
+          Nuestras Sucursales
+        </p>
         <div class="w-3/4 mb-2">
           <p class="text-base text-hBlack font-junegull">Quito</p>
           <p class="w-full text-sm text-hBlack font-open">

@@ -16,11 +16,12 @@
   >
     <div class="mx-auto max-w-screen-2xl flex justify-between items-center">
       <GlobalIconButton
+        class="hidden sm:flex"
         iconName="menu"
         classes="bg-primary"
         @click="openMenu"
       />
-      <nuxt-link to="/">
+      <nuxt-link to="/" class="hidden sm:flex">
         <figure
           class="
             w-28
@@ -36,6 +37,29 @@
           <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
         </figure>
       </nuxt-link>
+      <div class="flex items-center sm:hidden">
+        <GlobalIconButton
+          iconName="menu"
+          classes="bg-primary"
+          @click="openMenu"
+        />
+        <nuxt-link to="/">
+          <figure
+            class="
+              w-28
+              ml-10
+              sm:w-36
+              md:w-40
+              lg:w-52
+              flex
+              justify-center
+              items-center
+            "
+          >
+            <img src="~/static/images/logo/logotipo.png" alt="hallyu-store" />
+          </figure>
+        </nuxt-link>
+      </div>
       <div class="w-auto flex justify-end items-center">
         <div class="w-auto flex justify-center items-center mr-2">
           <div class="relative flex justify-center items-center">
