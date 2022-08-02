@@ -174,18 +174,18 @@ export default {
       }
     },
     getLink(path) {
+      console.log(path);
+      console.log(this.$route.path.split("/").join("").includes("products"));
       if (this.$route.path === path) {
         return true;
-      } else if (
-        this.$route.path.split("/").join("").includes(path.replace("/", ""))
-      ) {
-        if (path === "/") {
-          return false;
-        }
-        return true;
-      } else {
-        return false;
       }
+      if (
+        this.$route.path.split("/").join("").includes("products") &&
+        path === "/categories"
+      ) {
+        return true;
+      }
+      return false;
     },
     closeMenu() {
       if (this.showMenu) {
