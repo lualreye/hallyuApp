@@ -54,7 +54,7 @@
     >
       <template v-if="getSearch !== false">
         <stack
-          :column-min-width="144"
+          :column-min-width="getCardWidth"
           :gutter-width="8"
           :gutter-height="24"
           monitor-images-loaded
@@ -82,7 +82,7 @@
       class="py-4 px-2 max-w-screen-xl mx-auto my-9"
     >
       <stack
-        :column-min-width="228"
+        :column-min-width="getCardWidth"
         :gutter-width="8"
         :gutter-height="24"
         monitor-images-loaded
@@ -99,7 +99,7 @@
 
     <div v-else class="py-4 px-2 max-w-screen-xl mx-auto my-9">
       <stack
-        :column-min-width="228"
+        :column-min-width="getCardWidth"
         :gutter-width="8"
         :gutter-height="24"
         monitor-images-loaded
@@ -121,6 +121,8 @@ import ProductCard from "@/components/cards/ProductCard.vue";
 import { Stack, StackItem } from "vue-stack-grid";
 import { mapActions, mapGetters } from "vuex";
 
+const mobileMediaQuery = window.matchMedia("screen and (max-width: 600px)");
+
 export default {
   components: {
     ProductCard,
@@ -131,6 +133,7 @@ export default {
     searchString: "",
     filters: ["menor a $20", "Ofertas", "Todos"],
     filterSelected: "",
+    isMobile: mobileMediaQuery.matches,
   }),
   computed: {
     ...mapGetters("cart", ["getProducts", "getSearchedProducts"]),
@@ -144,6 +147,9 @@ export default {
     },
     getSearch() {
       return this.filterByName().length ? this.filterByName() : false;
+    },
+    getCardWidth() {
+      return this.isMobile ? 144 : 228;
     },
   },
   mounted() {
