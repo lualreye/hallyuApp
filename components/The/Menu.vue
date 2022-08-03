@@ -175,8 +175,9 @@ export default {
     },
     getLink(path) {
       console.log(path);
-      console.log(this.$route.path.split("/").join("").includes("products"));
-      if (this.$route.path === path) {
+      // console.log(this.$route.path);
+      console.log(this.$route.path.split("/")[1]);
+      if (this.$route.path.split("/")[1] === path.replace("/", "")) {
         return true;
       }
       if (

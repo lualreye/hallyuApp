@@ -31,6 +31,7 @@
           right-full
           -top-3
           text-white
+          player-toast
         "
         >Busca un producto</span
       >
@@ -61,6 +62,7 @@
           right-full
           -top-3
           text-white
+          player-toast
         "
         >Notificaciones</span
       >
@@ -82,6 +84,7 @@
           right-full
           -top-3
           text-white
+          player-toast
         "
         >Reproductor</span
       >
@@ -129,10 +132,10 @@ export default {
 </script>
 
 <style scoped>
-.player-button > span {
-  opacity: 0;
+.player-button .player-toast {
+  display: none;
 }
-.player-button:hover > span {
-  opacity: 1;
+.player-button:hover > .player-toast {
+  display: block;
 }
 </style>

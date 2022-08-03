@@ -4,10 +4,10 @@
     class="w-full relative py-16 club-fondo"
     :style="{ backgroundImage: 'url(' + bgImage + ')' }"
   >
-    <div class="absolute w-full -top-8 left-0">
+    <div class="absolute w-full -top-11 left-0">
       <img :src="paper" alt="" class="w-full h-20" />
     </div>
-    <div class="absolute w-full -bottom-8 left-0 rotate-180">
+    <div class="absolute w-full -bottom-11 left-0 rotate-180">
       <img :src="paper" alt="" class="w-full h-20" />
     </div>
     <div class="mx-auto max-w-screen-2xl relative">
