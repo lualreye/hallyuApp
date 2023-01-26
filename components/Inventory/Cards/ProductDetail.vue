@@ -270,7 +270,7 @@ export default {
       required: false,
     },
     offered: {
-      type: [Boolean, String],
+      type: [Boolean, String, Object],
       required: true,
     },
   },
