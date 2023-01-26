@@ -170,8 +170,7 @@
                 text-red-600
               "
             >
-              Tu contraseña debe tener al menos 8 caracteres, un número, una
-              minúscula y una mayúscula
+              Tu contraseña debe tener al menos 8 caracteres
             </span>
           </div>
           <!-- PASSWORD INPUT -->
@@ -287,7 +286,7 @@ export default {
     },
     // VALIDATING PASSWORD
     checkPassword() {
-      return this.validPassword(this.password);
+      return this.password.length >= 8;
     },
     // VALIDATING FORM
     formIsValid() {
@@ -319,10 +318,6 @@ export default {
       const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
-    },
-    validPassword(password) {
-      const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-      return re.test(password);
     },
     signUserUp() {
       const user = {
