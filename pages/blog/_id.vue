@@ -433,7 +433,6 @@ export default {
     },
     firstPost() {
       const random = Math.floor(Math.random() * this.getPosts.length);
-      console.log(random);
       return this.getPosts[random];
     },
     secondPost() {

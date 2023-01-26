@@ -42,8 +42,7 @@
         w-7
         h-7
         flex
-        justify-center
-        items-center
+        justify-centeritems-center
         my-6
         relative
         player-button

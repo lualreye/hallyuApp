@@ -116,9 +116,7 @@ const mutations = {
     const idx = state.indexPlaylist.findIndex(song => song.name === state.playing.name)
     state.playing.play.pause()
     state.playing = {}
-    console.log(idx)
     const next = Number(idx + 1)
-    console.log(next)
     state.indexPlaylist.forEach(song => song.isPlaying = false)
     if (next >= state.indexPlaylist.length) {
       state.indexPlaylist[0].isPlaying = true
@@ -139,7 +137,6 @@ const mutations = {
     state.playing.play.pause()
     state.playing = {}
     const next = idx + 1
-    console.log(next)
     state.indexPlaylist.forEach(song => song.isPlaying = false)
     if (next <= 0) {
       state.indexPlaylist[state.indexPlaylist.length - 1].isPlaying = true

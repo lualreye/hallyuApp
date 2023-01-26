@@ -131,7 +131,6 @@ export const mutations = {
   ADD_SEARCHED_PRODUCTS(state, products) {
     state.searchedProducts = []
     state.searchedProducts = products
-    console.log(state.searchedProducts)
   },
   REMOVE_OFFERED_ITEM(state, id) {
     const idx = state.flashProducts.findIndex(pr => pr.id === id)
@@ -324,7 +323,6 @@ export const actions = {
   async fetchSearchedProducts({ commit }, payload) {
     try {
       const db = fireDataBase;
-      console.log(payload)
       const ref = collection(db, 'products');
       const productByBand = [];
       const productQuery = query(ref, where('name', '<=', payload + '\uf8ff'));

@@ -63,7 +63,6 @@ const mutations = {
     state.post = post
   },
   ADD_COMMENT(state, comment) {
-    console.log(comment)
     state.post.comments.push({...comment})
   }
 };
@@ -181,7 +180,6 @@ const actions = {
   async addComment({ commit, getters }, payload) {
     try {
       const db = fireDataBase
-      console.log({...payload})
       const postId = getters.getPost.id
       const postRef = doc(db, 'posts', postId)
       await updateDoc(postRef, {
