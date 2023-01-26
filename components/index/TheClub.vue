@@ -558,12 +558,10 @@ export default {
   },
   methods: {
     getParticipation() {
-      console.log("Estamos en participacion");
       this.prize = false;
       this.participation = !this.participation;
     },
     getPrize() {
-      console.log("Estamos en premio");
       this.participation = false;
       this.prize = !this.prize;
     },
