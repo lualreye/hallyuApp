@@ -518,7 +518,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import EightType from "~/components/parenthesis/EightType.vue";
 import PostPreview from "~/components/cards/PostPreview";
 export default {
@@ -537,6 +537,13 @@ export default {
   }),
   computed: {
     ...mapGetters("club", ["getClub"]),
+  },
+  mounted() {
+    if (!Object.keys(this.getClub).length) {
+      this.fetchClub();
+    } else {
+      this.video = this.getClub.videos[0].image;
+    }
   },
   watch: {
     episode(newVal, oldVal) {
@@ -557,6 +564,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions("club", ["fetchClub"]),
     getParticipation() {
       this.prize = false;
       this.participation = !this.participation;

@@ -162,9 +162,6 @@ export default {
     if (!this.getCommunityGreeting.length) {
       this.fetchCommunityGreetings();
     }
-    if (!Object.keys(this.getClub).length) {
-      this.fetchClub();
-    }
     if (!this.getProductsCommented.length) {
       this.fetchCommentedProducts();
     }
@@ -187,7 +184,6 @@ export default {
     ]),
     ...mapGetters("categories", ["getCategories"]),
     ...mapGetters("user", ["getUser"]),
-    ...mapGetters("club", ["getClub"]),
     ...mapGetters("comments", ["getProductsCommented"]),
     areThereHeroImages() {
       return this.getHeroImages.length === 0 ? false : true;
@@ -242,7 +238,6 @@ export default {
       "fetchNewProducts",
     ]),
     ...mapActions("categories", ["fetchCategories"]),
-    ...mapActions("club", ["fetchClub"]),
     ...mapActions("comments", ["fetchCommentedProducts"]),
     randomNumber(max) {
       return Math.random() * (max - 0) + 0;

@@ -244,6 +244,16 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
+  head() {
+    return {
+      script: [
+        {
+          src:
+            'https://www.datafast.com.ec/js/dfAdditionalValidations1.js'
+        }
+      ]
+    }
+  },
   data: () => ({
     selectedImage: "",
     read: true,
