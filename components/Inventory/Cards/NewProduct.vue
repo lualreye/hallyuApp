@@ -913,12 +913,16 @@ export default {
       if (Object.keys(newVal).length !== 0) {
         if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
           const selected = JSON.parse(JSON.stringify(this.getSelectedProduct));
+
+          const getCategoryObject = this.getCategories.filter(cat => cat.name === selected.category)
+          console.log(getCategoryObject)
+
           this.name = selected.name;
           this.price = selected.price;
           this.stock = selected.stock;
           this.description = selected.description;
           this.band = selected.band;
-          this.category = selected.category;
+          this.category = getCategoryObject;
           this.offer = selected.offer;
           this.sizes = selected.clothes.sizes;
           this.productDiscount = 0;
@@ -1070,6 +1074,8 @@ export default {
       } else {
         offerType = {};
       }
+      const getCategoryObject = this.getCategories.filter(cat => cat.name === this.category)
+      console.log(getCategoryObject)
       const product = {
         name: this.name,
         thumbnail: this.thumbnail.object,
@@ -1078,7 +1084,7 @@ export default {
         stock: Number(this.stock),
         description: this.description,
         band: this.band,
-        category: this.category,
+        category: getCategoryObject,
         offered: this.hasOffer,
         offer: offerType,
         clothes: {

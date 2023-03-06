@@ -171,8 +171,8 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    email: "",
-    password: "",
+    email: "lualreye@gmail.com",
+    password: "Password123",
   }),
   computed: {
     ...mapGetters("user", ["getModal", "getSignIn"]),

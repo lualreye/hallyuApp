@@ -282,7 +282,6 @@
                     <GlobalHButton
                       name="Pagar"
                       buttonColor="secondary"
-                      @click="redirectionToPayment"
                     />
                   </div>
                 </div>
@@ -301,6 +300,16 @@ import WaveOne from "@/components/waves/WaveOne.vue";
 import CartCard from "@/components/cards/CartCard.vue";
 
 export default {
+  head() {
+    return {
+      script: [
+        {
+          type: module,
+          src: "https://eu-eutest.oppwa.com/v1/paymentWidgets.js?checkoutId={checkoutId}"
+        },
+      ]
+    }
+  },
   layout: "pay",
   components: {
     WaveOne,
