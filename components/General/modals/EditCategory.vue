@@ -18,6 +18,40 @@
         />
       </div>
     </div>
+    <div class="w-full flex my-8">
+      <button
+        v-if="isAddingSubCat"
+        class="flex text-textColor"
+        @click="isAddingSubCat = !isAddingSubCat">
+        Agregar sub categoria
+        <div class="w-6 h-6">
+          <GlobalHIcon name="plus" class="text-textColor" />
+        </div>
+      </button>
+      <div v-else class="flex justify-center items-center gap-2 relative">
+        <input
+            v-model="subCategory"
+            type="text"
+            class="w-full p-2 text-textColor border border-primary rounded-lg outline-none"
+          />
+        <button class="flex w-auto items-center" @click="addSubCategory">
+          Agregar
+          <div class="w-6 h-6">
+            <GlobalHIcon name="plus" class="text-textColor" />
+          </div>
+        </button>
+        <button class="w-6 h-6 -top-4 -left-4 absolute" @click="isAddingSubCat = !isAddingSubCat">
+          <GlobalHIcon name="close" class="text-red-600" />
+        </button>
+      </div>
+    </div>
+    <div v-if="category.subCats.length" class="my-6">
+      <p
+        v-for="(subCat, i) in subCats"
+        :key="i">
+        {{ subCat }}
+      </p>
+    </div>
     <div class="w-full flex flex-col justiy-center items-center">
       <button
         class="w-40 bg-primary flex justify-center items-center rounded-lg py-2 mt-2"
@@ -52,8 +86,11 @@ export default {
   },
   data: () => ({
     category: {
-      name: ''
-    }
+      name: '',
+      subCats: []
+    },
+    isAddingSubCat: false,
+    subCategory: ''
   }),
   methods: {
     closeModal() {
@@ -61,20 +98,34 @@ export default {
     },
     editCategory() {
       const categoryEdited = {
-        categoryName: this.categoryName,
+        categoryName: this.category.name,
         image: this.image,
         id: this.id,
-        subCats: {
-
-        }
+        subCats: this.category.subCats
       }
       console.log(categoryEdited)
       this.$emit('editing-category', categoryEdited)
       this.closeModal()
+    },
+    addSubCategory() {
+      const subCat = this.subCategory.trim()
+      if (!subCat.length) {
+        return
+      }
+
+      const subCatExists = this.category.subCats.find(e => e === subCat)
+      console.log(subCatExists)
+      if (subCatExists) {
+        return
+      }
+
+      this.category.subCats.push(subCat)
+      this.subCategory = ""
     }
   },
   mounted() {
     this.category.name = this.categoryName
+    this.category.subCats = this.subCats
   }
 }
 </script>
