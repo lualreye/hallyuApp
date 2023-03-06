@@ -15,15 +15,29 @@
         {{ categoryName }}
       </p>
     </div>
+    <button class="w-6 h-6 flex justify-center items-center mr-4" @click="editModalIsOpen = !editModalIsOpen">
+      <GlobalHIcon name="edit" class="text-textColor hover:text-yellow" />
+    </button>
     <button class="w-6 h-6 flex justify-center items-center" @click="deleteCat">
       <GlobalHIcon name="delete" class="text-textColor hover:text-pink-600" />
     </button>
+    <EditCategory
+      v-if="editModalIsOpen"
+      :image="image"
+      :categoryName="categoryName"
+      :id="id"
+      :subCats="[]"
+      @close-modal="editModalIsOpen = !editModalIsOpen"
+      @editing-category="editingCategory($event)" />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import EditCategory from "../modals/EditCategory.vue";
+
 export default {
+  components: { EditCategory },
   props: {
     image: {
       type: String,
@@ -40,11 +54,17 @@ export default {
       required: true,
     },
   },
+  data: () => ({
+    editModalIsOpen: false
+  }), 
   methods: {
-    ...mapActions("categories", ["deleteCategory"]),
-    deleteCat() {
-      this.deleteCategory(this.id);
-    },
+      ...mapActions("categories", ["deleteCategory"]),
+      deleteCat() {
+          this.deleteCategory(this.id);
+      },
+      editingCategory(value) {
+          this.$emit("editing-category", value);
+      }
   },
 };
 </script>

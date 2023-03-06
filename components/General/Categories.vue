@@ -99,6 +99,7 @@
           :image="cat.image"
           :categoryName="cat.name"
           :id="cat.id"
+          @editing-category="editCategory($event)"
         />
       </div>
     </div>
@@ -175,6 +176,9 @@ export default {
         url: null,
       };
       this.uploadCategory(category)
+    },
+    editCategory(value) {
+      console.log(value)
     },
     fetchCat() {
       if(!this.getCategories.length) {

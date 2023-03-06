@@ -171,7 +171,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
-    email: "lualreye@gmail.com",
+    email: "luisreyes@gmail.com",
     password: "Password123",
   }),
   computed: {
