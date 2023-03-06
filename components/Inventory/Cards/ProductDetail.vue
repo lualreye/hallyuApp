@@ -84,7 +84,7 @@
           font-open
         "
       >
-        {{ category.name.substr(0, 15) }} ...
+        {{ category[0].name.substr(0, 15) }} ...
       </div>
       <div
         class="
