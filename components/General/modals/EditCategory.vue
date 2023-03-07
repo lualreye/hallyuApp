@@ -103,7 +103,6 @@ export default {
         id: this.id,
         subCats: this.category.subCats
       }
-      console.log(categoryEdited)
       this.$emit('editing-category', categoryEdited)
       this.closeModal()
     },
@@ -114,7 +113,6 @@ export default {
       }
 
       const subCatExists = this.category.subCats.find(e => e === subCat)
-      console.log(subCatExists)
       if (subCatExists) {
         return
       }
