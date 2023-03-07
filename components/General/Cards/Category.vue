@@ -26,7 +26,8 @@
       :image="image"
       :categoryName="categoryName"
       :id="id"
-      :subCats="[]"
+      :subCats="subCats"
+      :sales="sales"
       @close-modal="editModalIsOpen = !editModalIsOpen"
       @editing-category="editingCategory($event)" />
   </div>
@@ -53,6 +54,15 @@ export default {
       type: String,
       required: true,
     },
+    subCats: {
+      type: Array,
+      required: false,
+      default: []
+    },
+    sales: {
+      type: Number,
+      required: true
+    }
   },
   data: () => ({
     editModalIsOpen: false

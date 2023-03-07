@@ -82,6 +82,10 @@ export default {
       type: Array,
       required: false,
       default: null
+    },
+    sales: {
+      type: Number,
+      required: true
     }
   },
   data: () => ({
@@ -101,7 +105,8 @@ export default {
         categoryName: this.category.name,
         image: this.image,
         id: this.id,
-        subCats: this.category.subCats
+        subCats: this.category.subCats,
+        sales: this.sales
       }
       this.$emit('editing-category', categoryEdited)
       this.closeModal()

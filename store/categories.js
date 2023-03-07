@@ -5,6 +5,8 @@ import {
   doc,
   collection,
   deleteDoc,
+  arrayUnion,
+  updateDoc,
 } from "firebase/firestore";
 import { getDownloadURL, uploadBytes, ref } from "firebase/storage";
 
@@ -77,6 +79,22 @@ const actions = {
       commit("DELETE_CATEGORY", payload);
     } catch (err) {
       console.error("CANNOT_DELETE_CATEGORY");
+    }
+  },
+  async editCategory({ commit, dispatch }, payload) {
+    try {
+      console.log(payload);
+      const db = fireDataBase;
+      const catRef = doc(db, "categories", payload.id);
+      await updateDoc(catRef, {
+        id: payload.id,
+        image: payload.image,
+        name: payload.categoryName,
+        subcategories: payload.subCats,
+      });
+      dispatch("fetchCategories");
+    } catch (err) {
+      console.error("CANNOT_EDIT_CATEGORY", err);
     }
   },
 };

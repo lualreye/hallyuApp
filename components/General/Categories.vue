@@ -99,7 +99,9 @@
           :image="cat.image"
           :categoryName="cat.name"
           :id="cat.id"
-          @editing-category="editCategory($event)"
+          :sales="cat.sales"
+          :subCats="cat.subCats || []"
+          @editing-category="editCat($event)"
         />
       </div>
     </div>
@@ -134,7 +136,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("categories", ["uploadCategory", "fetchCategories"]),
+    ...mapActions("categories", ["uploadCategory", "fetchCategories", "editCategory"]),
     openModal() {
       if (this.isOpen) {
         this.isOpen = false;
@@ -177,8 +179,8 @@ export default {
       };
       this.uploadCategory(category)
     },
-    editCategory(value) {
-      console.log(value)
+    editCat(value) {
+      this.editCategory(value)
     },
     fetchCat() {
       if(!this.getCategories.length) {
