@@ -20,7 +20,7 @@
     </div>
     <div class="w-full flex my-8">
       <button
-        v-if="isAddingSubCat"
+        v-if="!isAddingSubCat"
         class="flex text-textColor"
         @click="isAddingSubCat = !isAddingSubCat">
         Agregar sub categoria
@@ -81,7 +81,7 @@ export default {
     subCats: {
       type: Array,
       required: false,
-      default: null
+      default: []
     },
     sales: {
       type: Number,

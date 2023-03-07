@@ -100,7 +100,7 @@
           :categoryName="cat.name"
           :id="cat.id"
           :sales="cat.sales"
-          :subCats="cat.subCats || []"
+          :subCats="cat.subcategories"
           @editing-category="editCat($event)"
         />
       </div>

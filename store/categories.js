@@ -83,7 +83,6 @@ const actions = {
   },
   async editCategory({ commit, dispatch }, payload) {
     try {
-      console.log(payload);
       const db = fireDataBase;
       const catRef = doc(db, "categories", payload.id);
       await updateDoc(catRef, {
